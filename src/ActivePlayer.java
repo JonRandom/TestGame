@@ -19,12 +19,6 @@ public class ActivePlayer
     }
 
 
-    /**
-     * Methode verschiebenUm
-     *
-     * @param   deltaX  Pixel in x-Richtung (wird bei Bedarf auf ganze Pixel gerundet)
-     * @param   deltaY  Pixel in y-Richtung (wird bei Bedarf auf ganze Pixel gerundet)
-     */
     public void verschiebenUm(double deltaX, double deltaY) {
         super.bewegen( (int)( Math.round(deltaX) ), (int)( Math.round(deltaY) ) );
     }
@@ -93,64 +87,21 @@ public class ActivePlayer
     }
 
 
-    /**
-     * Dreht die Grafik um einen Winkel
-     *
-     * @param   winkelAenderung     +: mathematisch positiver Drehsinn (gegen den Uhrzeigersinn)
-     *                              -: mathematisch negativer Drehsinn (im Uhrzeigersinn)
-     */
+
     public void drehenUm(int winkelAenderung)
     {
         this.drehenRelativ( (double)( -winkelAenderung ) );
     }
 
-
-    /**
-     * Setzt den Drehwinkel auf eine absoluten neuen Wert
-     *
-     * @param   neuerDrehwinkel     der neue Drehwinkel
-     *                              +: mathematisch positiver Drehsinn (gegen den Uhrzeigersinn)
-     *                              -: mathematisch negativer Drehsinn (im Uhrzeigersinn)
-     */
     public void setzeDrehwinkel(int neuerDrehwinkel)
     {
         this.drehenAbsolut( (double)( -neuerDrehwinkel ) );
     }
 
-
-    /**
-     * Nennt den Winkel, um den die Grafik gedreht wurde
-     *
-     * @return      der Winkel, um den die Grafik gedreht wurde
-     *              0: wenn nicht gedreht
-     *              +: wenn mathematisch positiver Drehsinn (gegen den Uhrzeigersinn)
-     *              -: wenn mathematisch negativer Drehsinn (im Uhrzeigersinn)
-     */
     public int nenneWinkel()
     {
         return (int)( -this.gibDrehung() );
     }
 
-
-    /**
-     * liefert den Sinus des Drehwinkels der Grafik
-     *
-     * @return  Sinus des aktuellen Drehwinkels
-     */
-    public double sin_Drehwinkel()
-    {
-        return Math.sin( this.gibDrehung() * Math.PI / 180 );
-    }
-
-
-    /**
-     * liefert den Cosinus des Drehwinkels der Grafik
-     *
-     * @return  Cosinus des aktuellen Drehwinkels
-     */
-    public double cos_Drehwinkel()
-    {
-        return Math.cos( this.gibDrehung() * Math.PI / 180 );
-    }
 
 }

@@ -49,7 +49,7 @@ public class RECHTECK extends RechteckE {
      * Konstruktor der Klasse <code>RECHTECK</code>. Erstellt ein neues Rechteck.
      */
     public RECHTECK() {
-        this(200, 130);
+        this(200, 130,250,250);
     }
 
     /**
@@ -58,7 +58,7 @@ public class RECHTECK extends RechteckE {
      * @param   breite  Breite des Rechtecks
      * @param   hoehe   Hoehe des Rechtecks
      */
-    public RECHTECK(int breite, int hoehe) {
+    public RECHTECK(int breite, int hoehe,int M_x, int M_y) {
         this.sichtbar = true;
         super.sichtbarSetzen(true);
         this.farbe = "Rot";
@@ -66,8 +66,8 @@ public class RECHTECK extends RechteckE {
         this.breite = breite;
         this.hoehe = hoehe;
         super.masseSetzen(this.breite, this.hoehe);
-        this.M_x = 250;
-        this.M_y = 250;
+        this.M_x = M_x;
+        this.M_y = M_y;
         super.mittelpunktSetzen(this.M_x, this.M_y);
     }
 
@@ -106,99 +106,63 @@ public class RECHTECK extends RechteckE {
         super.mittelpunktSetzen(m_x, m_y);
     }
 
-    /**
-     * Setzt, ob dieses Rechteck sichtbar sein soll.
-     * @param   sichtbarNeu Ist dieser Wert <code>true</code>, ist nach dem Aufruf dieser Methode dieses Rechteck 
-     * sichtbar. Ist dieser Wert <code>false</code>, so ist nach dem Aufruf dieser Methode dieses Rechteck unsichtbar.
-     */
+
     public void setzeSichtbar(boolean sichtbarNeu) {
         this.sichtbar = sichtbarNeu;
         super.sichtbarSetzen(sichtbarNeu);
     }
 
-    /**
-     * Verschiebt dieses Rechteck um eine Verschiebung - angegeben durch ein "Delta X" und "Delta Y".
-     * @param   deltaX  Der X Anteil dieser Verschiebung. Positive Werte verschieben nach rechts, negative nach links.
-     * @param   deltaY  Der Y Anteil dieser Verschiebung. Positive Werte verschieben nach unten, negative nach oben.
-     */
+
     public void verschiebenUm(int deltaX, int deltaY) {
         this.M_x = this.M_x + deltaX;
         this.M_y = this.M_y + deltaY;
         super.verschieben(deltaX, deltaY);
     }
 
-    /**
-     * Diese Methode gibt die x-Koordinate des Mittelpunkts dieses Rechtecks zurueck
-     * @return  Die aktuelle x-Koordinate des Mittelpunktes dieses Rechtecks
-     */
+
     public int nenneM_x()
     {
         return this.M_x;
     }
 
-    /**
-     * Diese Methode gibt die y-Koordinate des Mittelpunkts dieses Rechtecks zurueck
-     * @return  Die aktuelle y-Koordinate des Mittelpunktes dieses Rechtecks
-     */
+
     public int nenneM_y()
     {
         return this.M_y;
     }
 
-    /**
-     * Diese Methode gibt die Breite dieses Rechtecks zurueck
-     * @return  Die aktuelle Breite dieses Rechtecks
-     */
+
     public int nenneBreite()
     {
         return this.breite;
     }
 
-    /**
-     * Diese Methode gibt die Hoehe dieses Rechtecks zurueck
-     * @return  Die aktuelle Hoehe dieses Rechtecks
-     */
+
     public int nenneHoehe()
     {
         return this.hoehe;
     }
 
-    /**
-     * Diese Methode gibt die Farbe dieses Rechtecks zurueck
-     * @return  Die aktuelle Farbe dieses Rechtecks
-     */
+
     public String nenneFarbe()
     {
         return this.farbe;
     }
 
-    /**
-     * Diese Methode gibt die Sichtbarkeit dieses Rechtecks zurueck
-     * @return  Die aktuelle Sichtbarkeit dieses Rechtecks
-     */
+
     public boolean nenneSichtbar()
     {
         return this.sichtbar;
     }
 
 
-    /**
-     * Diese Methode prueft, wie weit der Mittelpunkt dieses Rechtecks vom Mittelpunkt 
-     * eines anderen Grfik-Objekts in x-Richtung entfernt ist.
-     * @param   grafikObjekt    Das andere Grafik-Objekt
-     * @return  Abstand (in Pixeln) dieses Rechtecks vom anderen Grafik-Objekt in x-Richtung (>0, wenn dieses Rechteck rechts des anderen Grafik-Objekts liegt)
-     */
+
     public int berechneAbstandX(Raum grafikObjekt)
     {
         return this.M_x - grafikObjekt.mittelPunkt().x();
     }
 
-    /**
-     * Diese Methode prueft, wie weit der Mittelpunkt dieses Rechtecks vom Mittelpunkt 
-     * eines anderen Grfik-Objekts in y-Richtung entfernt ist.
-     * @param   grafikObjekt    Das andere Grafik-Objekt
-     * @return  Abstand (in Pixeln) dieses Rechtecks vom anderen Grafik-Objekt in y-Richtung (>0, wenn dieses Rechteck unterhalb des anderen Grafik-Objekts liegt)
-     */
+
     public int berechneAbstandY(Raum grafikObjekt)
     {
         return this.M_y - grafikObjekt.mittelPunkt().y();

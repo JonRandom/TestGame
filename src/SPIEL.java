@@ -1,7 +1,9 @@
 import ea.*;
 import ea.edu.*;
 
-public class SPIEL extends Game
+import java.awt.*;
+
+public class SPIEL
 {
     /**
      * Die Anzeige des Spiels.
@@ -11,6 +13,10 @@ public class SPIEL extends Game
     private int zaehler;
     private ActivePlayer ActivePlayer1;
 
+    public Map mapObject;
+
+    public Knoten MainPlate; //Knoten mit allen Objekten auf dem Bildschirm die bewegt werden sollen.
+
 
 
     public SPIEL(int breite, int hoehe,  boolean maus)
@@ -19,32 +25,31 @@ public class SPIEL extends Game
         zaehler = 0;
         anzeige = new AnzeigeE(breite, hoehe);
 
-        //Punkteanzeige
-        //anzeige.punkteLinksSichtbarSetzen(punkteLinks);
-        //anzeige.punkteRechtsSichtbarSetzen(punkteRechts);
 
-        //Maus ggf. aktivieren
         if(maus)
         {
             anzeige.klickReagierbarAnmelden(this, true);
         }
-
-        //Tastatur
         anzeige.tastenReagierbarAnmelden(this);
-
-        //Ticker
-        //Alle 500 Millisekunden (=Jede halbe Sekunde) ein Tick
         anzeige.tickerAnmelden(this, 500);
+
+        Map mapObject = new Map();
+        MainPlate = new Knoten();
+        MainPlate.add(mapObject);
 
         ActivePlayer1 = new ActivePlayer(300,300,"./Assets/MouseC.png");
 
 
 
+        DialogController d = new DialogController();
+        d.HideWindow();
+
+
+
+
+
     }
-    public void fokusMachen() {
-        //Den 'Spieler' als Fokus bei der Kamera setzen
-        cam.fokusSetzen(ActivePlayer1);
-    }
+
 
 
 
@@ -63,6 +68,7 @@ public class SPIEL extends Game
 
 
 
+
     /**
      * Wird bei jedem Tastendruck automatisch aufgerufen.
      *
@@ -72,10 +78,11 @@ public class SPIEL extends Game
      */
     public void tasteReagieren(int tastenkuerzel)
     {
-        System.out.println("Taste mit Kuerzel " + tastenkuerzel +
-                " wurde gedrueckt");
+        //System.out.println("Taste mit Kuerzel " + tastenkuerzel +" wurde gedrueckt");
         if(tastenkuerzel==27){
             ActivePlayer1.verschiebenUm(10,0);//rechts
+            MainPlate.verschieben(15,2);
+
         }
         if(tastenkuerzel==29){
             ActivePlayer1.verschiebenUm(-10,0);//links
@@ -87,6 +94,8 @@ public class SPIEL extends Game
             ActivePlayer1.verschiebenUm(0,10);//runter
         }
     }
+
+
 
 
 

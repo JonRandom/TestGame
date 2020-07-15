@@ -11,46 +11,50 @@ import java.awt.*;
  *
  */
 
-public class Map extends Raum{
+public class Map extends Knoten{
     //Matrix für die Kollisiongebäude. in jedem eintrag sind 4 int für Obenx,Obeny, Untenx,UntenY
-    private int[][] Buildings = new int[8][4];
+    private int NumberofB = 8;
+    private int[][] Buildings = new int[NumberofB][4];
+    private Bild MapPic;
+
+    private BoundingRechteck[] BuildingsObjects = new BoundingRechteck[NumberofB];
 
 
-    private BILD MapPic;
-
-
-    public void verschieben(int dx, int dy){
-        MapPic.verschieben(dx,dy);
-
-    }
 
 
     public Map(){
-        MapPic= new BILD(0,0,"./Assets/Map.png");
+        super();
+        MapPic= new Bild(0,0,"./Assets/Map.png");
+        this.add(MapPic);
+
+        for(int i =0;i<NumberofB;i++){
+            BuildingsObjects[i] = new BoundingRechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
+            //this.add(BuildingsObjects[i]);
+            System.out.println("test");
+
+        }
+        Rechteck r3 = new Rechteck(Buildings[0][0],Buildings[0][1],Buildings[0][2],Buildings[0][3]);
+        this.add(r3);
+
     }
 
-    @Override
-    public void zeichnen(Graphics2D graphics2D, BoundingRechteck boundingRechteck) {
-
+    public void BuildingsInit(){
+        Buildings[0][0]=200;
+        Buildings[0][1]=200;
+        Buildings[0][2]=100;
+        Buildings[0][3]=100;
+    }
+    public boolean[] ColliderTest(Player p){
+        boolean[] CollisionB = new boolean[NumberofB];
+        for(int i =0;i<NumberofB;i++){
+            CollisionB[i]= p.inFlaeche(BuildingsObjects[i]);
+        }
+        return CollisionB;
     }
 
-    @Override
-    public BoundingRechteck dimension() {
-        return null;
-    }
 
-    @Override
-    public Collider erzeugeCollider() {
-        return null;
-    }
 
-    public void InitBuilidingData(){
-        Buildings[0][0]=5;
-        Buildings[0][1]=5;
 
-        Buildings[0][100]=5;
-        Buildings[0][100]=5;
-    }
     public void drawRects(){}
 
 }

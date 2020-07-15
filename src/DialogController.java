@@ -9,34 +9,66 @@ import ea.*;
  * Lange Dialoge werden in kleinere unterteilt und haben dann nur 1 Option.
  */
 
-public class DialogController {
-    private TEXT TextObject;
-    private BILD BackgroundBild;
+public class DialogController extends Knoten{
+    private Text TextObject;
+    private Bild BackgroundBild;
+
+    private int WindowSizeX= 1000;
+    private int WindowSizeY= 600;
+
+    private boolean DialogMode;
 
 
     public DialogController(){
-        BackgroundBild = new BILD(400,500,"./Assets/DialogFenster.png");
+
+        DialogMode = false;
+
+        BackgroundBild = new Bild(400,500,"./Assets/DialogFenster.png");
+
+        float tempPosX =WindowSizeX/2-(BackgroundBild.getBreite()/2);
+        float tempPosY =WindowSizeY-(BackgroundBild.getHoehe());
+
+        BackgroundBild.positionSetzen(tempPosX,tempPosY);
         BackgroundBild.sichtbarSetzen(false);
-        TextObject = new TEXT("MANNO",200,500,10,"Weiss");
+
+        TextObject = new Text(200,200,20, "START TEXT HELLO");
+        System.out.println(BackgroundBild.mittelPunkt());
+
+        TextObject.positionSetzen(BackgroundBild.mittelPunkt());
+        TextObject.verschieben(-TextObject.getBreite()/2,-TextObject.getHoehe()/2);
         TextObject.sichtbarSetzen(false);
+        TextObject.farbeSetzen("Rot");
 
 
-
-
+        this.add(BackgroundBild,TextObject);
     }
+
     public void SetContent(String content){
         TextObject.inhaltSetzen(content);
     }
 
     public void ShowWindow(){
+        DialogMode = true;
         TextObject.sichtbarSetzen(true);
         BackgroundBild.sichtbarSetzen(true);
+    }
 
-    }
+
     public void HideWindow(){
+        DialogMode = false;
         TextObject.sichtbarSetzen(true);
         BackgroundBild.sichtbarSetzen(true);
     }
+
+    /**
+     *
+     * @return  boolean - Gibt zurück, ob der Dialog-Modus aktiv ist
+     */
+
+    public boolean GetDialogStatus(){
+        return DialogMode;
+    }
+
 
     /**
      *

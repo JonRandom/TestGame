@@ -69,24 +69,27 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     }
 
     public void tick() {
-        debugAnzeige1.SetContent("Pos:" + ActivePlayer.positionX()+"  -  " + ActivePlayer.positionY());
-        int walkspeed = ActivePlayer.getWalkspeed();
-        System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
+        debugAnzeige1.SetContent("Pos:" + ActivePlayer.positionX() + "  -  " + ActivePlayer.positionY());
+        if(!DialogController.GetDialogStatus()) {
+            int walkspeed = ActivePlayer.getWalkspeed();
+            System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
 
-        if (tasteGedrueckt(Taste.W)) {
-            ActivePlayer.verschieben(0,-walkspeed);
-        }
-        if (tasteGedrueckt(Taste.S)) {
-            ActivePlayer.verschieben(0,walkspeed);
-        }
-        if (tasteGedrueckt(Taste.A)) {
-            ActivePlayer.verschieben(-walkspeed,0);
-        }
-        if (tasteGedrueckt(Taste.D)) {
+            if (tasteGedrueckt(Taste.W)) {
+                ActivePlayer.verschieben(0, -walkspeed);
+            }
+            if (tasteGedrueckt(Taste.S)) {
+                ActivePlayer.verschieben(0, walkspeed);
+            }
 
-            ActivePlayer.verschieben(walkspeed,0);
+            if (tasteGedrueckt(Taste.A)) {
+                ActivePlayer.verschieben(-walkspeed, 0);
+            }
+
+            if (tasteGedrueckt(Taste.D)) {
+                ActivePlayer.verschieben(walkspeed, 0);
+            }
+            }
         }
-    }
 
     //unused for now
     public void klickReagieren(int x, int y)
@@ -94,11 +97,20 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         System.out.println("Klick bei (" + x  + ", " + y + ").");
     }
 
-
+    //  https://engine-alpha.org/wiki/Tastaturtabelle
     @Override
     public void tasteReagieren(int tastenkuerzel)
     {
-        //System.out.println("Taste mit Kuerzel " + tastenkuerzel +" wurde gedrueckt");
+        //Togglet beim Drücken der G Taste den Dialog
+        if(tastenkuerzel == 6 && DialogController.GetDialogStatus()){
+            DialogController.HideWindow();
+        }
+        else if(tastenkuerzel == 6 && !DialogController.GetDialogStatus()){
+            DialogController.ShowWindow();
+        }
+
+
+
     }
 
 

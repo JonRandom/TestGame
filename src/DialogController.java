@@ -56,8 +56,8 @@ public class DialogController extends Knoten{
 
     public void HideWindow(){
         DialogMode = false;
-        TextObject.sichtbarSetzen(true);
-        BackgroundBild.sichtbarSetzen(true);
+        TextObject.sichtbarSetzen(false);
+        BackgroundBild.sichtbarSetzen(false);
     }
 
     /**

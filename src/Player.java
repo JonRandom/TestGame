@@ -12,7 +12,7 @@ public class Player extends Knoten {
     private float posX;
     private float posY;
 
-    private int walkspeed = 3; // Laufgeschwindigkeit
+    private int walkspeed = 6; // Laufgeschwindigkeit
 
     private ImageCollection IC;
 
@@ -22,7 +22,7 @@ public class Player extends Knoten {
         this.posX=posX;
         this.posY=posY;
 
-        IC = new ImageCollection(this.posX,this.posY,"./Assets/Player/Player");
+        IC = new ImageCollection(this.posX,this.posY,"./Assets/Player/Player",walkspeed);
         IC.Init();
 
         this.add(IC);
@@ -50,14 +50,27 @@ public class Player extends Knoten {
      */
 float lastX = posX;
     public void WalkLeft() {
-        IC.walkLeft(walkspeed);
+        IC.walkLeft();
         IC.verschieben(walkspeed,0);
     }
 
     public void WalkRight(){
-        IC.walkRight(-walkspeed);
+        IC.walkRight();
         IC.verschieben(-walkspeed,0);
     }
+    public void WalkBottom(){
+        IC.walkBottom();
+        IC.verschieben(0, walkspeed);
+    }
+    public void WalkTop(){
+        IC.walkBottom();
+        IC.verschieben(0, -walkspeed);
+    }
+
+    public ImageCollection getIC(){
+        return IC;
+    }
+
 
 
 

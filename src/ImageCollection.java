@@ -22,12 +22,17 @@ import ea.*;
 
 
      private int stepL=0;
-     private float lastL;
-
      private int stepR=0;
-     private float lastR;
+     private int stepT=0;
+     private int stepB=0;
+
 
      private long LastMillis;
+
+     private int walkspeed;
+     private int walkConst;//animation pro distanz
+
+
 
 
      //Listen mit >Bild< Objekten
@@ -46,10 +51,13 @@ import ea.*;
       * @param y Position y
       * @param MainDir Übergeordnetes Verzeichnis der Bilder
       */
-     public ImageCollection(float x, float y, String MainDir){
+     public ImageCollection(float x, float y, String MainDir, int walkspeed){
          this.posX = x;
          this.posY = y;
          this.MainDir = MainDir;
+         this.walkspeed = walkspeed;
+
+         walkConst=600/walkspeed;
 
 
      }
@@ -131,11 +139,11 @@ import ea.*;
          System.arraycopy(ImgT, 0, ImgAll, ImageCount*2, ImageCount);
          System.arraycopy(ImgB, 0, ImgAll, ImageCount*3, ImageCount);
      }
-     public void walkLeft(int distance) {
+     public void walkLeft() {
          HideAll();
          ImgL[stepL].sichtbarSetzen(true);
          long curr = System.currentTimeMillis();
-         if ((curr - LastMillis) >= 200) {
+         if ((curr - LastMillis) >= walkConst) {
 
              stepL++;
              if (stepL >= ImageCount) {
@@ -145,11 +153,11 @@ import ea.*;
 
          }
      }
-     public void walkRight(int distance) {
+     public void walkRight() {
          HideAll();
          ImgL[stepR].sichtbarSetzen(true);
          long curr = System.currentTimeMillis();
-         if ((curr - LastMillis) >= 200) {
+         if ((curr - LastMillis) >= walkConst) {
 
              stepR++;
              if (stepR >= ImageCount) {
@@ -159,31 +167,99 @@ import ea.*;
 
          }
      }
-
-
-     /*
-     public void walkLeft(int distance){
-
+     public void walkTop() {
          HideAll();
-         System.out.println(stepL);
-         ImgL[stepL].sichtbarSetzen(true);
-         System.out.println(lastL +"--" +posX);
+         ImgL[stepT].sichtbarSetzen(true);
+         long curr = System.currentTimeMillis();
+         if ((curr - LastMillis) >= walkConst) {
 
-         if((java.lang.Math.abs(posX-lastL))>=20){
-             System.out.println("WalkStep");
-
-             stepL++;
-             if(stepL>=ImageCount){
-                 stepL=0;
+             stepT++;
+             if (stepT >= ImageCount) {
+                 stepT = 0;
              }
-             lastL = posX;
+             LastMillis = curr;
+
          }
-         this.verschieben(distance,0);
-         posX = posX+distance;
+     }
+     public void walkBottom() {
+         HideAll();
+         ImgL[stepB].sichtbarSetzen(true);
+         long curr = System.currentTimeMillis();
+         if ((curr - LastMillis) >= walkConst) {
+
+             stepB++;
+             if (stepB >= ImageCount) {
+                 stepB = 0;
+             }
+             LastMillis = curr;
+
+         }
      }
 
+     /**
+      *
+      * @param dx Eig. nur ob der Spieler einen schritt in x Richtung mit Vorzeichen macht
+      * @param dy Eig. nur ob der Spieler einen schritt in y Richtung mit Vorzeichen macht
+      * Abstand wird vom Schritttempo angegeben
       */
+     public void step(int dx, int dy){
+         int abX=0;
+         int abY=0;
+         int distance = (int)Math.sqrt(dx*dx + dy*dy);//Diagonaler Abstand als INT
 
+         /**
+          * Macht aus dem wlakspeed eine Abstand, wenn der Player diagonal läuft
+          */
+         abX = dx*walkspeed/(int)Math.sqrt(2);
+         abY = dy*walkspeed/(int)Math.sqrt(2);
+         System.out.println(abY);
+         if (dx==1 && dy==1){
+             walkRight();
+             walkBottom();
+             verschieben(abX,abY);
+         }
+         if (dx==-1 && dy==1){
+             walkLeft();
+             walkBottom();
+             verschieben(abX,abY);
+         }
+         if (dx==1 && dy==-1){
+             walkRight();
+             walkTop();
+             verschieben(abX,abY);
+         }
+         if (dx==-1 && dy==-1){
+             walkLeft();
+             walkRight();
+             verschieben(abX,abY);
+         }
+
+         if (dx==-1){
+             walkRight();
+             verschieben(-walkspeed,0);
+         }
+         if (dx==1){
+             walkLeft();
+             verschieben(walkspeed,0);
+         }
+         if (dy==-1){
+             walkTop();
+             verschieben(0,-walkspeed);
+         }
+         if (dy==1){
+             walkBottom();
+             verschieben(0,walkspeed);
+         }
+
+
+     }
+
+
+     /**
+      *  Wichtig für später Player Teleporation oder Resets
+      * @param x s. Raum Doku
+      * @param y s. Raum Doku
+      */
 
      @Override
      public void positionSetzen(float x, float y) {

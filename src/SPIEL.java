@@ -75,18 +75,35 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             //System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
 
             if (tasteGedrueckt(Taste.W)) {
-                ActivePlayer.verschieben(0, -walkspeed);
+                if(tasteGedrueckt(Taste.D)){
+                    ActivePlayer.getIC().step(1,-1);
+                }
+                if(tasteGedrueckt(Taste.A)){
+                    ActivePlayer.getIC().step(-1,-1);
+                }
+                if (tasteGedrueckt(Taste.W)) {
+                    ActivePlayer.getIC().step(0,-1);
+                }
             }
             if (tasteGedrueckt(Taste.S)) {
-                ActivePlayer.verschieben(0, walkspeed);
+                if (tasteGedrueckt(Taste.S)) {
+                    ActivePlayer.getIC().step(0,1);
+                }
+                if (tasteGedrueckt(Taste.D)) {
+                    ActivePlayer.getIC().step(1,1);
+                }
+                if (tasteGedrueckt(Taste.A)) {
+                    ActivePlayer.getIC().step(-1,1);
+                }
+
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                ActivePlayer.WalkRight();
+                ActivePlayer.getIC().step(-1,0);
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                ActivePlayer.WalkLeft();
+                ActivePlayer.getIC().step(1,0);
             }
             }
         }

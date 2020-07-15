@@ -27,6 +27,8 @@ public class Map extends Knoten{
         MapPic= new Bild(0,0,"./Assets/Map.png");
         this.add(MapPic);
 
+        BuildingsInit();
+
         for(int i =0;i<NumberofB;i++){
             BuildingsObjects[i] = new BoundingRechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
             //this.add(BuildingsObjects[i]);
@@ -36,6 +38,8 @@ public class Map extends Knoten{
         Rechteck r3 = new Rechteck(Buildings[0][0],Buildings[0][1],Buildings[0][2],Buildings[0][3]);
         this.add(r3);
 
+
+
     }
 
     public void BuildingsInit(){
@@ -43,6 +47,11 @@ public class Map extends Knoten{
         Buildings[0][1]=200;
         Buildings[0][2]=100;
         Buildings[0][3]=100;
+
+        Buildings[1][0]=400;
+        Buildings[1][1]=400;
+        Buildings[1][2]=150;
+        Buildings[1][3]=160;
     }
     public boolean[] ColliderTest(Player p){
         boolean[] CollisionB = new boolean[NumberofB];

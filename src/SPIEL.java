@@ -72,7 +72,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         debugAnzeige1.SetContent("Pos:" + ActivePlayer.positionX() + "  -  " + ActivePlayer.positionY());
         if(!DialogController.GetDialogStatus()) {
             int walkspeed = ActivePlayer.getWalkspeed();
-            System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
+            //System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
 
             if (tasteGedrueckt(Taste.W)) {
                 ActivePlayer.verschieben(0, -walkspeed);
@@ -86,7 +86,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                ActivePlayer.verschieben(walkspeed, 0);
+                ActivePlayer.WalkLeft();
             }
             }
         }
@@ -98,7 +98,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     }
 
     //  https://engine-alpha.org/wiki/Tastaturtabelle
-    @Override
     public void tasteReagieren(int tastenkuerzel)
     {
         //Togglet beim Drücken der G Taste den Dialog

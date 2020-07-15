@@ -82,7 +82,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                ActivePlayer.verschieben(-walkspeed, 0);
+                ActivePlayer.WalkRight();
             }
 
             if (tasteGedrueckt(Taste.D)) {

@@ -7,18 +7,14 @@ import ea.Knoten;
  */
 public class Player extends Knoten {
 
-    Bild pic1;
-    Bild pic2;
-    private int PicCount = 2;
 
-    private Bild[] pics = new Bild[PicCount];
 
-    private int step;
     private float posX;
     private float posY;
 
     private int walkspeed = 3; // Laufgeschwindigkeit
 
+    private ImageCollection IC;
 
     public Player(float posX,float posY){
 
@@ -26,17 +22,11 @@ public class Player extends Knoten {
         this.posX=posX;
         this.posY=posY;
 
-        pics[0] = new Bild("./Assets/Player.png");
-        pics[1] = new Bild("./Assets/Player2.png");
-        pics[0].positionSetzen(posX,posY);
-        pics[1].positionSetzen(posX,posY);
-        step = 0;
+        IC = new ImageCollection(this.posX,this.posY,"./Assets/Player/Player");
+        IC.Init();
 
-        pics[1].sichtbarSetzen(false);
+        this.add(IC);
 
-
-        this.add(pics[0]);
-        this.add(pics[1]);
         ;
 
     }
@@ -59,33 +49,15 @@ public class Player extends Knoten {
 
      */
 float lastX = posX;
-    public void WalkLeft(){
-
-        hideAllImages();
-        pics[step].sichtbarSetzen(true);
-        System.out.println(lastX +"--" +posX);
-
-
-        if((java.lang.Math.abs(posX-lastX))>=20){
-            System.out.println("WalkStep");
-            step++;
-            if(step>=PicCount){
-                step=0;
-            }
-            lastX = posX;
-        }
-        verschieben(walkspeed,0);
-
-
-
-
-    }
-    public void hideAllImages(){
-        for(int i=0;i<PicCount;i++){
-            pics[i].sichtbarSetzen(false);
-        }
+    public void WalkLeft() {
+        IC.walkLeft(walkspeed);
+        IC.verschieben(walkspeed,0);
     }
 
+    public void WalkRight(){
+        IC.walkRight(-walkspeed);
+        IC.verschieben(-walkspeed,0);
+    }
 
 
 

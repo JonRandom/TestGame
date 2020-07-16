@@ -24,7 +24,7 @@ public class Map extends Knoten{
 
     public Map(){
         super();
-        MapPic= new Bild(0,0,"./Assets/Map.png");
+        MapPic= new Bild(0,0,"./Assets/Map3.jpg");
         this.add(MapPic);
 
         BuildingsInit();

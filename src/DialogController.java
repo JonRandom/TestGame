@@ -13,8 +13,8 @@ public class DialogController extends Knoten{
     private Text TextObject;
     private Bild BackgroundBild;
 
-    private int WindowSizeX= 1000;
-    private int WindowSizeY= 600;
+    private int WindowSizeX= 1200;
+    private int WindowSizeY= 800;
 
     private boolean DialogMode;
 

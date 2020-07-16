@@ -4,10 +4,11 @@
  *
  * Benennung:
  *
- * "MainPfad" + "-" + "L/R/T/B" + "NUMBER"
- * Bsp.: "./Assets/Player/Spieler-R0"
+ * "FigurName" + "-" + "L/R/T/B" + "NUMBER"
+ * Bsp.:  "Spieler-R0.png"
+ * Bsp.2: "Torben-T0.png"
  *
- * INDEIZES VON 0 AN
+ * INDIZES VON 0 AN
  *
  */
 

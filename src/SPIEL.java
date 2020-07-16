@@ -22,7 +22,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
     public SPIEL(int breite, int hoehe,  boolean maus)
     {
-        super(1000,600,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
+        super(1200,800,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
 
@@ -30,15 +30,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
         DialogController = new DialogController();
         DialogController.ShowWindow();
-        ActivePlayer = new Player(400,400);
+        ActivePlayer = new Player(600,400);
         map = new Map();
         debugAnzeige1 = new DebugAnzeige(0,0);
-
-
-
-
-
-
 
 
         wurzel.add(map);
@@ -66,6 +60,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
     public void fokusSetzten(){
         cam.fokusSetzen(ActivePlayer);
+        BoundingRechteck CamBounds = new BoundingRechteck(0,0,map.getBreite(),map.getHoehe());
+        cam.boundsSetzen(CamBounds);
     }
 
     public void tick() {
@@ -75,35 +71,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             //System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
 
             if (tasteGedrueckt(Taste.W)) {
-                if(tasteGedrueckt(Taste.D)){
-                    ActivePlayer.getIC().step(1,-1);
-                }
-                if(tasteGedrueckt(Taste.A)){
-                    ActivePlayer.getIC().step(-1,-1);
-                }
-                if (tasteGedrueckt(Taste.W)) {
-                    ActivePlayer.getIC().step(0,-1);
-                }
+                ActivePlayer.WalkTop();
             }
             if (tasteGedrueckt(Taste.S)) {
-                if (tasteGedrueckt(Taste.S)) {
-                    ActivePlayer.getIC().step(0,1);
-                }
-                if (tasteGedrueckt(Taste.D)) {
-                    ActivePlayer.getIC().step(1,1);
-                }
-                if (tasteGedrueckt(Taste.A)) {
-                    ActivePlayer.getIC().step(-1,1);
-                }
-
+                ActivePlayer.WalkBottom();
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                ActivePlayer.getIC().step(-1,0);
+                ActivePlayer.WalkLeft();
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                ActivePlayer.getIC().step(1,0);
+                ActivePlayer.WalkRight();
             }
             }
         }

@@ -8,6 +8,8 @@ public class DebugAnzeige extends Knoten {
         super();
         t = new Text("TEST",x,y);
 
+        //t.leuchtetSetzen(true);
+
         this.add(t);
 
     }

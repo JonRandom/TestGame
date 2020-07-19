@@ -18,6 +18,7 @@ public class Map extends Knoten{
     private Bild MapPic;
 
     private BoundingRechteck[] BuildingsObjects = new BoundingRechteck[NumberofB];
+    private Rechteck[] BuildingsObjectsDisplay = new Rechteck[NumberofB];
 
 
 
@@ -35,8 +36,8 @@ public class Map extends Knoten{
             System.out.println("test");
 
         }
-        Rechteck r3 = new Rechteck(Buildings[0][0],Buildings[0][1],Buildings[0][2],Buildings[0][3]);
-        this.add(r3);
+
+        DisplayBuildings();
 
 
 
@@ -52,6 +53,11 @@ public class Map extends Knoten{
         Buildings[1][1]=400;
         Buildings[1][2]=150;
         Buildings[1][3]=160;
+
+        Buildings[2][0]=800;
+        Buildings[2][1]=900;
+        Buildings[2][2]=180;
+        Buildings[2][3]=100;
     }
     public boolean[] ColliderTest(Player p){
         boolean[] CollisionB = new boolean[NumberofB];
@@ -59,6 +65,24 @@ public class Map extends Knoten{
             CollisionB[i]= p.inFlaeche(BuildingsObjects[i]);
         }
         return CollisionB;
+    }
+    public boolean ColliderTestAny(DummyPlayer p){
+        boolean coll=false;
+        for(int i =0;i<NumberofB;i++){
+            if (p.inFlaeche(BuildingsObjects[i])) {
+                coll= true;
+            }
+        }
+        return coll;
+    }
+
+    public void DisplayBuildings(){
+        for(int i =0;i<NumberofB;i++){
+            BuildingsObjectsDisplay[i]= new Rechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
+            this.add(BuildingsObjectsDisplay[i]);
+        }
+
+
     }
 
 

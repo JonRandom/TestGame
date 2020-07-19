@@ -13,7 +13,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     private DialogController DialogController;
     private Map map;
     private DebugAnzeige debugAnzeige1;
-
+    private DummyPlayer DP;
 
 
     public Knoten StaticPlate; //Knoten mit allen Objekten auf dem Bildschirm die bewegt werden sollen.
@@ -28,13 +28,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
         StaticPlate = new Knoten();
 
+        DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
         DialogController.ShowWindow();
         ActivePlayer = new Player(600,400);
         map = new Map();
         debugAnzeige1 = new DebugAnzeige(0,0);
 
-
+        wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
 
@@ -65,24 +66,44 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     }
 
     public void tick() {
-        debugAnzeige1.SetContent("Pos:" + ActivePlayer.positionX() + "  -  " + ActivePlayer.positionY());
+        int playerX = ActivePlayer.positionX();
+        int playerY = ActivePlayer.positionY();
+
+        debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
+
+
+        DP.positionSetzen(playerX,playerY);
+
         if(!DialogController.GetDialogStatus()) {
             int walkspeed = ActivePlayer.getWalkspeed();
-            //System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
+            System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
+            System.out.println(map.ColliderTestAny(DP));
 
             if (tasteGedrueckt(Taste.W)) {
-                ActivePlayer.WalkTop();
+                DP.verschieben(0,-walkspeed);
+                if(!map.ColliderTestAny(DP)){
+                    ActivePlayer.WalkTop();
+                }
             }
             if (tasteGedrueckt(Taste.S)) {
-                ActivePlayer.WalkBottom();
+                DP.verschieben(0,walkspeed);
+                if(!map.ColliderTestAny(DP)){
+                    ActivePlayer.WalkBottom();
+                }
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                ActivePlayer.WalkLeft();
+                DP.verschieben(-walkspeed,0);
+                if(!map.ColliderTestAny(DP)){
+                    ActivePlayer.WalkLeft();
+                }
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                ActivePlayer.WalkRight();
+                DP.verschieben(walkspeed,0);
+                if(!map.ColliderTestAny(DP)){
+                    ActivePlayer.WalkRight();
+                }
             }
             }
         }

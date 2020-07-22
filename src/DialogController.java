@@ -44,6 +44,7 @@ public class DialogController extends Knoten{
     }
 
     public void SetContent(String content){
+        TextObject.positionSetzen(BackgroundBild.mittelPunkt());
         TextObject.verschieben(-TextObject.getBreite()/2,-TextObject.getHoehe()/2);
         TextObject.inhaltSetzen(content);
     }

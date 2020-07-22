@@ -14,6 +14,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     private Map map;
     private DebugAnzeige debugAnzeige1;
     private DummyPlayer DP;
+    private NpcController NpcController;
 
 
     public Knoten StaticPlate; //Knoten mit allen Objekten auf dem Bildschirm die bewegt werden sollen.
@@ -30,14 +31,17 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
         DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
-        DialogController.ShowWindow();
+        DialogController.HideWindow();
         ActivePlayer = new Player(600,400);
         map = new Map();
+        NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
+
 
         wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
+        wurzel.add(NpcController);
 
         StaticPlate.add(DialogController);
 
@@ -74,6 +78,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
         DP.positionSetzen(playerX,playerY);
 
+
         if(!DialogController.GetDialogStatus()) {
             int walkspeed = ActivePlayer.getWalkspeed();
             System.out.println(Arrays.toString(map.ColliderTest(ActivePlayer)));
@@ -106,6 +111,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
                 }
             }
             }
+        if(NpcController.ColliderTest(ActivePlayer)&&!DialogController.GetDialogStatus()){
+            DialogController.ShowWindow();
+            DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
+        }
+
         }
 
     //unused for now

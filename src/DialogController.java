@@ -49,17 +49,24 @@ public class DialogController extends Knoten{
         TextObject.inhaltSetzen(content);
     }
 
-    public void ShowWindow(){
+    public void setVisisbilty(boolean v){
         DialogMode = true;
-        TextObject.sichtbarSetzen(true);
-        BackgroundBild.sichtbarSetzen(true);
+        TextObject.sichtbarSetzen(v);
+        BackgroundBild.sichtbarSetzen(v);
     }
 
+    public void toggleVisibilty(){
+        System.out.println("toggle");
+        if(DialogMode){
+            setVisisbilty(false);
+            DialogMode = (false);
 
-    public void HideWindow(){
-        DialogMode = false;
-        TextObject.sichtbarSetzen(false);
-        BackgroundBild.sichtbarSetzen(false);
+        }
+        else{
+            System.out.println("anzeigen");
+            setVisisbilty(true);
+            DialogMode = (true);
+        }
     }
 
     /**

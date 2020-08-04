@@ -34,7 +34,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
         DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
-        DialogController.HideWindow();
+        DialogController.setVisisbilty(false);
         ActivePlayer = new Player(600,400);
         map = new Map(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
@@ -61,11 +61,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         tickerAnmelden(this, 10);
 
 
-
-
-
     }
-
 
 
     public void fokusSetzten(){
@@ -117,7 +113,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         if(NpcController.ColliderTest(ActivePlayer)&&!DialogController.GetDialogStatus()){
 
             DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
-            DialogController.ShowWindow();
+            DialogController.setVisisbilty(true);
         }
 
         }
@@ -132,17 +128,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     public void tasteReagieren(int tastenkuerzel)
     {
         //Togglet beim Drücken der G Taste den Dialog
-        if(tastenkuerzel == 6 && DialogController.GetDialogStatus()){
-            DialogController.HideWindow();
-            System.out.println(Arrays.toString(ActivePlayer.flaechen()));
-        }
-        else if(tastenkuerzel == 6 && !DialogController.GetDialogStatus()){
-            DialogController.ShowWindow();
-            System.out.println(Arrays.toString(ActivePlayer.flaechen()));
+        if(tastenkuerzel == 6){
+            DialogController.toggleVisibilty();
         }
 
         if(tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
-            map.toggleVisibility();
+            map.toggleVisting();
         }
         if(tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 10 Blöcke nach vorne
             ActivePlayer.positionSetzen(ActivePlayer.positionX()+10,ActivePlayer.positionY());

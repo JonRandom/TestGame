@@ -54,7 +54,7 @@ public class Map extends Knoten{
 
     }
 
-    public void BuildingsInit(){
+    private void BuildingsInit(){
         Buildings[0][0]=200;
         Buildings[0][1]=200;
         Buildings[0][2]=100;
@@ -70,15 +70,17 @@ public class Map extends Knoten{
         Buildings[2][2]=180;
         Buildings[2][3]=100;
     }
-    public void DoorsInit(){
+    private void DoorsInit(){
         Doors[1][0]=400-10;
         Doors[1][1]=500;
         Doors[1][2]=20;
         Doors[1][3]=60;
-
-
     }
-    public void MakeBuildingObjects(){
+
+    /**
+     * Macht aus den angegebene Positionen der Gebaüde BoundingRechteck Objekte auch die Innernen und Türen.
+     */
+    private void MakeBuildingObjects(){
         for(int i =0;i<NumberofB;i++){
 
             DoorObjects[i] = new BoundingRechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
@@ -107,7 +109,12 @@ public class Map extends Knoten{
         return coll;
     }
 
-    public void DisplayBuildings(){
+
+    /**
+     * Macht aus den angegebene Positionen der Gebaüde Rechteck Objekte auch die Innernen und Türen.
+     * Diese werden zum "this Knoten" hinzugefügt und somit angezeigt.
+     */
+    private void DisplayBuildings(){
         for(int i =0;i<NumberofB;i++) {
 
             BuildingsObjectsDisplay[i] = new Rechteck(Buildings[i][0], Buildings[i][1], Buildings[i][2], Buildings[i][3]);
@@ -123,7 +130,11 @@ public class Map extends Knoten{
         }
     }
 
-
+    /**
+     * Sagt ob ein Dummyplayer der vorgeschickt laufen darf.
+     *
+     * In Türen z.B darf man immer laufen.
+     */
     public boolean getWalkable(DummyPlayer p){
         updateInDoor(p);
         updateVisiting(p);
@@ -152,6 +163,12 @@ public class Map extends Knoten{
 
 
     }
+
+    /**
+     * Setzt isInDoor auf den aktuellen Zustand.
+     * @param dp Dummyplayer der rumgereicht wird.
+     *           Der Arme...
+     */
     private void updateInDoor(DummyPlayer dp){
         boolean coll = false;
         for(int i =0;i<NumberofB;i++) {
@@ -161,12 +178,13 @@ public class Map extends Knoten{
         }
         isInDoor = coll;
     }
+
+
     /**
         falls der Spieler sich in einer Tür befindet, wird, wenn er sich mit InnerBuilding schneidet, visiting auf true gesetzt.
         sonst(in Tür schneidet aber kein InnerBuilding, false.
-
      */
-    public void updateVisiting(DummyPlayer dp){
+    private void updateVisiting(DummyPlayer dp){
         updateInDoor(dp);
         if(isInDoor){
             boolean coll = false;
@@ -180,7 +198,7 @@ public class Map extends Knoten{
         }
     }
 
-    public void setVisiting(boolean visiting) {
+    private void setVisiting(boolean visiting) {
         this.visiting = visiting;
     }
 
@@ -188,8 +206,12 @@ public class Map extends Knoten{
         return visiting;
     }
 
-    //an wenn aus, aus wenn an
-    public void toggleVisibility(){
+    /**
+     * an wenn aus, aus wenn an
+     *
+     * muss public sein
+     */
+    public void toggleVisting(){
         if(visiting){
             visiting = false;
         }else{

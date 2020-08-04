@@ -16,4 +16,6 @@ public class DebugAnzeige extends Knoten {
     public void SetContent(String content){
         t.inhaltSetzen(content);
     }
+
+
 }

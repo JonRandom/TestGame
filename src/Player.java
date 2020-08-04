@@ -15,6 +15,7 @@ public class Player extends Knoten {
     private int walkspeed = 4; // Laufgeschwindigkeit
 
     private ImageCollection IC;
+    private ImageCollection2 IC2;
 
     public Player(float posX,float posY){
 
@@ -22,10 +23,10 @@ public class Player extends Knoten {
         this.posX=posX;
         this.posY=posY;
 
-        IC = new ImageCollection(this.posX,this.posY,"./Assets/SpielerTest/Spieler",walkspeed);
-        IC.Init();
+        IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/Spieler");
+        IC2.Init();
 
-        this.add(IC);
+        this.add(IC2);
 
         ;
 
@@ -50,21 +51,21 @@ public class Player extends Knoten {
      */
 float lastX = posX;
     public void WalkLeft() {
-        IC.walkLeft();
-        IC.verschieben(-walkspeed,0);
+        IC2.walkLeft(walkspeed);
+        //IC.verschieben(-walkspeed,0);
     }
 
     public void WalkRight(){
-        IC.walkRight();
-        IC.verschieben(walkspeed,0);
+        IC2.walkRight(walkspeed);
+        //IC.verschieben(walkspeed,0);
     }
     public void WalkBottom(){
-        IC.walkBottom();
-        IC.verschieben(0, walkspeed);
+        IC2.walkBottom(walkspeed);
+        //IC.verschieben(0, walkspeed);
     }
     public void WalkTop(){
-        IC.walkBottom();
-        IC.verschieben(0, -walkspeed);
+        IC2.walkTop(walkspeed);
+        //IC.verschieben(0, -walkspeed);
     }
 
     //public ImageCollection getIC(){   return IC; }

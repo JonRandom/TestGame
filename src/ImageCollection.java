@@ -12,6 +12,10 @@
  *
  */
 
+/**
+ * Vielleicht anstatt SystemZeit und 
+ */
+
 import ea.*;
 
  class ImageCollection extends Knoten{
@@ -63,18 +67,10 @@ import ea.*;
 
      }
      public void HideAll(){
-         for(int i=0;i<ImageCount;i++){
-             ImgL[i].sichtbarSetzen(false);
+         for(int i=0;i<ImageCount*4;i++){
+             ImgAll[i].sichtbarSetzen(false);
          }
-         for(int i=0;i<ImageCount;i++){
-             ImgR[i].sichtbarSetzen(false);
-         }
-         for(int i=0;i<ImageCount;i++){
-             ImgT[i].sichtbarSetzen(false);
-         }
-         for(int i=0;i<ImageCount;i++){
-             ImgB[i].sichtbarSetzen(false);
-         }
+
      }
 
      public void Init(){//  Run all Init Methods

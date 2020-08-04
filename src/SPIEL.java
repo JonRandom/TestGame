@@ -150,8 +150,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         }
 
 
-
-
     }
 
 

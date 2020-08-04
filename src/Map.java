@@ -30,6 +30,7 @@ public class Map extends Knoten{
 
     //Status, ob der Spieler sich in einem Gebäude befindet für func Walkable
     private boolean visiting = false;
+    private boolean isInDoor = false;
 
 
 
@@ -43,6 +44,8 @@ public class Map extends Knoten{
         this.add(MapPic);
 
         BuildingsInit();
+        DoorsInit();
+
         MakeBuildingObjects();
 
         DisplayBuildings();
@@ -67,16 +70,22 @@ public class Map extends Knoten{
         Buildings[2][2]=180;
         Buildings[2][3]=100;
     }
+    public void DoorsInit(){
+        Doors[1][0]=400-10;
+        Doors[1][1]=500;
+        Doors[1][2]=20;
+        Doors[1][3]=60;
+
+
+    }
     public void MakeBuildingObjects(){
-        System.out.println(PlayerW +"+"+PlayerH);
         for(int i =0;i<NumberofB;i++){
+
             DoorObjects[i] = new BoundingRechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
             BuildingsObjects[i] = new BoundingRechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
             BuildingsObjectsInner[i] = new BoundingRechteck(Buildings[i][0]+PlayerW,Buildings[i][1]+PlayerH,Buildings[i][2]-2*PlayerW,Buildings[i][3]-2*PlayerH);
 
             //this.add(BuildingsObjects[i]); //muss und kann nicht angezeigt werden!
-            System.out.println("test");
-
         }
     }
 
@@ -99,43 +108,76 @@ public class Map extends Knoten{
     }
 
     public void DisplayBuildings(){
-        for(int i =0;i<NumberofB;i++){
-            BuildingsObjectsDisplay[i]= new Rechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
+        for(int i =0;i<NumberofB;i++) {
+
+            BuildingsObjectsDisplay[i] = new Rechteck(Buildings[i][0], Buildings[i][1], Buildings[i][2], Buildings[i][3]);
             this.add(BuildingsObjectsDisplay[i]);
-        }
-        for(int i =0;i<NumberofB;i++){
-            BuildingsObjectsDisplayInner[i]= new Rechteck(Buildings[i][0]+PlayerW,Buildings[i][1]+PlayerH,Buildings[i][2]-2*PlayerW,Buildings[i][3]-2*PlayerH);
+
+            BuildingsObjectsDisplayInner[i] = new Rechteck(Buildings[i][0] + PlayerW, Buildings[i][1] + PlayerH, Buildings[i][2] - 2 * PlayerW, Buildings[i][3] - 2 * PlayerH);
             BuildingsObjectsDisplayInner[i].farbeSetzen(Color.green);
             this.add(BuildingsObjectsDisplayInner[i]);
-        }
-        for(int i =0;i<NumberofB;i++){
-            DoorObjectsDisplay[i]= new Rechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
 
-            this.add(BuildingsObjectsDisplayInner[i]);
+            DoorObjectsDisplay[i] = new Rechteck(Doors[i][0], Doors[i][1], Doors[i][2], Doors[i][3]);
+            DoorObjectsDisplay[i].farbeSetzen(Color.blue);
+            this.add(DoorObjectsDisplay[i]);
         }
     }
 
 
     public boolean getWalkable(DummyPlayer p){
-        if(visiting){
-            boolean coll=false;
-            for(int i =0;i<NumberofB;i++){
-                if (p.inFlaeche(BuildingsObjectsInner[i])) {
-                    coll= true;
+        updateInDoor(p);
+        updateVisiting(p);
+        if(!isInDoor) {
+            if (visiting) {
+                boolean coll = false;
+                for (int i = 0; i < NumberofB; i++) {
+                    if (p.inFlaeche(BuildingsObjectsInner[i])) {
+                        coll = true;
+                    }
                 }
-            }
-            return coll; //falls es irgendwo eine Kollision mit den inneren Rechtecken gibt, soll er laufen können.
-        }
-        else{
-            boolean coll=false;
-            for(int i =0;i<NumberofB;i++){
-                if (p.inFlaeche(BuildingsObjects[i])) {
-                    coll= true;
+                return coll; //falls es irgendwo eine Kollision mit den inneren Rechtecken gibt, soll er laufen können.
+            } else {
+                boolean coll = false;
+                for (int i = 0; i < NumberofB; i++) {
+                    if (p.inFlaeche(BuildingsObjects[i])) {
+                        coll = true;
+                    }
                 }
+                return !coll;
             }
-            return !coll;
+        } else {
+            return true;
         }
 
+
+
+    }
+    private void updateInDoor(DummyPlayer dp){
+        boolean coll = false;
+        for(int i =0;i<NumberofB;i++) {
+            if(dp.inFlaeche(DoorObjects[i])){
+                coll = true;
+            }
+        }
+        isInDoor = coll;
+    }
+    /**
+        falls der Spieler sich in einer Tür befindet, wird, wenn er sich mit InnerBuilding schneidet, visiting auf true gesetzt.
+        sonst(in Tür schneidet aber kein InnerBuilding, false.
+
+     */
+    public void updateVisiting(DummyPlayer dp){
+        updateInDoor(dp);
+        if(isInDoor){
+            boolean coll = false;
+            for (int i = 0; i < NumberofB; i++) {
+                if (dp.inFlaeche(BuildingsObjectsInner[i])) {
+                    coll = true;
+                }
+            }
+            visiting = coll;
+
+        }
     }
 
     public void setVisiting(boolean visiting) {

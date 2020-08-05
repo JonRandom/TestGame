@@ -277,7 +277,7 @@ public class Map extends Knoten{
     private void readJSON() throws FileNotFoundException {
         Gson gson = new Gson();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Karte/Karte.json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Files/Karte.json"));
 
             Type MapType = new TypeToken<HashMap<String, MapTest.Haus>>(){}.getType();
             MAP = gson.fromJson(bufferedReader, MapType);

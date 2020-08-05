@@ -12,7 +12,7 @@ public class Player extends Knoten {
     private float posX;
     private float posY;
 
-    private int walkspeed = 4; // Laufgeschwindigkeit
+    private int walkspeed = 2; // Laufgeschwindigkeit
 
 
     private ImageCollection2 IC2;

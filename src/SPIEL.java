@@ -20,6 +20,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     private DummyPlayer DP;
     private NpcController NpcController;
 
+    public GameSaver gamesaver;
 
     public Knoten StaticPlate; //Knoten mit allen Objekten auf dem Bildschirm die bewegt werden sollen.
 
@@ -40,6 +41,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
+        gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
+
+
 
 
         wurzel.add(DP);
@@ -115,6 +119,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
             DialogController.setVisisbilty(true);
         }
+        gamesaver.SavePlayer(ActivePlayer);
 
         }
 

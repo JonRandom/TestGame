@@ -7,8 +7,7 @@ import ea.Knoten;
  */
 public class Player extends Knoten {
 
-
-
+    private String name;
     private float posX;
     private float posY;
 
@@ -52,24 +51,25 @@ public class Player extends Knoten {
 float lastX = posX;
     public void WalkLeft() {
         IC2.walkLeft(walkspeed);
+        this.posX = posX -walkspeed;
         //IC.verschieben(-walkspeed,0);
     }
 
     public void WalkRight(){
         IC2.walkRight(walkspeed);
+        this.posX = posX +walkspeed;
         //IC.verschieben(walkspeed,0);
     }
     public void WalkBottom(){
         IC2.walkBottom(walkspeed);
+        this.posY = posY +walkspeed;
         //IC.verschieben(0, walkspeed);
     }
     public void WalkTop(){
         IC2.walkTop(walkspeed);
+        this.posY = posY -walkspeed;
         //IC.verschieben(0, -walkspeed);
     }
-
-    //public ImageCollection getIC(){   return IC; }
-
 
 
 
@@ -80,7 +80,19 @@ float lastX = posX;
     public float getCenterY(){
         return (posY+this.getHoehe()/2);
     }
+
     public int getWalkspeed(){
         return walkspeed;
     }
+    public String getName() {
+        return name;
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+    public float getPosY() {
+        return posY;
+    }
 }
+

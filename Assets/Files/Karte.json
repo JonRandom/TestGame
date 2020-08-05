@@ -1,0 +1,8 @@
+{
+  "1":
+  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90},
+  "2":
+  {"name":"Club", "posX": 600,"posY": 200,"width": 200,"height": 90},
+  "3":
+  {"name":"Zuhause", "posX": 300,"posY": 400,"width": 200,"height": 600}
+}

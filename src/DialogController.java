@@ -56,14 +56,14 @@ public class DialogController extends Knoten{
     }
 
     public void toggleVisibilty(){
-        System.out.println("toggle");
+        //System.out.println("toggle");
         if(DialogMode){
             setVisisbilty(false);
             DialogMode = (false);
 
         }
         else{
-            System.out.println("anzeigen");
+            //System.out.println("anzeigen");
             setVisisbilty(true);
             DialogMode = (true);
         }

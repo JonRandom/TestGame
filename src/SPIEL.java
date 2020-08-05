@@ -4,6 +4,7 @@ import com.google.gson.*;
 
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
@@ -24,8 +25,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
 
 
 
-    public SPIEL(int breite, int hoehe,  boolean maus)
-    {
+    public SPIEL(int breite, int hoehe,  boolean maus) throws FileNotFoundException {
         super(1200,800,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
@@ -138,6 +138,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         if(tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 10 Blöcke nach vorne
             ActivePlayer.positionSetzen(ActivePlayer.positionX()+10,ActivePlayer.positionY());
 
+        }
+        if(tastenkuerzel == 27) {//Wenn PFEIL-rechts gedrückt wird konstate Kraft an
+            ActivePlayer.konstanteKraftSetzen(new Vektor(2,0));
+        }
+        if(tastenkuerzel == 29) {//Wenn PFEIL-links gedrückt wird konstate Kraft aus
+            ActivePlayer.konstanteKraftSetzen(new Vektor(0,0));
         }
 
 

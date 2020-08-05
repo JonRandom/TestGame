@@ -10,8 +10,8 @@ public class MAIN {
         spiel.fokusSetzten();
         //spiel.mausIconSetzen("./Assets/MouseC.png",0,0);
 
-        MapGSONTester GsonT = new MapGSONTester();
-        MapTest MT = new MapTest();
+        //MapGSONTester GsonT = new MapGSONTester();
+        //MapTest MT = new MapTest();
 
     }
 }

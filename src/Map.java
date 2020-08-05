@@ -1,7 +1,14 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import ea.*;
 import ea.internal.collision.Collider;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.HashMap;
 
 /**
  * Diese Klasse managed die Karte und die Rechtecke der Gebäude,
@@ -12,21 +19,30 @@ import java.awt.*;
  */
 
 public class Map extends Knoten{
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+
     //Matrix für die Kollisiongebäude. in jedem eintrag sind 4 int für Obenx,Obeny, Untenx,UntenY
     private int NumberofB = 8;
-    private int[][] Buildings = new int[NumberofB][4];
-    private int[][] Doors = new int[NumberofB][4];
+    private int[][] Buildings;
+    private int[][] Doors;
     private Bild MapPic;
     private int PlayerW;
     private int PlayerH;
 
-    private BoundingRechteck[] BuildingsObjects = new BoundingRechteck[NumberofB];
-    private BoundingRechteck[] BuildingsObjectsInner = new BoundingRechteck[NumberofB]; //Innere Klossionstests
-    private BoundingRechteck[] DoorObjects = new BoundingRechteck[NumberofB];
+    private HashMap<String, MapTest.Haus> MAP;
 
-    private Rechteck[] BuildingsObjectsDisplay = new Rechteck[NumberofB];
-    private Rechteck[] BuildingsObjectsDisplayInner = new Rechteck[NumberofB];
-    private Rechteck[] DoorObjectsDisplay = new Rechteck[NumberofB];
+
+
+
+    private BoundingRechteck[] BuildingsObjects;
+    private BoundingRechteck[] BuildingsObjectsInner; //Innere Klossionstests
+    private BoundingRechteck[] DoorObjects;
+
+    private Rechteck[] BuildingsObjectsDisplay;
+    private Rechteck[] BuildingsObjectsDisplayInner;
+    private Rechteck[] DoorObjectsDisplay;
 
     //Status, ob der Spieler sich in einem Gebäude befindet für func Walkable
     private boolean visiting = false;
@@ -35,15 +51,18 @@ public class Map extends Knoten{
 
 
 
-    public Map(float PW,float PH){
-        //super();
+    public Map(float PW,float PH) throws FileNotFoundException {
         this.PlayerW = (int)PW;
         this.PlayerH = (int)PH;
 
         MapPic= new Bild(0,0,"./Assets/Map3.jpg");
         this.add(MapPic);
 
-        BuildingsInit();
+        readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
+        InitArrays();
+
+
+        InitBuildings2();
         DoorsInit();
 
         MakeBuildingObjects();
@@ -81,6 +100,8 @@ public class Map extends Knoten{
      * Macht aus den angegebene Positionen der Gebaüde BoundingRechteck Objekte auch die Innernen und Türen.
      */
     private void MakeBuildingObjects(){
+
+
         for(int i =0;i<NumberofB;i++){
 
             DoorObjects[i] = new BoundingRechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
@@ -88,6 +109,22 @@ public class Map extends Knoten{
             BuildingsObjectsInner[i] = new BoundingRechteck(Buildings[i][0]+PlayerW,Buildings[i][1]+PlayerH,Buildings[i][2]-2*PlayerW,Buildings[i][3]-2*PlayerH);
 
             //this.add(BuildingsObjects[i]); //muss und kann nicht angezeigt werden!
+        }
+    }
+    private void InitBuildings2(){
+        System.out.println(MAP.size()
+        );
+        int i = 0;
+
+        for( String key : MAP.keySet() ) {
+            MapTest.Haus value = MAP.get(key);
+
+            Buildings[i][0] = value.posX;
+            Buildings[i][1] = value.posY;
+            Buildings[i][2] = value.width;
+            Buildings[i][3] = value.height;
+
+            i++;
         }
     }
 
@@ -109,6 +146,24 @@ public class Map extends Knoten{
         return coll;
     }
 
+    /**
+     * Erstellt die arrays mit richtiger länge
+     */
+    private void InitArrays(){
+
+        NumberofB = MAP.size();
+
+        Buildings = new int[NumberofB][4];
+        Doors = new int[NumberofB][4];
+
+        BuildingsObjects = new BoundingRechteck[NumberofB];
+        BuildingsObjectsInner = new BoundingRechteck[NumberofB]; //Innere Klossionstests
+        DoorObjects = new BoundingRechteck[NumberofB];
+
+        BuildingsObjectsDisplay = new Rechteck[NumberofB];
+        BuildingsObjectsDisplayInner = new Rechteck[NumberofB];
+        DoorObjectsDisplay = new Rechteck[NumberofB];
+    }
 
     /**
      * Macht aus den angegebene Positionen der Gebaüde Rechteck Objekte auch die Innernen und Türen.
@@ -217,5 +272,21 @@ public class Map extends Knoten{
         }else{
             visiting = true;
         }
+    }
+
+    private void readJSON() throws FileNotFoundException {
+        Gson gson = new Gson();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Karte/Karte.json"));
+
+            Type MapType = new TypeToken<HashMap<String, MapTest.Haus>>(){}.getType();
+            MAP = gson.fromJson(bufferedReader, MapType);
+        }
+        catch(Exception e) {
+            System.out.println(ANSI_PURPLE + "Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
+
+        }
+
     }
 }

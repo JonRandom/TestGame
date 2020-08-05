@@ -12,7 +12,7 @@ public class MapTest {
 
     BufferedReader bufferedReader;
 
-    String dollarJson = "{ '1': {'name':'Schule', 'posX': 200,'posY': 200,'width': 60,'height': 90}, '2': {'name':'CLUB', 'posX': 600,'posY': 200,'width': 200,'height': 90}}";
+    //String dollarJson = "{ '1': {'name':'Schule', 'posX': 200,'posY': 200,'width': 60,'height': 90}, '2': {'name':'CLUB', 'posX': 600,'posY': 200,'width': 200,'height': 90}}";
 
     public MapTest() throws FileNotFoundException {
         Gson gson = new Gson();

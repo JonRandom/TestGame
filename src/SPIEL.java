@@ -19,6 +19,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     private DebugAnzeige debugAnzeige2;
     private DummyPlayer DP;
     private NpcController NpcController;
+    private StartingScreen StartSc;
 
     public GameSaver gamesaver;
 
@@ -32,6 +33,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         zaehler = 0;
 
         StaticPlate = new Knoten();
+
+        StartSc = new StartingScreen();
 
         DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
@@ -51,6 +54,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController);
 
+
+        StaticPlate.add(StartSc);
+        StartSc.setActive(true);
         StaticPlate.add(DialogController);
 
         statischeWurzel.add(debugAnzeige1);
@@ -63,7 +69,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         tastenLosgelassenReagierbarAnmelden(this);
 
         tickerAnmelden(this, 10);
-
 
     }
 
@@ -84,7 +89,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         DP.positionSetzen(playerX,playerY);
 
 
-        if(!DialogController.GetDialogStatus()) {
+        if(!DialogController.GetDialogStatus() && !StartSc.isActive()) {
             int walkspeed = ActivePlayer.getWalkspeed();
 
             if (tasteGedrueckt(Taste.W)) {
@@ -149,6 +154,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         }
         if(tastenkuerzel == 29) {//Wenn PFEIL-links gedrückt wird konstate Kraft aus
             ActivePlayer.konstanteKraftSetzen(new Vektor(0,0));
+        }
+        if(StartSc.isActive()){
+            if(tastenkuerzel == 0){
+                StartSc.LeftActive();
+            }
+            else if(tastenkuerzel == 3){
+                StartSc.RightActive();
+            }
+            else if(tastenkuerzel == 30){
+                StartSc.select();
+            }
+
         }
 
 

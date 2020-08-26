@@ -157,13 +157,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         }
         if(StartSc.isActive()){
             if(tastenkuerzel == 0){
-                StartSc.LeftActive();
+                StartSc.ShiftLeft();
             }
             else if(tastenkuerzel == 3){
-                StartSc.RightActive();
+                StartSc.ShiftRight();
             }
             else if(tastenkuerzel == 30){
-                StartSc.select();
+                //StartSc.select();
             }
 
         }

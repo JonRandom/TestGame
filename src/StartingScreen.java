@@ -82,6 +82,10 @@ public class StartingScreen extends Knoten {
         return active;
     }
 
+    public int getSelection() {
+        return selection;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
 
@@ -91,4 +95,5 @@ public class StartingScreen extends Knoten {
             Buttons[i].sichtbarSetzen(active);
         }
     }
+
 }

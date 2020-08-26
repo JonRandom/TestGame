@@ -1,8 +1,8 @@
 {
   "1":
-  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90},
+  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90,"doorX": "40","doorY": "400","doorWidth": "30","doorHeight": "50"},
   "2":
-  {"name":"Club", "posX": 600,"posY": 200,"width": 200,"height": 90},
+  {"name":"Club", "posX": 600,"posY": 200,"width": 200,"height": 90,"doorX": "290","doorY": "200","doorWidth": "30","doorHeight": "50"},
   "3":
-  {"name":"Zuhause", "posX": 300,"posY": 400,"width": 200,"height": 600}
+  {"name":"Zuhause", "posX": 300,"posY": 400,"width": 200,"height": 600,"doorX": "290","doorY": "400","doorWidth": "30","doorHeight": "50"}
 }

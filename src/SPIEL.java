@@ -124,6 +124,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
             DialogController.setVisisbilty(true);
         }
+
         gamesaver.SavePlayer(ActivePlayer);
 
         }
@@ -163,7 +164,23 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
                 StartSc.ShiftRight();
             }
             else if(tastenkuerzel == 30){
-                //StartSc.select();
+                StartSc.setActive(false);
+                switch(StartSc.getSelection()){
+
+                    case(0):
+                        System.out.println("test0");
+                        break;
+                    case(1):
+                        System.out.println("test1");
+                        break;
+                    case(2):
+                        System.out.println("test2");
+                        break;
+                    case(3):
+                        System.out.println("test3");
+                        break;
+
+                }
             }
 
         }

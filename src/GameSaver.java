@@ -20,9 +20,8 @@ public class GameSaver {
 
     /**
      * Setze defualt werte, dass ein JSON generiert wird ohne Lücken
-     * @throws FileNotFoundException
      */
-    public GameSaver() throws FileNotFoundException {
+    public GameSaver()  {
         saveState.setName("DEFAULT");
         saveState.setPosX(0);
         saveState.setPosY(0);
@@ -47,7 +46,7 @@ public class GameSaver {
 
     }
     public void SavePlayer(Player Player) {
-        //System.out.println((int)Player.getPosX());
+        //System.out.println("Saved Game");
 
         saveState.setName(Player.getName());
         saveState.setPosX((int)Player.getPosX());

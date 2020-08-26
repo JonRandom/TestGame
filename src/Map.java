@@ -14,8 +14,9 @@ import java.util.HashMap;
  * Diese Klasse managed die Karte und die Rechtecke der Gebäude,
  * die im Hintergrund die Kollisionerkennung leiten.
  *
- * Gebäudedaten vielleicht auch aus JSON??
- *
+ * JSON Lesen Erklärung:
+ * Erst wird aus der TemplateKlasse Haus(Map.Haus) eingestellt und dann wird die Datei zu der java.utils.map names MAP gewandelt.
+ * Aus der map Map kann mit dem Kex(numerisch) dann ein element gegriffen werden. In diesem Element sind dann die Gebäude-daten, nach der Struktur der Map.Haus Klasse
  */
 
 public class Map extends Knoten{
@@ -31,7 +32,7 @@ public class Map extends Knoten{
     private int PlayerW;
     private int PlayerH;
 
-    private HashMap<String, MapTest.Haus> MAP;
+    private HashMap<String, Map.Haus> MAP;
 
 
 
@@ -51,7 +52,7 @@ public class Map extends Knoten{
 
 
 
-    public Map(float PW,float PH) throws FileNotFoundException {
+    public Map(float PW,float PH) {
         this.PlayerW = (int)PW;
         this.PlayerH = (int)PH;
 
@@ -117,13 +118,17 @@ public class Map extends Knoten{
         int i = 0;
 
         for( String key : MAP.keySet() ) {
-            MapTest.Haus value = MAP.get(key);
+            Map.Haus element = MAP.get(key);
 
-            Buildings[i][0] = value.posX;
-            Buildings[i][1] = value.posY;
-            Buildings[i][2] = value.width;
-            Buildings[i][3] = value.height;
+            Buildings[i][0] = element.posX;
+            Buildings[i][1] = element.posY;
+            Buildings[i][2] = element.width;
+            Buildings[i][3] = element.height;
 
+            Doors[i][0] = element.doorX;
+            Doors[i][1] = element.doorY;
+            Doors[i][2] = element.doorWidth;
+            Doors[i][3] = element.doorHeight;
             i++;
         }
     }
@@ -274,12 +279,12 @@ public class Map extends Knoten{
         }
     }
 
-    private void readJSON() throws FileNotFoundException {
+    private void readJSON() {
         Gson gson = new Gson();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Files/Karte.json"));
 
-            Type MapType = new TypeToken<HashMap<String, MapTest.Haus>>(){}.getType();
+            Type MapType = new TypeToken<HashMap<String, Map.Haus>>(){}.getType();
             MAP = gson.fromJson(bufferedReader, MapType);
         }
         catch(Exception e) {
@@ -289,4 +294,19 @@ public class Map extends Knoten{
         }
 
     }
+
+    public class Haus{
+        String name;
+        int posX;
+        int posY;
+
+        int width;
+        int height;
+
+        int doorX;
+        int doorY;
+        int doorWidth;
+        int doorHeight;
+    }
 }
+

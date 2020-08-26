@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 
-public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
+public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar
 {
 
     private int zaehler;
@@ -20,19 +20,24 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     private DummyPlayer DP;
     private NpcController NpcController;
     private StartingScreen StartSc;
+    private Minigame1 Minigame1;
+
+
 
     public GameSaver gamesaver;
 
-    public Knoten StaticPlate; //Knoten mit allen Objekten auf dem Bildschirm die bewegt werden sollen.
+    private Bild cursor;
+    private Punkt hotspot;
+    private Maus maus;
 
 
 
-    public SPIEL(int breite, int hoehe,  boolean maus) throws FileNotFoundException {
+
+    public SPIEL(int breite, int hoehe) throws FileNotFoundException {
         super(1200,800,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
 
-        StaticPlate = new Knoten();
 
         StartSc = new StartingScreen();
 
@@ -46,7 +51,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
+        //Minigame1 = new Minigame1(); // unused do to lack uf ideas
 
+        cursor = new Bild(0, 0, "./Assets/MouseC.png");
+
+        hotspot = new Punkt(11,11);
+
+        maus = new Maus(cursor, hotspot);
+        mausAnmelden(maus);
+        maus.klickReagierbarAnmelden(this);
 
 
         wurzel.add(DP);
@@ -55,13 +68,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
         wurzel.add(NpcController);
 
 
-        StaticPlate.add(StartSc);
+        statischeWurzel.add(StartSc);
         StartSc.setActive(true);
-        StaticPlate.add(DialogController);
+        statischeWurzel.add(DialogController);
+        //statischeWurzel.add(Minigame1);
+
 
         statischeWurzel.add(debugAnzeige1);
         statischeWurzel.add(debugAnzeige2);
-        statischeWurzel.add(StaticPlate);
 
 
 
@@ -125,15 +139,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
             DialogController.setVisisbilty(true);
         }
 
+
         gamesaver.SavePlayer(ActivePlayer);
 
         }
 
-    //unused for now
-    public void klickReagieren(int x, int y)
-    {
-        System.out.println("Klick bei (" + x  + ", " + y + ").");
-    }
+
 
     //  https://engine-alpha.org/wiki/Tastaturtabelle
     public void tasteReagieren(int tastenkuerzel)
@@ -207,7 +218,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker
     }
 
 
-
-
+    @Override
+    public void klickReagieren(Punkt punkt) {
+        System.out.println("Klick bei ("+ punkt+ ").");
+        int dx = (int)ActivePlayer.getPosX()-(int)punkt.x();
+        int dy = (int)ActivePlayer.getPosY()-(int)punkt.y();
+        System.out.println(dx+dy);
+        BallTest ball1 = new BallTest((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY(),dx,dy);
+        wurzel.add(ball1);
+    }
 }
 

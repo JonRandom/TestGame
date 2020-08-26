@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class MAIN {
     public static void main(String[] args) throws FileNotFoundException {
-        SPIEL spiel  = new SPIEL(1000,1000,true);
+        SPIEL spiel  = new SPIEL(1000,1000);
         spiel.fokusSetzten();
         //spiel.mausIconSetzen("./Assets/MouseC.png",0,0);
 

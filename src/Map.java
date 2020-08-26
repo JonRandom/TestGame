@@ -268,7 +268,6 @@ public class Map extends Knoten{
 
     /**
      * an wenn aus, aus wenn an
-     *
      * muss public sein
      */
     public void toggleVisting(){

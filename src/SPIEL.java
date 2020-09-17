@@ -1,8 +1,6 @@
 import ea.*;
 import com.google.gson.*;
 
-
-
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -50,6 +48,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
+
 
         //Minigame1 = new Minigame1(); // unused do to lack uf ideas
 
@@ -174,6 +173,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             else if(tastenkuerzel == 3){
                 StartSc.ShiftRight();
             }
+            //Leertaste
+            //Leertaste
             else if(tastenkuerzel == 30){
                 StartSc.setActive(false);
                 switch(StartSc.getSelection()){

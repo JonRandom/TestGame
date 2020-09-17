@@ -12,9 +12,6 @@
  *
  */
 
-/**
- * Vielleicht anstatt SystemZeit und 
- */
 
 import ea.Bild;
 import ea.Knoten;

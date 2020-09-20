@@ -19,6 +19,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private NpcController NpcController;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
+    private HouseLoader HouseLoader1;
 
 
 
@@ -49,6 +50,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
+        HouseLoader1 = new HouseLoader(map);
+
 
         //Minigame1 = new Minigame1(); // unused do to lack uf ideas
 
@@ -67,6 +70,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(NpcController);
 
 
+        statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
         statischeWurzel.add(DialogController);
@@ -152,6 +156,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         if(tastenkuerzel == 6){
             DialogController.toggleVisibilty();
         }
+        if(tastenkuerzel == 8){//I als in
+            HouseLoader1.welcomeGuest();
+        }
+        if(tastenkuerzel == 14){//o als out
+            HouseLoader1.HideView();
+        }
+
 
         if(tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
             map.toggleVisting();

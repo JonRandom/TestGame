@@ -1,4 +1,10 @@
-BENENNUNG DER BILDER:
+---------------------------------------------------------------------
+Allgemeine Richtlinien für den Import/Export von Dateien
+
+Koordinatien Ursprung liegt OBEN LINKS.
+
+---------------------------------------------------------------------
+BENENNUNG DER BILDER FÜR ANIMATIONEN:
 
 "FigurName" + "-" + "L/R/T/B" + "NUMBER"
 Bsp.:  "Spieler-R0.png"
@@ -6,4 +12,28 @@ Bsp.2: "Torben-T0.png"
 
 Indizes von 0 an!
 
-BENENNUNG DER BILDER:
+---------------------------------------------------------------------
+EINTRAGEN DER HÄUSER-DATEN BZW. POSITIONEN:
+
+In der Datei Karte.json werden alle Daten der Häuser eingetragen.
+
+Zahl oben = fortlaufende Zahl, einfach immer eine mehr nehmen
+
+name =  Hausname
+posX = X-Position des Gebäudes auf der Karte
+posY = Y-Position des Gebäudes auf der Karte
+width = Breite in Pixeln
+height = Höhe in Pixeln
+
+doorX = RELATIVE Tür X-Position
+doorY = RELATIVE Tür Y-Position
+doorWidth = Tür-Breite in Pixeln
+doorHeight = Tür-Höhe in Pixeln
+
+Bsp.:
+"1":
+  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90,"doorX": "40","doorY": "400","doorWidth": "30","doorHeight": "50"},
+
+
+Das Komma hinten ist nötig, wenn man mehrere Häuser hat.
+---------------------------------------------------------------------

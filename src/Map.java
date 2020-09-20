@@ -32,9 +32,9 @@ public class Map extends Knoten{
     private int PlayerW;
     private int PlayerH;
 
+    private int HouseNumber;// zeigt an in welchem haus der Player ist. Entspricht der reinfolge des Jsons
+
     private HashMap<String, Map.Haus> MAP;
-
-
 
 
     private BoundingRechteck[] BuildingsObjects;
@@ -62,18 +62,18 @@ public class Map extends Knoten{
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
         InitArrays();
 
-
-        InitBuildings2();
-        DoorsInit();
+        InitBuildings();
 
         MakeBuildingObjects();
-
         DisplayBuildings();
 
 
 
     }
 
+    /**
+     * Füllt die Arrays zum Testen auf
+     */
     private void BuildingsInit(){
         Buildings[0][0]=200;
         Buildings[0][1]=200;
@@ -90,6 +90,9 @@ public class Map extends Knoten{
         Buildings[2][2]=180;
         Buildings[2][3]=100;
     }
+    /**
+     * Füllt die Arrays zum Testen auf
+     */
     private void DoorsInit(){
         Doors[1][0]=400-10;
         Doors[1][1]=500;
@@ -112,7 +115,7 @@ public class Map extends Knoten{
             //this.add(BuildingsObjects[i]); //muss und kann nicht angezeigt werden!
         }
     }
-    private void InitBuildings2(){
+    private void InitBuildings(){
         System.out.println(MAP.size()
         );
         int i = 0;
@@ -125,14 +128,13 @@ public class Map extends Knoten{
             Buildings[i][2] = element.width;
             Buildings[i][3] = element.height;
 
-            Doors[i][0] = element.doorX;
-            Doors[i][1] = element.doorY;
+            Doors[i][0] = element.posX + element.doorX; //Türen immer relativ zur eigentliche Hausposition
+            Doors[i][1] = element.posY + element.doorY; //Türen immer relativ zur eigentliche Hausposition
             Doors[i][2] = element.doorWidth;
             Doors[i][3] = element.doorHeight;
             i++;
         }
     }
-
 
     public boolean[] ColliderTest(Player p){
         boolean[] CollisionB = new boolean[NumberofB];
@@ -141,7 +143,7 @@ public class Map extends Knoten{
         }
         return CollisionB;
     }
-    public boolean ColliderTestAny(DummyPlayer p){
+   public boolean ColliderTestAny(DummyPlayer p){
         boolean coll=false;
         for(int i =0;i<NumberofB;i++){
             if (p.inFlaeche(BuildingsObjects[i])) {
@@ -152,7 +154,7 @@ public class Map extends Knoten{
     }
 
     /**
-     * Erstellt die arrays mit richtiger länge
+     * Erstellt die Arrays mit richtiger Länge
      */
     private void InitArrays(){
 
@@ -178,14 +180,17 @@ public class Map extends Knoten{
         for(int i =0;i<NumberofB;i++) {
 
             BuildingsObjectsDisplay[i] = new Rechteck(Buildings[i][0], Buildings[i][1], Buildings[i][2], Buildings[i][3]);
+            BuildingsObjectsDisplay[i].setOpacity(0.5f);//macht sie halbtransparent
             this.add(BuildingsObjectsDisplay[i]);
 
             BuildingsObjectsDisplayInner[i] = new Rechteck(Buildings[i][0] + PlayerW, Buildings[i][1] + PlayerH, Buildings[i][2] - 2 * PlayerW, Buildings[i][3] - 2 * PlayerH);
             BuildingsObjectsDisplayInner[i].farbeSetzen(Color.green);
+            BuildingsObjectsDisplayInner[i].setOpacity(0.5f);//macht sie halbtransparent
             this.add(BuildingsObjectsDisplayInner[i]);
 
             DoorObjectsDisplay[i] = new Rechteck(Doors[i][0], Doors[i][1], Doors[i][2], Doors[i][3]);
             DoorObjectsDisplay[i].farbeSetzen(Color.blue);
+            DoorObjectsDisplay[i].setOpacity(0.5f);//macht sie halbtransparent
             this.add(DoorObjectsDisplay[i]);
         }
     }
@@ -196,7 +201,6 @@ public class Map extends Knoten{
      * In Türen z.B darf man immer laufen.
      */
     public boolean getWalkable(DummyPlayer p){
-        updateInDoor(p);
         updateVisiting(p);
         if(!isInDoor) {
             if (visiting) {
@@ -214,7 +218,7 @@ public class Map extends Knoten{
                         coll = true;
                     }
                 }
-                return !coll;
+                return !coll;//wenn er nicht visiting ist und er nicht mit einem äußeren Haus kollidiert, darf er laufen
             }
         } else {
             return true;
@@ -251,12 +255,22 @@ public class Map extends Knoten{
             for (int i = 0; i < NumberofB; i++) {
                 if (dp.inFlaeche(BuildingsObjectsInner[i])) {
                     coll = true;
+                    HouseNumber = i;//Das Haus in dem man sich befindet wird als Standort angegeben
                 }
             }
             visiting = coll;
 
         }
     }
+    public int getHouseNumber(){
+        if(visiting){
+            return HouseNumber;
+        }
+        else {
+            return -1;//als error Zahl
+        }
+    }
+
 
     private void setVisiting(boolean visiting) {
         this.visiting = visiting;

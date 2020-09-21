@@ -1,6 +1,6 @@
 {
   "1":
-  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90,"doorX": "0","doorY": "80","doorWidth": "20","doorHeight": "50"},
+  {"name":"Schule", "posX": 800,"posY": 200,"width": 60,"height": 90,"doorX": "0","doorY": "80","doorWidth": "20","doorHeight": "50"},
   "2":
   {"name":"Club", "posX": 600,"posY": 200,"width": 200,"height": 900,"doorX": "0","doorY": "80","doorWidth": "20","doorHeight": "50"},
   "3":

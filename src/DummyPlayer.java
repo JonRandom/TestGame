@@ -10,10 +10,31 @@ import ea.Knoten;
 public class DummyPlayer extends Knoten {
 
     private Bild image;
+    private float x;
+    private float y;
     public DummyPlayer(int posX,int posY){
+        x = posX;
+        y = posY;
         image = new Bild(posX,posY,"./Assets/SpielerTest/Spieler-L0.png");
 
         image.sichtbarSetzen(false);
         this.add(image);
+    }
+
+    @Override
+    public void positionSetzen(float x, float y) {
+        this.x = x;
+        this.y = y;
+        super.positionSetzen(x, y);
+    }
+
+    @Override
+    public float getX() {
+        return x;
+    }
+
+    @Override
+    public float getY() {
+        return y;
     }
 }

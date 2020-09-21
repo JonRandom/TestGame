@@ -38,6 +38,7 @@ public class Map extends Knoten{
 
 
     private BoundingRechteck[] BuildingsObjects;
+    private ColliderShape[] ColliderShape_Outer;
     private BoundingRechteck[] BuildingsObjectsInner; //Innere Klossionstests
     private BoundingRechteck[] DoorObjects;
 
@@ -110,6 +111,7 @@ public class Map extends Knoten{
 
             DoorObjects[i] = new BoundingRechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
             BuildingsObjects[i] = new BoundingRechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
+            ColliderShape_Outer[i] = new ColliderShape(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
             BuildingsObjectsInner[i] = new BoundingRechteck(Buildings[i][0]+PlayerW,Buildings[i][1]+PlayerH,Buildings[i][2]-2*PlayerW,Buildings[i][3]-2*PlayerH);
 
             //this.add(BuildingsObjects[i]); //muss und kann nicht angezeigt werden!
@@ -164,6 +166,7 @@ public class Map extends Knoten{
         Doors = new int[NumberofB][4];
 
         BuildingsObjects = new BoundingRechteck[NumberofB];
+        ColliderShape_Outer = new ColliderShape[NumberofB];
         BuildingsObjectsInner = new BoundingRechteck[NumberofB]; //Innere Klossionstests
         DoorObjects = new BoundingRechteck[NumberofB];
 
@@ -200,13 +203,13 @@ public class Map extends Knoten{
      *
      * In Türen z.B darf man immer laufen.
      */
-    public boolean getWalkable(DummyPlayer p){
-        updateVisiting(p);
+    public boolean getWalkable(DummyPlayer dp){
+        updateVisiting(dp);
         if(!isInDoor) {
             if (visiting) {
                 boolean coll = false;
                 for (int i = 0; i < NumberofB; i++) {
-                    if (p.inFlaeche(BuildingsObjectsInner[i])) {
+                    if (dp.inFlaeche(BuildingsObjectsInner[i])) {
                         coll = true;
                     }
                 }
@@ -214,9 +217,20 @@ public class Map extends Knoten{
             } else {
                 boolean coll = false;
                 for (int i = 0; i < NumberofB; i++) {
-                    if (p.inFlaeche(BuildingsObjects[i])) {
+
+                    if (dp.inFlaeche(BuildingsObjects[i])) {
+
                         coll = true;
                     }
+                    /*
+                    if ((ColliderShape_Outer[i].isIn(dp))) {
+
+                        coll = true;
+                        System.out.println("VISISTING UND KOLLIDIERT");
+                    }
+                    */
+
+
                 }
                 return !coll;//wenn er nicht visiting ist und er nicht mit einem äußeren Haus kollidiert, darf er laufen
             }

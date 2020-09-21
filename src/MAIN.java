@@ -1,14 +1,20 @@
-/*
-Erzeugt das SPIEL Objekt und setzt Fenster Einstellungen.
+/**
+ * Erzeugt das SPIEL Objekt und setzt Fenster Einstellungen.
+ * Es ist die höchste Klasse in der Hierarchie
+ *
+ *
  */
 
-import java.io.FileNotFoundException;
 
 public class MAIN {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args){
         SPIEL spiel  = new SPIEL(1000,1000);
         spiel.fokusSetzten();
-        //spiel.mausIconSetzen("./Assets/MouseC.png",0,0);
+
+        ColliderShape CS = new ColliderShape(200,300,100,200);
+        System.out.println(CS.isIn(200,100));
+        System.out.println(CS.isIn(200,301));
+        System.out.println(CS.isIn(250,501));
 
 
 

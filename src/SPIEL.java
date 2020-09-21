@@ -32,7 +32,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
 
-    public SPIEL(int breite, int hoehe) throws FileNotFoundException {
+    public SPIEL(int breite, int hoehe) {
         super(1200,800,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;

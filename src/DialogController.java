@@ -13,8 +13,7 @@ public class DialogController extends Knoten{
     private Text TextObject;
     private Bild BackgroundBild;
 
-    private int WindowSizeX= 1200;
-    private int WindowSizeY= 800;
+
 
     private boolean DialogMode;
 
@@ -25,8 +24,8 @@ public class DialogController extends Knoten{
 
         BackgroundBild = new Bild(400,500,"./Assets/DialogFenster.png");
 
-        float tempPosX =WindowSizeX/2-(BackgroundBild.getBreite()/2);
-        float tempPosY =WindowSizeY-(BackgroundBild.getHoehe());
+        float tempPosX =MAIN.x/2-(BackgroundBild.getBreite()/2);
+        float tempPosY =MAIN.y/2-(BackgroundBild.getHoehe()/2);
 
         BackgroundBild.positionSetzen(tempPosX,tempPosY);
         BackgroundBild.sichtbarSetzen(false);

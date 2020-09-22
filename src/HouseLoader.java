@@ -86,6 +86,15 @@ public class HouseLoader extends Knoten {
             path = defaultPath + element.name + ".png";
 
             Houses[i] = new Bild(200,200,path);
+
+
+            //Zentriert Bild anhand von der globalen Window Größe (MAIN.x, MAIN.y)
+            float x = Houses[i].getBreite();
+            float y = Houses[i].getHoehe();
+            float centerX = (MAIN.x/2) - x/2;
+            float centerY = (MAIN.y/2) - y/2;
+
+            Houses[i].positionSetzen(centerX,centerY);//zentriert das Bild
             this.add(Houses[i]);
 
             i++;

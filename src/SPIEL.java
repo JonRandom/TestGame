@@ -33,7 +33,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
     public SPIEL(int breite, int hoehe) {
-        super(1200,800,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
+        super(MAIN.x,MAIN.y,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
 
@@ -55,13 +55,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         //Minigame1 = new Minigame1(); // unused do to lack uf ideas
 
+        /* MAUS
         cursor = new Bild(0, 0, "./Assets/MouseC.png");
-
         hotspot = new Punkt(11,11);
-
         maus = new Maus(cursor, hotspot);
         mausAnmelden(maus);
         maus.klickReagierbarAnmelden(this);
+        */
+
 
 
         wurzel.add(DP);

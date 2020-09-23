@@ -12,14 +12,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
     private Player ActivePlayer;
     private DialogController DialogController;
-    private Map map;
+    private Map2 map;
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
     private DummyPlayer DP;
     private NpcController NpcController;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
-    private HouseLoader HouseLoader1;
+    //private HouseLoader HouseLoader1;
 
 
 
@@ -44,13 +44,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DialogController = new DialogController();
         DialogController.setVisisbilty(false);
         ActivePlayer = new Player(600,400);
-        map = new Map(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
+        map = new Map2(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
-        HouseLoader1 = new HouseLoader(map);
+        //HouseLoader1 = new HouseLoader(map);
 
 
         //Minigame1 = new Minigame1(); // unused do to lack uf ideas
@@ -71,7 +71,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(NpcController);
 
 
-        statischeWurzel.add(HouseLoader1);
+        //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
         statischeWurzel.add(DialogController);
@@ -158,10 +158,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.toggleVisibilty();
         }
         if(tastenkuerzel == 8){//I als in
-            HouseLoader1.welcomeGuest();
+            //HouseLoader1.welcomeGuest();
         }
         if(tastenkuerzel == 14){//o als out
-            HouseLoader1.HideView();
+            //HouseLoader1.HideView();
         }
 
 

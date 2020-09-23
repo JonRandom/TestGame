@@ -1,6 +1,6 @@
 {
   "1":
-{"name":"Schule", "posX": 800,"posY": 200,"width": 200,"height": 300,"DoorOffset": 100, "InteriorDoorOffset": 100,"InnerX":20, "InnerY":20 , "InnerWidth":200, "InnerHeight":200,"doorTyp": "l"},
+{"name":"Schule", "posX": 200,"posY": 200,"width": 200,"height": 300,"DoorOffset": 100, "InteriorDoorOffset": 100,"InnerX":20, "InnerY":20 , "InnerWidth":200, "InnerHeight":200,"doorTyp": "l"},
   "2":
   {"name":"Club", "posX": 600,"posY": 200,"width": 300,"height": 600,"DoorOffset": 100, "InteriorDoorOffset": 100,"InnerX":20, "InnerY":20 , "InnerWidth":200, "InnerHeight":200,"doorTyp": "r"}
 }

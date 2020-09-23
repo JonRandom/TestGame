@@ -91,6 +91,11 @@ public class Map2 extends Knoten{
 
         OuterWallHitbox = new ColliderShape[NumberofB];
         InteriorHitbox = new ColliderShape[NumberofB];
+
+        Display_Doors = new Rechteck[NumberofB];
+        Display_Buildings = new Rechteck[NumberofB];
+        Display_Interior = new Rechteck[NumberofB];
+
         ;
     }
 
@@ -147,6 +152,7 @@ public class Map2 extends Knoten{
             float centerY = (MAIN.y/2) - y/2;
 
             InteriorPics[i].positionSetzen(centerX,centerY);//zentriert das Bild
+            InteriorPics[i].sichtbarSetzen(false);
             this.add(InteriorPics[i]);
 
             int finalInteriorPos_X = (int)InteriorPics[i].getX();//Realposition der Oberen Ecke
@@ -216,14 +222,37 @@ public class Map2 extends Knoten{
         }
         else{
             boolean hit = false;
-                if(InteriorHitbox[HouseNumber].isIn(dp)){
-                    hit = true;
-                };
+            int HN = getHouseNumber(dp);
+            if(InteriorHitbox[HouseNumber].isIn(dp)){
+                hit = true;
+            }
+            ;
 
 
             return hit;//falls Kollision true zurückgeben, sonst false -> er soll nicht rauslaufen dürfen
 
         }
+    }
+    private int getHouseNumber(DummyPlayer dp){
+        if(visiting){
+            for(int i =0;i<NumberofB;i++){
+                boolean hit = false;
+                if(InteriorHitbox[i].isIn(dp)){
+                    return i;
+                }
+                else{
+                    System.out.println(ANSI_PURPLE + "Spieler ist visting aber es kann keine Kollision mit einer InteriorHitbox gefunden werden!" + ANSI_RESET);
+                    return -1;
+                }
+
+            }
+        } else{
+            System.out.println(ANSI_PURPLE + "Fehler in der Map2 Klasse: Es wird nach Housenummer gefragt, aber visting = flase!" + ANSI_RESET);
+            return -1;
+        }
+        return -1;
+
+
     }
 
 

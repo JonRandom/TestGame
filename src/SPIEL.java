@@ -185,22 +185,25 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             else if(tastenkuerzel == 3){
                 StartSc.ShiftRight();
             }
+            else if (tastenkuerzel == 31) {
+                StartSc.SelectButtons();
+            }
             //Leertaste
             //Leertaste
-            else if(tastenkuerzel == 30){
+            else if (tastenkuerzel == 30) {
                 StartSc.setActive(false);
-                switch(StartSc.getSelection()){
+                switch (StartSc.getSelection()) {
 
-                    case(0):
+                    case (0):
                         System.out.println("test0");
                         break;
-                    case(1):
+                    case (1):
                         System.out.println("test1");
                         break;
-                    case(2):
+                    case (2):
                         System.out.println("test2");
                         break;
-                    case(3):
+                    case (3):
                         System.out.println("test3");
                         break;
 

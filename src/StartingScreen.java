@@ -26,8 +26,8 @@ public class StartingScreen extends Knoten {
 
     private boolean active = false;//Ob der StartingScreen gerade offen ist, oder nicht.
 
-    public StartingScreen(){
-        BackgroundPic = new Bild(0,0,"./Assets/StartingScreen/Forest.jpg");
+    public StartingScreen() {
+        BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/Forest.jpg");
         this.add(BackgroundPic);
 
         FillButtonObjects();
@@ -35,11 +35,11 @@ public class StartingScreen extends Knoten {
 
     }
 
-    private void FillButtonObjects(){
+    private void FillButtonObjects() {
         System.out.println("FillButtonObjects");
-        for(int i=0;i<ButtonCount;i++){
+        for (int i = 0; i < ButtonCount; i++) {
             System.out.println(i);
-            Buttons[i] = new Bild(200 + i*200,400,"./Assets/StartingScreen/Button" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+            Buttons[i] = new Bild(200 + i * 200, 400, "./Assets/StartingScreen/Button" + i + ".png"); //jedes Bild 200 pixel weiter rechts
             this.add(Buttons[i]);
         }
         UpdateButtons();
@@ -48,8 +48,8 @@ public class StartingScreen extends Knoten {
     /**
      * Updatet die Auswahl der Knöpfe(auch graphisch) nach der -selection- Variable
      */
-    private void UpdateButtons(){
-        for(int i=0;i<ButtonCount;i++){
+    private void UpdateButtons() {
+        for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].setOpacity(1f);//alle voll sichbar
         }
         System.out.println(selection);
@@ -57,22 +57,22 @@ public class StartingScreen extends Knoten {
     }
 
 
-
     /**
      * Setzt den Linken Knopf "Aktiv"
      * und rechten nicht mehr "Aktiv"
      */
-    public void ShiftLeft(){
+    public void ShiftLeft() {
         selection--;
-        if(selection<0){
+        if (selection < 0) {
             selection = 0;//stay at first
         }
         UpdateButtons();
     }
-    public void ShiftRight(){
+
+    public void ShiftRight() {
         selection++;
-        if(selection>=ButtonCount){
-            selection = ButtonCount-1;//stay at last
+        if (selection >= ButtonCount) {
+            selection = ButtonCount - 1;//stay at last
         }
         UpdateButtons();
     }
@@ -91,9 +91,31 @@ public class StartingScreen extends Knoten {
 
         BackgroundPic.sichtbarSetzen(active);
 
-        for(int i=0;i<ButtonCount;i++){
+        for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].sichtbarSetzen(active);
         }
     }
 
+
+    public void SelectButtons() { //Enter = 31
+        switch (selection) {
+            case 0: {
+                System.out.println("Button 1: Anleitung");
+            }
+            break;
+            case 1: {
+                System.out.println("Button 2: Charakter");
+            }
+            break;
+            case 2: {
+                System.out.println("Button 3: neues Spiel");
+            }
+            break;
+            case 3: {
+                System.out.println("Button 4: Spiel fortsetzen");
+            }
+            break;
+        }
+
+    }
 }

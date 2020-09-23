@@ -13,6 +13,7 @@
 
 import ea.Bild;
 import ea.Knoten;
+import ea.Text;
 
 public class StartingScreen extends Knoten {
 
@@ -25,6 +26,11 @@ public class StartingScreen extends Knoten {
     private int selection = 0; //von 0 bis ButtonCount -1
 
     private boolean active = false;//Ob der StartingScreen gerade offen ist, oder nicht.
+
+    private Text tb0; //Text fuer Button 0 StartingScreen
+    private Text tb1; //Text fuer Button 1 StartingScreen
+    private Text tb2; //Text fuer Button 2 StartingScreen
+    private Text tb3; //Text fuer Button 3 StartingScreen
 
     public StartingScreen() {
         BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/Forest.jpg");
@@ -101,18 +107,26 @@ public class StartingScreen extends Knoten {
         switch (selection) {
             case 0: {
                 System.out.println("Button 1: Anleitung");
+                tb0 = new Text("Text fuer Button 0",150,350);
+                this.add(tb0);
             }
             break;
             case 1: {
                 System.out.println("Button 2: Charakter");
+                tb1 = new Text("Text fuer Button 1",350,350);
+                this.add(tb1);
             }
             break;
             case 2: {
                 System.out.println("Button 3: neues Spiel");
+                tb2 = new Text("Text fuer Button 2",550,350);
+                this.add(tb2);
             }
             break;
             case 3: {
                 System.out.println("Button 4: Spiel fortsetzen");
+                tb3 = new Text("Text fuer Button 3",750,350);
+                this.add(tb3);
             }
             break;
         }

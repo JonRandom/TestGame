@@ -30,7 +30,6 @@ public class Map2 extends Knoten{
     private int DoorLength = 20;//global DoorLength als in width/height
     private int DoorDepth = 10;//global DoorLength als in width/height
 
-
     private int[][] Buildings;
     private int[][] Doors;
     private int[][] Interior;
@@ -42,7 +41,7 @@ public class Map2 extends Knoten{
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
 
-    private int HouseNumber;// zeigt an in welchem haus der Player ist. Entspricht der reinfolge des Jsons
+    private int HouseNumber = 0;// zeigt an in welchem haus der Player ist. Entspricht der reinfolge des Jsons
 
     private HashMap<String, Map2.Haus> MAP;
 
@@ -187,6 +186,7 @@ public class Map2 extends Knoten{
             Display_Interior[i] = new Rechteck(Interior[i][0],Interior[i][1],Interior[i][2],Interior[i][3]);
             Display_Interior[i].farbeSetzen(Color.black);
             Display_Interior[i].setOpacity(0.5f);//macht sie halbtransparent
+            Display_Interior[i].sichtbarSetzen(false);
             this.add(Display_Interior[i]);
 
             Display_Doors[i] = new Rechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
@@ -197,13 +197,33 @@ public class Map2 extends Knoten{
         }
     }
 
+
     /**
      * Sagt ob ein Dummyplayer der vorgeschickt laufen darf.
      *
      * In Türen z.B darf man immer laufen.
      */
     public boolean getWalkable(DummyPlayer dp){
-        return true;
+        if(visiting){
+            boolean hit = false;
+            for(int i =0;i<NumberofB;i++){
+                if(OuterWallHitbox[i].isIn(dp)){
+                    hit = true;
+                };
+
+            }
+            return !hit;//falls Kollision,  false zurückgeben, sonst true
+        }
+        else{
+            boolean hit = false;
+                if(InteriorHitbox[HouseNumber].isIn(dp)){
+                    hit = true;
+                };
+
+
+            return hit;//falls Kollision true zurückgeben, sonst false -> er soll nicht rauslaufen dürfen
+
+        }
     }
 
 

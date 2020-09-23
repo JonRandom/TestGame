@@ -43,7 +43,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
         DialogController.setVisisbilty(false);
-        ActivePlayer = new Player(600,400);
+        ActivePlayer = new Player(1000,1000);
         map = new Map2(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);

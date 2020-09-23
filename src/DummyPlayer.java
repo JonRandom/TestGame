@@ -29,6 +29,13 @@ public class DummyPlayer extends Knoten {
     }
 
     @Override
+    public void verschieben(float dX, float dY) {
+        this.x = this.x +dX;
+        this.y = this.y +dY;
+        super.verschieben(dX, dY);
+    }
+
+    @Override
     public float getX() {
         return x;
     }

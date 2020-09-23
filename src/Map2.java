@@ -14,21 +14,24 @@ import java.util.HashMap;
 /**
  * Diese Klasse managed die Karte und die Rechtecke der Gebäude,
  * die im Hintergrund die Kollisionerkennung leiten.
- *
+ * <p>
  * JSON Lesen Erklärung:
  * Erst wird aus der TemplateKlasse Haus(Map.Haus) eingestellt und dann wird die Datei zu der java.utils.map names MAP gewandelt.
  * Aus der map Map kann mit dem Kex(numerisch) dann ein element gegriffen werden. In diesem Element sind dann die Gebäude-daten, nach der Struktur der Map.Haus Klasse
+ *
+ *
  */
 
-public class Map2 extends Knoten{
+
+public class Map2 extends Knoten {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_PURPLE = "\u001B[35m";
 
     //Matrix für die Kollisiongebäude. in jedem eintrag sind 4 int für Obenx,Obeny, Untenx,UntenY
     private int NumberofB = -1;//is set in InitArrays()
-    private int DoorLength = 20;//global DoorLength als in width/height
-    private int DoorDepth = 10;//global DoorLength als in width/height
+    private int DoorLength = 40;//global DoorLength als in width/height
+    private int DoorDepth = 14;//global DoorLength als in width/height
 
     private int[][] Buildings;
     private int[][] Doors;
@@ -48,6 +51,7 @@ public class Map2 extends Knoten{
 
     private ColliderShape[] OuterWallHitbox;
     private ColliderShape[] InteriorHitbox; //for not leaving the Interior
+    private ColliderShape[] DoorHitbox; //for not leaving the Interior
 
     private Rechteck[] Display_Buildings;
     private Rechteck[] Display_Interior;
@@ -58,13 +62,11 @@ public class Map2 extends Knoten{
     private boolean isInDoor = false;
 
 
-
-
     public Map2(float PW, float PH) {
-        this.PlayerW = (int)PW;
-        this.PlayerH = (int)PH;
+        this.PlayerW = (int) PW;
+        this.PlayerH = (int) PH;
 
-        MapPic= new Bild(0,0,"./Assets/Map3.jpg");
+        MapPic = new Bild(0, 0, "./Assets/Map3.jpg");
         this.add(MapPic);
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
@@ -77,11 +79,10 @@ public class Map2 extends Knoten{
     }
 
 
-
     /**
      * Erstellt die Arrays mit richtiger Länge
      */
-    private void InitArrays(){
+    private void InitArrays() {
         NumberofB = MAP.size();
 
         Buildings = new int[NumberofB][4];
@@ -91,6 +92,7 @@ public class Map2 extends Knoten{
 
         OuterWallHitbox = new ColliderShape[NumberofB];
         InteriorHitbox = new ColliderShape[NumberofB];
+        DoorHitbox = new ColliderShape[NumberofB];
 
         Display_Doors = new Rechteck[NumberofB];
         Display_Buildings = new Rechteck[NumberofB];
@@ -99,11 +101,14 @@ public class Map2 extends Knoten{
         ;
     }
 
-    private void FillArrays(){
+    /**
+     * Füllt die Arrays mit allen Nötigen Daten aus dem Json und berechnet schon bestimmte Sachen.
+     */
+    private void FillArrays() {
 
-        String path ="";
+        String path = "";
         int i = 0;
-        for( String key : MAP.keySet() ) {
+        for (String key : MAP.keySet()) {
             Map2.Haus element = MAP.get(key);
 
 
@@ -111,52 +116,50 @@ public class Map2 extends Knoten{
             Buildings[i][1] = element.posY;
             Buildings[i][2] = element.width;
             Buildings[i][3] = element.height;
-
-            if(element.doorTyp == "l"){ // falls die Tür an der Linken seite ist
-                Doors[i][0] = element.posX- DoorDepth/2;
+            //System.out.println("BuildingDaten: " + Buildings[i][0] +"," +Buildings[i][1] +"," +Buildings[i][2]+"," +Buildings[i][3]);
+            //System.out.println("FillAray Durchgang:" +i+"doorTyp: " + element.doorTyp);
+            System.out.println(element.doorTyp + " :element.doorTyp == l" + (element.doorTyp == "l"));
+            if (element.doorTyp.equals("l")) { // falls die Tür an der Linken seite ist
+                Doors[i][0] = element.posX - DoorDepth / 2;
                 Doors[i][1] = element.posY + element.DoorOffset;
-                Doors[i][2] = element.posX + DoorDepth/2;
-                Doors[i][3] = element.posY + element.DoorOffset + DoorLength;
-            }
-            else if(element.doorTyp == "r"){
-                Doors[i][0] = element.posX - DoorDepth/2 + element.width;
+                Doors[i][2] = DoorDepth;
+                Doors[i][3] = DoorLength;
+                System.out.println("Door l" + Doors[i][0] + ", " + Doors[i][1] + ", " + Doors[i][2] + ", " + Doors[i][3]);
+            } else if (element.doorTyp.equals("r")) {
+                Doors[i][0] = element.posX - DoorDepth / 2 + element.width;
                 Doors[i][1] = element.posY + element.DoorOffset;
-                Doors[i][2] = element.posX + DoorDepth/2 + element.width;
-                Doors[i][3] = element.posY + element.DoorOffset + DoorLength;
-            }
-            else if(element.doorTyp == "t"){
+                Doors[i][2] = DoorDepth;
+                Doors[i][3] = DoorLength;
+            } else if (element.doorTyp.equals("t")) {
                 Doors[i][0] = element.posX + element.DoorOffset;
-                Doors[i][1] = element.posY - DoorDepth/2;
-                Doors[i][2] = element.posX + element.DoorOffset + DoorLength;
-                Doors[i][3] = element.posY + DoorDepth/2;
-            }
-            else if(element.doorTyp == "b"){
+                Doors[i][1] = element.posY - DoorDepth / 2;
+                Doors[i][2] = DoorLength;
+                Doors[i][3] = DoorDepth;
+            } else if (element.doorTyp.equals("b")) {
                 Doors[i][0] = element.posX + element.DoorOffset;
-                Doors[i][1] = element.posY - DoorDepth/2 + element.height;
-                Doors[i][2] = element.posX + element.DoorOffset + DoorLength;
-                Doors[i][3] = element.posY + DoorDepth/2 + element.height;
-            }
-            else{
+                Doors[i][1] = element.posY - DoorDepth / 2 + element.height;
+                Doors[i][2] = DoorLength;
+                Doors[i][3] = DoorDepth;
+            } else {
                 System.out.println(ANSI_PURPLE + "Fehler in der Map2 Klasse: Eine Tür mit invalidem doorTyp wurde gefunden" + ANSI_RESET);
             }
 
 
-
             path = defaultPath + element.name + ".png";
 
-            InteriorPics[i] = new Bild(0,0,path);
+            InteriorPics[i] = new Bild(0, 0, path);
             //Zentriert Bild anhand von der globalen Window Größe (MAIN.x, MAIN.y)
             float x = InteriorPics[i].getBreite();
             float y = InteriorPics[i].getHoehe();
-            float centerX = (MAIN.x/2) - x/2;
-            float centerY = (MAIN.y/2) - y/2;
+            float centerX = (MAIN.x / 2) - x / 2;
+            float centerY = (MAIN.y / 2) - y / 2;
 
-            InteriorPics[i].positionSetzen(centerX,centerY);//zentriert das Bild
+            InteriorPics[i].positionSetzen(centerX, centerY);//zentriert das Bild
             InteriorPics[i].sichtbarSetzen(false);
             this.add(InteriorPics[i]);
 
-            int finalInteriorPos_X = (int)InteriorPics[i].getX();//Realposition der Oberen Ecke
-            int finalInteriorPos_Y = (int)InteriorPics[i].getY();
+            int finalInteriorPos_X = (int) InteriorPics[i].getX();//Realposition der Oberen Ecke
+            int finalInteriorPos_Y = (int) InteriorPics[i].getY();
 
             Interior[i][0] = element.InnerX + PlayerW + finalInteriorPos_X; //Offset + PlayerBreite + Realposition der Oberen Ecke
             Interior[i][1] = element.InnerY + PlayerH + finalInteriorPos_Y; //Offset + PlayerHoehe + Realposition der Oberen Ecke
@@ -168,90 +171,106 @@ public class Map2 extends Knoten{
     }
 
 
-
     /**
      * Macht aus den angegebene Positionen der Gebaüde ColliderShape Objekte und Türen.
      */
-    private void CreateHitboxObjects(){
-        for(int i =0;i<NumberofB;i++){
-            OuterWallHitbox[i] = new ColliderShape(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
-            InteriorHitbox[i] = new ColliderShape(Interior[i][0],Interior[i][1],Interior[i][2],Interior[i][3]);
+    private void CreateHitboxObjects() {
+        for (int i = 0; i < NumberofB; i++) {
+            OuterWallHitbox[i] = new ColliderShape(Buildings[i][0], Buildings[i][1], Buildings[i][2], Buildings[i][3]);
+            InteriorHitbox[i] = new ColliderShape(Interior[i][0], Interior[i][1], Interior[i][2], Interior[i][3]);
+            DoorHitbox[i] = new ColliderShape(Doors[i][0], Doors[i][1], Doors[i][2], Doors[i][3]);
         }
     }
+
     /**
      * Macht aus den angegebene Positionen der Gebaüde Rechteck Objekt und Türen.
      * Diese werden zum "this Knoten" hinzugefügt und somit angezeigt.
      */
-    private void DisplayObjects(){
-        for(int i =0;i<NumberofB;i++) {
-            Display_Buildings[i] = new Rechteck(Buildings[i][0],Buildings[i][1],Buildings[i][2],Buildings[i][3]);
+    private void DisplayObjects() {
+        for (int i = 0; i < NumberofB; i++) {
+            Display_Buildings[i] = new Rechteck(Buildings[i][0], Buildings[i][1], Buildings[i][2], Buildings[i][3]);
             Display_Buildings[i].farbeSetzen(Color.gray);
             Display_Buildings[i].setOpacity(0.5f);//macht sie halbtransparent
             this.add(Display_Buildings[i]);
 
-            Display_Interior[i] = new Rechteck(Interior[i][0],Interior[i][1],Interior[i][2],Interior[i][3]);
+            Display_Interior[i] = new Rechteck(Interior[i][0], Interior[i][1], Interior[i][2], Interior[i][3]);
             Display_Interior[i].farbeSetzen(Color.black);
             Display_Interior[i].setOpacity(0.5f);//macht sie halbtransparent
             Display_Interior[i].sichtbarSetzen(false);
             this.add(Display_Interior[i]);
 
-            Display_Doors[i] = new Rechteck(Doors[i][0],Doors[i][1],Doors[i][2],Doors[i][3]);
+            Display_Doors[i] = new Rechteck(Doors[i][0], Doors[i][1], Doors[i][2], Doors[i][3]);
             Display_Doors[i].farbeSetzen(Color.blue);
             Display_Doors[i].setOpacity(0.5f);//macht sie halbtransparent
+            Display_Doors[i].sichtbarSetzen(true);
             this.add(Display_Doors[i]);
 
         }
     }
 
-
     /**
-     * Sagt ob ein Dummyplayer der vorgeschickt laufen darf.
-     *
-     * In Türen z.B darf man immer laufen.
+     * Ist der Spieler in einer Tür?
+     * @param dp Dummyplayer für die POS
+     * @return
      */
-    public boolean getWalkable(DummyPlayer dp){
-        if(visiting){
-            boolean hit = false;
-            for(int i =0;i<NumberofB;i++){
-                if(OuterWallHitbox[i].isIn(dp)){
-                    hit = true;
-                };
-
-            }
-            return !hit;//falls Kollision,  false zurückgeben, sonst true
-        }
-        else{
-            boolean hit = false;
-            int HN = getHouseNumber(dp);
-            if(InteriorHitbox[HouseNumber].isIn(dp)){
+    public boolean isInDoor(DummyPlayer dp) {
+        boolean hit = false;
+        for (int i = 0; i < NumberofB; i++) {
+            if (DoorHitbox[i].isIn(dp)) {
                 hit = true;
             }
             ;
+        }
+        return hit;
+    }
 
 
+    /**
+     * Sagt ob ein Dummyplayer der vorgeschickt laufen darf.
+     * <p>
+     * In Türen z.B darf man immer laufen.
+     */
+    public boolean getWalkable(DummyPlayer dp) {
+        if (!visiting) {
+            boolean hit = false;
+            for (int i = 0; i < NumberofB; i++) {
+                if (OuterWallHitbox[i].isIn(dp)) {
+                    hit = true;
+                    if (isInDoor(dp)) {
+                        System.out.println("Player beginnt gerade in Haus: " + getHouseNumber(dp) + "zu gehen");
+
+                    }
+
+                }
+
+            }
+            return !hit;//falls Kollision, false zurückgeben, sonst true
+
+        } else {
+            boolean hit = false;
+            int HN = getHouseNumber(dp);
+            if (InteriorHitbox[HouseNumber].isIn(dp)) {
+                hit = true;
+            }
             return hit;//falls Kollision true zurückgeben, sonst false -> er soll nicht rauslaufen dürfen
 
         }
     }
-    private int getHouseNumber(DummyPlayer dp){
-        if(visiting){
-            for(int i =0;i<NumberofB;i++){
-                boolean hit = false;
-                if(InteriorHitbox[i].isIn(dp)){
-                    return i;
-                }
-                else{
-                    System.out.println(ANSI_PURPLE + "Spieler ist visting aber es kann keine Kollision mit einer InteriorHitbox gefunden werden!" + ANSI_RESET);
-                    return -1;
-                }
 
+    private int getHouseNumber(DummyPlayer dp) {
+        //System.out.println("getHouseNumber() aufgerufen");
+        HouseNumber = -1;
+        for (int i = 0; i < NumberofB; i++) {
+            boolean hit = false;
+            if (OuterWallHitbox[i].isIn(dp)) {
+                //System.out.println("getHouseNumber() erfolgreif mit " + i);
+                HouseNumber = i;
             }
-        } else{
-            System.out.println(ANSI_PURPLE + "Fehler in der Map2 Klasse: Es wird nach Housenummer gefragt, aber visting = flase!" + ANSI_RESET);
-            return -1;
         }
-        return -1;
-
+        if(HouseNumber == -1){
+            System.out.println("Map2: getHouseNumber() Spieler ist aber in keinem Haus");
+        }
+        return HouseNumber;
 
     }
 
@@ -264,14 +283,15 @@ public class Map2 extends Knoten{
         return visiting;
     }
 
+
     /**
      * an wenn aus, aus wenn an
      * muss public sein
      */
-    public void toggleVisting(){
-        if(visiting){
+    public void toggleVisting() {
+        if (visiting) {
             visiting = false;
-        }else{
+        } else {
             visiting = true;
         }
     }
@@ -281,18 +301,18 @@ public class Map2 extends Knoten{
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Files/Karte.json"));
 
-            Type MapType = new TypeToken<HashMap<String, Map2.Haus>>(){}.getType();
+            Type MapType = new TypeToken<HashMap<String, Map2.Haus>>() {
+            }.getType();
             MAP = gson.fromJson(bufferedReader, MapType);
-        }
-        catch(Exception e) {
-            System.out.println(ANSI_PURPLE + "Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
-            System.out.println(ANSI_PURPLE + "Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
+        } catch (Exception e) {
+            System.out.println(ANSI_PURPLE + "Map2: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Map2: Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
 
         }
 
     }
 
-    public class Haus{
+    public class Haus {
         String name;
         int posX;
         int posY;

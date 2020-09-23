@@ -25,14 +25,39 @@ posY = Y-Position des Gebäudes auf der Karte
 width = Breite in Pixeln
 height = Höhe in Pixeln
 
-doorX = RELATIVE Tür X-Position
-doorY = RELATIVE Tür Y-Position
-doorWidth = Tür-Breite in Pixeln
-doorHeight = Tür-Höhe in Pixeln
+DoorOffset = wie viel ist die Tür vom Rand entfernt. Immer von ObenLinks.
+Bsp.: die Tür UNTEN wir von links gerechnet
+Bsp.: die Tür RECHTS wir von oben gerechnet
+
+IteriorDoorOffset = vorerst ungenutzt muss aber später implementiert werden.
+
+InnerX = Der relative X-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.
+InnerY = Der relative Y-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.
+
+InnerWidth = Breite der Interior Hitbox
+InnerHeight = Höhe der Interior Hitbox
+
+DoorTyp = Seite an der die Tür ist:
+"l" für links
+"r" für rechts
+"t" für top/oben
+"b" für bottom/unten
 
 Bsp.:
-"1":
-  {"name":"Schule", "posX": 200,"posY": 200,"width": 60,"height": 90,"doorX": "40","doorY": "400","doorWidth": "30","doorHeight": "50"},
+  "1": {
+    "name": "Schule",
+    "posX": 250,
+    "posY": 450,
+    "width": 200,
+    "height": 300,
+    "DoorOffset": 50,
+    "InteriorDoorOffset": 100,
+    "InnerX": 20,
+    "InnerY": 20,
+    "InnerWidth": 200,
+    "InnerHeight": 200,
+    "doorTyp": "l"
+  },
 
 
 Das Komma hinten ist nötig, wenn man mehrere Häuser hat.

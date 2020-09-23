@@ -3,7 +3,7 @@
  *
  * Zwei Konstruktoren:
  * Einer mit vier Eingaben -> einfaches Rect
- * Einer mit
+ *
  *
  *
  * Koordinaten von OBEN LINKS
@@ -21,15 +21,15 @@ public class ColliderShape {
 
     public ColliderShape(int x,int y,int w,int h){
         this.xCorner = x;
-        this.yCorner = x;
+        this.yCorner = y;
         this.width = w;
         this.height = h;
-        System.out.println(xCorner +", "+yCorner +", "+width +", "+height );
+        //System.out.println("ColliderShape:" + xCorner +", "+yCorner +", "+width +", "+height );
 
     }
 
     public boolean isIn(int xObject, int yObject, int widthObject, int heightObject){
-        System.out.println("isIn(" + xObject +", " + yObject +")");
+        //System.out.println("isIn(" + xObject +", " + yObject +")");
 
         if((xObject + widthObject)< xCorner){//links von dem Rechteck
             return false;

@@ -334,6 +334,15 @@ public class Map extends Knoten{
         int doorY;
         int doorWidth;
         int doorHeight;
+
+        int InnerX; //relative to nothing not absolute either
+        int InnerY; //relative to nothing not absolute either
+        int InnerWidth;
+        int InnerHeight;
+
+        char doorTyp; // r,l,t,b
+
+
     }
 }
 

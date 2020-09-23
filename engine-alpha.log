@@ -1,1 +1,3 @@
-[Wed Sep 23 20:04:12 CEST 2020][ERROR] Der Eingabe-Parameter g leitet sich von der Klasse Game ab. Das würde für einen internen Fehler sorgen und ist daher nicht möglich. Stattdessen kann man die tasteReagieren-Methode verwenden oder über eine andere mit diesem Interface den selben Effekt erzeugen. (Game.java:562)
+[Wed Sep 23 20:24:47 CEST 2020][ERROR] Der Eingabe-Parameter g leitet sich von der Klasse Game ab. Das würde für einen internen Fehler sorgen und ist daher nicht möglich. Stattdessen kann man die tasteReagieren-Methode verwenden oder über eine andere mit diesem Interface den selben Effekt erzeugen. (Game.java:562)
+[Wed Sep 23 20:24:52 CEST 2020][ERROR] Neutrale Objekte unterstützen leider keine Kraftrechnung. Dafür gibt es die Newton-Körper! (NullClient.java:251)
+[Wed Sep 23 20:24:52 CEST 2020][ERROR] Neutrale Objekte unterstützen leider keine Kraftrechnung. Dafür gibt es die Newton-Körper! (NullClient.java:251)

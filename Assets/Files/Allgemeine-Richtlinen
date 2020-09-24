@@ -62,3 +62,8 @@ Bsp.:
 
 Das Komma hinten ist nötig, wenn man mehrere Häuser hat.
 ---------------------------------------------------------------------
+BENNENUNG DER BILDER FÜRS HAUSINNERE:
+
+Alle Bilder hierfür kommen in den Ordner: ./Assets/Houses/
+
+Die Dateien müssen alle wie die Häuser in der Karte.json benannt werden, mit .png als Endung.

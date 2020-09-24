@@ -364,6 +364,8 @@ public class Map2 extends Knoten {
     }
 
     private void FixInteriorPos(Player AP){
+        System.out.println("Breite" + AP.getBreite());
+        System.out.println("Höhe" + AP.getHoehe());
         float AP_x = AP.getPosX();
         float AP_y = AP.getPosY();
 

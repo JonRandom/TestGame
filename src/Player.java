@@ -22,7 +22,7 @@ public class Player extends Knoten {
         this.posX=posX;
         this.posY=posY;
 
-        IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/Spieler");
+        IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/BasicMale");
         IC2.Init();
 
         this.add(IC2);

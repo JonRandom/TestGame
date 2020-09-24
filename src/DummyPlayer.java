@@ -15,7 +15,7 @@ public class DummyPlayer extends Knoten {
     public DummyPlayer(int posX,int posY){
         x = posX;
         y = posY;
-        image = new Bild(posX,posY,"./Assets/SpielerTest/Spieler-L0.png");
+        image = new Bild(posX,posY,"./Assets/SpielerTest/BasicMale-L0.png");
 
         image.sichtbarSetzen(false);
         this.add(image);

@@ -95,7 +95,7 @@ class ImageCollection2 extends Knoten{
     public void initR(){
         for(int i=0;i<ImageCount;i++){
 
-            String Dir = MainDir + "-L" +(i)+".png";
+            String Dir = MainDir + "-R" +(i)+".png";
 
 
             ImgR[i] = new Bild(posX,posY,Dir);
@@ -106,7 +106,7 @@ class ImageCollection2 extends Knoten{
         for(int i=0;i<ImageCount;i++){
 
 
-            String Dir = MainDir + "-L" +(i)+".png";
+            String Dir = MainDir + "-T" +(i)+".png";
 
             ImgT[i] = new Bild(posX,posY,Dir);
             this.add(ImgT[i]);
@@ -115,7 +115,7 @@ class ImageCollection2 extends Knoten{
     public void initB(){
         for(int i=0;i<ImageCount;i++){
 
-            String Dir = MainDir + "-L" +(i)+".png";
+            String Dir = MainDir + "-B" +(i)+".png";
 
 
             ImgB[i] = new Bild(posX,posY,Dir);

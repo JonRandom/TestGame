@@ -175,6 +175,32 @@ public class Map2 extends Knoten {
 
             DoorTyp[i] = element.doorTyp;
 
+            //eigentlich nur für die Tür Tiefe
+            if (element.doorTyp.equals("l")) { // falls die Tür an der Linken seite ist
+                InteriorDoors[i][0] = Interior[i][0] - DoorDepth / 2;
+                InteriorDoors[i][1] = Interior[i][1] + element.InteriorDoorOffset ;
+                InteriorDoors[i][2] = DoorDepth;
+                InteriorDoors[i][3] = DoorLength;
+
+            } else if (element.doorTyp.equals("r")) {
+                InteriorDoors[i][0] = Interior[i][0] - DoorDepth / 2 + element.width;
+                InteriorDoors[i][1] = Interior[i][1] + element.InteriorDoorOffset ;
+                InteriorDoors[i][2] = DoorDepth;
+                InteriorDoors[i][3] = DoorLength;
+            } else if (element.doorTyp.equals("t")) {
+                InteriorDoors[i][0] = Interior[i][0] + element.InteriorDoorOffset;
+                InteriorDoors[i][1] = Interior[i][1] - DoorDepth / 2;
+                InteriorDoors[i][2] = DoorLength;
+                InteriorDoors[i][3] = DoorDepth;
+            } else if (element.doorTyp.equals("b")) {
+                InteriorDoors[i][0] = Interior[i][0] + element.InteriorDoorOffset;
+                InteriorDoors[i][1] = Interior[i][1] - DoorDepth / 2 + element.height;
+                InteriorDoors[i][2] = DoorLength;
+                InteriorDoors[i][3] = DoorDepth;
+            } else {
+                System.out.println(ANSI_PURPLE + "Fehler in der Map2 Klasse: Eine Tür mit invalidem doorTyp wurde gefunden" + ANSI_RESET);
+            }
+
             i++;
         }
     }
@@ -203,7 +229,7 @@ public class Map2 extends Knoten {
     }
     private void InitBlankPic(){
         BackgroundPic = new Bild(0,0,defaultPath + "BLANK.png");
-        BackgroundPic.setOpacity(0.9f);
+        BackgroundPic.setOpacity(1f);
         BackgroundPic.sichtbarSetzen(false);
         this.add(BackgroundPic);
     }
@@ -234,7 +260,7 @@ public class Map2 extends Knoten {
             Display_InteriorDoors[i] = new Rechteck(InteriorDoors[i][0], InteriorDoors[i][1], InteriorDoors[i][2], InteriorDoors[i][3]);
             Display_InteriorDoors[i].farbeSetzen(Color.MAGENTA);
             Display_InteriorDoors[i].setOpacity(0.5f);//macht sie halbtransparent
-            Display_InteriorDoors[i].sichtbarSetzen(true);
+            Display_InteriorDoors[i].sichtbarSetzen(false);
             this.add(Display_InteriorDoors[i]);
 
 
@@ -309,7 +335,7 @@ public class Map2 extends Knoten {
 
     private void enterHouse(int HouseN,DummyPlayer dp,Player AP){
         //setVisiting(true);
-        AP.positionSetzen(1000,1000);
+        //AP.positionSetzen(1000,1000);
         FixInteriorPos(AP);
         HouseNumber = HouseN;
         BackgroundPic.sichtbarSetzen(true);
@@ -317,7 +343,8 @@ public class Map2 extends Knoten {
         InteriorPics[HouseN].sichtbarSetzen(true);
         Display_InteriorDoors[HouseN].sichtbarSetzen(true);
 
-        //System.out.println("Pic bei x: " + InteriorPics[HouseN].getX() + " y: " +  InteriorPics[HouseN].getY());
+        System.out.println("Tür bei x: " + Display_InteriorDoors[HouseN].getX() + " y: " +  Display_InteriorDoors[HouseN].getY()  +
+                " width: " +  Display_InteriorDoors[HouseN].getBreite() + " height: " +  Display_InteriorDoors[HouseN].getHoehe());
         /*
         if(DoorTyp[HouseNumber].equals("l")){
             AP.positionSetzen(1000,1000);
@@ -329,6 +356,8 @@ public class Map2 extends Knoten {
 
 
     }
+
+
     private void leaveHouse(){
         setVisiting(false);
 
@@ -369,6 +398,7 @@ public class Map2 extends Knoten {
                 InteriorDoors[i][0] = Interior[i][0] - DoorDepth / 2;
                 InteriorDoors[i][1] = Interior[i][1] + element.InteriorDoorOffset ;
                 InteriorDoors[i][2] = DoorDepth;
+                System.out.println("Doordepth" + DoorDepth);
                 InteriorDoors[i][3] = DoorLength;
 
             } else if (element.doorTyp.equals("r")) {
@@ -398,9 +428,6 @@ public class Map2 extends Knoten {
         }
 
     }
-
-
-
 
     private void setVisiting(boolean visiting) {
         this.visiting = visiting;

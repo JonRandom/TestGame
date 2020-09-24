@@ -111,28 +111,28 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             int walkspeed = ActivePlayer.getWalkspeed();
 
             if (tasteGedrueckt(Taste.W)) {
-                DP.verschieben(0,-walkspeed);
-                if(map.getWalkable(DP)){
+                DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() -walkspeed);
+                if(map.getWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkTop();
                 }
             }
             if (tasteGedrueckt(Taste.S)) {
-                DP.verschieben(0,walkspeed);
-                if(map.getWalkable(DP)){
+                DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() + walkspeed);
+                if(map.getWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkBottom();
                 }
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                DP.verschieben(-walkspeed,0);
-                if(map.getWalkable(DP)){
+                DP.positionSetzen(ActivePlayer.getPosX() - walkspeed,ActivePlayer.getPosY());
+                if(map.getWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkLeft();
                 }
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                DP.verschieben(walkspeed,0);
-                if(map.getWalkable(DP)){
+                DP.positionSetzen(ActivePlayer.getPosX() + walkspeed,ActivePlayer.getPosY());
+                if(map.getWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkRight();
                 }
             }
@@ -145,7 +145,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         gamesaver.SavePlayer(ActivePlayer);
-
         }
 
 

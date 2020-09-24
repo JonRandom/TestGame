@@ -38,16 +38,24 @@ public class Player extends Knoten {
         posY= posY+dY;
 
     }
-/*
-    @Override
 
+    @Override
     public void positionSetzen(float x, float y) {
+        posX = x;
+        posY = y;
         super.positionSetzen(x, y);
-        posX= x;
-        posY= y;
     }
 
-     */
+    /*
+        @Override
+
+        public void positionSetzen(float x, float y) {
+            super.positionSetzen(x, y);
+            posX= x;
+            posY= y;
+        }
+
+         */
 float lastX = posX;
     public void WalkLeft() {
         IC2.walkLeft(walkspeed);

@@ -6,7 +6,7 @@
     "width": 200,
     "height": 300,
     "DoorOffset": 50,
-    "InteriorDoorOffset": 100,
+    "InteriorDoorOffset": 50,
     "InnerX": 20,
     "InnerY": 20,
     "InnerWidth": 200,
@@ -20,7 +20,7 @@
     "width": 300,
     "height": 600,
     "DoorOffset": 50,
-    "InteriorDoorOffset": 100,
+    "InteriorDoorOffset": 50,
     "InnerX": 20,
     "InnerY": 20,
     "InnerWidth": 200,
@@ -34,11 +34,11 @@
     "width": 400,
     "height": 400,
     "DoorOffset": 10,
-    "InteriorDoorOffset": 100,
+    "InteriorDoorOffset": 50,
     "InnerX": 20,
     "InnerY": 20,
-    "InnerWidth": 200,
-    "InnerHeight": 200,
+    "InnerWidth": 400,
+    "InnerHeight": 400,
     "doorTyp": "t"
   }
 }

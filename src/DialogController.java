@@ -49,7 +49,7 @@ public class DialogController extends Knoten{
     }
 
     public void setVisisbilty(boolean v){
-        DialogMode = true;
+        DialogMode = v;
         TextObject.sichtbarSetzen(v);
         BackgroundBild.sichtbarSetzen(v);
     }

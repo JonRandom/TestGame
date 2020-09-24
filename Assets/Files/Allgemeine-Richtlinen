@@ -26,8 +26,8 @@ width = Breite in Pixeln
 height = Höhe in Pixeln
 
 DoorOffset = wie viel ist die Tür vom Rand entfernt. Immer von ObenLinks.
-Bsp.: die Tür UNTEN wir von links gerechnet
-Bsp.: die Tür RECHTS wir von oben gerechnet
+Bsp.: die Tür UNTEN wird von links gerechnet
+Bsp.: die Tür RECHTS wird von oben gerechnet
 
 IteriorDoorOffset = vorerst ungenutzt muss aber später implementiert werden.
 

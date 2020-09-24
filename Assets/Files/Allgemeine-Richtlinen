@@ -25,11 +25,11 @@ posY = Y-Position des Gebäudes auf der Karte
 width = Breite in Pixeln
 height = Höhe in Pixeln
 
-DoorOffset = wie viel ist die Tür vom Rand entfernt. Immer von ObenLinks.
+DoorOffset = Wie viel ist die Tür vom Rand entfernt. Immer von ObenLinks.
 Bsp.: die Tür UNTEN wird von links gerechnet
 Bsp.: die Tür RECHTS wird von oben gerechnet
 
-IteriorDoorOffset = vorerst ungenutzt muss aber später implementiert werden.
+IteriorDoorOffset = Wie viel ist die Innere Tür vom inneren Bild entfernt entfernt. Immer von ObenLinks.
 
 InnerX = Der relative X-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.
 InnerY = Der relative Y-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.

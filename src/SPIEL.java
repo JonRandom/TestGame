@@ -190,6 +190,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             //Leertaste
             //Leertaste
             else if (tastenkuerzel == 30) {
+                StartSc.TextStartScEntfernen();
                 StartSc.setActive(false);
                 switch (StartSc.getSelection()) {
 
@@ -243,4 +244,3 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(ball1);
     }
 }
-

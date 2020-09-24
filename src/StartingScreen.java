@@ -72,6 +72,7 @@ public class StartingScreen extends Knoten {
         if (selection < 0) {
             selection = 0;//stay at first
         }
+        this.TextStartScEntfernen();
         UpdateButtons();
     }
 
@@ -80,6 +81,7 @@ public class StartingScreen extends Knoten {
         if (selection >= ButtonCount) {
             selection = ButtonCount - 1;//stay at last
         }
+        this.TextStartScEntfernen();
         UpdateButtons();
     }
 
@@ -131,5 +133,12 @@ public class StartingScreen extends Knoten {
             break;
         }
 
+    }
+
+    public void TextStartScEntfernen(){
+        this.entfernen(tb0);
+        this.entfernen(tb1);
+        this.entfernen(tb2);
+        this.entfernen(tb3);
     }
 }

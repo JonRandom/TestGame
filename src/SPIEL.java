@@ -20,6 +20,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
     //private HouseLoader HouseLoader1;
+    private ImageColliderTest ICT2;
 
 
 
@@ -50,6 +51,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
+        ICT2 = new ImageColliderTest("./Assets/Tests/Map3_coll.png");
+
         //HouseLoader1 = new HouseLoader(map);
 
 
@@ -64,12 +67,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         */
 
 
-
         wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController);
-
+        wurzel.add(ICT2);
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
@@ -112,27 +114,46 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
             if (tasteGedrueckt(Taste.W)) {
                 DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() -walkspeed);
-                if(map.getWalkable(DP,ActivePlayer)){
+
+//                if(map.getWalkable(DP,ActivePlayer)){
+//                    ActivePlayer.WalkTop();
+//                }
+                if(ICT2.AllowWalk(DP)){
                     ActivePlayer.WalkTop();
                 }
+
             }
             if (tasteGedrueckt(Taste.S)) {
                 DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() + walkspeed);
-                if(map.getWalkable(DP,ActivePlayer)){
+
+//                if(map.getWalkable(DP,ActivePlayer)){
+//                    ActivePlayer.WalkBottom();
+//                }
+
+
+                if(ICT2.AllowWalk(DP)){
                     ActivePlayer.WalkBottom();
                 }
             }
 
             if (tasteGedrueckt(Taste.A)) {
                 DP.positionSetzen(ActivePlayer.getPosX() - walkspeed,ActivePlayer.getPosY());
-                if(map.getWalkable(DP,ActivePlayer)){
+//                if(map.getWalkable(DP,ActivePlayer)){
+//                    ActivePlayer.WalkLeft();
+//                }
+                if(ICT2.AllowWalk(DP)){
                     ActivePlayer.WalkLeft();
                 }
             }
 
             if (tasteGedrueckt(Taste.D)) {
                 DP.positionSetzen(ActivePlayer.getPosX() + walkspeed,ActivePlayer.getPosY());
-                if(map.getWalkable(DP,ActivePlayer)){
+
+//                if(map.getWalkable(DP,ActivePlayer)){
+//                    ActivePlayer.WalkRight();
+//                }
+
+                if(ICT2.AllowWalk(DP)){
                     ActivePlayer.WalkRight();
                 }
             }

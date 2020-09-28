@@ -27,16 +27,6 @@ class ImageColliderTest extends Knoten {
             System.out.println(e);
         }
         InitImage(ImgPath);
-
-        int p = img.getRGB(2,2);
-
-        int r = (p>>16) & 0xff;
-        System.out.println(r);
-
-        p = img.getRGB(85,2);
-
-        r = (p>>16) & 0xff;
-        System.out.println(r);
         /*
 
         //get red

@@ -6,27 +6,31 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-class ImageColliderTest extends Knoten {
+class ImageCollider extends Knoten {
 
     private String ImgPath = "./Assets/Tests/coll2.png";
     private int PlayerW = 48;
     private int PlayerH = 90;
 
-    private Bild Img;
+    private int offsetX = 0;
+    private int offsetY = 0;
 
-    private BufferedImage img = null;
+    private Bild displayImg;
+
+    private BufferedImage colliderImg = null;
     private File f = null;
 
-    public ImageColliderTest(String path){
+    public ImageCollider(String path){
         ImgPath = path;
 
         try{
             f = new File(ImgPath);
-            img = ImageIO.read(f);
+            colliderImg = ImageIO.read(f);
         }catch(IOException e){
+            System.out.println("Fehler in der ImageCollider Klasse: Bild bei " + ImgPath + " kann nicht gefunden werden!");
             System.out.println(e);
-        }
-        InitImage(ImgPath);
+        } //import Image for filebuffer;
+        InitImage();
         /*
 
         //get red
@@ -43,16 +47,30 @@ class ImageColliderTest extends Knoten {
          */
 
     }
-    private void InitImage(String pathImg){
-        Img = new Bild(0,0,pathImg);
-        Img.setOpacity(0.3f);
-        this.add(Img);
+    private void InitImage(){
+        try{
+            displayImg = new Bild(0,0,ImgPath);
+            this.add(displayImg);
+
+        }catch(Exception e){
+            System.out.println("Fehler in der ImageCollider Klasse: Bild bei " + ImgPath + " kann nicht gefunden werden!");
+            System.out.println(e);
+        } //import Image for display;
+        displayImg.setOpacity(0.3f);
+        this.add(displayImg);
+    }
+    private void setDisplayImageVisibility(boolean v){
+        displayImg.sichtbarSetzen(v);
+    }
+    public void setOffset(int x, int y){
+        offsetY = x;
+        offsetX = y;
     }
 
     public boolean TestColl(int ObjectX, int ObjectY){
         boolean coll = false;
         for(int i=0;i<PlayerH;i++){ //links nach unten
-           int p = img.getRGB(ObjectX,i + ObjectY);
+           int p = colliderImg.getRGB(ObjectX + offsetX,i + ObjectY + offsetY);
            int r = (p>>16) & 0xff;
            if(r<100){
                coll = true;
@@ -61,7 +79,7 @@ class ImageColliderTest extends Knoten {
         //System.out.println("links: " + coll);
         for(int i=0;i<PlayerH;i++){ //rechts nach unten
 
-            int p = img.getRGB(ObjectX+ PlayerW,i +ObjectY);
+            int p = colliderImg.getRGB(ObjectX+ PlayerW + offsetX,i +ObjectY + offsetY);
             int r = (p>>16) & 0xff;
             if(r<100){
                 coll = true;
@@ -72,7 +90,7 @@ class ImageColliderTest extends Knoten {
         }
         //System.out.println("rechts: " + coll);
         for(int i=0;i<PlayerW;i++){ //oben nach rechts
-            int p = img.getRGB(ObjectX + i,ObjectY);
+            int p = colliderImg.getRGB(ObjectX + i + offsetX,ObjectY + offsetY);
             int r = (p>>16) & 0xff;
             //System.out.println(r);
             if(r<100){
@@ -83,7 +101,7 @@ class ImageColliderTest extends Knoten {
         }
         //System.out.println("oben: " + coll);
         for(int i=0;i<PlayerW;i++){ //unten nach rechts
-            int p = img.getRGB(ObjectX + i,PlayerH + ObjectY);
+            int p = colliderImg.getRGB(ObjectX + i + offsetX,PlayerH + ObjectY + offsetY);
             int r = (p>>16) & 0xff;
             if(r<100){
                 coll = true;

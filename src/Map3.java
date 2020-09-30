@@ -2,7 +2,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import ea.Bild;
 import ea.Knoten;
-import ea.Rechteck;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -27,23 +26,28 @@ public class Map3 extends Knoten {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_PURPLE = "\u001B[35m";
 
-    private int NumberofB = -1;//is set in InitArrays()
+    private int numberofB = -1;//is set in InitArrays()
 
     private int PlayerW;
     private int PlayerH;
 
-    private ImageColliderTest mapHitboxTester;
-    private Bild mapHitboxDisplayImg;
-    private Bild mapImg; //for when in the Interior
+    private boolean visiting;
+
+    private ImageCollider mapHitbox; // map Kollider
+    private Bild mapImg; //Main anzeigeBild
 
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
+    private String pathHitboxImg = "./Assets/Tests/Map3_coll.png";
+    private String pathMainImg = "./Assets/Map3.png";
 
-    private HashMap<String, Map3.Haus> MAP;
+    private HashMap<String, Map3.Haus> MAP; //für die Json
 
-    private ImageColliderTest[] houseHitboxTester; // ICT Objekte zum Testen.
-    private Bild[] houseHitboxDisplayImgs; // greyscale Bilder mit Wänden und Co.
+    private ImageCollider[] houseHitbox;
     private Bild[] houseImgs; //Anzeigebilder der Innenraüme
+    private int[] hexColorCodes; // Array mit allen HäuserHexCodes;
+    private int[][] intSpawnPos; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt ->s. JSON Template-Klasse(Haus) //[i][0] = x | [i][1] = y
+    private boolean[] defaultLock; //->s. JSON Template-Klasse(Haus)
 
 
     public Map3(float PW, float PH) {
@@ -51,10 +55,8 @@ public class Map3 extends Knoten {
         this.PlayerH = (int) PH;
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
+
         InitArrays();
-
-        InitMapPic(); //muss früh gemacht werden, damit die unten sind.
-
         FillArrays();
 
 
@@ -65,47 +67,69 @@ public class Map3 extends Knoten {
      * Erstellt die Arrays mit richtiger Länge
      */
     private void InitArrays() {
-        NumberofB = MAP.size();
+        numberofB = MAP.size();
 
-        []
-
-        ;
+        houseHitbox = new ImageCollider[numberofB];
+        houseImgs = new Bild[numberofB];
+        hexColorCodes = new int[numberofB];
+        intSpawnPos = new int[numberofB][2];//[i][0] = x | [i][1] = y
+        defaultLock = new boolean[numberofB];
     }
 
     /**
-     * Füllt die Arrays mit allen Nötigen Daten aus dem Json und berechnet schon bestimmte Sachen.
+     * Füllt die Arrays & variablen mit allen Nötigen Daten aus dem Json und berechnet schon bestimmte Sachen.
      */
     private void FillArrays() {
+        mapHitbox = new ImageCollider(pathHitboxImg); // Main Hitbox Collider für die Karte
+        this.add(mapHitbox);
+        try{
+            mapImg = new Bild(0,0,pathMainImg);
+            mapImg.setOpacity(1f);
+            this.add(mapImg);
+        }catch(Exception e){
+            System.out.println("Fehler in der Map Klasse: Bild bei " + pathMainImg + " kann nicht gefunden werden!");
+            System.out.println(e);
+        } //import MainDisplayImage wird auch zum Knoten geadded.
 
         int i = 0;
         for (String key : MAP.keySet()) {
             Map3.Haus element = MAP.get(key);
 
-            element.name;
+            String tempPath = defaultPath + element.name +".png";
+            houseHitbox[i] = new ImageCollider(tempPath); // Main Hitbox Collider für die Karte
+            this.add(houseHitbox[i]);
 
+            try{
+                houseImgs[i] = new Bild(0,0,pathMainImg);
+                houseImgs[i].setOpacity(1f);
+                this.add(houseImgs[i]);
+            }catch(Exception e){
+                System.out.println("Fehler in der Map Klasse: Bild bei " + tempPath + " kann nicht gefunden werden!");
+                System.out.println(e);
+            }
+
+            //hexColorCodes[i] = element.hexColorCode;
+            intSpawnPos[i][0] = element.intSpawnX;
+            intSpawnPos[i][1] = element.intSpawnY;
+            defaultLock[i] = element.defaultLock;
             i++;
         }
     }
 
 
-
-
     /**
-     * Erstellt die beiden "statischen" Bilder und bindet sie ein. Das muss früh geschehen, damit sie weit hinten sind.
+     * Aus der AP Position wird die Mitte des Bildschirms berechnet und dort wird das bild positioniert.
      */
-    private void InitMapPic(){
-        MapPic = new Bild(0, 0, "./Assets/Map3.jpg");
-        MapPic.setOpacity(1f);
-        this.add(MapPic);
+    public void FixInteriorPos(Player AP, int HouseN){
+        //System.out.println("Breite" + AP.getBreite());
+        //System.out.println("Höhe" + AP.getHoehe());
+        float AP_x = AP.getPosX();
+        float AP_y = AP.getPosY();
+        float centerX = AP_x - MAIN.x/2;
+        float centerY = AP_y - MAIN.y/2;
 
-    }
-
-
-
-
-
-
-    private void FixInteriorPos(Player AP){
+        houseHitbox[HouseN].setOffset((int)centerX,(int)centerY);
+        AP.positionSetzen(intSpawnPos[HouseN][0] + AP_x,intSpawnPos[HouseN][1] + AP_y);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
 
@@ -118,8 +142,25 @@ public class Map3 extends Knoten {
         return new Color(r, g, b);
     }
 
+    public boolean isWalkable(DummyPlayer dp, Player ap){
+        if(!visiting){
+            return mapHitbox.AllowWalk(dp);
+        }
+        else{
+            return true;
+        }
+    }
 
-
+    public boolean isVisiting() {
+        return visiting;
+    }
+    public void toggleVisting() {
+        if (visiting) {
+            visiting = false;
+        } else {
+            visiting = true;
+        }
+    }
 
     private void readJSON() {
         Gson gson = new Gson();
@@ -130,6 +171,7 @@ public class Map3 extends Knoten {
             }.getType();
             MAP = gson.fromJson(bufferedReader, MapType);
         } catch (Exception e) {
+            System.out.println(e);
             System.out.println(ANSI_PURPLE + "Map2: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
             System.out.println(ANSI_PURPLE + "Map2: Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
 
@@ -139,10 +181,10 @@ public class Map3 extends Knoten {
 
     public class Haus {
         String name; //Klartext Name
-        int hexColorCode; //farbe des Innenraums z.B 0x123456
+        String hexColorCode; //farbe des Innenraums z.B //0x123456 nur temp String!!!!
 
-        int spawnX; //da wo der Spieler, wenn er durch die Tür geht spawnt
-        int spawnY; //da wo der Spieler, wenn er durch die Tür geht spawnt
+        int intSpawnX; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
+        int intSpawnY; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
 
         boolean defaultLock; //ist das Haus am anfang gelockt?
     }

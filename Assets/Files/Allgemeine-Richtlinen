@@ -19,44 +19,19 @@ In der Datei Karte.json werden alle Daten der Häuser eingetragen.
 
 Zahl oben = fortlaufende Zahl, einfach immer eine mehr nehmen
 
-name =  Hausname
-posX = X-Position des Gebäudes auf der Karte
-posY = Y-Position des Gebäudes auf der Karte
-width = Breite in Pixeln
-height = Höhe in Pixeln
-
-DoorOffset = Wie viel ist die Tür vom Rand entfernt. Immer von ObenLinks.
-Bsp.: die Tür UNTEN wird von links gerechnet
-Bsp.: die Tür RECHTS wird von oben gerechnet
-
-IteriorDoorOffset = Wie viel ist die Innere Tür vom inneren Bild entfernt entfernt. Immer von ObenLinks.
-
-InnerX = Der relative X-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.
-InnerY = Der relative Y-Abstand von der Oberen Ecke des Interior Bildes für die Int-Hitbox.
-
-InnerWidth = Breite der Interior Hitbox
-InnerHeight = Höhe der Interior Hitbox
-
-DoorTyp = Seite an der die Tür ist:
-"l" für links
-"r" für rechts
-"t" für top/oben
-"b" für bottom/unten
+name            = Klartext Name
+hexColorCode    = farbe des Innenraums z.B 0x123456
+intSpawnX       = da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
+intSpawnY       = da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
+defaultLock     = ist das Haus am anfang gelockt? true/false
 
 Bsp.:
   "1": {
-    "name": "Schule",
-    "posX": 250,
-    "posY": 450,
-    "width": 200,
-    "height": 300,
-    "DoorOffset": 50,
-    "InteriorDoorOffset": 100,
-    "InnerX": 20,
-    "InnerY": 20,
-    "InnerWidth": 200,
-    "InnerHeight": 200,
-    "doorTyp": "l"
+     "name": "Schule",
+     "hexColorCode": "0x123456",
+     "intSpawnX": 80,
+     "intSpawnY": 80,
+     "defaultLock": false
   },
 
 

@@ -1,9 +1,4 @@
 import ea.*;
-import com.google.gson.*;
-
-import java.awt.*;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 
 public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar
 {
@@ -12,7 +7,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
     private Player ActivePlayer;
     private DialogController DialogController;
-    private Map2 map;
+    private Map3 map;
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
     private DummyPlayer DP;
@@ -20,7 +15,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
     //private HouseLoader HouseLoader1;
-    private ImageColliderTest ICT2;
 
 
 
@@ -45,13 +39,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DialogController = new DialogController();
         DialogController.setVisisbilty(false);
         ActivePlayer = new Player(1000,1000);
-        map = new Map2(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
+        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
-        ICT2 = new ImageColliderTest("./Assets/Tests/Map3_coll.png");
 
         //HouseLoader1 = new HouseLoader(map);
 
@@ -71,7 +64,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController);
-        wurzel.add(ICT2);
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
@@ -118,7 +110,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 //                if(map.getWalkable(DP,ActivePlayer)){
 //                    ActivePlayer.WalkTop();
 //                }
-                if(ICT2.AllowWalk(DP)){
+                if(map.isWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkTop();
                 }
 
@@ -131,7 +123,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 //                }
 
 
-                if(ICT2.AllowWalk(DP)){
+                if(map.isWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkBottom();
                 }
             }
@@ -141,7 +133,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 //                if(map.getWalkable(DP,ActivePlayer)){
 //                    ActivePlayer.WalkLeft();
 //                }
-                if(ICT2.AllowWalk(DP)){
+                if(map.isWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkLeft();
                 }
             }
@@ -153,7 +145,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 //                    ActivePlayer.WalkRight();
 //                }
 
-                if(ICT2.AllowWalk(DP)){
+                if(map.isWalkable(DP,ActivePlayer)){
                     ActivePlayer.WalkRight();
                 }
             }
@@ -178,7 +170,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.toggleVisibilty();
         }
         if(tastenkuerzel == 8){//I als in
-            //HouseLoader1.welcomeGuest();
+            map.FixInteriorPos(ActivePlayer,0);
         }
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();

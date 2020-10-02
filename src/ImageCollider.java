@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 class ImageCollider extends Knoten {
 
@@ -50,7 +51,6 @@ class ImageCollider extends Knoten {
     private void InitImage(){
         try{
             displayImg = new Bild(0,0,ImgPath);
-            this.add(displayImg);
 
         }catch(Exception e){
             System.out.println("Fehler in der ImageCollider Klasse: Bild bei " + ImgPath + " kann nicht gefunden werden!");
@@ -70,7 +70,13 @@ class ImageCollider extends Knoten {
     public boolean TestColl(int ObjectX, int ObjectY){
         boolean coll = false;
         for(int i=0;i<PlayerH;i++){ //links nach unten
-           int p = colliderImg.getRGB(ObjectX + offsetX,i + ObjectY + offsetY);
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX + offsetX,i + ObjectY + offsetY);
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
            int r = (p>>16) & 0xff;
            if(r<100){
                coll = true;
@@ -78,8 +84,14 @@ class ImageCollider extends Knoten {
         }
         //System.out.println("links: " + coll);
         for(int i=0;i<PlayerH;i++){ //rechts nach unten
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX+ PlayerW + offsetX,i +ObjectY + offsetY);
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
 
-            int p = colliderImg.getRGB(ObjectX+ PlayerW + offsetX,i +ObjectY + offsetY);
             int r = (p>>16) & 0xff;
             if(r<100){
                 coll = true;
@@ -90,9 +102,14 @@ class ImageCollider extends Knoten {
         }
         //System.out.println("rechts: " + coll);
         for(int i=0;i<PlayerW;i++){ //oben nach rechts
-            int p = colliderImg.getRGB(ObjectX + i + offsetX,ObjectY + offsetY);
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX + i + offsetX,ObjectY + offsetY);
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
             int r = (p>>16) & 0xff;
-            //System.out.println(r);
             if(r<100){
                 coll = true;
 
@@ -101,7 +118,13 @@ class ImageCollider extends Knoten {
         }
         //System.out.println("oben: " + coll);
         for(int i=0;i<PlayerW;i++){ //unten nach rechts
-            int p = colliderImg.getRGB(ObjectX + i + offsetX,PlayerH + ObjectY + offsetY);
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX + i + offsetX,PlayerH + ObjectY + offsetY);
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
             int r = (p>>16) & 0xff;
             if(r<100){
                 coll = true;

@@ -39,7 +39,7 @@ public class Map3 extends Knoten {
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
     private String pathHitboxImg = "./Assets/Tests/Map3_coll.png";
-    private String pathMainImg = "./Assets/Map3.png";
+    private String pathMainImg = "./Assets/Map3.jpg";
 
     private HashMap<String, Map3.Haus> MAP; //für die Json
 
@@ -80,27 +80,31 @@ public class Map3 extends Knoten {
      * Füllt die Arrays & variablen mit allen Nötigen Daten aus dem Json und berechnet schon bestimmte Sachen.
      */
     private void FillArrays() {
-        mapHitbox = new ImageCollider(pathHitboxImg); // Main Hitbox Collider für die Karte
-        this.add(mapHitbox);
+
         try{
             mapImg = new Bild(0,0,pathMainImg);
-            mapImg.setOpacity(1f);
+            mapImg.setOpacity(0.5f);
             this.add(mapImg);
         }catch(Exception e){
             System.out.println("Fehler in der Map Klasse: Bild bei " + pathMainImg + " kann nicht gefunden werden!");
             System.out.println(e);
         } //import MainDisplayImage wird auch zum Knoten geadded.
 
+        mapHitbox = new ImageCollider(pathHitboxImg); // Main Hitbox Collider für die Karte
+        this.add(mapHitbox);
+
         int i = 0;
         for (String key : MAP.keySet()) {
             Map3.Haus element = MAP.get(key);
 
             String tempPath = defaultPath + element.name +".png";
-            houseHitbox[i] = new ImageCollider(tempPath); // Main Hitbox Collider für die Karte
+            String tempCollPath = defaultPath + element.name +"_coll.png";
+
+            houseHitbox[i] = new ImageCollider(tempCollPath); // Main Hitbox Collider für die Karte
             this.add(houseHitbox[i]);
 
             try{
-                houseImgs[i] = new Bild(0,0,pathMainImg);
+                houseImgs[i] = new Bild(0,0,tempPath);
                 houseImgs[i].setOpacity(1f);
                 this.add(houseImgs[i]);
             }catch(Exception e){
@@ -147,7 +151,7 @@ public class Map3 extends Knoten {
             return mapHitbox.AllowWalk(dp);
         }
         else{
-            return true;
+            return houseHitbox[1].AllowWalk(dp);
         }
     }
 

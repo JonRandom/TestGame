@@ -38,7 +38,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DP = new DummyPlayer(600,400);
         DialogController = new DialogController();
         DialogController.setVisisbilty(false);
-        ActivePlayer = new Player(1000,1000);
+        ActivePlayer = new Player(1100,1100);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
@@ -170,7 +170,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.toggleVisibilty();
         }
         if(tastenkuerzel == 8){//I als in
-            map.FixInteriorPos(ActivePlayer,0);
+            map.FixInteriorPos(ActivePlayer,1);
         }
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();

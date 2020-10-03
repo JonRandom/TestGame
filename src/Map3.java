@@ -100,8 +100,6 @@ public class Map3 extends Knoten {
             String tempPath = defaultPath + element.name +".png";
             String tempCollPath = defaultPath + element.name +"_coll.png";
 
-            houseHitbox[i] = new ImageCollider(tempCollPath); // Main Hitbox Collider für die Karte
-            this.add(houseHitbox[i]);
 
             try{
                 houseImgs[i] = new Bild(0,0,tempPath);
@@ -111,6 +109,9 @@ public class Map3 extends Knoten {
                 System.out.println("Fehler in der Map Klasse: Bild bei " + tempPath + " kann nicht gefunden werden!");
                 System.out.println(e);
             }
+
+            houseHitbox[i] = new ImageCollider(tempCollPath); // Main Hitbox Collider für die Karte
+            this.add(houseHitbox[i]);
 
             //hexColorCodes[i] = element.hexColorCode;
             intSpawnPos[i][0] = element.intSpawnX;
@@ -132,8 +133,9 @@ public class Map3 extends Knoten {
         float centerX = AP_x - MAIN.x/2;
         float centerY = AP_y - MAIN.y/2;
 
-        houseHitbox[HouseN].setOffset((int)centerX,(int)centerY);
-        AP.positionSetzen(intSpawnPos[HouseN][0] + AP_x,intSpawnPos[HouseN][1] + AP_y);//setzt den Spieler an die Pos wo er spawnen soll
+        houseHitbox[HouseN].setOffset((int)AP_x,(int)AP_y);
+        houseImgs[HouseN].positionSetzen(AP_x,AP_y);
+        //AP.positionSetzen(intSpawnPos[HouseN][0] + AP_x,intSpawnPos[HouseN][1] + AP_y);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
 

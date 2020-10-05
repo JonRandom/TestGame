@@ -170,7 +170,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.toggleVisibilty();
         }
         if(tastenkuerzel == 8){//I als in
-            map.FixInteriorPos(ActivePlayer,1);
+            map.FixInteriorPos(ActivePlayer,0);
         }
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();

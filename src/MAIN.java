@@ -7,8 +7,8 @@
 
 
 public class MAIN {
-    public static int x = 1920;
-    public static int y = 1080;
+    public static int x = 1000;
+    public static int y = 1000;
     public static void main(String[] args){
         SPIEL spiel  = new SPIEL(x,y);
         spiel.fokusSetzten();

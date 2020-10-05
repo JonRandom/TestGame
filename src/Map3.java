@@ -119,6 +119,7 @@ public class Map3 extends Knoten {
             defaultLock[i] = element.defaultLock;
             i++;
         }
+        System.out.println("MAP3, ARRAYS SIND GEFÜLLT");
     }
 
 
@@ -126,16 +127,19 @@ public class Map3 extends Knoten {
      * Aus der AP Position wird die Mitte des Bildschirms berechnet und dort wird das bild positioniert.
      */
     public void FixInteriorPos(Player AP, int HouseN){
-        //System.out.println("Breite" + AP.getBreite());
-        //System.out.println("Höhe" + AP.getHoehe());
-        float AP_x = AP.getPosX();
-        float AP_y = AP.getPosY();
-        float centerX = AP_x - MAIN.x/2;
-        float centerY = AP_y - MAIN.y/2;
 
-        houseHitbox[HouseN].setOffset((int)AP_x,(int)AP_y);
-        houseImgs[HouseN].positionSetzen(AP_x,AP_y);
-        //AP.positionSetzen(intSpawnPos[HouseN][0] + AP_x,intSpawnPos[HouseN][1] + AP_y);//setzt den Spieler an die Pos wo er spawnen soll
+
+        float imgWidth = houseImgs[HouseN].getBreite();
+        float imgHeight = houseImgs[HouseN].getHoehe();
+        float finalPosX = AP.getPosX() - imgWidth/2;
+        float finalPosY = AP.getPosY() - imgHeight/2;
+        //float centerX = AP_x - MAIN.x/2;
+        //float centerY = AP_y - MAIN.y/2;
+
+        houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
+        houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
+        //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
+        AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
 
@@ -153,7 +157,7 @@ public class Map3 extends Knoten {
             return mapHitbox.AllowWalk(dp);
         }
         else{
-            return houseHitbox[1].AllowWalk(dp);
+            return houseHitbox[0].AllowWalk(dp);
         }
     }
 

@@ -1,5 +1,6 @@
 import ea.Bild;
 import ea.Knoten;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,8 +14,9 @@ class ImageCollider extends Knoten {
     private int PlayerW = 48;
     private int PlayerH = 90;
 
-    private int offsetX = 0;
-    private int offsetY = 0;
+
+    private int offsetX;
+    private int offsetY;
 
     private Bild displayImg;
 
@@ -62,16 +64,27 @@ class ImageCollider extends Knoten {
     private void setDisplayImageVisibility(boolean v){
         displayImg.sichtbarSetzen(v);
     }
+
+    /**
+     * //korriert die Position von relativ zu absolut
+     * @param x xOffset /player pos
+     * @param y yOffset /player pos
+     */
     public void setOffset(int x, int y){
-        offsetY = x;
-        offsetX = y;
+        //System.out.println("Setoffset: " + x +"|" + y);
+        offsetX = x;
+        offsetY = y;
+        //System.out.println("Setoffset gesetzt: " + offsetY +"|" + offsetX);
         displayImg.positionSetzen(x,y);
     }
 
     public boolean TestColl(int ObjectX, int ObjectY){
-        System.out.println("Sucht von LO: " + ObjectX + ", " + ObjectY);
+
+        //System.out.println("Sucht von LO: " + ObjectX + ", " + ObjectY);
+        //System.out.println("OFFSET: " + offsetX + ", " + offsetY);
         ObjectX = ObjectX - offsetX;
         ObjectY = ObjectY - offsetY;
+        //System.out.println("Sucht von LO Corr: " + ObjectX + ", " + ObjectY);
 
         boolean coll = false;
         for(int i=0;i<PlayerH;i++){ //links nach unten
@@ -145,6 +158,7 @@ class ImageCollider extends Knoten {
     public boolean TestCollPlayer(DummyPlayer dp){
         int x = (int)dp.getX();
         int y = (int)dp.getY();
+        System.out.println("Relelle pos ist: " + x +"," + y);
 
         return TestColl(x,y);
     }

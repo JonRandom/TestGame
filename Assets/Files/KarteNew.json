@@ -1,7 +1,7 @@
 {
   "1": {
     "name": "Schule",
-    "hexColorCode": "0x123456",
+    "RedColorCode": 120,
     "intSpawnX": 200,
     "intSpawnY": 200,
     "defaultLock": "false"
@@ -9,14 +9,14 @@
   },
   "2": {
     "name": "Club",
-    "hexColorCode": "0x125555",
+    "RedColorCode": 50,
     "intSpawnX": 100,
     "intSpawnY": 100,
     "defaultLock": "false"
   },
   "3": {
     "name": "Zuhause",
-    "hexColorCode": "0x120000",
+    "RedColorCode": 200,
     "intSpawnX": 100,
     "intSpawnY": 200,
     "defaultLock": "false"

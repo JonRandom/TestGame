@@ -155,6 +155,94 @@ class ImageCollider extends Knoten {
         return coll;
     }
 
+    public int GetStatus(int ObjectX, int ObjectY){
+
+        //System.out.println("Sucht von LO: " + ObjectX + ", " + ObjectY);
+        //System.out.println("OFFSET: " + offsetX + ", " + offsetY);
+        ObjectX = ObjectX - offsetX;
+        ObjectY = ObjectY - offsetY;
+        //System.out.println("Sucht von LO Corr: " + ObjectX + ", " + ObjectY);
+
+
+        int redColor = 0;
+        boolean isBlack;
+        for(int i=0;i<PlayerH;i++){ //links nach unten
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX ,i + ObjectY );
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
+            int r = (p>>16) & 0xff;
+
+            if(r == 0){
+                isBlack = true;
+            }else{
+                redColor = r;
+            }
+
+
+
+        }
+        //System.out.println("links: " + coll);
+        for(int i=0;i<PlayerH;i++){ //rechts nach unten
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX+ PlayerW,i +ObjectY );
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
+
+            int r = (p>>16) & 0xff;
+            if(r == 0){
+                isBlack = true;
+            }else{
+                redColor = r;
+            }
+
+
+        }
+        //System.out.println("rechts: " + coll);
+        for(int i=0;i<PlayerW;i++){ //oben nach rechts
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX + i,ObjectY );
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
+            int r = (p>>16) & 0xff;
+            if(r == 0){
+                isBlack = true;
+            }else{
+                redColor = r;
+            }
+
+        }
+        //System.out.println("oben: " + coll);
+        for(int i=0;i<PlayerW;i++){ //unten nach rechts
+            int p = 0;
+            try{
+                p = colliderImg.getRGB(ObjectX + i,PlayerH + ObjectY );
+            } catch (Exception e){
+                System.out.println(e);
+                System.out.println("Fehler in der ImageCollider Klasse: Spieler ist nicht in der Fläche eines Kolliders");
+            }
+            int r = (p>>16) & 0xff;
+            if(r == 0){
+                isBlack = true;
+            }else{
+                redColor = r;
+            }
+
+        }
+        //System.out.println("unten: " + coll);
+
+        return  redColor;
+    }
+
     public boolean TestCollPlayer(DummyPlayer dp){
         int x = (int)dp.getX();
         int y = (int)dp.getY();
@@ -164,5 +252,11 @@ class ImageCollider extends Knoten {
     }
     public boolean AllowWalk(DummyPlayer dp){
         return !TestCollPlayer(dp);
+    }
+    public int getWalkColor(DummyPlayer dp){
+        int x = (int)dp.getX();
+        int y = (int)dp.getY();
+        System.out.println("Relelle pos ist: " + x +"," + y);
+        return GetStatus(x,y);
     }
 }

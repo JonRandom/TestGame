@@ -45,9 +45,14 @@ public class Map3 extends Knoten {
 
     private ImageCollider[] houseHitbox;
     private Bild[] houseImgs; //Anzeigebilder der Innenraüme
-    private int[] hexColorCodes; // Array mit allen HäuserHexCodes;
+    private int[] RedColorCodes; // Array mit allen HäuserRedCodes;
     private int[][] intSpawnPos; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt ->s. JSON Template-Klasse(Haus) //[i][0] = x | [i][1] = y
     private boolean[] defaultLock; //->s. JSON Template-Klasse(Haus)
+
+    private int lastWhiteX;
+    private int lastWhiteY;
+
+    private int redThreshold = 5; //lower threshold for "black";
 
 
     public Map3(float PW, float PH) {
@@ -71,7 +76,7 @@ public class Map3 extends Knoten {
 
         houseHitbox = new ImageCollider[numberofB];
         houseImgs = new Bild[numberofB];
-        hexColorCodes = new int[numberofB];
+        RedColorCodes = new int[numberofB];
         intSpawnPos = new int[numberofB][2];//[i][0] = x | [i][1] = y
         defaultLock = new boolean[numberofB];
     }
@@ -103,7 +108,7 @@ public class Map3 extends Knoten {
 
             try{
                 houseImgs[i] = new Bild(0,0,tempPath);
-                houseImgs[i].setOpacity(1f);
+                houseImgs[i].sichtbarSetzen(false);
                 this.add(houseImgs[i]);
             }catch(Exception e){
                 System.out.println("Fehler in der Map Klasse: Bild bei " + tempPath + " kann nicht gefunden werden!");
@@ -111,6 +116,7 @@ public class Map3 extends Knoten {
             }
 
             houseHitbox[i] = new ImageCollider(tempCollPath); // Main Hitbox Collider für die Karte
+            houseHitbox[i].sichtbarSetzen(false);
             this.add(houseHitbox[i]);
 
             //hexColorCodes[i] = element.hexColorCode;
@@ -127,8 +133,6 @@ public class Map3 extends Knoten {
      * Aus der AP Position wird die Mitte des Bildschirms berechnet und dort wird das bild positioniert.
      */
     public void FixInteriorPos(Player AP, int HouseN){
-
-
         float imgWidth = houseImgs[HouseN].getBreite();
         float imgHeight = houseImgs[HouseN].getHoehe();
         float finalPosX = AP.getPosX() - imgWidth/2;
@@ -142,6 +146,19 @@ public class Map3 extends Knoten {
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
+    public void enterHouse(Player AP, int HouseN){
+        System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
+        hideAllHouses();
+        houseImgs[HouseN].sichtbarSetzen(true);
+        houseHitbox[HouseN].sichtbarSetzen(true);
+        FixInteriorPos(AP, HouseN);
+    }
+    public void hideAllHouses(){
+        for(int i= 0;i<numberofB;i++){
+            houseImgs[i].sichtbarSetzen(false);
+            houseHitbox[i].sichtbarSetzen(false);
+        }
+    }
 
     public Color decodeHex(int hexC){
         //int hex = 0x123456;
@@ -154,9 +171,51 @@ public class Map3 extends Knoten {
 
     public boolean isWalkable(DummyPlayer dp, Player ap){
         if(!visiting){
-            return mapHitbox.AllowWalk(dp);
+            int red = mapHitbox.getWalkColor(dp); // holt rotwert des Rahmen des Players
+            System.out.println(red);
+
+
+            if(red < redThreshold){
+                System.out.println("Darf nicht laufen");
+                return false;
+
+            } else if(red>redThreshold && red<255){
+                for(int i= 0; i<numberofB;i++){
+                    if(red == RedColorCodes[i]){
+                        enterHouse(ap,i);
+                        return true;
+                    }
+
+                }
+                lastWhiteX = (int)ap.getX(); //AP ODER DP NO LÖSEN
+                lastWhiteY = (int)ap.getY(); //AP ODER DP NO LÖSEN
+                return mapHitbox.AllowWalk(dp);
+
+            }
+            else if(red == 255){ //GANZ WEIß
+                return true;
+            }
+            else{//Fehlerzustand red außerhalb von 0 bis 256
+                System.out.println(ANSI_PURPLE + "Map3: Ein Fehler ablesen und verarbeiten der Rotwerte: Wert außerhalb von 0 bis 255 (8bit)" + ANSI_RESET);
+                return false;
+            }
+
         }
-        else{
+        else{ //ER IST AM BESUCHEN
+            /*
+            int red = houseHitbox[0].getWalkColor(dp);
+            if(red==0){
+                return false;
+            } else{
+                for(int i= 0; i<numberofB;i++){
+                    if(red == RedColorCodes[i]){
+                        enterHouse(ap,i);
+                    }
+
+                }
+            }
+             */
+
             return houseHitbox[0].AllowWalk(dp);
         }
     }
@@ -182,8 +241,8 @@ public class Map3 extends Knoten {
             MAP = gson.fromJson(bufferedReader, MapType);
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println(ANSI_PURPLE + "Map2: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
-            System.out.println(ANSI_PURPLE + "Map2: Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Map3: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Map3: Eigentlich kann nur das Grafikteam schuld sein..." + ANSI_RESET);
 
         }
 
@@ -191,7 +250,7 @@ public class Map3 extends Knoten {
 
     public class Haus {
         String name; //Klartext Name
-        String hexColorCode; //farbe des Innenraums z.B //0x123456 nur temp String!!!!
+        String RedColorCode; //farbe des Innenraums 0-255 als 8bit farbe
 
         int intSpawnX; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
         int intSpawnY; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren

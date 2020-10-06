@@ -20,7 +20,7 @@ In der Datei Karte.json werden alle Daten der Häuser eingetragen.
 Zahl oben = fortlaufende Zahl, einfach immer eine mehr nehmen
 
 name            = Klartext Name
-hexColorCode    = farbe des Innenraums z.B 0x123456
+hexColorCode    = Rotwert des Innenraums 8Bit Wert, also 0-255
 intSpawnX       = da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
 intSpawnY       = da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
 defaultLock     = ist das Haus am anfang gelockt? true/false

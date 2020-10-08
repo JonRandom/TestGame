@@ -32,6 +32,7 @@ public class Map3 extends Knoten {
     private int PlayerH;
 
     private boolean visiting;
+    private int houseNumber = -1;
 
     private ImageCollider mapHitbox; // map Kollider
     private Bild mapImg; //Main anzeigeBild
@@ -52,7 +53,7 @@ public class Map3 extends Knoten {
     private int lastWhiteX;
     private int lastWhiteY;
 
-    private int redThreshold = 5; //lower threshold for "black";
+    private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
     public Map3(float PW, float PH) {
@@ -63,8 +64,6 @@ public class Map3 extends Knoten {
 
         InitArrays();
         FillArrays();
-
-
     }
 
 
@@ -123,6 +122,7 @@ public class Map3 extends Knoten {
             intSpawnPos[i][0] = element.intSpawnX;
             intSpawnPos[i][1] = element.intSpawnY;
             defaultLock[i] = element.defaultLock;
+            RedColorCodes[i] = element.RedColorCode;
             i++;
         }
         System.out.println("MAP3, ARRAYS SIND GEFÜLLT");
@@ -152,6 +152,15 @@ public class Map3 extends Knoten {
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
         FixInteriorPos(AP, HouseN);
+        houseNumber = HouseN; //set global HouseNumber for collision
+        visiting = true;
+    }
+    public void leaveHouse(Player AP){
+        visiting = false;
+        houseNumber = -1;
+        hideAllHouses();
+        AP.positionSetzen(lastWhiteX,lastWhiteY);
+
     }
     public void hideAllHouses(){
         for(int i= 0;i<numberofB;i++){
@@ -175,12 +184,13 @@ public class Map3 extends Knoten {
             System.out.println(red);
 
 
-            if(red < redThreshold){
+            if(red < blackThreshold){
                 System.out.println("Darf nicht laufen");
                 return false;
 
-            } else if(red>redThreshold && red<255){
+            } else if(red>blackThreshold && red<255){
                 for(int i= 0; i<numberofB;i++){
+                    System.out.println("Sucht nach Häusern die matchen");
                     if(red == RedColorCodes[i]){
                         enterHouse(ap,i);
                         return true;
@@ -220,6 +230,82 @@ public class Map3 extends Knoten {
         }
     }
 
+    //wird verwendet
+    public boolean isWalkable2(DummyPlayer dp, Player ap){
+        if(!visiting){
+            ImageCollider.ColliderReturnType result =  mapHitbox.scanSurrounding(dp);
+
+            //FRAGLICH: Er darf nun auch laufen, wenn der nächste schritt im Schwarzen liegt aber auch in einer Farbe.
+            if(!result.isInColor()){
+                // er halt also KEINE eine Farbe besucht
+                if(result.isBlack()){
+                    //er nicht darf laufen, weil er mal im Schwarzen war;
+                    //System.out.println("Darf nicht laufen");
+                    return false;
+                }
+                if(result.isWhite()){
+                    //er darf laufen, weil er nur im Weißen war;
+                    lastWhiteX = ap.positionX(); //AP ODER DP NO LÖSEN
+                    lastWhiteY = ap.positionY(); //AP ODER DP NO LÖSEN
+                    //System.out.println(lastWhiteX +", "  + lastWhiteY);
+                    return true;
+                }
+                else{
+                    System.out.println("Map3: Komisches Ergebniss der Farbanalyse - PRÜFEN");
+                    return false;
+                }
+            }
+
+            else{
+                // er halt also eine Farbe besucht
+                int match = -1;
+                System.out.println(numberofB);
+                for(int i= 0; i < numberofB;i++) {
+                    System.out.println("Sucht nach Häusern die matchen bei i = " + i);
+                    System.out.println("Eingetragene Farbe bei i ist " + RedColorCodes[i]);
+                    System.out.println("aktuelle Farbe = " + result.getColor());
+                    if (result.getColor() == RedColorCodes[i]) {
+                        match = i;
+                    }
+                }
+                if(match == -1){
+                    //Farbe hat mit keiner der Tabelle gematched
+                    System.out.println("Map3: Der Spieler ist in einer Farbe die nicht in der Tabelle eingetragen wurde!");
+                    System.out.println("Map3: Gruß an das Grafikteam!");
+                    return false;
+                }
+                else{
+                    enterHouse(ap,match);
+                    return true;
+                }
+
+            }
+
+        }
+        else{
+            //somit visiting = 1;
+            //er besucht also gerade ein Haus
+
+            ImageCollider.ColliderReturnType result2 =  houseHitbox[houseNumber].scanSurrounding(dp);
+            if(result2.isOutOfBounds()){
+                leaveHouse(ap);
+                return false;
+            }
+            else if(result2.isBlack()){
+                return false;
+            }
+            else if(result2.isWhite()){
+                return true;
+            }
+            else{
+                System.out.println("Map3: Komisches Ergebniss der Farbanalyse beim Besuchen (visiting=true)- PRÜFEN");
+                return false;
+            }
+
+        }
+    }
+
+
     public boolean isVisiting() {
         return visiting;
     }
@@ -250,7 +336,7 @@ public class Map3 extends Knoten {
 
     public class Haus {
         String name; //Klartext Name
-        String RedColorCode; //farbe des Innenraums 0-255 als 8bit farbe
+        int RedColorCode; //farbe des Innenraums 0-255 als 8bit farbe
 
         int intSpawnX; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren
         int intSpawnY; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt, relativ zum Bild des Inneren

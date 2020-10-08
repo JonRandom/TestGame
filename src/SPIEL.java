@@ -107,10 +107,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             if (tasteGedrueckt(Taste.W)) {
                 DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() -walkspeed);
 
-//                if(map.getWalkable(DP,ActivePlayer)){
-//                    ActivePlayer.WalkTop();
-//                }
-                if(map.isWalkable(DP,ActivePlayer)){
+                if(map.isWalkable2(DP,ActivePlayer)){
                     ActivePlayer.WalkTop();
                 }
 
@@ -118,22 +115,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             if (tasteGedrueckt(Taste.S)) {
                 DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() + walkspeed);
 
-//                if(map.getWalkable(DP,ActivePlayer)){
-//                    ActivePlayer.WalkBottom();
-//                }
-
-
-                if(map.isWalkable(DP,ActivePlayer)){
+                if(map.isWalkable2(DP,ActivePlayer)){
                     ActivePlayer.WalkBottom();
                 }
             }
 
             if (tasteGedrueckt(Taste.A)) {
                 DP.positionSetzen(ActivePlayer.getPosX() - walkspeed,ActivePlayer.getPosY());
-//                if(map.getWalkable(DP,ActivePlayer)){
-//                    ActivePlayer.WalkLeft();
-//                }
-                if(map.isWalkable(DP,ActivePlayer)){
+//
+                if(map.isWalkable2(DP,ActivePlayer)){
                     ActivePlayer.WalkLeft();
                 }
             }
@@ -141,11 +131,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             if (tasteGedrueckt(Taste.D)) {
                 DP.positionSetzen(ActivePlayer.getPosX() + walkspeed,ActivePlayer.getPosY());
 
-//                if(map.getWalkable(DP,ActivePlayer)){
-//                    ActivePlayer.WalkRight();
-//                }
 
-                if(map.isWalkable(DP,ActivePlayer)){
+                if(map.isWalkable2(DP,ActivePlayer)){
                     ActivePlayer.WalkRight();
                 }
             }
@@ -174,6 +161,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         }
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();
+            map.leaveHouse(ActivePlayer);
         }
 
 

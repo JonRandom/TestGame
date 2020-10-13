@@ -1,0 +1,10 @@
+{
+  "1": {
+    "brauchtFlags": [false,false,false,false,false],
+    "dialogCode": 110001,
+    "inhalt": "TEXT DER DRINNSTEHEN SOLL",
+    "Wahl1": 120002,
+    "Wahl2": 120003
+
+  }
+}

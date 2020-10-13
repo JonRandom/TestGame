@@ -42,3 +42,32 @@ BENNENUNG DER BILDER FÜRS HAUSINNERE:
 Alle Bilder hierfür kommen in den Ordner: ./Assets/Houses/
 
 Die Dateien müssen alle wie die Häuser in der Karte.json benannt werden, mit .png als Endung.
+
+
+---------------------------------------------------------------------
+JSON STRUKTUR FÜR DIE DIALOGE:
+
+Codeaufbau Beispiel: 110034 //ersten Beiden Zahlen für die Person, weitere vier für die Zeile
+                            //ERSTE PERSON = 10
+                            //ZWEITE PERSON = 11
+                            //...
+
+Variablen Erklärung:
+
+brauchtFlags = Liste mit true/flase Flags. Wir für Diaoge genutzt, die ein Item voraussetzten. Falls unsicher, [false,false,false,false,false] nehmen. IMMER aus 5 Elemtenten.
+dialogCode = Code des jetztigen Dialogs
+inhalt = Text der Dialog Zeile
+Wahl1 = Code des nächsten Dialogs, der bei dieser Wahl(1) abgespielt werden soll. Kann auch bei einer anderen Person sein.
+Wahl2 = Code des nächsten Dialogs, der bei dieser Wahl(2) abgespielt werden soll. Kann auch bei einer anderen Person sein.
+
+
+BlockBeispiel:
+"1": {
+    "brauchtFlags": [false,false,false,false,false],
+    "dialogCode": 110001,
+    "inhalt": "TEXT DER DRINNSTEHEN SOLL",
+    "Wahl1": 120002,
+    "Wahl2": 120003
+
+  },
+Das Komma hinten ist nötig, wenn danach noch ein Satz hat.

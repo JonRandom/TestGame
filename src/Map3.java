@@ -334,6 +334,9 @@ public class Map3 extends Knoten {
 
     }
 
+    /**
+     *
+     */
     public class Haus {
         String name; //Klartext Name
         int RedColorCode; //farbe des Innenraums 0-255 als 8bit farbe

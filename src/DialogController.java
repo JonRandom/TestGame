@@ -25,7 +25,7 @@ public class DialogController extends Knoten{
     private Bild BackgroundBild;
     private HashMap<String, DialogController.DialogText> DialogListe; //für die Json
 
-    private boolean[] GefundenItems = new boolean[5];
+    private boolean[] GefundeneItems = new boolean[5];
 
 
     private boolean DialogMode;
@@ -107,10 +107,17 @@ public class DialogController extends Knoten{
 
     public class DialogText {
 
+        //Muss evtl. noch angepasst werden!!!!
+        int ersterDialogCode = 100000;
+
+        int aktuellerDialogCode;
+
+        int dialogCode; //Zahlen Code
+
         // GENAU 5 Elemtente!
         boolean[] brauchtFlags; //Flags die gefunden werden müssen z.B [false,false,false,false]
 
-        int dialogCode; //Zahlen Code
+        boolean genugItems;
 
         String inhalt; //Text der Dialog Zeile
 
@@ -119,6 +126,47 @@ public class DialogController extends Knoten{
 
 
 
-    }
+        //Startet Dialog
+        public void dialogAusgeben() {
 
+        }
+
+
+        //Überprüft, ob alle notwendigen Items gesammelt sind
+        public void genugItems(){
+            genugItems = false;
+            if (brauchtFlags[0]==true){
+                if(GefundeneItems[0]==false){
+                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                }else {
+                    if (brauchtFlags[1] == true) {
+                        if (GefundeneItems[1] == false) {
+                            System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                        } else {
+                            if (brauchtFlags[2] == true) {
+                                if (GefundeneItems[2] == false) {
+                                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                                } else {
+                                    if (brauchtFlags[3] == true) {
+                                        if (GefundeneItems[3] == false) {
+                                            System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                                        } else {
+                                            if (brauchtFlags[4] == true) {
+                                                if (GefundeneItems[4] == false) {
+                                                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                                                } else {
+                                                    genugItems = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } //Ende public void genugItems()
+
+    }
 }

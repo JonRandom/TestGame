@@ -108,24 +108,28 @@ public class StartingScreen extends Knoten {
     public void SelectButtons() { //Enter = 31
         switch (selection) {
             case 0: {
+                TextStartScEntfernen();
                 System.out.println("Button 1: Anleitung");
                 tb0 = new Text("Text fuer Button 0",150,350);
                 this.add(tb0);
             }
             break;
             case 1: {
+                TextStartScEntfernen();
                 System.out.println("Button 2: Charakter");
                 tb1 = new Text("Text fuer Button 1",350,350);
                 this.add(tb1);
             }
             break;
             case 2: {
+                TextStartScEntfernen();
                 System.out.println("Button 3: neues Spiel");
                 tb2 = new Text("Text fuer Button 2",550,350);
                 this.add(tb2);
             }
             break;
             case 3: {
+                TextStartScEntfernen();
                 System.out.println("Button 4: Spiel fortsetzen");
                 tb3 = new Text("Text fuer Button 3",750,350);
                 this.add(tb3);

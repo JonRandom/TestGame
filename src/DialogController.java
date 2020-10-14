@@ -110,7 +110,7 @@ public class DialogController extends Knoten{
         //Muss evtl. noch angepasst werden!!!!
         int ersterDialogCode = 100000;
 
-        int aktuellerDialogCode;
+        int letzterDialogCode; //ZAhlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
 
         int dialogCode; //Zahlen Code
 
@@ -127,8 +127,17 @@ public class DialogController extends Knoten{
 
 
         //Startet Dialog
-        public void dialogAusgeben() {
-
+        /**
+         * Grundgedanke:
+         * Wenn man sich einer Person nähert, gibt es einen Knopf für den Start des Gesprächs ODER  alternativ öffnet sich das Dialogfenster automatisch.
+         * Zunächst wird der letzte Dialog angezeigt, den man mit dieser Person geführt hat.
+         * Nun kann man den Dialog fortsetzen (dabei evtl. zw. 2 Mögl. auswählen), sofern man alle nötigen Items gefunden hat.
+         * Bei Wahl gibt es 2 Buttons, die mit den Pfeiltasten ausgewaählt und mit Enter bestätigt werden können.
+         * Mit der Leertaste kann das Dialogfenster geschlossen werden ODER durch Weggehen???
+         *
+         */
+        public void dialogBeginnen() {
+            BackgroundBild.sichtbarSetzen(true); // ???
         }
 
 

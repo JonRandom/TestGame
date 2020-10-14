@@ -27,6 +27,10 @@ public class DialogController extends Knoten{
 
     private boolean[] GefundeneItems = new boolean[5];
 
+    int ersterDialogCode = 100000;
+    int letzterDialogCode; //ZAhlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
+    boolean genugItems;
+
 
     private boolean DialogMode;
 
@@ -88,6 +92,62 @@ public class DialogController extends Knoten{
         return DialogMode;
     }
 
+    //Startet Dialog
+    /**
+     * Grundgedanke:
+     * Wenn man sich einer Person nähert, gibt es einen Knopf für den Start des Gesprächs ODER  alternativ öffnet sich das Dialogfenster automatisch.
+     * Zunächst wird der letzte Dialog angezeigt, den man mit dieser Person geführt hat.
+     * Nun kann man den Dialog fortsetzen (dabei evtl. zw. 2 Mögl. auswählen), sofern man alle nötigen Items gefunden hat.
+     * Bei Wahl gibt es 2 Buttons, die mit den Pfeiltasten ausgewaählt und mit Enter bestätigt werden können.
+     * Mit der Leertaste kann das Dialogfenster geschlossen werden ODER durch Weggehen???
+     *
+     */
+    public void dialogBeginnen() {
+        BackgroundBild.sichtbarSetzen(true); // ???
+        //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
+    }
+
+
+    //Überprüft, ob alle notwendigen Items gesammelt sind
+    public void genugItems(){
+        DialogController.DialogText element = DialogListe.get("1"); //JF: muss pro Zeile geupdatet werden
+        boolean brauchtFlags[] = element.brauchtFlags; //JF: holt dir für deine Zeile jz die BrauchItems Liste/Array
+
+        genugItems = false;
+        if (brauchtFlags[0]==true){
+            if(GefundeneItems[0]==false){
+                System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+            }else {
+                if (brauchtFlags[1] == true) {
+                    if (GefundeneItems[1] == false) {
+                        System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                    } else {
+                        if (brauchtFlags[2] == true) {
+                            if (GefundeneItems[2] == false) {
+                                System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                            } else {
+                                if (brauchtFlags[3] == true) {
+                                    if (GefundeneItems[3] == false) {
+                                        System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                                    } else {
+                                        if (brauchtFlags[4] == true) {
+                                            if (GefundeneItems[4] == false) {
+                                                System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
+                                            } else {
+                                                genugItems = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } //Ende public void genugItems()
+
+
     private void readJSON() {
         Gson gson = new Gson();
         try {
@@ -105,77 +165,22 @@ public class DialogController extends Knoten{
     }
 
 
+    /**
+     * JF:
+     * Das ist die Klasse die als Muster zum Auslesen des JSON (mit GSON) dient.
+     * Alle Methoden hierdrinn sind also nur für eine Textzeile im allgemeinen verwendbar und selten brauchbar.
+     * Eigentlich muss in dieser Klasse nicht geändert werden
+     */
     public class DialogText {
 
-        //Muss evtl. noch angepasst werden!!!!
-        int ersterDialogCode = 100000;
-
-        int letzterDialogCode; //ZAhlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
-
         int dialogCode; //Zahlen Code
-
         // GENAU 5 Elemtente!
         boolean[] brauchtFlags; //Flags die gefunden werden müssen z.B [false,false,false,false]
-
-        boolean genugItems;
 
         String inhalt; //Text der Dialog Zeile
 
         int Wahl1; // Code der Ersten Wahl
         int Wahl2; // Code der Zweiten Wahl
-
-
-
-        //Startet Dialog
-        /**
-         * Grundgedanke:
-         * Wenn man sich einer Person nähert, gibt es einen Knopf für den Start des Gesprächs ODER  alternativ öffnet sich das Dialogfenster automatisch.
-         * Zunächst wird der letzte Dialog angezeigt, den man mit dieser Person geführt hat.
-         * Nun kann man den Dialog fortsetzen (dabei evtl. zw. 2 Mögl. auswählen), sofern man alle nötigen Items gefunden hat.
-         * Bei Wahl gibt es 2 Buttons, die mit den Pfeiltasten ausgewaählt und mit Enter bestätigt werden können.
-         * Mit der Leertaste kann das Dialogfenster geschlossen werden ODER durch Weggehen???
-         *
-         */
-        public void dialogBeginnen() {
-            BackgroundBild.sichtbarSetzen(true); // ???
-        }
-
-
-        //Überprüft, ob alle notwendigen Items gesammelt sind
-        public void genugItems(){
-            genugItems = false;
-            if (brauchtFlags[0]==true){
-                if(GefundeneItems[0]==false){
-                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
-                }else {
-                    if (brauchtFlags[1] == true) {
-                        if (GefundeneItems[1] == false) {
-                            System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
-                        } else {
-                            if (brauchtFlags[2] == true) {
-                                if (GefundeneItems[2] == false) {
-                                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
-                                } else {
-                                    if (brauchtFlags[3] == true) {
-                                        if (GefundeneItems[3] == false) {
-                                            System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
-                                        } else {
-                                            if (brauchtFlags[4] == true) {
-                                                if (GefundeneItems[4] == false) {
-                                                    System.out.println("Nicht genug Items gefunden! Versuch´s später nochmal!");
-                                                } else {
-                                                    genugItems = true;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } //Ende public void genugItems()
 
     }
 }

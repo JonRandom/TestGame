@@ -335,7 +335,10 @@ public class Map3 extends Knoten {
     }
 
     /**
-     *
+     * JF:
+     * Das ist die Klasse die als Muster zum Auslesen des JSON (mit GSON) dient.
+     * Alle Methoden hierdrinn sind also nur für eine Haus im allgemeinen verwendbar und selten brauchbar.
+     * Eigentlich muss in dieser Klasse nicht geändert werden
      */
     public class Haus {
         String name; //Klartext Name

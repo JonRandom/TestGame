@@ -103,8 +103,8 @@ public class DialogController extends Knoten{
      *
      */
     public void dialogBeginnen() {
-        BackgroundBild.sichtbarSetzen(true); // ???
-        //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
+        setVisisbilty(true); //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
+
     }
 
 

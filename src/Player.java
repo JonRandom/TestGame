@@ -25,7 +25,13 @@ public class Player extends Knoten {
         IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/BasicMale");
         IC2.Init();
 
+
         this.add(IC2);
+
+        IC2.newtonschMachen();
+        //IC2.aktivMachen();
+        //I/C2.beeinflussbarSetzen(true);
+
 
         ;
 

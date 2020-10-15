@@ -44,6 +44,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
+        ObjectController Autos = new ObjectController();
 
 
         //HouseLoader1 = new HouseLoader(map);
@@ -60,6 +61,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         */
 
 
+        wurzel.add(Autos);
         wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);

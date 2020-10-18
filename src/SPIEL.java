@@ -1,5 +1,7 @@
 import ea.*;
 
+import java.lang.management.MemoryNotificationInfo;
+
 public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar
 {
 
@@ -14,6 +16,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private NpcController NpcController;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
+    private Pet pet1;
     //private HouseLoader HouseLoader1;
 
 
@@ -39,6 +42,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DialogController = new DialogController();
         DialogController.setVisisbilty(false);
         ActivePlayer = new Player(1100,1100);
+
+        pet1 = new Pet(1100,1100);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
         debugAnzeige1 = new DebugAnzeige(0,0);
@@ -47,10 +52,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         ObjectController Autos = new ObjectController();
 
 
+
         //HouseLoader1 = new HouseLoader(map);
 
 
-        //Minigame1 = new Minigame1(); // unused do to lack uf ideas
+        //Minigame1 = new Minigame1(); // unused do to lack of ideas
 
         /* MAUS
         cursor = new Bild(0, 0, "./Assets/MouseC.png");
@@ -66,6 +72,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController);
+        wurzel.add(pet1);
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
@@ -147,7 +154,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         gamesaver.SavePlayer(ActivePlayer);
-        }
+
+        pet1.follow(ActivePlayer);
+
+
+    }
+
 
 
 
@@ -164,6 +176,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();
             map.leaveHouse(ActivePlayer);
+        }
+
+        if(tastenkuerzel == 34){//M für minigame
+            //HouseLoader1.HideView();
+            //Minigame1.startGame((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY());
         }
 
 

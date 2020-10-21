@@ -98,7 +98,6 @@ public class StartingScreen extends Knoten {
         this.active = active;
 
         BackgroundPic.sichtbarSetzen(active);
-
         for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].sichtbarSetzen(active);
         }
@@ -140,6 +139,8 @@ public class StartingScreen extends Knoten {
     }
 
     public void TextStartScEntfernen(){
+        //JF: Du kannst auch einfach tb0.sichtbarSetzen(false); machen
+        //JF: Oder füg die einfach zur Mehtode setActive hinzu. Da wird alles ausgeblendet.
         this.entfernen(tb0);
         this.entfernen(tb1);
         this.entfernen(tb2);

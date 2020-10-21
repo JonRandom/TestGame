@@ -1,5 +1,6 @@
 {
-  "posX": 1298,
-  "posY": 1100,
-  "walkspeed": 3
+  "name": "DEFAULT",
+  "posX": 0,
+  "posY": 0,
+  "walkspeed": 0
 }

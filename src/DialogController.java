@@ -23,14 +23,26 @@ public class DialogController extends Knoten{
 
     private Text TextObject;
     private Bild BackgroundBild;
+    //private Bild ButtonWahl0;
+    //private Bild ButtonWahl1;
     private HashMap<String, DialogController.DialogText> DialogListe; //für die Json
 
     private boolean[] GefundeneItems = new boolean[5];
 
-    int ersterDialogCode = 100000;
-    int letzterDialogCode; //ZAhlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
-    boolean genugItems;
+    private int ersterDialogCode = 100000;
+    private int letzterDialogCode; //Zahlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
+    private String letzterDialog;
+    private int wahl;
+    private int aktuellerDialogCode;
+    private String aktuellerDialog;
 
+    private int ButtonWahl = 2;
+    private Bild[] Buttons = new Bild[ButtonWahl];
+    private int aktuelleAuswahl = 0; //von 0 bis ButtonWahl -1
+
+
+
+    private boolean genugItems;
 
     private boolean DialogMode;
 
@@ -39,7 +51,10 @@ public class DialogController extends Knoten{
 
         DialogMode = false;
 
-        BackgroundBild = new Bild(400,500,"./Assets/DialogFenster.png");
+        BackgroundBild = new Bild(400,500,"./Assets/Dialoge/DialogFenster.png");
+        //ButtonWahl1 = new Bild("./Assets/Dialoge/ButtonWahl0");
+        //ButtonWahl1 = new Bild("./Assets/Dialoge/ButtonWahl1");
+
 
         float tempPosX =MAIN.x/2-(BackgroundBild.getBreite()/2);
         float tempPosY =MAIN.y/2-(BackgroundBild.getHoehe()/2);
@@ -72,6 +87,9 @@ public class DialogController extends Knoten{
         DialogMode = v;
         TextObject.sichtbarSetzen(v);
         BackgroundBild.sichtbarSetzen(v);
+        //ButtonWahl0.sichtbarSetzen(v);
+        //ButtonWahl1.sichtbarSetzen(v);
+
     }
 
     public void toggleVisibilty(){
@@ -98,13 +116,93 @@ public class DialogController extends Knoten{
      * Wenn man sich einer Person nähert, gibt es einen Knopf für den Start des Gesprächs ODER  alternativ öffnet sich das Dialogfenster automatisch.
      * Zunächst wird der letzte Dialog angezeigt, den man mit dieser Person geführt hat.
      * Nun kann man den Dialog fortsetzen (dabei evtl. zw. 2 Mögl. auswählen), sofern man alle nötigen Items gefunden hat.
-     * Bei Wahl gibt es 2 Buttons, die mit den Pfeiltasten ausgewaählt und mit Enter bestätigt werden können.
+     * Bei Wahl gibt es 2 Buttons, die mit den Pfeiltasten ausgewählt und mit Enter bestätigt werden können.
      * Mit der Leertaste kann das Dialogfenster geschlossen werden ODER durch Weggehen???
      *
      */
-    public void dialogBeginnen() {
+    public void dialogBeginnen() { //wird mit R aufgerufen
         setVisisbilty(true); //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
+        FillWahlObjects();
+        aktuelleAuswahl = 0; //Wahl1 wird ausgewählt
+        /**this.SetContent(letzterDialog);
+        updateWahl();
+        updateButtons();*/
+        if (wahl == 1){
+            if(genugItems == true){
+                letzterDialog = aktuellerDialog;
+                //aktuellerDialogCode = ?
+                this.SetContent(letzterDialog);
+            }else{
+                System.out.println("Nicht genug Items gefunden");
+            }
 
+        }else if(wahl == 2){ //Wahl 2
+
+        }
+
+    }
+
+    public int updateWahl(){
+
+        return aktuelleAuswahl;
+    }
+
+    public void entferntWahlButtons(){
+        //soll Auswahl Buttons wieder verscshwinden verschwinden lassen
+    }
+
+    private void FillWahlObjects() {
+        System.out.println("FillWahlObjects");
+        for (int i = 0; i < ButtonWahl; i++) {
+            System.out.println(i);
+            Buttons[i] = new Bild(350 + i * 200, 500, "./Assets/Dialoge/ButtonWahl" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+            this.add(Buttons[i]);
+        }
+        this.updateWahl();
+    }
+
+    private void updateButtons() {
+        for (int i = 0; i < ButtonWahl; i++) {
+            Buttons[i].setOpacity(0.5f);//alle halb sichbar
+        }
+        System.out.println(aktuelleAuswahl);
+        Buttons[aktuelleAuswahl].setOpacity(1f);
+    }
+
+    public void SelectWahl() { //Enter = 31
+        switch (aktuelleAuswahl) {
+            case 0: {
+                System.out.println("Wahl1");
+                wahl = 1;
+            }
+            break;
+            case 1: {
+                System.out.println("Wahl2");
+                wahl = 2;
+            }
+            break;
+        }
+
+    }
+
+    public boolean dialogActive(){
+        return DialogMode;
+    }
+
+    public void ShiftLeft() {
+        aktuelleAuswahl--;
+        if (aktuelleAuswahl < 0) {
+            aktuelleAuswahl = 0;//stay at first
+        }
+        updateButtons();
+    }
+
+    public void ShiftRight() {
+        aktuelleAuswahl++;
+        if (aktuelleAuswahl >= ButtonWahl) {
+            aktuelleAuswahl = ButtonWahl - 1;//stay at last
+        }
+        updateButtons();
     }
 
 
@@ -146,6 +244,8 @@ public class DialogController extends Knoten{
             }
         }
     } //Ende public void genugItems()
+
+
 
 
     private void readJSON() {

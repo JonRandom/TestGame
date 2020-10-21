@@ -56,10 +56,10 @@ public class StartingScreen extends Knoten {
      */
     private void UpdateButtons() {
         for (int i = 0; i < ButtonCount; i++) {
-            Buttons[i].setOpacity(1f);//alle voll sichbar
+            Buttons[i].setOpacity(0.5f);//alle halb sichbar
         }
         System.out.println(selection);
-        Buttons[selection].setOpacity(0.5f);
+        Buttons[selection].setOpacity(1f);
     }
 
 

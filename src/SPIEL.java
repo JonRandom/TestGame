@@ -165,6 +165,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             //HouseLoader1.HideView();
             map.leaveHouse(ActivePlayer);
         }
+        if(tastenkuerzel == 17){ //Wenn R gedrückt
+            DialogController.dialogBeginnen();
+        }
 
 
         if(tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
@@ -213,6 +216,21 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 }
             }
 
+        }
+        if(DialogController.dialogActive() == true){
+            if(tastenkuerzel == 0){
+                DialogController.ShiftLeft();
+            }
+            else if(tastenkuerzel == 3){
+                DialogController.ShiftRight();
+            }
+            else if(tastenkuerzel == 31) {
+                DialogController.SelectWahl();
+            }
+            else if(tastenkuerzel == 30){
+                DialogController.toggleVisibilty();
+                DialogController.entferntWahlButtons();
+            }
         }
 
 

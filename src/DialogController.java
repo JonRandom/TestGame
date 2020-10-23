@@ -149,7 +149,7 @@ public class DialogController extends Knoten{
     }
 
     public void entferntWahlButtons(){
-        //soll Auswahl Buttons wieder verscshwinden verschwinden lassen
+        //soll Auswahl Buttons wieder verschwinden verschwinden lassen
     }
 
     private void FillWahlObjects() {

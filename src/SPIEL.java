@@ -16,7 +16,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private NpcController NpcController;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
-    private Minigame2 Minigame2;
     private Pet pet1;
     //private HouseLoader HouseLoader1;
 
@@ -31,9 +30,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
 
-    public SPIEL() {
+    public SPIEL(int breite, int hoehe) {
         super(MAIN.x,MAIN.y,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
-        System.out.println("SPIEL: "  + MAIN.x +  "| " +  MAIN.y);
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
 
@@ -41,9 +39,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         StartSc = new StartingScreen();
 
         DP = new DummyPlayer(600,400);
-        //JF DialogController = new DialogController();
-        //JF DialogController.setVisisbilty(false);
+        DialogController = new DialogController();
+        DialogController.setVisisbilty(false);
         ActivePlayer = new Player(1100,1100);
+
         pet1 = new Pet(1100,1100);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
@@ -51,7 +50,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         ObjectController Autos = new ObjectController();
-        Minigame2 = new Minigame2(ActivePlayer);
 
 
 
@@ -79,9 +77,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
-        //JF statischeWurzel.add(DialogController);
+        statischeWurzel.add(DialogController);
         //statischeWurzel.add(Minigame1);
-        statischeWurzel.add(Minigame2);
 
 
         statischeWurzel.add(debugAnzeige1);
@@ -112,8 +109,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         DP.positionSetzen(playerX,playerY);
 
-        //JF if(!DialogController.GetDialogStatus() && !StartSc.isActive()) {
-        if(!StartSc.isActive()) {
+
+        if(!DialogController.GetDialogStatus() && !StartSc.isActive()) {
             int walkspeed = ActivePlayer.getWalkspeed();
 
             if (tasteGedrueckt(Taste.W)) {
@@ -151,8 +148,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
         if(NpcController.ColliderTest(ActivePlayer)&&!DialogController.GetDialogStatus()){
 
-            //JF DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
-            //JF DialogController.setVisisbilty(true);
+            DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
+            DialogController.setVisisbilty(true);
         }
 
 
@@ -160,7 +157,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         pet1.follow(ActivePlayer);
 
-        Minigame2.tick();
 
     }
 
@@ -185,12 +181,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.dialogBeginnen();
         }
 
-        if(tastenkuerzel == 12){//M für minigame
-            Minigame2.startGame();
-            //Minigame1.startGame((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY());
-        }
-        if(tastenkuerzel == 10){//K für minigame edit
-            Minigame2.lowerSpeed();
+        if(tastenkuerzel == 34){//M für minigame
+            //HouseLoader1.HideView();
             //Minigame1.startGame((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY());
         }
 
@@ -242,7 +234,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
 
         }
-        /*JF
         if(DialogController.dialogActive() == true){
             if(tastenkuerzel == 0){
                 DialogController.ShiftLeft();
@@ -258,8 +249,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 DialogController.entferntWahlButtons();
             }
         }
-
-         */
 
 
     }

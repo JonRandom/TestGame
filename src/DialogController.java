@@ -142,6 +142,7 @@ public class DialogController extends Knoten{
 
     }
 
+
     public int updateWahl(){
 
         return aktuelleAuswahl;

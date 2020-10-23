@@ -81,7 +81,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         StartSc.setActive(true);
         //JF statischeWurzel.add(DialogController);
         //statischeWurzel.add(Minigame1);
-        Minigame2.verschieben(100,0);
         statischeWurzel.add(Minigame2);
 
 

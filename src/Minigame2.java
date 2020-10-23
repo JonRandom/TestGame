@@ -2,6 +2,8 @@ import ea.Knoten;
 import ea.Bild;
 import ea.Punkt;
 
+import java.util.Random;
+
 public class Minigame2 extends Knoten {
 
     private Player AP;
@@ -18,14 +20,14 @@ public class Minigame2 extends Knoten {
     private int originalSpeed = 10;
     private int speed;
 
-    private int bottomEdge = 800;
+    private int bottomEdge = 900;
     private int row0_firstPos = 0;
     private int row1_firstPos = 0;
     private int row2_firstPos = 0;
 
-    private Punkt row0_TL_POS = new Punkt(200,200);
-    private Punkt row1_TL_POS = new Punkt(500,200);//100 Abstand zur Vorherigen
-    private Punkt row2_TL_POS = new Punkt(800,200);
+    private Punkt row0_TL_POS = new Punkt(200,100);
+    private Punkt row1_TL_POS = new Punkt(500,100);//100 Abstand zur Vorherigen
+    private Punkt row2_TL_POS = new Punkt(800,100);
 
     private String mainPath = "./Assets/Minigames/SlotMachine/";
 
@@ -96,6 +98,21 @@ public class Minigame2 extends Knoten {
         }
     }
 
+    /*
+    private void shuffleArray(Bild[] array){
+        int index,
+                temp;
+        Random random = new Random();
+        for (int i = array.length - 1; i > 0; i--)
+        {
+            index = random.nextInt(i + 1);
+            temp = array[index];
+            array[index] = array[i];
+            array[i] = temp;
+        }
+    }
+
+     */
 
     public void startGame(){
         //offsetX = (int)AP.getPosX();

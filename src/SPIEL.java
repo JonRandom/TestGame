@@ -16,6 +16,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private NpcController NpcController;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
+    private Minigame2 Minigame2;
     private Pet pet1;
     //private HouseLoader HouseLoader1;
 
@@ -30,7 +31,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
 
-    public SPIEL(int breite, int hoehe) {
+    public SPIEL() {
         super(MAIN.x,MAIN.y,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
@@ -49,6 +50,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
+        Minigame2 = new Minigame2(ActivePlayer);
         ObjectController Autos = new ObjectController();
 
 
@@ -78,7 +80,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
         statischeWurzel.add(DialogController);
-        //statischeWurzel.add(Minigame1);
+
+        statischeWurzel.add(Minigame2);
 
 
         statischeWurzel.add(debugAnzeige1);
@@ -157,7 +160,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         pet1.follow(ActivePlayer);
 
-
+        Minigame2.tick();
     }
 
 
@@ -181,9 +184,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.dialogBeginnen();
         }
 
-        if(tastenkuerzel == 34){//M für minigame
-            //HouseLoader1.HideView();
-            //Minigame1.startGame((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY());
+        if(tastenkuerzel == 12){//M für minigame
+            Minigame2.startGame();
         }
 
 

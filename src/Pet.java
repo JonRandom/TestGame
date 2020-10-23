@@ -50,13 +50,13 @@ public class Pet extends Knoten {
                 diffX = walkspeed;
             }
         }
-        System.out.println("Pet: DIFF bei " + diffX + "|" + diffY);
+        //System.out.println("Pet: DIFF bei " + diffX + "|" + diffY);
         this.move(diffX,diffY);
     }
 
 
     public void move(float x, float y){
-        System.out.println("Pet: POS  bei " + posX + "|" + posY);
+        //System.out.println("Pet: POS  bei " + posX + "|" + posY);
         posX = posX + x;
         posY = posY + y;
         img.verschieben(x,y);

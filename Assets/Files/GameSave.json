@@ -1,5 +1,6 @@
 {
   "posX": 1100,
   "posY": 1100,
-  "walkspeed": 3
+  "walkspeed": 3,
+  "DialogCode": 0
 }

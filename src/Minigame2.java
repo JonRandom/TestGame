@@ -120,13 +120,13 @@ public class Minigame2 extends Knoten {
         System.out.println("Minigame: row0_tileImgsPointer final: " + Arrays.toString(row0_tileImgsPointer));
          */
         row0_tileImgsPointer = giveShuffeldArray(tileCount);
-        System.out.println("Minigame: Random Liste0:" + Arrays.toString(row0_tileImgsPointer));
+        //System.out.println("Minigame: Random Liste0:" + Arrays.toString(row0_tileImgsPointer));
 
         row1_tileImgsPointer = giveShuffeldArray(tileCount);
-        System.out.println("Minigame: Random Liste1:" + Arrays.toString(row1_tileImgsPointer));
+        //System.out.println("Minigame: Random Liste1:" + Arrays.toString(row1_tileImgsPointer));
 
         row2_tileImgsPointer = giveShuffeldArray(tileCount);
-        System.out.println("Minigame: Random Liste2:" + Arrays.toString(row2_tileImgsPointer));
+        //System.out.println("Minigame: Random Liste2:" + Arrays.toString(row2_tileImgsPointer));
 
 
         //System.out.println("Minigame: Random Liste:" + Arrays.toString(row0_tileImgsPointer));
@@ -150,6 +150,7 @@ public class Minigame2 extends Knoten {
      */
 
     public void startGame(){
+        AP.addMoney(-1);
         //offsetX = (int)AP.getPosX();
         //offsetY = (int)AP.getPosY();
         active = true;
@@ -231,7 +232,11 @@ public class Minigame2 extends Knoten {
                     System.out.println("Minigame2: " + rowPos + " ist jz unten angekommen");
                     //Game zu ende
                     rolling = false;
-                    System.out.println("An unteresten Stelle ist der Jackpot wert = " + Arrays.toString(analyseJackpot()));
+                    int jack = analyseJackpot();
+                    System.out.println("An allen  Stelle ist der Jackpot wert = " + jack);
+                    AP.addMoney(jack);
+                    startGame();
+
                 }
                 else{
                     System.out.println("Minigame2: " + rowPos + " ist jz unten angekommen");
@@ -249,7 +254,7 @@ public class Minigame2 extends Knoten {
      * Gibt nur das Ergebnis dieser Methode als Liste zurück und kümmert sich über row0_firstPos Spezialfälle.
      * @return Int[var checks] mit allen ergebnissen des checkJackpots Mehtodeaufrufs.
      */
-    private int[] analyseJackpot(){
+    private int analyseJackpot(){
         int check = 4;//vier Reihen werden angezeigt
         int[] result = new int[check];
 
@@ -268,11 +273,15 @@ public class Minigame2 extends Knoten {
             if(pos>tileCount-1){
                 pos = pos-tileCount;
             }
-            System.out.println("Minigame2: Testet Reihe mit i(" + i+ "), welche eig. Reihe " + pos + " ist.");
+            //System.out.println("Minigame2: Testet Reihe mit i(" + i+ "), welche eig. Reihe " + pos + " ist.");
             result[i] = checkJackpot(pos);
         }
+        int pot=0;
+        for(int i=0;i<check;i++){
+            pot = pot + result[i];
+        }
 
-        return result;
+        return pot;
     }
     /**
      * Gibt mir für die zeile POS den Jackpot indikator zurück
@@ -284,13 +293,13 @@ public class Minigame2 extends Knoten {
         int i = pos;
         int jackpot = 0;
         if(row0_tileImgsPointer[i] == row1_tileImgsPointer[i] && row0_tileImgsPointer[i] == row2_tileImgsPointer[i] && row1_tileImgsPointer[i] == row2_tileImgsPointer[i]){
-            jackpot = 3;
+            jackpot = 30;//größter gewinn
         }
         else if(row0_tileImgsPointer[i] == row1_tileImgsPointer[i]){ //links und mitte gleich
             jackpot = 1;
         }
         else if(row1_tileImgsPointer[i] == row2_tileImgsPointer[i]){ //mitte und rechts gleich
-            jackpot = 2;
+            jackpot = 1;
         }
 
        return jackpot;

@@ -40,8 +40,7 @@ public class GameSaver {
 
         }
         catch(Exception e) {
-            System.out.println(ANSI_PURPLE + "Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
-            System.out.println(ANSI_PURPLE + "Eigentlich kann nur jemand anderes schuld sein..." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Ein Fehler beim Schreiben der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
         }
 
     }
@@ -65,6 +64,7 @@ public class GameSaver {
         public int posY;
         public int walkspeed;
 
+        public int DialogCode;
 
         public void setName(String name) {
             this.name = name;
@@ -80,6 +80,10 @@ public class GameSaver {
 
         public void setWalkspeed(int walkspeed) {
             this.walkspeed = walkspeed;
+        }
+
+        public void setDialogCode(int dialogCode) {
+            DialogCode = dialogCode;
         }
     }
 }

@@ -23,18 +23,21 @@ public class DialogController extends Knoten{
 
     private Text TextObject;
     private Bild BackgroundBild;
+
+    private NpcController NPC_Controller;
     //private Bild ButtonWahl0;
     //private Bild ButtonWahl1;
     private HashMap<String, DialogController.DialogText> DialogListe; //für die Json
 
     private boolean[] GefundeneItems = new boolean[5];
 
+    private int currentDialogCode; //JF aktueller Code;
+
     private int ersterDialogCode = 100000;
-    private int letzterDialogCode; //Zahlen Code des zuletzt mit dieser Person geführten Code (= dialogCode -1 !?)
-    private String letzterDialog;
     private int wahl;
     private int aktuellerDialogCode;
     private String aktuellerDialog;
+    private String letzterDialog;
 
     private int ButtonWahl = 2;
     private Bild[] Buttons = new Bild[ButtonWahl];
@@ -47,8 +50,8 @@ public class DialogController extends Knoten{
     private boolean DialogMode;
 
 
-    public DialogController(){
-
+    public DialogController(NpcController NPC_C){
+        this.NPC_Controller = NPC_C;
         DialogMode = false;
 
         BackgroundBild = new Bild(400,500,"./Assets/Dialoge/DialogFenster.png");
@@ -124,7 +127,7 @@ public class DialogController extends Knoten{
         setVisisbilty(true); //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
         FillWahlObjects();
         aktuelleAuswahl = 0; //Wahl1 wird ausgewählt
-        /**this.SetContent(letzterDialog);
+        /*this.SetContent(letzterDialog);
         updateWahl();
         updateButtons();*/
         if (wahl == 1){
@@ -137,19 +140,18 @@ public class DialogController extends Knoten{
             }
 
         }else if(wahl == 2){ //Wahl 2
-
         }
-
+    }
+    public void openDialog(int player){
+        int code = NPC_Controller.getLastCode(player);
     }
 
-
     public int updateWahl(){
-
         return aktuelleAuswahl;
     }
 
     public void entferntWahlButtons(){
-        //soll Auswahl Buttons wieder verschwinden verschwinden lassen
+        //soll Auswahl Buttons wieder verschwinden lassen
     }
 
     private void FillWahlObjects() {
@@ -247,8 +249,12 @@ public class DialogController extends Knoten{
     } //Ende public void genugItems()
 
 
-
-
+    private int getPlayerFromCode(int code){
+        //gibt die ersten Beiden Ziffern des Codes zurück;
+        int second = (code/10000) % 10; //Zahl an 5ter Stelle
+        int first = (code/100000) % 10;
+        return (first*10)+second;
+    }
     private void readJSON() {
         Gson gson = new Gson();
         try {
@@ -264,8 +270,6 @@ public class DialogController extends Knoten{
         }
 
     }
-
-
     /**
      * JF:
      * Das ist die Klasse die als Muster zum Auslesen des JSON (mit GSON) dient.

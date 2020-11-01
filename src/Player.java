@@ -10,6 +10,7 @@ public class Player extends Knoten {
     private String name;
     private float posX;
     private float posY;
+    private int money;
 
     private int walkspeed = 3; // Laufgeschwindigkeit
 
@@ -21,6 +22,7 @@ public class Player extends Knoten {
         super();
         this.posX=posX;
         this.posY=posY;
+        this.money = 0;
 
         IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/BasicMale");
         IC2.Init();
@@ -83,6 +85,13 @@ float lastX = posX;
         IC2.walkTop(walkspeed);
         this.posY = posY -walkspeed;
         //IC.verschieben(0, -walkspeed);
+    }
+
+    public int getMoney(){
+        return money;
+    }
+    public void addMoney(int x){
+        money += x;
     }
 
 

@@ -1,0 +1,19 @@
+/*
+Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
+
+ */
+
+{
+  "10": {
+    "name": "Marko",
+    "lastCode": 0
+  },
+  "11": {
+    "name": "erika",
+    "lastCode": 0
+  },
+  "12": {
+    "name": "paul",
+    "lastCode": 0
+  }
+}

@@ -12,6 +12,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private Map3 map;
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
+    private DebugAnzeige debugAnzeige3;
     private DummyPlayer DP;
     private NpcController NpcController;
     private StartingScreen StartSc;
@@ -40,15 +41,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         StartSc = new StartingScreen();
 
         DP = new DummyPlayer(600,400);
-        DialogController = new DialogController();
-        DialogController.setVisisbilty(false);
+
+
         ActivePlayer = new Player(1100,1100);
 
         pet1 = new Pet(1100,1100);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
+        DialogController = new DialogController(NpcController);
+        DialogController.setVisisbilty(false);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
+        debugAnzeige3 = new DebugAnzeige(500,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         Minigame2 = new Minigame2(ActivePlayer);
         ObjectController Autos = new ObjectController();
@@ -86,6 +90,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         statischeWurzel.add(debugAnzeige1);
         statischeWurzel.add(debugAnzeige2);
+        statischeWurzel.add(debugAnzeige3);
 
 
 
@@ -109,6 +114,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
         debugAnzeige2.SetContent("Visiting:" +map.isVisiting());
+        debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
 
         DP.positionSetzen(playerX,playerY);
 

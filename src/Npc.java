@@ -15,12 +15,18 @@ public class Npc extends Knoten {
     private float posX;
     private float posY;
 
-    public Npc(int PosX, int PosY){
+    public Npc(int PosX, int PosY, String path){
         this.posX=PosX;
         this.posY=PosY;
 
-        img = new Bild(PosX,PosY,"./Assets/Player.png");
-        this.add(img);
+        try{
+            img = new Bild(PosX,PosY,path);
+            this.add(img);
+        }
+        catch(Exception e){
+            System.out.println("Nps: Fehler beim importieren der Datei");
+            System.out.println("NPC: " + e);
+        }
 
     }
 
@@ -31,5 +37,13 @@ public class Npc extends Knoten {
         posY=posY +dY;
         super.verschieben(dX, dY);
 
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public float getPosX() {
+        return posX;
     }
 }

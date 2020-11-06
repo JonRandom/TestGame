@@ -1,14 +1,23 @@
 {
   "11": {
     "name": "erika",
-    "lastCode": 0
+    "lastCode": 110071,
+    "posX": 1400,
+    "posY": 1200,
+    "inHouse": -1
   },
   "12": {
     "name": "paul",
-    "lastCode": 0
+    "lastCode": 120401,
+    "posX": 1300,
+    "posY": 800,
+    "inHouse": -1
   },
   "10": {
-    "name": "Test",
-    "lastCode": 0
+    "name": "Marko",
+    "lastCode": 0,
+    "posX": 1100,
+    "posY": 1200,
+    "inHouse": -1
   }
 }

@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import ea.Bild;
 import ea.Knoten;
 
 import java.io.*;
@@ -16,19 +17,17 @@ public class NpcController extends Knoten {
 
     private HashMap<String, NpcController.NPC> NPCs; //für die Json
     private Npc npc1;
+    private Npc[] NPC_List;
 
     public NpcController(){
-        npc1 = new Npc(600,600);
-
-        this.add(npc1);
 
         resetJSON();
         readJSON();
 
         System.out.println(NPCs.get("10"));
-        NPCs.get("10").setName("Test");
+        //NPCs.get("10").setName("Test");
         saveGson();
-
+        FillNPC_list();
     }
 
     /**
@@ -66,6 +65,46 @@ public class NpcController extends Knoten {
 
     }
 
+    public boolean checkForCollision(Player AP){
+        boolean coll = false;
+        //geht alle Npcs durch un schaut nach collision, aber nicht nach einer expliziten
+        for (Npc n : NPC_List) {
+            if(AP.schneidet(n)) {
+                coll= true;
+            }
+        }
+        return coll;
+    }
+    public int getCollidingNPC(Player AP){
+        boolean coll = false;
+        int playerID = -1;
+        for (int i=0;i<NPC_List.length;i++) {
+            if(AP.schneidet(NPC_List[i])) {
+                playerID = i;
+            }
+        }
+        if(playerID == -1){
+            System.out.println("NpcController: Komisch kein Player collided obwohl so vorausgesetzt");
+        }
+        return playerID;
+    }
+
+    private void FillNPC_list(){
+        NPC_List = new Npc[NPCs.size()];
+        int i = 0;
+        for (String key : NPCs.keySet()) {
+            NpcController.NPC element = NPCs.get(key);
+            String path = "./Assets/NPCs/"  + element.name + ".png";
+            System.out.println("Neuer NPC names" + path);
+            NPC_List[i] = new Npc(element.posX,element.posY,path);
+            if(element.inHouse == -1) { //in keinem Haus
+                this.add(NPC_List[i]);
+            }
+
+            i++;
+
+        }
+    }
     private void saveGson(){
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -94,7 +133,6 @@ public class NpcController extends Knoten {
         }
 
     }
-
     /**
      * Liest die JSON(NPCs-Temple.json) Datei und schreibt ihren Inhalt in den Json(NPCs.json).
      */
@@ -116,7 +154,13 @@ public class NpcController extends Knoten {
     class NPC{
         String name; //Klartext Name
 
+
         int lastCode; //letzter dialog der ausgesprochen werden soll;
+
+        int posX;
+        int posY;
+        int inHouse;
+
         public void setName(String name) {
             this.name = name;
         }

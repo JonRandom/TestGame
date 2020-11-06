@@ -31,7 +31,7 @@ public class DialogController extends Knoten{
 
     private boolean[] GefundeneItems = new boolean[5];
 
-    private int currentDialogCode; //JF aktueller Code;
+    private int nextDialogCode = 100991; //JF aktueller nächster Code; oder erster Code
 
     private int ersterDialogCode = 100000;
     private int wahl;
@@ -76,31 +76,37 @@ public class DialogController extends Knoten{
         this.add(BackgroundBild,TextObject);
 
         readJSON();
-        DialogController.DialogText element = DialogListe.get("1");
-        System.out.println(element.inhalt);
+        FillWahlObjects();
+        //DialogController.DialogText element = DialogListe.get("1");
+        //System.out.println(element.inhalt);
     }
 
     public void SetContent(String content){
         TextObject.positionSetzen(BackgroundBild.mittelPunkt());
-        TextObject.verschieben(-TextObject.getBreite()/2,-TextObject.getHoehe()/2);
         TextObject.inhaltSetzen(content);
+        TextObject.verschieben(-TextObject.getBreite()/2,-TextObject.getHoehe()/2);//setzt Text in die Mitte vom Bild
+
     }
 
     public void setVisisbilty(boolean v){
+
         DialogMode = v;
         TextObject.sichtbarSetzen(v);
         BackgroundBild.sichtbarSetzen(v);
+        for(Bild b : Buttons){
+            b.sichtbarSetzen(v);
+        } //buttons (un)sichtbar
         //ButtonWahl0.sichtbarSetzen(v);
         //ButtonWahl1.sichtbarSetzen(v);
+
 
     }
 
     public void toggleVisibilty(){
         //System.out.println("toggle");
         if(DialogMode){
-            setVisisbilty(false);
+            this.setVisisbilty(false);
             DialogMode = (false);
-
         }
         else{
             //System.out.println("anzeigen");
@@ -125,7 +131,6 @@ public class DialogController extends Knoten{
      */
     public void dialogBeginnen() { //wird mit R aufgerufen
         setVisisbilty(true); //JF: dafür hatte ich eigentlich die setVisisbilty() Methode angedacht, die Alles(BILD,TEXT,..) ausblendet
-        FillWahlObjects();
         aktuelleAuswahl = 0; //Wahl1 wird ausgewählt
         /*this.SetContent(letzterDialog);
         updateWahl();
@@ -142,30 +147,51 @@ public class DialogController extends Knoten{
         }else if(wahl == 2){ //Wahl 2
         }
     }
-    public void openDialog(int player){
-        int code = NPC_Controller.getLastCode(player);
+    public void openDialog(Player AP){ // JF:Variante zu dialogBeginnen()
+        int playerCode = NPC_Controller.getCollidingNPC(AP) + 10; // +10 um von startindex 0 auf startindex 10 zu kommen
+
+        int code = NPC_Controller.getLastCode(playerCode);
+        int wantedPlayer = getPlayerFromCode(nextDialogCode);
+        //System.out.println("DialogController: watnedPlayer = "+ wantedPlayer);
+        if(playerCode == wantedPlayer){
+            System.out.println("DialogController: Player entspricht wanted Player");
+            DialogText DT = DialogListe.get(String.valueOf(nextDialogCode)); //kriegt die Dialogzeile von dem CODE
+            SetContent(DT.inhalt);
+        }
+        else if(playerCode != -1){
+            int LastDialogCode = NPC_Controller.getLastCode(playerCode);
+            DialogText DT = DialogListe.get(String.valueOf(LastDialogCode));
+            SetContent(DT.inhalt);
+        }
+        else{//kein Player geschnitten
+            SetContent("FEHLER MIT KEINEM DIALOG GESCHNITTEN");
+        }
     }
 
     public int updateWahl(){
         return aktuelleAuswahl;
     }
 
-    public void entferntWahlButtons(){
-        //soll Auswahl Buttons wieder verschwinden lassen
-    }
 
     private void FillWahlObjects() {
-        System.out.println("FillWahlObjects");
+        //System.out.println("FillWahlObjects");
         for (int i = 0; i < ButtonWahl; i++) {
-            System.out.println(i);
-            Buttons[i] = new Bild(350 + i * 200, 500, "./Assets/Dialoge/ButtonWahl" + i + ".png"); //jedes Bild 200 pixel weiter rechts
-            this.add(Buttons[i]);
+            //System.out.println(i);
+            try {
+                Buttons[i] = new Bild(350 + i * 200, 500, "./Assets/Dialoge/ButtonWahl" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+                this.add(Buttons[i]);
+                Buttons[i].sichtbarSetzen(true);
+            }
+            catch(Exception e) {
+                System.out.println("DialogController: Fehler beim initaliseren der Buttons" + e);
+            }
         }
         this.updateWahl();
     }
 
     private void updateButtons() {
         for (int i = 0; i < ButtonWahl; i++) {
+            //System.out.println("DialogController: i= " + i);
             Buttons[i].setOpacity(0.5f);//alle halb sichbar
         }
         System.out.println(aktuelleAuswahl);
@@ -264,8 +290,8 @@ public class DialogController extends Knoten{
             DialogListe = gson.fromJson(bufferedReader, MapType);
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println(ANSI_PURPLE + "Map3: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
-            System.out.println(ANSI_PURPLE + "Map3: Eigentlich kann nur das Storyteam schuld sein..." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "DialogController: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "DialogController: Eigentlich kann nur das Storyteam schuld sein..." + ANSI_RESET);
 
         }
 

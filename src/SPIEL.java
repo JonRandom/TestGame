@@ -155,9 +155,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 }
             }
             }
-        if(NpcController.ColliderTest(ActivePlayer)&&!DialogController.GetDialogStatus()){
+        if(NpcController.checkForCollision(ActivePlayer)&&!DialogController.GetDialogStatus()){
 
-            DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
+            DialogController.openDialog(ActivePlayer);
+            //DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
             DialogController.setVisisbilty(true);
         }
 
@@ -242,7 +243,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
 
         }
-        if(DialogController.dialogActive() == true){
+
+        if(DialogController.GetDialogStatus()){
             if(tastenkuerzel == 0){
                 DialogController.ShiftLeft();
             }
@@ -252,11 +254,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             else if(tastenkuerzel == 31) {
                 DialogController.SelectWahl();
             }
+            //leertaste
             else if(tastenkuerzel == 30){
+                //macht dialog aus
                 DialogController.toggleVisibilty();
-                DialogController.entferntWahlButtons();
             }
         }
+
+
 
 
     }

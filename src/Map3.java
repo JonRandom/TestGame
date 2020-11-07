@@ -36,11 +36,13 @@ public class Map3 extends Knoten {
 
     private ImageCollider mapHitbox; // map Kollider
     private Bild mapImg; //Main anzeigeBild
+    private Bild backgroundImg;
 
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
     private String pathHitboxImg = "./Assets/Tests/Map3_coll.png";
     private String pathMainImg = "./Assets/Map3.jpg";
+    private String pathBackgroundImg = "./Assets/Tests/blur.png";
 
     private HashMap<String, Map3.Haus> MAP; //für die Json
 
@@ -92,7 +94,18 @@ public class Map3 extends Knoten {
         }catch(Exception e){
             System.out.println("Fehler in der Map Klasse: Bild bei " + pathMainImg + " kann nicht gefunden werden!");
             System.out.println(e);
-        } //import MainDisplayImage wird auch zum Knoten geadded.
+        }
+
+        try{
+            backgroundImg = new Bild(0,0,pathBackgroundImg);
+            backgroundImg.setOpacity(1f);
+            backgroundImg.sichtbarSetzen(false);
+            this.add(backgroundImg);
+        }catch(Exception e){
+            System.out.println("Fehler in der Map Klasse: Bild bei " + pathBackgroundImg + " kann nicht gefunden werden!");
+            System.out.println(e);
+        }
+
 
         mapHitbox = new ImageCollider(pathHitboxImg); // Main Hitbox Collider für die Karte
         this.add(mapHitbox);
@@ -149,16 +162,20 @@ public class Map3 extends Knoten {
     public void enterHouse(Player AP, int HouseN){
         System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
         hideAllHouses();
+
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
         FixInteriorPos(AP, HouseN);
         houseNumber = HouseN; //set global HouseNumber for collision
         visiting = true;
+        backgroundImg.sichtbarSetzen(true);
+        backgroundImg.positionSetzen(AP.getPosX() - MAIN.x/2, AP.getPosY()-MAIN.y/2);
     }
     public void leaveHouse(Player AP){
         visiting = false;
         houseNumber = -1;
         hideAllHouses();
+        backgroundImg.sichtbarSetzen(false);
         AP.positionSetzen(lastWhiteX,lastWhiteY);
 
     }
@@ -176,58 +193,6 @@ public class Map3 extends Knoten {
         int b = (hexC & 0xFF);
 
         return new Color(r, g, b);
-    }
-
-    public boolean isWalkable(DummyPlayer dp, Player ap){
-        if(!visiting){
-            int red = mapHitbox.getWalkColor(dp); // holt rotwert des Rahmen des Players
-            System.out.println(red);
-
-
-            if(red < blackThreshold){
-                System.out.println("Darf nicht laufen");
-                return false;
-
-            } else if(red>blackThreshold && red<255){
-                for(int i= 0; i<numberofB;i++){
-                    System.out.println("Sucht nach Häusern die matchen");
-                    if(red == RedColorCodes[i]){
-                        enterHouse(ap,i);
-                        return true;
-                    }
-
-                }
-                lastWhiteX = (int)ap.getX(); //AP ODER DP NO LÖSEN
-                lastWhiteY = (int)ap.getY(); //AP ODER DP NO LÖSEN
-                return mapHitbox.AllowWalk(dp);
-
-            }
-            else if(red == 255){ //GANZ WEIß
-                return true;
-            }
-            else{//Fehlerzustand red außerhalb von 0 bis 256
-                System.out.println(ANSI_PURPLE + "Map3: Ein Fehler ablesen und verarbeiten der Rotwerte: Wert außerhalb von 0 bis 255 (8bit)" + ANSI_RESET);
-                return false;
-            }
-
-        }
-        else{ //ER IST AM BESUCHEN
-            /*
-            int red = houseHitbox[0].getWalkColor(dp);
-            if(red==0){
-                return false;
-            } else{
-                for(int i= 0; i<numberofB;i++){
-                    if(red == RedColorCodes[i]){
-                        enterHouse(ap,i);
-                    }
-
-                }
-            }
-             */
-
-            return houseHitbox[0].AllowWalk(dp);
-        }
     }
 
     //wird verwendet

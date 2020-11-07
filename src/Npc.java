@@ -15,9 +15,13 @@ public class Npc extends Knoten {
     private float posX;
     private float posY;
 
-    public Npc(int PosX, int PosY, String path){
+    private int houseNumber;
+
+    public Npc(int PosX, int PosY, String path, int hN){
         this.posX=PosX;
         this.posY=PosY;
+
+        this.houseNumber = hN;
 
         try{
             img = new Bild(PosX,PosY,path);
@@ -45,5 +49,9 @@ public class Npc extends Knoten {
 
     public float getPosX() {
         return posX;
+    }
+
+    public int getHouseNumber() {
+        return houseNumber;
     }
 }

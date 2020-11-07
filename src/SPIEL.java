@@ -160,7 +160,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 }
             }
             }
-        if(NpcController.checkForCollision(ActivePlayer)&&!DialogController.GetDialogStatus()){
+        if(NpcController.checkForCollision(ActivePlayer, map.isVisiting())&&!DialogController.GetDialogStatus()){
 
             DialogController.openDialog(ActivePlayer);
             //DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");

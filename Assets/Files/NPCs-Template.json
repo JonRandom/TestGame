@@ -14,7 +14,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   "11": {
     "name": "erika",
     "lastCode": 110071,
-    "posX": 1400,
+    "posX": 1570,
     "posY": 1200,
     "inHouse": -1
   },

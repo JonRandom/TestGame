@@ -41,36 +41,23 @@ public class NpcController extends Knoten {
         saveGson();
     }
     public int getLastCode(int player){
+        readJSON();
         String playerStringID = String.valueOf(player);
         NpcController.NPC element = NPCs.get(playerStringID);
         return element.lastCode;
     }
 
-    public Npc GetCollider(Player Spieler){
-
-        if(Spieler.schneidet(npc1)) {
-            return npc1;
-        }else{
-            return null;
-        }
-    }
-
-    public boolean ColliderTest(Player Spieler){
-
-        if(Spieler.schneidet(npc1)) {
-            return true;
-        }else{
-            return false;
-        }
-
-    }
-
-    public boolean checkForCollision(Player AP){
+    public boolean checkForCollision(Player AP, boolean isInHouse){
         boolean coll = false;
         //geht alle Npcs durch un schaut nach collision, aber nicht nach einer expliziten
         for (Npc n : NPC_List) {
             if(AP.schneidet(n)) {
-                coll= true;
+                if(!isInHouse && (n.getHouseNumber() == -1)){ //sucht nicht im Haus und NPC nicht im Haus
+                    coll= true;
+                }
+                if(isInHouse && n.getHouseNumber() != -1){
+                    coll= true;
+                }
             }
         }
         return coll;
@@ -90,13 +77,14 @@ public class NpcController extends Knoten {
     }
 
     private void FillNPC_list(){
+        readJSON();
         NPC_List = new Npc[NPCs.size()];
         int i = 0;
         for (String key : NPCs.keySet()) {
             NpcController.NPC element = NPCs.get(key);
             String path = "./Assets/NPCs/"  + element.name + ".png";
             System.out.println("Neuer NPC names" + path);
-            NPC_List[i] = new Npc(element.posX,element.posY,path);
+            NPC_List[i] = new Npc(element.posX,element.posY,path, element.inHouse);
             if(element.inHouse == -1) { //in keinem Haus
                 this.add(NPC_List[i]);
             }

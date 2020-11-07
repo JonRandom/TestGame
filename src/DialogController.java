@@ -32,6 +32,7 @@ public class DialogController extends Knoten{
     private boolean[] GefundeneItems = new boolean[5];
 
     private int nextDialogCode = 100991; //JF aktueller nächster Code; oder erster Code
+    private boolean dialogRunning = false;//wird gerade ein dialog abgespiel
 
     private int ersterDialogCode = 100000;
     private int wahl;
@@ -96,6 +97,9 @@ public class DialogController extends Knoten{
         for(Bild b : Buttons){
             b.sichtbarSetzen(v);
         } //buttons (un)sichtbar
+        if(!v){
+            dialogRunning = false; //macht dialog auch aus
+        }
         //ButtonWahl0.sichtbarSetzen(v);
         //ButtonWahl1.sichtbarSetzen(v);
 
@@ -119,6 +123,9 @@ public class DialogController extends Knoten{
         return DialogMode;
     }
 
+    public boolean isDialogRunning() {
+        return dialogRunning;
+    }
     //Startet Dialog
     /**
      * Grundgedanke:
@@ -148,29 +155,34 @@ public class DialogController extends Knoten{
         }
     }
     public void openDialog(Player AP){ // JF:Variante zu dialogBeginnen()
-        int playerCode = NPC_Controller.getCollidingNPC(AP) + 10; // +10 um von startindex 0 auf startindex 10 zu kommen
+        if(dialogRunning){
+            System.out.println("Dialog läuft schon");
+        }
+        else {
+            dialogRunning = true;
+            int playerCode = NPC_Controller.getCollidingNPC(AP) + 10; // +10 um von startindex 0 auf startindex 10 zu kommen
 
-        int code = NPC_Controller.getLastCode(playerCode);
-        int wantedPlayer = getPlayerFromCode(nextDialogCode);
-        //System.out.println("DialogController: watnedPlayer = "+ wantedPlayer);
-        if(playerCode == wantedPlayer){
-            System.out.println("DialogController: Player entspricht wanted Player");
-            DialogText DT = DialogListe.get(String.valueOf(nextDialogCode)); //kriegt die Dialogzeile von dem CODE
-            SetContent(DT.inhalt);
-        }
-        else if(playerCode != -1){
-            int LastDialogCode = NPC_Controller.getLastCode(playerCode);
-            DialogText DT = DialogListe.get(String.valueOf(LastDialogCode));
-            SetContent(DT.inhalt);
-        }
-        else{//kein Player geschnitten
-            SetContent("FEHLER MIT KEINEM DIALOG GESCHNITTEN");
+            int code = NPC_Controller.getLastCode(playerCode);
+            int wantedPlayer = getPlayerFromCode(nextDialogCode);
+            //System.out.println("DialogController: watnedPlayer = "+ wantedPlayer);
+            if (playerCode == wantedPlayer) {
+                System.out.println("DialogController: Player entspricht wanted Player");
+                DialogText DT = DialogListe.get(String.valueOf(nextDialogCode)); //kriegt die Dialogzeile von dem CODE
+                SetContent(DT.inhalt);
+            } else if (playerCode != -1) {
+                int LastDialogCode = NPC_Controller.getLastCode(playerCode);
+                DialogText DT = DialogListe.get(String.valueOf(LastDialogCode));
+                SetContent(DT.inhalt);
+            } else {//kein Player geschnitten
+                SetContent("FEHLER MIT KEINEM DIALOG GESCHNITTEN");
+            }
         }
     }
 
     public int updateWahl(){
         return aktuelleAuswahl;
     }
+
 
 
     private void FillWahlObjects() {

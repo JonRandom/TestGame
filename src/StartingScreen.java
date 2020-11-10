@@ -20,7 +20,7 @@ public class StartingScreen extends Knoten {
     private Bild BackgroundPic;
 
 
-    private int ButtonCount = 4;
+    private int ButtonCount = 2;
     private Bild[] Buttons = new Bild[ButtonCount];
 
     private int selection = 0; //von 0 bis ButtonCount -1
@@ -29,11 +29,14 @@ public class StartingScreen extends Knoten {
 
     private Text tb0; //Text fuer Button 0 StartingScreen
     private Text tb1; //Text fuer Button 1 StartingScreen
+
+    /*
     private Text tb2; //Text fuer Button 2 StartingScreen
     private Text tb3; //Text fuer Button 3 StartingScreen
+     */
 
     public StartingScreen() {
-        BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/Forest.jpg");
+        BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/2020.10.14-ZwischenstandOhneTitel.png");
         this.add(BackgroundPic);
 
         FillButtonObjects();
@@ -45,8 +48,8 @@ public class StartingScreen extends Knoten {
         System.out.println("FillButtonObjects");
         for (int i = 0; i < ButtonCount; i++) {
             System.out.println(i);
-            Buttons[i] = new Bild(200 + i * 200, 400, "./Assets/StartingScreen/Button" + i + ".png"); //jedes Bild 200 pixel weiter rechts
-            this.add(Buttons[i]);
+            Buttons[i] = new Bild(55 + i * 850, 108, "./Assets/StartingScreen/ButtonFinal" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+            this.add(Buttons[i]);   //200 + i * 200, 400
         }
         UpdateButtons();
     }
@@ -108,18 +111,19 @@ public class StartingScreen extends Knoten {
         switch (selection) {
             case 0: {
                 TextStartScEntfernen();
-                System.out.println("Button 1: Anleitung");
-                tb0 = new Text("Text fuer Button 0",150,350);
-                this.add(tb0);
+                System.out.println("Button 1: Exit");
+                //tb0 = new Text("Text fuer Button 0",150,350);
+                //this.add(tb0);
             }
             break;
             case 1: {
                 TextStartScEntfernen();
-                System.out.println("Button 2: Charakter");
-                tb1 = new Text("Text fuer Button 1",350,350);
-                this.add(tb1);
+                System.out.println("Button 2: Play");
+                //tb1 = new Text("Text fuer Button 1",350,350);
+                //this.add(tb1);
             }
             break;
+            /*
             case 2: {
                 TextStartScEntfernen();
                 System.out.println("Button 3: neues Spiel");
@@ -134,6 +138,7 @@ public class StartingScreen extends Knoten {
                 this.add(tb3);
             }
             break;
+            */
         }
 
     }
@@ -143,7 +148,7 @@ public class StartingScreen extends Knoten {
         //JF: Oder füg die einfach zur Mehtode setActive hinzu. Da wird alles ausgeblendet.
         this.entfernen(tb0);
         this.entfernen(tb1);
-        this.entfernen(tb2);
-        this.entfernen(tb3);
+        //this.entfernen(tb2);
+        //this.entfernen(tb3);
     }
 }

@@ -155,6 +155,7 @@ public class DialogController extends Knoten{
         }
     }
     public void openDialog(Player AP){ // JF:Variante zu dialogBeginnen()
+        System.out.println("NEUER DIALOG WIRD AUFGERUFEN mit nextCode = ");
         if(dialogRunning){
             System.out.println("Dialog läuft schon");
         }
@@ -174,7 +175,7 @@ public class DialogController extends Knoten{
                 DialogText DT = DialogListe.get(String.valueOf(LastDialogCode));
                 SetContent(DT.inhalt);
             } else {//kein Player geschnitten
-                SetContent("FEHLER MIT KEINEM DIALOG GESCHNITTEN");
+                SetContent("DialogController: FEHLER: MIT KEINEM PLAYER GESCHNITTEN");
             }
         }
     }
@@ -210,10 +211,14 @@ public class DialogController extends Knoten{
         Buttons[aktuelleAuswahl].setOpacity(1f);
     }
 
-    public void SelectWahl() { //Enter = 31
+    public void SelectWahl(Player AP) { //Enter = 31
         switch (aktuelleAuswahl) {
             case 0: {
                 System.out.println("Wahl1");
+                dialogRunning = false;
+                DialogText DT = DialogListe.get(String.valueOf(nextDialogCode)); //kriegt die Dialogzeile von dem CODE
+                nextDialogCode = DT.Wahl1;
+                openDialog(AP);
                 wahl = 1;
             }
             break;

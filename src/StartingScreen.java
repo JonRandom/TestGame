@@ -48,7 +48,7 @@ public class StartingScreen extends Knoten {
         System.out.println("FillButtonObjects");
         for (int i = 0; i < ButtonCount; i++) {
             System.out.println(i);
-            Buttons[i] = new Bild(55 + i * 850, 108, "./Assets/StartingScreen/ButtonFinal" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+            Buttons[i] = new Bild(55 + i * 825, 108, "./Assets/StartingScreen/ButtonFinal" + i + ".png"); //jedes Bild 200 pixel weiter rechts
             this.add(Buttons[i]);   //200 + i * 200, 400
         }
         UpdateButtons();

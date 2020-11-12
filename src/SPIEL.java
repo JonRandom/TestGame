@@ -258,7 +258,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 DialogController.ShiftRight();
             }
             else if(tastenkuerzel == 31) {
-                DialogController.SelectWahl();
+                DialogController.SelectWahl(ActivePlayer);
             }
             //leertaste
             else if(tastenkuerzel == 30){

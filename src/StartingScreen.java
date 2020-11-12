@@ -36,7 +36,7 @@ public class StartingScreen extends Knoten {
      */
 
     public StartingScreen() {
-        BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/2020.10.14-ZwischenstandOhneTitel.png");
+        BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/StartbilschirmOHNEButtonsundTitel.png");
         this.add(BackgroundPic);
 
         FillButtonObjects();
@@ -112,6 +112,7 @@ public class StartingScreen extends Knoten {
             case 0: {
                 TextStartScEntfernen();
                 System.out.println("Button 1: Exit");
+                this.setActive(false);
                 //tb0 = new Text("Text fuer Button 0",150,350);
                 //this.add(tb0);
             }

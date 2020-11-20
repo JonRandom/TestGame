@@ -48,8 +48,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         ActivePlayer = new Player(1100,1100);
 
         pet1 = new Pet(1100,1100);
-        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe());
         NpcController = new NpcController();
+        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController);
         DialogController = new DialogController(NpcController);
         DialogController.setVisisbilty(false);
         debugAnzeige1 = new DebugAnzeige(0,0);
@@ -75,6 +75,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         maus.klickReagierbarAnmelden(this);
         */
 
+        NpcController2 mNpcController2 = new NpcController2();
+
 
         wurzel.add(Autos);
         wurzel.add(DP);
@@ -82,6 +84,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController);
         wurzel.add(pet1);
+        wurzel.add(mNpcController2);
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
@@ -224,29 +227,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             else if (tastenkuerzel == 31) {
                 StartSc.SelectButtons();
             }
-            //Leertaste
-            //Leertaste
-            /*
-            else if (tastenkuerzel == 30) {
-                StartSc.TextStartScEntfernen();
-                StartSc.setActive(false);
-                switch (StartSc.getSelection()) {
-
-                    case (0):
-                        System.out.println("test0");
-                        break;
-                    case (1):
-                        System.out.println("test1");
-                        break;
-                    case (2):
-                        System.out.println("test2");
-                        break;
-                    case (3):
-                        System.out.println("test3");
-                        break;
-
-                }
-            } */
 
         }
 

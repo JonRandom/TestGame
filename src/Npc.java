@@ -28,8 +28,8 @@ public class Npc extends Knoten {
             this.add(img);
         }
         catch(Exception e){
-            System.out.println("Nps: Fehler beim importieren der Datei");
-            System.out.println("NPC: " + e);
+            System.out.println("Npc: Fehler beim importieren der Datei");
+            System.out.println("Npc: " + e);
         }
 
     }

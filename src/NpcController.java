@@ -28,6 +28,7 @@ public class NpcController extends Knoten {
         //NPCs.get("10").setName("Test");
         saveGson();
         FillNPC_list();
+        leaveHouse();
     }
 
     /**
@@ -51,7 +52,8 @@ public class NpcController extends Knoten {
         boolean coll = false;
         //geht alle Npcs durch un schaut nach collision, aber nicht nach einer expliziten
         for (Npc n : NPC_List) {
-            if(AP.schneidet(n)) {
+            if(AP.schneidet(n) && n.sichtbar()) {
+                System.out.println("Spieler geschnitten und er ist sichtbar?? : " + n.sichtbar());
                 if(!isInHouse && (n.getHouseNumber() == -1)){ //sucht nicht im Haus und NPC nicht im Haus
                     coll= true;
                 }
@@ -75,7 +77,39 @@ public class NpcController extends Knoten {
         }
         return playerID;
     }
+    public void hideNPCs(){
+        for (Npc n : NPC_List) {
+            n.sichtbarSetzen(false);
+        }
+    }
 
+    /**
+     * Verschiebt die NPCs dieses Hauses an die entsprechende Position
+     *
+     * @param houseN NouseNummer
+     * @param offsetX Relle Postion der oberen ecke des Bildes
+     * @param offsetY Relle Postion der oberen ecke des Bildes
+     */
+    public void enterHouse(int houseN,int offsetX,int offsetY){
+        hideNPCs();
+        for (Npc n : NPC_List) {
+            if(n.getHouseNumber() == houseN){
+                n.sichtbarSetzen(true);
+                n.positionSetzen(offsetX + (int)n.getPosX(), offsetY + (int)n.getPosY());
+            }
+        }
+    }
+
+    public void leaveHouse(){
+        hideNPCs();
+        System.out.println("Haus wird verlassen");
+        for (Npc n : NPC_List) {
+            if(n.getHouseNumber() == -1){ // in keinem Haus
+                System.out.println("Player ID -> sichtbar: " + n.getPosX());
+                n.sichtbarSetzen(true);
+            }
+        }
+    }
     private void FillNPC_list(){
         readJSON();
         NPC_List = new Npc[NPCs.size()];
@@ -84,10 +118,12 @@ public class NpcController extends Knoten {
             NpcController.NPC element = NPCs.get(key);
             String path = "./Assets/NPCs/"  + element.name + ".png";
             System.out.println("Neuer NPC names" + path);
-            NPC_List[i] = new Npc(element.posX,element.posY,path, element.inHouse);
+            NPC_List[i] = new Npc(element.posX,element.posY,path, element.houseN);
+            /*
             if(element.inHouse == -1) { //in keinem Haus
                 this.add(NPC_List[i]);
             }
+             */
 
             i++;
 
@@ -147,7 +183,7 @@ public class NpcController extends Knoten {
 
         int posX;
         int posY;
-        int inHouse;
+        int houseN;
 
         public void setName(String name) {
             this.name = name;
@@ -157,4 +193,43 @@ public class NpcController extends Knoten {
         }
 
     }
+
+    /**
+     * Helper Klasse die sich um die Position des NPCS kümmert auch in Häusern
+     * WIRD NICHT VERWENDET
+     */
+    class NPC_Location{
+        float posX;
+        float posY;
+        int houseN; //-1 wenn nicht in Haus
+
+        public NPC_Location(int x, int y, int houseNumber){
+            this.posX = x;
+            this.posY = y;
+            this.houseN = houseNumber;
+        }
+        public boolean isInHouse(){
+            if(houseN == -1){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        public int whichHouse(){
+            if(!isInHouse()){
+                System.out.println("NPC_Location: FEHLER Spieler, welcher in keinem Haus ist, wird nach Haus Nummer gefragt");
+                return -1;
+            }
+            return houseN;
+        }
+
+        public int getPosX() {
+            return (int)posX;
+        }
+        public int getPosY() {
+            return (int)posY;
+        }
+    }
+
 }

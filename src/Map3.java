@@ -55,12 +55,15 @@ public class Map3 extends Knoten {
     private int lastWhiteX;
     private int lastWhiteY;
 
+    private NpcController NPC_C;
+
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(float PW, float PH) {
+    public Map3(float PW, float PH, NpcController NPC_C) {
         this.PlayerW = (int) PW;
         this.PlayerH = (int) PH;
+        this.NPC_C = NPC_C;
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
 
@@ -155,6 +158,7 @@ public class Map3 extends Knoten {
 
         houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
         houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
+        NPC_C.enterHouse((int)finalPosX, (int)finalPosY, HouseN);
         //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
@@ -162,7 +166,6 @@ public class Map3 extends Knoten {
     public void enterHouse(Player AP, int HouseN){
         System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
         hideAllHouses();
-
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
         FixInteriorPos(AP, HouseN);
@@ -177,6 +180,7 @@ public class Map3 extends Knoten {
         hideAllHouses();
         backgroundImg.sichtbarSetzen(false);
         AP.positionSetzen(lastWhiteX,lastWhiteY);
+        NPC_C.leaveHouse();
 
     }
     public void hideAllHouses(){

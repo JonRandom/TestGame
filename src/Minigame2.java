@@ -82,6 +82,7 @@ public class Minigame2 extends Knoten {
 
         //für den Hebel animation
         //benennung z.B lever0
+        /*
         for(int i = 0; i< leverCount; i++){
             String path = mainPath  + "lever" + i + ".png";
             try {
@@ -92,7 +93,8 @@ public class Minigame2 extends Knoten {
             catch(Exception e){
                 System.out.println("Minigame2: "  + e);
             }
-        }
+        } */
+
         //für das FrameBild GANZ OBEN
         try {
             String path = mainPath  + "frame.png";

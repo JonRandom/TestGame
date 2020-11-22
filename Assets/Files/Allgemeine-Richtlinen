@@ -53,19 +53,26 @@ In der Dialoge.json Datei wird jede einzelne Zeile eingetragen.
 Jede Zeile hat einen Code. Dieser Code ist klarText und kann alles mögliche sein.
 Er dient zur Verkettung der DialogZeilen. In den Feldern Wahl1/2 sind werden auch Codes eingetragen.
 Wenn man nun von einem Dialog zu einem anderen springen will, muss der Wahl1-Code dem Code einer neune Zeile entsprechen.
+Beim Name kommt das selbe rein, wie im Feld "name" des  Datei NPCs-Template.json.
+
+nextTime ist generell leer ""; außer diese Zeile ist die letzte, dann ist dies die ZeitPosition des neuen DialogAbschnitts.
+Sie wird später mit dem Key in der Datei DialogPackets verglichen.
 
 Bsp.:
 {
-"120001": {
-    "inhalt": "ARE YOU REMEMBER THE DAY!",
-    "Wahl1": "120402",
-    "Wahl2": "120002"
+  "110001": {
+    "inhalt": "TEXT 1 DER DRINNSTEHEN SOLL",
+    "name": "erika",
+    "wahl1": "120001",
+    "wahl2": "120002",
+    "nextTime": ""
   },
-"120402": {
-    "inhalt": "Erster Text bei erika",
-    "Wahl1": "120001",
-    "Wahl2": "120002"
-
+  "120001": {
+    "inhalt": "ARE YOU REMEMBER THE DAY!",
+    "name": "erika",
+    "wahl1": "120402",
+    "wahl2": "120002",
+    "nextTime": "11"
   }
 }
 
@@ -77,7 +84,7 @@ In der DialogPackets.json Datei wird jeder Beginn eines Dialogs eingetragen.
 Die primäre Sotierung bassiert auf einer Zeit. Diese Zeit ist klarText im Moment und z.B. "01"
 Innerhalb einer Zeit ist dann ein Code für einen NPC. Diese entsprechen den Codes der NPCs in der Datei NPCs-Template.json
 
-Das Feld "Code" entspricht dem ersten Code des zustartendem Dialog. Die NPC ID, ist wieder die Nummer eines NPCs aus der Datei NPCs-Template.json.
+Das Feld "Code" entspricht dem ersten Code des zustartendem Dialog.
 Die restlichen Felder sind für die Zukunft.
 
 
@@ -87,13 +94,11 @@ Bsp.:
     "11": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     },
     "02": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     }
   },
@@ -101,7 +106,6 @@ Bsp.:
     "11": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     }
   }

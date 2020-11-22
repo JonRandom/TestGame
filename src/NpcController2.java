@@ -70,12 +70,12 @@ public class NpcController2 extends Knoten {
      */
     public void enterHouse(int houseN, int offsetX, int offsetY) {
         hideAllNPCs();  //alle ausblenden
-        System.out.println("Der NPC Controller betritt auch ein Haus mit der Nummer: " + houseN);
+        //System.out.println("Der NPC Controller betritt auch ein Haus mit der Nummer: " + houseN);
 
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (element.getHouseNumber() == houseN) {
-                System.out.println("Der NPC:" + element.name + "ist im Haus sichtbar");
+                System.out.println("Der NPC names " + element.name + "ist im Haus sichtbar");
                 element.sichtbarSetzen(true);
                 element.positionSetzen(offsetX + (int) element.getPosX(), offsetY + (int) element.getPosY());
 
@@ -86,11 +86,11 @@ public class NpcController2 extends Knoten {
     public void leaveHouse() {
         hideAllNPCs();
 
-        System.out.println("NpcController2: Haus wird verlassen");
+        //System.out.println("NpcController2: Haus wird verlassen");
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (!element.isInHouse()) {
-                System.out.println("Npc_Controller: Player ID -> sichtbar: " + element.name);
+                //System.out.println("Npc_Controller2: Player ID -> sichtbar: " + element.name);
                 element.sichtbarSetzen(true);
             }
         }

@@ -229,7 +229,7 @@ public class Map3 extends Knoten {
             else{
                 // er halt also eine Farbe besucht
                 int match = -1;
-                System.out.println(numberofB);
+                //System.out.println(numberofB);
                 for(int i= 0; i < numberofB;i++) {
                     //System.out.println("Sucht nach Häusern die matchen bei i = " + i);
                     //System.out.println("Eingetragene Farbe bei i ist " + RedColorCodes[i]);

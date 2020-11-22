@@ -3,13 +3,11 @@
     "11": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     },
     "02": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     }
   },
@@ -17,7 +15,6 @@
     "11": {
       "requiredItems": [],
       "requiredLines": [],
-      "NpcID": "12",
       "code": "120002"
     }
   }

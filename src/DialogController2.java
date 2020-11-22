@@ -31,7 +31,7 @@ public class DialogController2 extends Knoten {
 
 
     //GLOBAL STUFF;
-    private String globalTemporalPosition =  "01";
+    private String globalTemporalPosition = "01";
     ArrayList<String> foundItems = new ArrayList<String>();
     ArrayList<String> readLines = new ArrayList<String>();
 
@@ -47,9 +47,10 @@ public class DialogController2 extends Knoten {
     //VISIBLE STUFF;
     private String defaultPath = "./Assets/Dialoge/";
     private Text displayTextObject;
+    private Text displayResponseTextObject;
     private Bild displayDialogBackground;
     private Bild[] displayButtons;
-    private final int textPosY = 800;
+    private final int textPosY = 850;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -65,6 +66,7 @@ public class DialogController2 extends Knoten {
         readJSON_DialogPackets();
 
         addDisplayObjects();
+        hideWindow();
     }
 
     private void addDisplayObjects() {
@@ -75,11 +77,11 @@ public class DialogController2 extends Knoten {
         //Bilder mit try catch
         try {
             displayDialogBackground = new Bild(defaultPath + "DialogFenster.png");
-            displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite()/2, textPosX);
+            displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite() / 2, textPosX);
             displayButtons[0] = new Bild(defaultPath + "ButtonWahl0.png");
-            displayButtons[0].positionSetzen(400,textPosY);
+            displayButtons[0].positionSetzen(400, textPosY);
             displayButtons[1] = new Bild(defaultPath + "ButtonWahl1.png");
-            displayButtons[1].positionSetzen(700,textPosY);
+            displayButtons[1].positionSetzen(700, textPosY);
             this.add(displayDialogBackground);
             this.add(displayButtons[0], displayButtons[1]);
         } catch (Exception e) {
@@ -88,14 +90,16 @@ public class DialogController2 extends Knoten {
         }
 
         //Text als letztes also ganz oben
+        displayResponseTextObject = new Text(textPosX, textPosY - 50, "DEFAULT RESONSE TEXT");
         displayTextObject = new Text(textPosX, textPosY, "DEFAULT TEXT");
-        this.add(displayTextObject);
+        this.add(displayTextObject, displayResponseTextObject);
     }
 
     private void showWindow() {
         displayButtons[0].sichtbarSetzen(true);
         displayButtons[1].sichtbarSetzen(true);
         displayTextObject.sichtbarSetzen(true);
+        displayResponseTextObject.sichtbarSetzen(true);
         displayDialogBackground.sichtbarSetzen(true);
     }
 
@@ -103,6 +107,7 @@ public class DialogController2 extends Knoten {
         displayButtons[0].sichtbarSetzen(false);
         displayButtons[1].sichtbarSetzen(false);
         displayTextObject.sichtbarSetzen(false);
+        displayResponseTextObject.sichtbarSetzen(false);
         displayDialogBackground.sichtbarSetzen(false);
     }
 
@@ -118,13 +123,31 @@ public class DialogController2 extends Knoten {
 
     private void advanceDialogLine() {
         DialogLine currentLine = dialogLines.get(currentDialogCode);
-        if (buttonCursor == 0) {
-            currentDialogCode = currentLine.Wahl1;
+        if(!currentLine.nextTime.equals("")){
+            if (buttonCursor == 0) {
+                currentDialogCode = currentLine.wahl1;
+            }
+            if (buttonCursor == 1) {
+                currentDialogCode = currentLine.wahl2;
+            }
+            updateText();
+            System.out.println("DialogController2: Dialog weitergeführt. Der NPC Names " + dialogLines.get(currentDialogCode).name + " spricht jetzt!");
+            updateButtons();
+            updateResonse();
         }
-        if (buttonCursor == 1) {
-            currentDialogCode = currentLine.Wahl2;
+        else{
+            globalTemporalPosition = currentLine.nextTime;
+            System.out.println("DialogController2: Dialog hat sein Ende erreicht und die ZeitPosition ist fortgeschritten auf: " + currentLine.nextTime + " !");
+            endDialog();
         }
-        updateText();
+
+
+    }
+    private void endDialog(){
+        hideWindow();
+        active = false;
+        currentDialogCode = null; //kontorvers ob das hier Sinn macht
+        waitingForInput = false;
     }
 
     public void openDialogPacket(String NpcID) {
@@ -132,8 +155,12 @@ public class DialogController2 extends Knoten {
             active = true;
             DialogController2.DialogPacket element = dialogPackets.get(globalTemporalPosition).get(NpcID);
             currentDialogCode = element.code;
+            showWindow();
             updateText();
             waitingForInput = true;
+            updateResonse();
+            updateButtons();
+
         } else {
             System.out.println("DialogController2: Dialog schon offen");
         }
@@ -142,27 +169,37 @@ public class DialogController2 extends Knoten {
     }
 
     public boolean isDialogPacketPlayable(String NpcID) {
-        Map<String, DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
-        DialogPacket element = innnerPacketMap.get(NpcID);   //stellt jedes Element der Map einmal als "element" zur Verfügung
-        if(element == null){
-            System.out.println("DialogController2: KEIN NPC DER IN DER AN DIESEM ZEITPUNKT ABSPIELEN KANN");
-        }
-
-        if (foundItems.containsAll(element.requiredItems)) {
-            if (readLines.containsAll(element.requiredLines)) {
-                System.out.println("DialogController2: Es sind alle nötigen Items und Zeilen vorhanden");
-                return true;
+        if (dialogPackets.containsKey(globalTemporalPosition)) {
+            Map<String, DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
+            if (innnerPacketMap.containsKey(NpcID)) {
+                DialogPacket element = innnerPacketMap.get(NpcID);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+                if (foundItems.containsAll(element.requiredItems)) {
+                    if (readLines.containsAll(element.requiredLines)) {
+                        System.out.println("DialogController2: Es sind alle nötigen Items und Zeilen vorhanden");
+                        return true;
+                    } else {
+                        System.out.println("DialogController2: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen");
+                        return false;
+                    }
+                } else {
+                    System.out.println("DialogController2: Es sind nicht alle nötigen Items gefunden worden");
+                    return false;
+                }
             } else {
-                System.out.println("DialogController2: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen");
+                System.out.println("DialogController2: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");
                 return false;
             }
         } else {
-            System.out.println("DialogController2: Es sind nicht alle nötigen Items gefunden worden");
+            System.out.println("DialogController2: FEHLER: Zu diesem Zeitpunkt gibt es keinen Eintrag");
             return false;
         }
-
     }
 
+    private void updateButtons(){
+        displayButtons[0].setOpacity(0.3f);
+        displayButtons[1].setOpacity(0.3f);
+        displayButtons[buttonCursor].setOpacity(1f);
+    }
     public void input(String dir) {
         displayButtons[0].setOpacity(0.3f);
         displayButtons[1].setOpacity(0.3f);
@@ -173,12 +210,14 @@ public class DialogController2 extends Knoten {
                     if (buttonCursor < 0) {
                         buttonCursor = 0;
                     }
+                    updateResonse();
                     break;
                 case "rechts":
                     buttonCursor++;
                     if (buttonCursor > 1) {
                         buttonCursor = 1;
                     }
+                    updateResonse();
                     break;
                 case "enter":
                     advanceDialogLine();
@@ -187,10 +226,26 @@ public class DialogController2 extends Knoten {
                 default:
                     System.out.println("DialogController2: Kein valider Input");
             }
-            displayButtons[buttonCursor].setOpacity(1f);
+            updateButtons();
         } else {
             System.out.println("DialogController2: WARTET NICHT AUF INPUT");
         }
+    }
+
+    public void updateResonse() {
+        displayResponseTextObject.sichtbarSetzen(true);
+        DialogLine currentLine = dialogLines.get(currentDialogCode);
+        DialogLine nextLine;
+        if (buttonCursor == 0) {
+            nextLine = dialogLines.get(currentLine.wahl1);
+        } else {
+            nextLine = dialogLines.get(currentLine.wahl2);
+        }
+
+        displayResponseTextObject.inhaltSetzen("Antwort: " + nextLine.inhalt);
+        int width = (int) displayResponseTextObject.getBreite();
+        int posX_new = MAIN.x / 2 - width / 2;
+        displayResponseTextObject.positionSetzen(posX_new, textPosY - 50);
     }
 
     public boolean isActive() {
@@ -248,9 +303,11 @@ public class DialogController2 extends Knoten {
     public class DialogLine {
 
         String inhalt; //Text der Dialog Zeile
+        String name; //NPC bei dem der Dialog abgespielt wird
+        String wahl1; // Code der Ersten Wahl
+        String wahl2; // Code der Zweiten Wahl
 
-        String Wahl1; // Code der Ersten Wahl
-        String Wahl2; // Code der Zweiten Wahl
+        String nextTime; //nexter Zeitabschnitt, leer wenn nicht letzter
 
     }
 
@@ -260,7 +317,6 @@ public class DialogController2 extends Knoten {
         ArrayList<String> requiredItems;
         ArrayList<String> requiredLines;
 
-        String NpcID; //Spieler bei dem der Dialog anfängt
         String code; // erster Code des Dialogs
 
     }

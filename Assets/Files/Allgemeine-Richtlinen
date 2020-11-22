@@ -45,29 +45,66 @@ Die Dateien müssen alle wie die Häuser in der Karte.json benannt werden, mit .
 
 
 ---------------------------------------------------------------------
-JSON STRUKTUR FÜR DIE DIALOGE:
+Die Dialoge sind generell in zwei Dateien aufgeteilt. In die DialogPackets und in die Dialoge(Dialog-Zeilen).
 
-Codeaufbau Beispiel: 110034 //ersten Beiden Zahlen für die Person, weitere vier für die Zeile
-                            //ERSTE PERSON = 10
-                            //ZWEITE PERSON = 11
-                            //...
+DIALOGE.JSON----------------
+In der Dialoge.json Datei wird jede einzelne Zeile eingetragen.
 
-Variablen Erklärung:
+Jede Zeile hat einen Code. Dieser Code ist klarText und kann alles mögliche sein.
+Er dient zur Verkettung der DialogZeilen. In den Feldern Wahl1/2 sind werden auch Codes eingetragen.
+Wenn man nun von einem Dialog zu einem anderen springen will, muss der Wahl1-Code dem Code einer neune Zeile entsprechen.
 
-brauchtFlags = Liste mit true/flase Flags. Wir für Diaoge genutzt, die ein Item voraussetzten. Falls unsicher, [false,false,false,false,false] nehmen. IMMER aus 5 Elemtenten.
-dialogCode = Code des jetztigen Dialogs
-inhalt = Text der Dialog Zeile
-Wahl1 = Code des nächsten Dialogs, der bei dieser Wahl(1) abgespielt werden soll. Kann auch bei einer anderen Person sein.
-Wahl2 = Code des nächsten Dialogs, der bei dieser Wahl(2) abgespielt werden soll. Kann auch bei einer anderen Person sein.
-
-
-BlockBeispiel:
-"1": {
-    "brauchtFlags": [false,false,false,false,false],
-    "dialogCode": 110001,
-    "inhalt": "TEXT DER DRINNSTEHEN SOLL",
-    "Wahl1": 120002,
-    "Wahl2": 120003
-
+Bsp.:
+{
+"120001": {
+    "inhalt": "ARE YOU REMEMBER THE DAY!",
+    "Wahl1": "120402",
+    "Wahl2": "120002"
   },
+"120402": {
+    "inhalt": "Erster Text bei erika",
+    "Wahl1": "120001",
+    "Wahl2": "120002"
+
+  }
+}
+
+Das Komma hinten ist nötig, wenn danach noch ein Satz hat.
+
+DIALOGPACKETS.JSON----------------
+In der DialogPackets.json Datei wird jeder Beginn eines Dialogs eingetragen.
+
+Die primäre Sotierung bassiert auf einer Zeit. Diese Zeit ist klarText im Moment und z.B. "01"
+Innerhalb einer Zeit ist dann ein Code für einen NPC. Diese entsprechen den Codes der NPCs in der Datei NPCs-Template.json
+
+Das Feld "Code" entspricht dem ersten Code des zustartendem Dialog. Die NPC ID, ist wieder die Nummer eines NPCs aus der Datei NPCs-Template.json.
+Die restlichen Felder sind für die Zukunft.
+
+
+Bsp.:
+{
+  "01": {
+    "11": {
+      "requiredItems": [],
+      "requiredLines": [],
+      "NpcID": "12",
+      "code": "120002"
+    },
+    "02": {
+      "requiredItems": [],
+      "requiredLines": [],
+      "NpcID": "12",
+      "code": "120002"
+    }
+  },
+  "11": {
+    "11": {
+      "requiredItems": [],
+      "requiredLines": [],
+      "NpcID": "12",
+      "code": "120002"
+    }
+  }
+}
+Es gibt hier Zwei Zeiten "01" und "11". Oben gibt es zwei mögliche Spieler "11" und "02".
 Das Komma hinten ist nötig, wenn danach noch ein Satz hat.

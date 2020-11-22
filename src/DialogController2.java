@@ -229,7 +229,7 @@ public class DialogController2 extends Knoten {
             }.getType();
             dialogPackets = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "DialogController2: JSON(" + dialogPacketsPath + ")  erfolgreich gelesen" + ANSI_RESET);
-            System.out.println("ANTWORT: " + dialogPackets.get("01").get("11").NpcID);
+            //System.out.println("ANTWORT: " + dialogPackets.get("01").get("11").NpcID);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(ANSI_PURPLE + "DialogController2: Ein Fehler beim Lesen der Json Datei(" + dialogPacketsPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
@@ -246,9 +246,6 @@ public class DialogController2 extends Knoten {
      * Eigentlich muss in dieser Klasse nicht geändert werden
      */
     public class DialogLine {
-
-        String dialogCode; //Zahlen Code
-
 
         String inhalt; //Text der Dialog Zeile
 

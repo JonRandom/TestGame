@@ -4,7 +4,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
  */
 
 {
-  "01": {
+  "11": {
     "name":"erika",
     "posX":200.0,
     "posY":100.0,

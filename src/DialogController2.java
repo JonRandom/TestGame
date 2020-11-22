@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sun.tools.javac.Main;
 import ea.Bild;
 import ea.Knoten;
 import ea.Text;
@@ -30,7 +31,7 @@ public class DialogController2 extends Knoten {
 
 
     //GLOBAL STUFF;
-    private String globalTemporalPosition;
+    private String globalTemporalPosition =  "01";
     ArrayList<String> foundItems = new ArrayList<String>();
     ArrayList<String> readLines = new ArrayList<String>();
 
@@ -68,18 +69,22 @@ public class DialogController2 extends Knoten {
 
     private void addDisplayObjects() {
         int textPosX = MAIN.x / 2;
+        displayButtons = new Bild[2];
 
 
         //Bilder mit try catch
         try {
             displayDialogBackground = new Bild(defaultPath + "DialogFenster.png");
+            displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite()/2, textPosX);
             displayButtons[0] = new Bild(defaultPath + "ButtonWahl0.png");
+            displayButtons[0].positionSetzen(400,textPosY);
             displayButtons[1] = new Bild(defaultPath + "ButtonWahl1.png");
+            displayButtons[1].positionSetzen(700,textPosY);
             this.add(displayDialogBackground);
             this.add(displayButtons[0], displayButtons[1]);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DialogController2. FEHLER beim Importieren der Bilder");
+            System.out.println("DialogController2: FEHLER beim Importieren der Bilder");
         }
 
         //Text als letztes also ganz oben
@@ -139,6 +144,10 @@ public class DialogController2 extends Knoten {
     public boolean isDialogPacketPlayable(String NpcID) {
         Map<String, DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
         DialogPacket element = innnerPacketMap.get(NpcID);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+        if(element == null){
+            System.out.println("DialogController2: KEIN NPC DER IN DER AN DIESEM ZEITPUNKT ABSPIELEN KANN");
+        }
+
         if (foundItems.containsAll(element.requiredItems)) {
             if (readLines.containsAll(element.requiredLines)) {
                 System.out.println("DialogController2: Es sind alle nötigen Items und Zeilen vorhanden");
@@ -155,6 +164,8 @@ public class DialogController2 extends Knoten {
     }
 
     public void input(String dir) {
+        displayButtons[0].setOpacity(0.3f);
+        displayButtons[1].setOpacity(0.3f);
         if (isWaitingForInput()) {
             switch (dir) {
                 case "links":
@@ -176,6 +187,7 @@ public class DialogController2 extends Knoten {
                 default:
                     System.out.println("DialogController2: Kein valider Input");
             }
+            displayButtons[buttonCursor].setOpacity(1f);
         } else {
             System.out.println("DialogController2: WARTET NICHT AUF INPUT");
         }

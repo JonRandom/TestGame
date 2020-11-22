@@ -6,9 +6,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 {
 
     private int zaehler;
-
     private Player ActivePlayer;
-    private DialogController DialogController;
     private DialogController2 DialogController2;
     private Map3 map;
     private DebugAnzeige debugAnzeige1;
@@ -51,9 +49,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2();
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2);
-        DialogController = new DialogController(NpcController2);
         DialogController2 = new DialogController2(NpcController2);
-        DialogController.setVisisbilty(false);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         debugAnzeige3 = new DebugAnzeige(500,0);
@@ -91,7 +87,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
-        statischeWurzel.add(DialogController);
         statischeWurzel.add(DialogController2);
 
         statischeWurzel.add(Minigame2);
@@ -125,12 +120,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
         debugAnzeige2.SetContent("Visiting:" +map.isVisiting());
         debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-        debugAnzeige4.SetContent("DialogRunning:" + DialogController.isDialogRunning());
+        debugAnzeige4.SetContent("Dialog2Running:" + DialogController2.isActive());
 
         DP.positionSetzen(playerX,playerY);
 
 
-        if(!DialogController.GetDialogStatus() && !StartSc.isActive()) {
+        if(!DialogController2.isActive() && !StartSc.isActive()) {
             int walkspeed = ActivePlayer.getWalkspeed();
 
             if (tasteGedrueckt(Taste.W)) {
@@ -166,11 +161,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 }
             }
             }
-        if(NpcController2.checkForCollision(ActivePlayer)){
-            System.out.println("Der Spieler schneidet einen NPC!");
-            DialogController.openDialog(ActivePlayer);
-            //DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
-            DialogController.setVisisbilty(true);
+        if(NpcController2.checkForCollision(ActivePlayer) && !DialogController2.isActive()){
+            String npcID = NpcController2.getCollidingNPC(ActivePlayer);
+            System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID );
+            if(DialogController2.isDialogPacketPlayable(npcID)){
+                DialogController2.openDialogPacket(npcID);
+            } else{
+                System.out.println("Dieser NPC hat gerade nichts zu sagen");
+            }
+
         }
 
 
@@ -187,10 +186,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     //  https://engine-alpha.org/wiki/Tastaturtabelle
     public void tasteReagieren(int tastenkuerzel)
     {
-        //Togglet beim Drücken der G Taste den Dialog
-        if(tastenkuerzel == 6){
-            DialogController.toggleVisibilty();
-        }
         if(tastenkuerzel == 8){//I als in
             //map.enterHouse(ActivePlayer,0);
         }
@@ -199,7 +194,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             map.leaveHouse(ActivePlayer);
         }
         if(tastenkuerzel == 17){ //Wenn R gedrückt
-            //DialogController.dialogBeginnen();
+            DialogController2.openDialogPacket("11");
         }
 
         if(tastenkuerzel == 12){//M für minigame
@@ -210,15 +205,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         if(tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
             map.toggleVisting();
         }
-        if(tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 10 Blöcke nach vorne
+        if(tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
             ActivePlayer.positionSetzen(ActivePlayer.positionX()+10,ActivePlayer.positionY());
 
-        }
-        if(tastenkuerzel == 27) {//Wenn PFEIL-rechts gedrückt wird konstate Kraft an
-            ActivePlayer.konstanteKraftSetzen(new Vektor(2,0));
-        }
-        if(tastenkuerzel == 29) {//Wenn PFEIL-links gedrückt wird konstate Kraft aus
-            ActivePlayer.konstanteKraftSetzen(new Vektor(0,0));
         }
         if(StartSc.isActive()){
             if(tastenkuerzel == 0){
@@ -233,22 +222,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         }
 
-        if(DialogController.GetDialogStatus()){
-            if(tastenkuerzel == 0){
-                DialogController.ShiftLeft();
-            }
-            else if(tastenkuerzel == 3){
-                DialogController.ShiftRight();
-            }
-            else if(tastenkuerzel == 31) {
-                DialogController.SelectWahl(ActivePlayer);
-            }
-            //leertaste
-            else if(tastenkuerzel == 30){
-                //macht dialog aus
-                DialogController.toggleVisibilty();
-            }
-        }
         if(DialogController2.isWaitingForInput()){
             if(tastenkuerzel == 0){
                 DialogController2.input("links");

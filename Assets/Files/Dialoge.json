@@ -7,14 +7,14 @@
     "Wahl2": "120002"
 
   },
-  "120401": {
+  "120001": {
     "brauchtFlags": [false,false,false,false,false],
     "dialogCode": "120401",
     "inhalt": "ARE YOU REMEMBER THE DAY!",
     "Wahl1": "120402",
     "Wahl2": "120002"
   },
-  "110071": {
+  "120002": {
     "brauchtFlags": [false,false,false,false,false],
     "dialogCode": "110071",
     "inhalt": "Erster Text bei erika",

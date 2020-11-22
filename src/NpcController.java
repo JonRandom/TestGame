@@ -31,6 +31,7 @@ public class NpcController extends Knoten {
         leaveHouse();
     }
 
+
     /**
      * Speicht bei einem Spieler den Code, welcher zu letzt abgespielt wurde
      * @param player der Zahlencode des Spielers, bei dem man den Code speichern will; z.B. 10 oder 23

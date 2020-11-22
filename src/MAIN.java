@@ -19,8 +19,13 @@ public class MAIN {
     public static int whiteThreshold = 250;// für die Kolliderbildbearbeitung
 
     public static void main(String[] args){
+        DialogController2 DC2 = new DialogController2(new NpcController2());
+
+
         SPIEL spiel  = new SPIEL();
         spiel.fokusSetzten();
+
+
 
     }
 

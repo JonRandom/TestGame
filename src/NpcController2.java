@@ -20,28 +20,27 @@ public class NpcController2 extends Knoten {
         resetJSON();
         readJSON();
         addAllNPCs();
+
+        leaveHouse(); //muss am anfang außen sein
         /*
         NPCs.get("01").verschieben(100,0);
         saveJSON();
          */
     }
 
-    public boolean checkForCollision(Player AP, boolean isInHouse) {
+    public boolean checkForCollision(Player AP) {
         boolean coll = false;
         //geht alle Npcs durch und schaut nach collision, aber nicht nach einer expliziten
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (AP.schneidet(element) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
-                System.out.println("Spieler geschnitten und er ist sichtbar?? : " + element.sichtbar());
-                return true;
-            } else {
-                return false;
+                //System.out.println("Spieler geschnitten und er ist sichtbar?? : " + element.sichtbar());
+                coll =  true;
             }
         }
-
-        System.out.println("NpcController2: Komisches Verhalten, for-Schleife gibt kein return!!");
-        return false; // falls fehler in for
+        return coll;
     }
+
 
     public String getCollidingNPC(Player AP) { //gibt den NPC KEY zurück mit dem geschnitten wurde
 
@@ -71,10 +70,12 @@ public class NpcController2 extends Knoten {
      */
     public void enterHouse(int houseN, int offsetX, int offsetY) {
         hideAllNPCs();  //alle ausblenden
+        System.out.println("Der NPC Controller betritt auch ein Haus mit der Nummer: " + houseN);
 
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (element.getHouseNumber() == houseN) {
+                System.out.println("Der NPC:" + element.name + "ist im Haus sichtbar");
                 element.sichtbarSetzen(true);
                 element.positionSetzen(offsetX + (int) element.getPosX(), offsetY + (int) element.getPosY());
 
@@ -107,7 +108,7 @@ public class NpcController2 extends Knoten {
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal in "element" zur Verfügung
             this.add(element);
-            System.out.println("Elemente : " + element.name);
+            //System.out.println("Elemente : " + element.name);
         }
     }
 

@@ -55,12 +55,12 @@ public class Map3 extends Knoten {
     private int lastWhiteX;
     private int lastWhiteY;
 
-    private NpcController NPC_C;
+    private NpcController2 NPC_C;
 
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(float PW, float PH, NpcController NPC_C) {
+    public Map3(float PW, float PH, NpcController2 NPC_C) {
         this.PlayerW = (int) PW;
         this.PlayerH = (int) PH;
         this.NPC_C = NPC_C;
@@ -159,6 +159,7 @@ public class Map3 extends Knoten {
         houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
         houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
         NPC_C.enterHouse((int)finalPosX, (int)finalPosY, HouseN);
+        NPC_C.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
         //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
@@ -230,9 +231,9 @@ public class Map3 extends Knoten {
                 int match = -1;
                 System.out.println(numberofB);
                 for(int i= 0; i < numberofB;i++) {
-                    System.out.println("Sucht nach Häusern die matchen bei i = " + i);
-                    System.out.println("Eingetragene Farbe bei i ist " + RedColorCodes[i]);
-                    System.out.println("aktuelle Farbe = " + result.getColor());
+                    //System.out.println("Sucht nach Häusern die matchen bei i = " + i);
+                    //System.out.println("Eingetragene Farbe bei i ist " + RedColorCodes[i]);
+                    //System.out.println("aktuelle Farbe = " + result.getColor());
                     if (result.getColor() == RedColorCodes[i]) {
                         match = i;
                     }

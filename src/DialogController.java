@@ -24,7 +24,7 @@ public class DialogController extends Knoten{
     private Text TextObject;
     private Bild BackgroundBild;
 
-    private NpcController NPC_Controller;
+    private NpcController2 NPC_Controller;
     //private Bild ButtonWahl0;
     //private Bild ButtonWahl1;
     private HashMap<String, DialogController.DialogText> DialogListe; //für die Json
@@ -51,7 +51,7 @@ public class DialogController extends Knoten{
     private boolean DialogMode;
 
 
-    public DialogController(NpcController NPC_C){
+    public DialogController(NpcController2 NPC_C){
         this.NPC_Controller = NPC_C;
         DialogMode = false;
 
@@ -159,7 +159,8 @@ public class DialogController extends Knoten{
         if(dialogRunning){
             System.out.println("Dialog läuft schon");
         }
-        else {
+        /* GEHT NICHT MIT NEUEM NPC CONTROLLER
+        else{
             dialogRunning = true;
             int playerCode = NPC_Controller.getCollidingNPC(AP) + 10; // +10 um von startindex 0 auf startindex 10 zu kommen
 
@@ -178,6 +179,8 @@ public class DialogController extends Knoten{
                 SetContent("DialogController: FEHLER: MIT KEINEM PLAYER GESCHNITTEN");
             }
         }
+
+         */
     }
 
     public int updateWahl(){

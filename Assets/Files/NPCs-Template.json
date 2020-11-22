@@ -8,11 +8,15 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "name":"erika",
     "posX":200.0,
     "posY":100.0,
-    "houseNumber":1},
+    "houseNumber":0},
   "02": {
     "name":"paul",
     "posX":100.0,
     "posY":100.0,
-    "houseNumber":1}
-
+    "houseNumber":-1},
+  "03": {
+    "name":"Marko",
+    "posX":200.0,
+    "posY":200.0,
+    "houseNumber":2}
 }

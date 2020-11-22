@@ -9,6 +9,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
     private Player ActivePlayer;
     private DialogController DialogController;
+    private DialogController2 DialogController2;
     private Map3 map;
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
@@ -16,7 +17,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige4;
 
     private DummyPlayer DP;
-    private NpcController NpcController;
+    private NpcController2 NpcController2;
     private StartingScreen StartSc;
     private Minigame1 Minigame1;
     private Minigame2 Minigame2;
@@ -48,9 +49,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         ActivePlayer = new Player(1100,1100);
 
         pet1 = new Pet(1100,1100);
-        NpcController = new NpcController();
-        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController);
-        DialogController = new DialogController(NpcController);
+        NpcController2 = new NpcController2();
+        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2);
+        DialogController = new DialogController(NpcController2);
+        DialogController2 = new DialogController2(NpcController2);
         DialogController.setVisisbilty(false);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
@@ -82,7 +84,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
-        wurzel.add(NpcController);
+        wurzel.add(NpcController2);
         wurzel.add(pet1);
         wurzel.add(mNpcController2);
 
@@ -90,6 +92,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
         statischeWurzel.add(DialogController);
+        statischeWurzel.add(DialogController2);
 
         statischeWurzel.add(Minigame2);
 
@@ -163,8 +166,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 }
             }
             }
-        if(NpcController.checkForCollision(ActivePlayer, map.isVisiting())&&!DialogController.GetDialogStatus()){
-
+        if(NpcController2.checkForCollision(ActivePlayer)){
+            System.out.println("Der Spieler schneidet einen NPC!");
             DialogController.openDialog(ActivePlayer);
             //DialogController.SetContent("Hallo ich bin ein NPC der mit dir ein Dialog führen kann");
             DialogController.setVisisbilty(true);
@@ -189,14 +192,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController.toggleVisibilty();
         }
         if(tastenkuerzel == 8){//I als in
-            map.enterHouse(ActivePlayer,0);
+            //map.enterHouse(ActivePlayer,0);
         }
         if(tastenkuerzel == 14){//o als out
             //HouseLoader1.HideView();
             map.leaveHouse(ActivePlayer);
         }
         if(tastenkuerzel == 17){ //Wenn R gedrückt
-            DialogController.dialogBeginnen();
+            //DialogController.dialogBeginnen();
         }
 
         if(tastenkuerzel == 12){//M für minigame
@@ -244,6 +247,17 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             else if(tastenkuerzel == 30){
                 //macht dialog aus
                 DialogController.toggleVisibilty();
+            }
+        }
+        if(DialogController2.isWaitingForInput()){
+            if(tastenkuerzel == 0){
+                DialogController2.input("links");
+            }
+            else if(tastenkuerzel == 3){
+                DialogController2.input("rechts");
+            }
+            else if(tastenkuerzel == 31){
+                DialogController2.input("enter");
             }
         }
 

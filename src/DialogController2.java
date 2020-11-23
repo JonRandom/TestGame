@@ -58,6 +58,7 @@ public class DialogController2 extends Knoten {
 
     //WAHL;
     private int buttonCursor = 0;
+    private boolean oneButtonMode = false; //Wenn es nur eine Wahl gibt, wird ein Knopf ausgeblendet
 
 
     public DialogController2(NpcController2 NPC_C2) {
@@ -114,14 +115,14 @@ public class DialogController2 extends Knoten {
 
     private void updateText(String content) {
         buttonCursor = 0;
-        if(!playingLastLine) {
+        if (!playingLastLine) {
             DialogLine currentLine = dialogLines.get(currentDialogCode);
             displayTextObject.inhaltSetzen(currentLine.inhalt);
 
             int width = (int) displayTextObject.getBreite();
             int posX_new = MAIN.x / 2 - width / 2;
             displayTextObject.positionSetzen(posX_new, textPosY);
-        }else {
+        } else {
             displayTextObject.inhaltSetzen(content);
             int width = (int) displayTextObject.getBreite();
             int posX_new = MAIN.x / 2 - width / 2;
@@ -130,9 +131,9 @@ public class DialogController2 extends Knoten {
     }
 
     private void advanceDialogLine() {
-        if(!playingLastLine) {
+        if (!playingLastLine) {
             DialogLine currentLine = dialogLines.get(currentDialogCode);
-            if (!currentLine.nextTime.equals("")) {
+            if (currentLine.nextTime.equals("")) {
                 if (buttonCursor == 0) {
                     currentDialogCode = currentLine.wahl1;
                 }
@@ -141,20 +142,26 @@ public class DialogController2 extends Knoten {
                 }
                 updateText(null);
                 System.out.println("DialogController2: Dialog weitergeführt. Der NPC Names " + dialogLines.get(currentDialogCode).name + " spricht jetzt!");
+
+                DialogLine newLine = dialogLines.get(currentDialogCode);
+                if (newLine.wahl2.equals("")) {
+                    oneButtonMode = true; //blendet effektiv den 2.Button aus
+                } else {
+                    oneButtonMode = false;
+                }
                 updateButtons();
                 updateResonse();
-            } else {
+            } else {    //falls nextTime nicht leer
                 globalTemporalPosition = currentLine.nextTime;
                 System.out.println("DialogController2: Dialog hat sein Ende erreicht und die ZeitPosition ist fortgeschritten auf: " + currentLine.nextTime + " !");
                 endDialog();
             }
-        }
-        else { //playingLastLine!"!
+        } else { //playingLastLine!"!
             endDialog();
         }
     }
 
-    private void endDialog(){
+    private void endDialog() {
         hideWindow();
         active = false;
         currentDialogCode = null; //kontorvers ob das hier Sinn macht
@@ -169,16 +176,20 @@ public class DialogController2 extends Knoten {
         if (!active) {
             waitingForInput = true;
             active = true;
-            if(!isPlayingLastLine()){
+            if (!isPlayingLastLine()) {
                 DialogController2.DialogPacket element = dialogPackets.get(globalTemporalPosition).get(NpcID);
                 currentDialogCode = element.code;
+                oneButtonMode = false;
                 showWindow();
-
                 updateResonse();
                 updateButtons();
+                updateText(null);
+
             } else {
+                oneButtonMode = true;
                 showWindow();
                 playLastLine(NpcID);
+                updateButtons();
             }
 
 
@@ -188,12 +199,13 @@ public class DialogController2 extends Knoten {
 
 
     }
-    private void playLastLine(String npcID){
+
+    private void playLastLine(String npcID) {
         String lastLineID = NPC_Controller2.getNpcLastLine(npcID);
-        System.out.println("LastLineID: "  + lastLineID);
+        System.out.println("LastLineID: " + lastLineID);
         DialogLine lastLine = dialogLines.get(lastLineID);
         displayResponseTextObject.sichtbarSetzen(false);
-        System.out.println("Probiert jz den Dialog mit dem Inhalt abzuspielen: "  + lastLine.inhalt);
+        System.out.println("Probiert jz den Dialog mit dem Inhalt abzuspielen: " + lastLine.inhalt);
         updateText(lastLine.inhalt);
     }
 
@@ -226,11 +238,18 @@ public class DialogController2 extends Knoten {
         }
     }
 
-    private void updateButtons(){
+    private void updateButtons() {
         displayButtons[0].setOpacity(0.3f);
-        displayButtons[1].setOpacity(0.3f);
+        if (oneButtonMode) {
+            buttonCursor = 0;
+            displayButtons[1].setOpacity(0); //ausgeblendet
+        } else {
+            displayButtons[1].setOpacity(0.3f);
+        }
+
         displayButtons[buttonCursor].setOpacity(1f);
     }
+
     public void input(String dir) {
         displayButtons[0].setOpacity(0.3f);
         displayButtons[1].setOpacity(0.3f);
@@ -265,7 +284,7 @@ public class DialogController2 extends Knoten {
     }
 
     public void updateResonse() {
-        if(!playingLastLine) {
+        if (!playingLastLine) {
             displayResponseTextObject.sichtbarSetzen(true);
             DialogLine currentLine = dialogLines.get(currentDialogCode);
             DialogLine nextLine;
@@ -287,6 +306,10 @@ public class DialogController2 extends Knoten {
 
     public boolean isActive() {
         return active;
+    }
+
+    public String getGlobalTemporalPosition() {
+        return globalTemporalPosition;
     }
 
     public boolean isWaitingForInput() {

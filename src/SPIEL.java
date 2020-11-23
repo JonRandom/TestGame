@@ -124,7 +124,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige2.SetContent("Visiting:" +map.isVisiting());
         debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
         debugAnzeige4.SetContent("Dialog2Activ:" + DialogController2.isActive());
-        debugAnzeige5.SetContent("PLayingLastLine: " + DialogController2.isPlayingLastLine());
+        debugAnzeige5.SetContent("ZeitPosition: " + DialogController2.getGlobalTemporalPosition());
 
         DP.positionSetzen(playerX,playerY);
 

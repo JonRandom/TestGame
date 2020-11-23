@@ -1,5 +1,6 @@
 import ea.Bild;
 import ea.Knoten;
+import ea.Punkt;
 
 /**
  * Klasse für aktive Spieler
@@ -52,6 +53,10 @@ public class Player extends Knoten {
         posX = x;
         posY = y;
         super.positionSetzen(x, y);
+    }
+    @Override
+    public void positionSetzen(Punkt p) {
+        super.positionSetzen(p);
     }
 
     /*

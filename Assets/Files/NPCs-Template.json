@@ -4,19 +4,26 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
  */
 
 {
-  "11": {
+  "erika": {
     "name":"erika",
     "posX":200.0,
     "posY":100.0,
-    "houseNumber":0},
-  "02": {
+    "houseNumber":0,
+    "lastLine": ""
+
+  },
+  "paul": {
     "name":"paul",
-    "posX":100.0,
-    "posY":100.0,
-    "houseNumber":-1},
+    "posX":1050.0,
+    "posY":1050.0,
+    "houseNumber":-1,
+    "lastLine": "lastLinePAUL"
+  },
   "03": {
     "name":"Marko",
     "posX":200.0,
     "posY":200.0,
-    "houseNumber":2}
+    "houseNumber":2,
+    "lastLine": ""
+  }
 }

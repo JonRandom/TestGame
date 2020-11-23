@@ -18,11 +18,15 @@ public class NPC2 extends Knoten {
     @Expose
     private int houseNumber;
 
-    public NPC2(int pX, int pY, int hN, String n){
+    @Expose
+    public String lastLine; //letzte DialogZeile
+
+    public NPC2(int pX, int pY, int hN, String n, String mlastLine){
         this.posX=pX;
         this.posY=pY;
         this.name = n;
         this.houseNumber = hN;
+        this.lastLine = mlastLine;
 
         try{
             String path = "./Assets/NPCs/" + name + ".png";
@@ -68,13 +72,24 @@ public class NPC2 extends Knoten {
         }
     }
 
+    @Override
+    public String toString() {
+        return "NPC2{" +
+                "name='" + name + '\'' +
+                ", img=" + img +
+                ", posX=" + posX +
+                ", posY=" + posY +
+                ", houseNumber=" + houseNumber +
+                ", lastLine='" + lastLine + '\'' +
+                '}';
+    }
 
     public static class Deserializer implements JsonDeserializer<NPC2> {
 
         public NPC2 deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString());
+            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
         }
     }
 }

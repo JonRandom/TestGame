@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ea.Knoten;
+import ea.Punkt;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -16,7 +17,13 @@ public class NpcController2 extends Knoten {
 
     private HashMap<String, NPC2> NPCs; //für die Json
 
-    public NpcController2() {
+    //for Position Reset
+    private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
+    private float lastQuietY = 0;
+
+    private Player AP;
+    public NpcController2(Player mAP) {
+        AP = mAP;
         resetJSON();
         readJSON();
         addAllNPCs();
@@ -35,8 +42,13 @@ public class NpcController2 extends Knoten {
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (AP.schneidet(element) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
                 //System.out.println("Spieler geschnitten und er ist sichtbar?? : " + element.sichtbar());
-                coll =  true;
+                coll = true;
             }
+        }
+        if (!coll) {
+            lastQuietX = AP.getPosX();
+            lastQuietY = AP.getPosY();
+            //System.out.println("NpcController2; Der SPieler Kollidiert nicht, also wird die Pos gespeichert x = "  + lastQuietX);
         }
         return coll;
     }
@@ -51,15 +63,28 @@ public class NpcController2 extends Knoten {
                 returnKey = key; // = current key
             }
         }
-        if(returnKey == null){
+        if (returnKey == null) {
             System.out.println("NpcController2: Komisches Verhalten: Es wird nach expliziter Kollision gefragt, aber es gibt keine. Das kann für massive weitere Fehler sorgen");
             return null;
-        }
-        else{
+        } else {
             return returnKey; //gibt letzte Kollsion zurück
         }
     }
 
+    public String getNpcLastLine(String npcID) {
+        //System.out.println("NPC_Controller: Es wird nach dem DialogCode für den Spieler mit der ID-> gefragt: " + npcID);
+        //System.out.println("NPC_Controller: Das NPC2 Objekt dazu sieht so aus: " + NPCs.get(npcID).toString());
+        return NPCs.get(npcID).lastLine;
+    }
+
+    public void resetToLastQuietPos(){
+        AP.positionSetzen(lastQuietX,lastQuietY);
+    }
+
+
+    public Punkt getLastQuietPos(){
+        return new Punkt(lastQuietX,lastQuietY);
+    }
 
     /**
      * Verschiebt die NPCs dieses Hauses an die entsprechende Position

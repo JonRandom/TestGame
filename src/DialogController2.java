@@ -37,6 +37,7 @@ public class DialogController2 extends Knoten {
 
     private boolean active = false;
     private boolean waitingForInput = false;
+    private boolean playingLastLine = false; // Sonderfall es wird kein echter Dialog abgespielt;
 
 
     private NpcController2 NPC_Controller2;
@@ -111,61 +112,89 @@ public class DialogController2 extends Knoten {
         displayDialogBackground.sichtbarSetzen(false);
     }
 
-    private void updateText() {
+    private void updateText(String content) {
         buttonCursor = 0;
-        DialogLine currentLine = dialogLines.get(currentDialogCode);
-        displayTextObject.inhaltSetzen(currentLine.inhalt);
+        if(!playingLastLine) {
+            DialogLine currentLine = dialogLines.get(currentDialogCode);
+            displayTextObject.inhaltSetzen(currentLine.inhalt);
 
-        int width = (int) displayTextObject.getBreite();
-        int posX_new = MAIN.x / 2 - width / 2;
-        displayTextObject.positionSetzen(posX_new, textPosY);
+            int width = (int) displayTextObject.getBreite();
+            int posX_new = MAIN.x / 2 - width / 2;
+            displayTextObject.positionSetzen(posX_new, textPosY);
+        }else {
+            displayTextObject.inhaltSetzen(content);
+            int width = (int) displayTextObject.getBreite();
+            int posX_new = MAIN.x / 2 - width / 2;
+            displayTextObject.positionSetzen(posX_new, textPosY);
+        }
     }
 
     private void advanceDialogLine() {
-        DialogLine currentLine = dialogLines.get(currentDialogCode);
-        if(!currentLine.nextTime.equals("")){
-            if (buttonCursor == 0) {
-                currentDialogCode = currentLine.wahl1;
+        if(!playingLastLine) {
+            DialogLine currentLine = dialogLines.get(currentDialogCode);
+            if (!currentLine.nextTime.equals("")) {
+                if (buttonCursor == 0) {
+                    currentDialogCode = currentLine.wahl1;
+                }
+                if (buttonCursor == 1) {
+                    currentDialogCode = currentLine.wahl2;
+                }
+                updateText(null);
+                System.out.println("DialogController2: Dialog weitergeführt. Der NPC Names " + dialogLines.get(currentDialogCode).name + " spricht jetzt!");
+                updateButtons();
+                updateResonse();
+            } else {
+                globalTemporalPosition = currentLine.nextTime;
+                System.out.println("DialogController2: Dialog hat sein Ende erreicht und die ZeitPosition ist fortgeschritten auf: " + currentLine.nextTime + " !");
+                endDialog();
             }
-            if (buttonCursor == 1) {
-                currentDialogCode = currentLine.wahl2;
-            }
-            updateText();
-            System.out.println("DialogController2: Dialog weitergeführt. Der NPC Names " + dialogLines.get(currentDialogCode).name + " spricht jetzt!");
-            updateButtons();
-            updateResonse();
         }
-        else{
-            globalTemporalPosition = currentLine.nextTime;
-            System.out.println("DialogController2: Dialog hat sein Ende erreicht und die ZeitPosition ist fortgeschritten auf: " + currentLine.nextTime + " !");
+        else { //playingLastLine!"!
             endDialog();
         }
-
-
     }
+
     private void endDialog(){
         hideWindow();
         active = false;
         currentDialogCode = null; //kontorvers ob das hier Sinn macht
         waitingForInput = false;
+        playingLastLine = false;
+        //NPC_Controller2.prepareReset(); //setzt flag hig, damit Spieler nächsten Tick(in SPIEL.java) zurückgesetzt wird.
+        NPC_Controller2.resetToLastQuietPos();
     }
+
 
     public void openDialogPacket(String NpcID) {
         if (!active) {
-            active = true;
-            DialogController2.DialogPacket element = dialogPackets.get(globalTemporalPosition).get(NpcID);
-            currentDialogCode = element.code;
-            showWindow();
-            updateText();
             waitingForInput = true;
-            updateResonse();
-            updateButtons();
+            active = true;
+            if(!isPlayingLastLine()){
+                DialogController2.DialogPacket element = dialogPackets.get(globalTemporalPosition).get(NpcID);
+                currentDialogCode = element.code;
+                showWindow();
+
+                updateResonse();
+                updateButtons();
+            } else {
+                showWindow();
+                playLastLine(NpcID);
+            }
+
 
         } else {
             System.out.println("DialogController2: Dialog schon offen");
         }
 
 
+    }
+    private void playLastLine(String npcID){
+        String lastLineID = NPC_Controller2.getNpcLastLine(npcID);
+        System.out.println("LastLineID: "  + lastLineID);
+        DialogLine lastLine = dialogLines.get(lastLineID);
+        displayResponseTextObject.sichtbarSetzen(false);
+        System.out.println("Probiert jz den Dialog mit dem Inhalt abzuspielen: "  + lastLine.inhalt);
+        updateText(lastLine.inhalt);
     }
 
     public boolean isDialogPacketPlayable(String NpcID) {
@@ -187,7 +216,9 @@ public class DialogController2 extends Knoten {
                 }
             } else {
                 System.out.println("DialogController2: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");
-                return false;
+                playingLastLine = true; //sorgt dafür, dass playLastLine aufgerufen wird
+                return true;
+
             }
         } else {
             System.out.println("DialogController2: FEHLER: Zu diesem Zeitpunkt gibt es keinen Eintrag");
@@ -206,6 +237,7 @@ public class DialogController2 extends Knoten {
         if (isWaitingForInput()) {
             switch (dir) {
                 case "links":
+                    System.out.println("TESTE LINKS GEDRÜCKT");
                     buttonCursor--;
                     if (buttonCursor < 0) {
                         buttonCursor = 0;
@@ -233,19 +265,24 @@ public class DialogController2 extends Knoten {
     }
 
     public void updateResonse() {
-        displayResponseTextObject.sichtbarSetzen(true);
-        DialogLine currentLine = dialogLines.get(currentDialogCode);
-        DialogLine nextLine;
-        if (buttonCursor == 0) {
-            nextLine = dialogLines.get(currentLine.wahl1);
+        if(!playingLastLine) {
+            displayResponseTextObject.sichtbarSetzen(true);
+            DialogLine currentLine = dialogLines.get(currentDialogCode);
+            DialogLine nextLine;
+            if (buttonCursor == 0) {
+                nextLine = dialogLines.get(currentLine.wahl1);
+            } else {
+                nextLine = dialogLines.get(currentLine.wahl2);
+            }
+
+            displayResponseTextObject.inhaltSetzen("Antwort: " + nextLine.inhalt);
+            int width = (int) displayResponseTextObject.getBreite();
+            int posX_new = MAIN.x / 2 - width / 2;
+            displayResponseTextObject.positionSetzen(posX_new, textPosY - 50);
         } else {
-            nextLine = dialogLines.get(currentLine.wahl2);
+            displayResponseTextObject.sichtbarSetzen(false);
         }
 
-        displayResponseTextObject.inhaltSetzen("Antwort: " + nextLine.inhalt);
-        int width = (int) displayResponseTextObject.getBreite();
-        int posX_new = MAIN.x / 2 - width / 2;
-        displayResponseTextObject.positionSetzen(posX_new, textPosY - 50);
     }
 
     public boolean isActive() {
@@ -293,6 +330,9 @@ public class DialogController2 extends Knoten {
 
     }
 
+    public boolean isPlayingLastLine() {
+        return playingLastLine;
+    }
 
     /**
      * JF:
@@ -318,6 +358,7 @@ public class DialogController2 extends Knoten {
         ArrayList<String> requiredLines;
 
         String code; // erster Code des Dialogs
+
 
     }
 }

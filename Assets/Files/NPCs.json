@@ -1,12 +1,12 @@
 {
-  "01": {
+  "erika": {
     "name": "erika",
     "lastCode": 0,
     "posX": 200,
     "posY": 100,
     "houseN": 0
   },
-  "02": {
+  "paul": {
     "name": "paul",
     "lastCode": 0,
     "posX": 100,

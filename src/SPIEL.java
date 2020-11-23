@@ -13,6 +13,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige2;
     private DebugAnzeige debugAnzeige3;
     private DebugAnzeige debugAnzeige4;
+    private DebugAnzeige debugAnzeige5;
 
     private DummyPlayer DP;
     private NpcController2 NpcController2;
@@ -46,17 +47,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         ActivePlayer = new Player(1100,1100);
 
-        pet1 = new Pet(1100,1100);
-        NpcController2 = new NpcController2();
+        //pet1 = new Pet(1100,1100);
+        NpcController2 = new NpcController2(ActivePlayer);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2);
         DialogController2 = new DialogController2(NpcController2);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         debugAnzeige3 = new DebugAnzeige(500,0);
         debugAnzeige4 = new DebugAnzeige(700,0);
+        debugAnzeige5 = new DebugAnzeige(1000,0);
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         Minigame2 = new Minigame2(ActivePlayer);
-        ObjectController Autos = new ObjectController();
+        //ObjectController Autos = new ObjectController();
 
 
 
@@ -73,16 +75,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         maus.klickReagierbarAnmelden(this);
         */
 
-        NpcController2 mNpcController2 = new NpcController2();
 
 
-        wurzel.add(Autos);
+        //wurzel.add(Autos);
         wurzel.add(DP);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
-        wurzel.add(pet1);
-        wurzel.add(mNpcController2);
+        //
+        //wrzel.add(pet1);
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(StartSc);
@@ -96,6 +97,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige2);
         statischeWurzel.add(debugAnzeige3);
         statischeWurzel.add(debugAnzeige4);
+        statischeWurzel.add(debugAnzeige5);
 
 
 
@@ -114,13 +116,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     }
 
     public void tick() {
+
         int playerX = ActivePlayer.positionX();
         int playerY = ActivePlayer.positionY();
 
         debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
         debugAnzeige2.SetContent("Visiting:" +map.isVisiting());
         debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-        debugAnzeige4.SetContent("Dialog2Running:" + DialogController2.isActive());
+        debugAnzeige4.SetContent("Dialog2Activ:" + DialogController2.isActive());
+        debugAnzeige5.SetContent("PLayingLastLine: " + DialogController2.isPlayingLastLine());
 
         DP.positionSetzen(playerX,playerY);
 
@@ -174,9 +178,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         gamesaver.SavePlayer(ActivePlayer);
-
-        pet1.follow(ActivePlayer);
-
+        //pet1.follow(ActivePlayer);
         Minigame2.tick();
     }
 
@@ -224,6 +226,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         if(DialogController2.isWaitingForInput()){
             if(tastenkuerzel == 0){
+                System.out.println("Taste ist gedrückt und isWaitingForInputs = true");
                 DialogController2.input("links");
             }
             else if(tastenkuerzel == 3){

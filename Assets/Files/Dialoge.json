@@ -1,20 +1,27 @@
 {
   "erika1": {
-    "inhalt": "╭∩╮( ͡⚆ ͜ʖ ͡⚆) ╭∩╮",
+    "inhalt": "ERIKA1",
     "name": "erika",
     "wahl1": "erika2",
     "wahl2": "",
     "nextTime": ""
   },
   "erika2": {
-    "inhalt": "",
+    "inhalt": "ERIKA2",
     "name": "erika",
     "wahl1": "selfAntwort1",
-    "wahl2": "",
+    "wahl2": "selfAntwort2",
     "nextTime": ""
   },
   "selfAntwort1": {
     "inhalt": "Antwort auf erika!",
+    "name": "self",
+    "wahl1": "erika3LAST",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "selfAntwort2": {
+    "inhalt": "2. Antwort auf erika!",
     "name": "self",
     "wahl1": "erika3LAST",
     "wahl2": "",

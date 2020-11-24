@@ -136,13 +136,22 @@ public class DialogController2 extends Knoten {
             if (currentLine.nextTime.equals("")) {
                 if (buttonCursor == 0) {
                     currentDialogCode = currentLine.wahl1;
+                    if(dialogLines.get(currentLine.wahl1).name.equals("self")){
+                        System.out.println("NpcController2: Die nächste line wird übersprungen, weil er von Npc selbst ist");
+                        DialogLine nextLine = dialogLines.get(currentLine.wahl1);
+                        currentDialogCode = nextLine.wahl1; //die 1 Wahl des nächsten Dialogs wird als nächste Zeile festgelegt
+                    }
                 }
                 if (buttonCursor == 1) {
                     currentDialogCode = currentLine.wahl2;
+                    if(dialogLines.get(currentLine.wahl2).name.equals("self")){
+                        System.out.println("NpcController2: Die nächste line wird übersprungen, weil er von Npc selbst ist");
+                        DialogLine nextLine = dialogLines.get(currentLine.wahl1);
+                        currentDialogCode = nextLine.wahl1; //die 1 Wahl des nächsten Dialogs wird als nächste Zeile festgelegt
+                    }
                 }
-                updateText(null);
                 System.out.println("DialogController2: Dialog weitergeführt. Der NPC Names " + dialogLines.get(currentDialogCode).name + " spricht jetzt!");
-
+                updateText(null);
                 DialogLine newLine = dialogLines.get(currentDialogCode);
                 if (newLine.wahl2.equals("")) {
                     oneButtonMode = true; //blendet effektiv den 2.Button aus

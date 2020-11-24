@@ -1,39 +1,35 @@
 {
-  "110001": {
-    "inhalt": "TEXT 1 DER DRINNSTEHEN SOLL",
+  "erika1": {
+    "inhalt": "TextZeile1 erika!",
     "name": "erika",
-    "wahl1": "120001",
-    "wahl2": "120002",
+    "wahl1": "erika2",
+    "wahl2": "",
     "nextTime": ""
   },
-  "120001": {
-    "inhalt": "ARE YOU REMEMBER THE DAY!",
+  "erika2": {
+    "inhalt": "TextZeile2 erika!",
     "name": "erika",
-    "wahl1": "120402",
-    "wahl2": "120002",
+    "wahl1": "selfAntwort1",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "selfAntwort1": {
+    "inhalt": "Antwort auf erika!",
+    "name": "self",
+    "wahl1": "erika3LAST",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "erika3LAST": {
+    "inhalt": "Letzer satz erika",
+    "name": "erika",
+    "wahl1": "",
+    "wahl2": "",
     "nextTime": "11"
   },
-  "120002": {
-    "inhalt": "Lore ipsum",
-    "name": "paul",
-    "wahl1": "120001",
-    "wahl2": "120002",
-    "nextTime": ""
-  },
-  "100991": {
-    "inhalt": "Another journey chamber way yet females man. Way extensive and dejection get delivered deficient sincerity gentleman age.",
-    "name": "erika",
-    "wahl1": "120001",
-    "wahl2": "120002",
-    "nextTime": ""
-  },
-  "120402": {
-    "inhalt": "Erster Text bei erika",
-    "name": "erika",
-    "wahl1": "120001",
-    "wahl2": "120002",
-    "nextTime": ""
-  },
+
+
+
   "lastLinePAUL": {
     "inhalt": "Letzte Line Paul",
     "name": "erika",

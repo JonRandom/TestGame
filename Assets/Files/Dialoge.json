@@ -1,13 +1,13 @@
 {
   "erika1": {
-    "inhalt": "TextZeile1 erika!",
+    "inhalt": "╭∩╮( ͡⚆ ͜ʖ ͡⚆) ╭∩╮",
     "name": "erika",
     "wahl1": "erika2",
     "wahl2": "",
     "nextTime": ""
   },
   "erika2": {
-    "inhalt": "TextZeile2 erika!",
+    "inhalt": "",
     "name": "erika",
     "wahl1": "selfAntwort1",
     "wahl2": "",

@@ -21,7 +21,7 @@ public class DialogController3 extends Knoten {
 
 
     //GLOBAL STUFF;
-    private String globalTemporalPosition = "01";
+    private String globalTemporalPosition = "Tag 1 Abschnitt 1 (Start Zeit)";
     ArrayList<String> foundItems = new ArrayList<String>();
     ArrayList<String> readLines = new ArrayList<String>();
 
@@ -45,6 +45,7 @@ public class DialogController3 extends Knoten {
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
+    private boolean lastLineSelf = false; //war die Letzte Zeile self?
 
     //WAHL;
     private int buttonCursor = 0;
@@ -71,9 +72,9 @@ public class DialogController3 extends Knoten {
             displayDialogBackground = new Bild(defaultPath + "DialogFenster.png");
             displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite() / 2, textPosX);
             displayButtons[0] = new Bild(defaultPath + "ButtonWahl0.png");
-            displayButtons[0].positionSetzen(400, textPosY);
+            displayButtons[0].positionSetzen(400, textPosY + 50);
             displayButtons[1] = new Bild(defaultPath + "ButtonWahl1.png");
-            displayButtons[1].positionSetzen(700, textPosY);
+            displayButtons[1].positionSetzen(700, textPosY + 50);
             this.add(displayDialogBackground);
             this.add(displayButtons[0], displayButtons[1]);
         } catch (Exception e) {
@@ -111,10 +112,15 @@ public class DialogController3 extends Knoten {
         DialogController3.DialogLine currentLine = dialogLines.get(currentDialogCode);
         System.out.println("DialogController3: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
-        if (currentLine.name.equals("self")) {
-            nextLine();
+        if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
+            lastLineSelf = true;
+            skipLine(); //effectivly skipps the next dialog line
 
-        } else {
+        } else { //dialog wird nicht geskippt
+            if(!currentLine.name.equals("self")){ //wenn nicht mehr self
+                System.out.println("DialogController3: SELF spricht nicht mehr" + currentDialogCode);
+                lastLineSelf = false;
+            }
             //displayResponseTextObject.sichtbarSetzen(true);
             if (currentLine.wahl2.equals("")) { //nur eine Wahl
                 oneButtonMode = true;
@@ -132,37 +138,39 @@ public class DialogController3 extends Knoten {
         }
     }
 
+    private void skipLine() {
+        DialogController3.DialogLine currentLine = dialogLines.get(currentDialogCode);
+        System.out.println("DialogController3: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
+        System.out.println("->DialogController3: Sein Inhalt war: " + currentLine.inhalt);
+        oneButtonMode = true;
+        currentDialogCode = currentLine.wahl1; //skipped die nächste Zeile, weil dies
+        displayCurrentDialogLine();
+    }
+
     private void nextLine() {
-        System.out.println("DialogController3: Es wurde nextLine() aufgerufen");
+        System.out.println("DialogController3: Es wurde nextLine() aufgerufen mit der line:" + currentDialogCode);
         if (!playingLastLine) { //falls gerade nicht eine Letzte Line abgespielt wird
             DialogController3.DialogLine currentLine = dialogLines.get(currentDialogCode);
-            DialogController3.DialogLine nextLine = null;
 
-            if (currentLine.name.equals("self")) {
-                System.out.println("DialogController3: Dialog von selber");
-                oneButtonMode = true;
-                currentDialogCode = currentLine.wahl1; //skipped die nächste Zeile, weil dies
 
-            } else {
-                if (oneButtonMode) {
-                    buttonCursor = 0;
-                }
-                if (buttonCursor == 0) {
-                    nextLine = dialogLines.get(currentLine.wahl1);
-                    currentDialogCode = currentLine.wahl1;
-                }
-                if (buttonCursor == 1) {
-                    nextLine = dialogLines.get(currentLine.wahl2);
-                    currentDialogCode = currentLine.wahl1;
-                }
-
+            if (oneButtonMode) {
+                buttonCursor = 0;
+            }
+            if (buttonCursor == 0) {
+                //nextLine = dialogLines.get(currentLine.wahl1);
+                currentDialogCode = currentLine.wahl1;
+            }
+            if (buttonCursor == 1) {
+                //nextLine = dialogLines.get(currentLine.wahl2);
+                currentDialogCode = currentLine.wahl2;
             }
             if (!currentLine.nextTime.equals("")) {
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
-            } else{
+            } else {
                 displayCurrentDialogLine();
             }
+
 
         } else {
             endDialog();
@@ -311,6 +319,9 @@ public class DialogController3 extends Knoten {
             if (isNextLineSelf(currentDialogCode)) {
                 displayResponseTextObject.sichtbarSetzen(true);
             }
+            if (lastLineSelf) {
+                displayResponseTextObject.sichtbarSetzen(false);
+            }
             if (playingLastLine) {
                 displayResponseTextObject.sichtbarSetzen(false);
             }
@@ -325,10 +336,11 @@ public class DialogController3 extends Knoten {
             if (buttonCursor == 1) {
                 nextLine = dialogLines.get(currentLine.wahl2);
             }
+
             displayResponseTextObject.inhaltSetzen(nextLine.inhalt);
             int width = (int) displayResponseTextObject.getBreite();
             int posX_new = MAIN.x / 2 - width / 2;
-            displayResponseTextObject.positionSetzen(posX_new, textPosY-50);
+            displayResponseTextObject.positionSetzen(posX_new, textPosY - 50);
         } else { //das ist der Fall, dass der nächste Dialog nicht existieren sollte
             //nix, oder?
         }
@@ -388,11 +400,32 @@ public class DialogController3 extends Knoten {
     }
 
     private boolean isNextLineSelf(String code) {
+        System.out.println("Schaut, ob die Line mit dem Code=" + code + " eine nächste hat die Self ist");
         String w = dialogLines.get(code).wahl1;
-        String nextName = dialogLines.get(w).name;
+        System.out.println("Der code der nächsten Line ist=" + w);
+        DialogLine nextLine = dialogLines.get(w);
+        if (nextLine == null) {
+            System.out.println("DialogController3: FEHLER: Es die nächste Line ist null. Das bedeutet meistens ein Fehler in der Json");
+        }
+        String nextName = nextLine.name;
         return nextName.equals("self");
     }
 
+    public String getCurrentDialogCode() {
+        return currentDialogCode;
+    }
+
+    public int getButtonCursor() {
+        return buttonCursor;
+    }
+
+    public boolean isOneButtonMode() {
+        return oneButtonMode;
+    }
+
+    public boolean isLastLineSelf() {
+        return lastLineSelf;
+    }
 
     /**
      * JF:

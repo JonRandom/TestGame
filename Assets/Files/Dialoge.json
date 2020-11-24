@@ -1,44 +1,230 @@
 {
-  "erika1": {
-    "inhalt": "ERIKA1",
-    "name": "erika",
-    "wahl1": "erika2",
+  //Start Dialog mit der Mutter
+  "D1.0_00_01": {
+    "inhalt": "Aufstehen!",
+    "name": "kay",
+    "wahl1": "D1.0_00_02",
     "wahl2": "",
     "nextTime": ""
   },
-  "erika2": {
-    "inhalt": "ERIKA2",
-    "name": "erika",
-    "wahl1": "selfAntwort1",
-    "wahl2": "selfAntwort2",
-    "nextTime": ""
-  },
-  "selfAntwort1": {
-    "inhalt": "Antwort auf erika!",
-    "name": "self",
-    "wahl1": "erika3LAST",
-    "wahl2": "",
-    "nextTime": ""
-  },
-  "selfAntwort2": {
-    "inhalt": "2. Antwort auf erika!",
-    "name": "self",
-    "wahl1": "erika3LAST",
-    "wahl2": "",
-    "nextTime": ""
-  },
-  "erika3LAST": {
-    "inhalt": "Letzer satz erika",
-    "name": "erika",
+  "D1.0_00_02": {
+    "inhalt": "Du musst zur Schule!",
+    "name": "kay",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "11"
+    "nextTime": "Tag 1 Abschnitt 2"
   },
-  "lastLinePAUL": {
-    "inhalt": "Letzte Line Paul",
-    "name": "erika",
-    "wahl1": "120001",
-    "wahl2": "120002",
+
+
+  //Erster Tag Dialog Bully(aka. kay)
+  "D1.1_00_01": {
+    "inhalt": "Sind Kinderbilder jetzt der neue Trend auf Fynstagramm?",
+    "name": "kay",
+    "wahl1": "D1.1_00_02",
+    "wahl2": "",
     "nextTime": ""
+  },
+  "D1.1_00_02": {
+    "inhalt": "Oder wie kamst du denn auf die idee so ein dummes Bild hochzuladen?",
+    "name": "kay",
+    "wahl1": "D1.1_11_01",
+    "wahl2": "D1.1_12_01",
+    "nextTime": ""
+  },
+
+  "D1.1_11_01": {
+    "inhalt": "Welches Bild?",
+    "name": "self",
+    "wahl1": "D1.1_11_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.1_11_02": {
+    "inhalt": "Wie, `welches Bild`?",
+    "name": "kay",
+    "wahl1": "D1.1_11_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.1_11_03": {
+    "inhalt": "Na das neue auf deinem Fynstagramm Profil du Genie!",
+    "name": "kay",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 1 Abschnitt 3"
+  },
+  "D1.1_12_01": {
+    "inhalt": "Lass mich in Ruhe!",
+    "name": "self",
+    "wahl1": "D1.1_12_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.1_12_02": {
+    "inhalt": "Lass mich in Ruhe!",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 1 Abschnitt 2"
+  },
+
+  //erster Tag Dialog Mutter
+
+  "D1.2_00_01": {
+    "inhalt": "...tippt...",
+    "name": "mutter",
+    "wahl1": "D1.2_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.2_00_02": {
+    "inhalt": "Ich bin grade beschäftigt.",
+    "name": "mutter",
+    "wahl1": "D1.2_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.2_00_03": {
+    "inhalt": "...tippt...",
+    "name": "mutter",
+    "wahl1": "D1.2_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.2_00_04": {
+    "inhalt": "Sprich mit deinen Lehrern darüber, wenn es so wichtig ist!",
+    "name": "mutter",
+    "wahl1": "D1.2_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.2_00_05": {
+    "inhalt": "Sprich mit deinen Lehrern darüber wenn es so wichtig ist!",
+    "name": "mutter",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 1 Abschnitt 3"
+  },
+
+  //erster Tag Dialog felix
+  "D1.3_00_01": {
+    "inhalt": "Hey, was geht?",
+    "name": "self",
+    "wahl1": "D1.3_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_02": {
+    "inhalt": "Hey, was geht?",
+    "name": "self",
+    "wahl1": "D1.3_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_03": {
+    "inhalt": "Kay hat mich vorhin auf irgendeinen Fynsta-Post von mir angesprochen.",
+    "name": "self",
+    "wahl1": "D1.3_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_04": {
+    "inhalt": "Ich war das aber nicht!",
+    "name": "self",
+    "wahl1": "D1.3_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_05": {
+    "inhalt": "Ich brauche deine Hilfe!",
+    "name": "self",
+    "wahl1": "D1.3_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_06": {
+    "inhalt": "Kannst du nicht einmal diese ganzen Dinge beiseite lassen und dich auf's Training konzentrieren?",
+    "name": "felix",
+    "wahl1": "D1.3_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_00_07": {
+    "inhalt": "Komm wir gehen auf den Rasen und machen uns schonmal warm.",
+    "name": "felix",
+    "wahl1": "D1.3_11_01",
+    "wahl2": "D1.3_12_01",
+    "nextTime": ""
+  },
+
+  "D1.3_11_01": {
+    "inhalt": "OK vielleicht hast du ja recht...",
+    "name": "self",
+    "wahl1": "D1.3_11_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_11_02": {
+    "inhalt": "Wird schon nicht so schlimm gewesen sein!",
+    "name": "self",
+    "wahl1": "D1.3_11_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_11_03": {
+    "inhalt": "Cool, na dann los!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "GGGGGGGGGG"
+  },
+
+  "D1.3_12_01": {
+    "inhalt": "Hörst du mir überhaupt zu?",
+    "name": "self",
+    "wahl1": "D1.3_12_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_12_02": {
+    "inhalt": "Irgendjemand hat auf MEINEM Account irgendein komisches Bild gepostet, Kay lacht mich deswegen aus und dir ist es egal?",
+    "name": "self",
+    "wahl1": "D1.3_12_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+
+  "D1.3_12_03": {
+    "inhalt": "Na gut wenn dir das so wichtig ist, dann lass uns morgen nochmal mit Tim darüber sprechen.",
+    "name": "felix",
+    "wahl1": "D1.3_12_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_12_04": {
+    "inhalt": "Wir treffen uns dann morgen einfach nach der Schule.",
+    "name": "felix",
+    "wahl1": "D1.3_12_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.3_12_05": {
+    "inhalt": "Aber jetzt erstmal ne Runde Kicken!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 1 Abschnitt 3"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

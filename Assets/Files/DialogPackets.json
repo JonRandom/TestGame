@@ -1,21 +1,30 @@
 {
-  "01": {
-    "erika": {
+  "Tag 1 Abschnitt 1 (Start Zeit)": {
+    "mutter": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "erika1"
-    },
-    "02": {
+      "code": "D1.0_00_01"
+    }
+
+  },
+  "Tag 1 Abschnitt 2": {
+    "kay": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "120002"
+      "code": "D1.1_00_01"
     }
   },
-  "11": {
-    "11": {
+
+  "Tag 1 Abschnitt 3": {
+    "felix": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "120002"
+      "code": "D1.3_00_01"
+    },
+    "mutter": {
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.2_00_01"
     }
   }
 }

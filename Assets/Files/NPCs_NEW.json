@@ -25,5 +25,28 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "posY":200.0,
     "houseNumber":2,
     "lastLine": ""
+  },
+  "kay": {
+    "name":"kay",
+    "posX":1200,
+    "posY":1220,
+    "houseNumber":-1,
+    "lastLine": ""
+
+  },
+  "mutter": {
+    "name":"mutter",
+    "posX":1050.0,
+    "posY":1200,
+    "houseNumber":-1,
+    "lastLine": ""
+
+  },"felix": {
+    "name":"felix",
+    "posX":1400,
+    "posY":1200,
+    "houseNumber":-1,
+    "lastLine": ""
+
   }
 }

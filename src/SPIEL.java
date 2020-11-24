@@ -15,6 +15,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige4;
     private DebugAnzeige debugAnzeige5;
     private DebugAnzeige debugAnzeige6;
+    private DebugAnzeige debugAnzeige7;
+    private DebugAnzeige debugAnzeige8;
+    private DebugAnzeige debugAnzeige9;
+    private DebugAnzeige debugAnzeige10;
+
 
     private DummyPlayer DP;
     private NpcController2 NpcController2;
@@ -54,10 +59,14 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DialogController3 = new DialogController3(NpcController2);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
-        debugAnzeige3 = new DebugAnzeige(500,0);
-        debugAnzeige4 = new DebugAnzeige(700,0);
-        debugAnzeige5 = new DebugAnzeige(1000,0);
-        debugAnzeige6 = new DebugAnzeige(1180,0);
+        debugAnzeige3 = new DebugAnzeige(350,0);
+        debugAnzeige4 = new DebugAnzeige(500,0);
+        debugAnzeige5 = new DebugAnzeige(700,0);
+        debugAnzeige6 = new DebugAnzeige(1300,0);
+        debugAnzeige7 = new DebugAnzeige(0,30); //dialogPos
+        debugAnzeige8 = new DebugAnzeige(400,30); //ButtonCursor
+        debugAnzeige9 = new DebugAnzeige(650,30);
+        debugAnzeige10 = new DebugAnzeige(1000,30); //LastSelfBoolean
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         Minigame2 = new Minigame2(ActivePlayer);
         //ObjectController Autos = new ObjectController();
@@ -101,6 +110,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige4);
         statischeWurzel.add(debugAnzeige5);
         statischeWurzel.add(debugAnzeige6);
+        statischeWurzel.add(debugAnzeige7);
+        statischeWurzel.add(debugAnzeige8);
+        statischeWurzel.add(debugAnzeige9);
+        statischeWurzel.add(debugAnzeige10);
 
 
 
@@ -129,6 +142,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige4.SetContent("Dialog2Activ:" + DialogController3.isActive());
         debugAnzeige5.SetContent("ZeitPosition: " + DialogController3.getGlobalTemporalPosition());
         debugAnzeige6.SetContent("PlayingLastLine: " + DialogController3.isPlayingLastLine());
+        debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController3.getCurrentDialogCode());
+        debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController3.getButtonCursor());
+        debugAnzeige9.SetContent("OneButtonMode?: " + DialogController3.isOneButtonMode());
+        debugAnzeige10.SetContent("LastSelf: " + DialogController3.isPlayingLastLine());
 
         DP.positionSetzen(playerX,playerY);
 
@@ -233,7 +250,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 DialogController3.input("rechts");
             }
             else if(tastenkuerzel == 31){
-                System.out.println("SPIEL: ENTER GEDRÜCK<t");
+                System.out.println("SPIEL: ENTER GEDRÜCKt");
                 DialogController3.input("enter");
             }
         }

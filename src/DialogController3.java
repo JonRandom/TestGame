@@ -31,6 +31,7 @@ public class DialogController3 extends Knoten {
     private final GameSaver gameSaver;
 
 
+    //JSON GSON
     private Map<String, DialogController3.DialogLine> dialogLines; //für die Json mit den DialogZeilen
     private Map<String, Map<String, DialogController3.DialogPacket>> dialogPackets; //für die Json mit den DialogPackets
 
@@ -64,6 +65,7 @@ public class DialogController3 extends Knoten {
 
         addDisplayObjects();
         hideWindow();
+        NPC_Controller2.updateNpcPositions(globalTemporalPosition);
     }
 
     private void addDisplayObjects() {
@@ -196,6 +198,7 @@ public class DialogController3 extends Knoten {
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
                 highLightReadyNpcs(); //updatet die Highlights
+                NPC_Controller2.updateNpcPositions(globalTemporalPosition);
             } else {
                 displayCurrentDialogLine();
             }
@@ -208,7 +211,7 @@ public class DialogController3 extends Knoten {
     }
 
     private void saveLastLines() {
-        System.out.println("Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
+        System.out.println("DialogController3: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
         for (String key : lastLines.keySet()) {
             String npcName = key;
             String code = lastLines.get(key);
@@ -253,6 +256,21 @@ public class DialogController3 extends Knoten {
             displayTextObject.inhaltSetzen("FEHLER! Für diesem NPC gibt es scheinbar kein lastLine Eintrag!");
         }
     }
+    /*
+    public void updateNpcPos(){
+        Map<String, DialogPacket> packet = dialogPackets.get(globalTemporalPosition);
+        for (String key : packet.keySet()) {
+            String code = packet.get(key).code;
+            String name = dialogLines.get(code).name; //name des ersten aktüres
+
+
+            NPC_Controller2.updateNpcPos();
+        }
+        NPC_Controller2.updateNpcPos();
+    }
+
+     */
+
 
     public boolean isDialogPacketPlayable(String npcID) {
         if (dialogPackets.containsKey(globalTemporalPosition)) {
@@ -434,8 +452,8 @@ public class DialogController3 extends Knoten {
             System.out.println(ANSI_PURPLE + "DialogController3: Ein Fehler beim Lesen der Json Datei(" + dialogPacketsPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
 
         }
-
     }
+
 
     public boolean isPlayingLastLine() {
         return playingLastLine;
@@ -502,19 +520,22 @@ public class DialogController3 extends Knoten {
         ArrayList<String> requiredItems;
         ArrayList<String> requiredLines;
 
-        NpcPosition npcPos;
-
+        //NpcPosition npcPos;
         String code; // erster Code des Dialogs
 
 
     }
 
+
     public class NpcPosition {
+        private String name;
         private float posX;
         private float posY;
         private int houseN;
 
-        public NpcPosition(int x, int y, int hn) {
+
+        public NpcPosition(String name, int x, int y, int hn) {
+            this.name = name;
             this.posX = x;
             this.posY = y;
             this.houseN = hn;
@@ -532,6 +553,14 @@ public class DialogController3 extends Knoten {
             return houseN;
         }
 
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Don't use for now!
+         * @return
+         */
         public boolean isInHouse() {
             if (houseN > -1) {
                 return true;

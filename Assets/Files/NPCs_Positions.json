@@ -1,0 +1,21 @@
+{
+  "Tag 1 Abschnitt 1 (Start Zeit)": {
+    "mutter": {
+      "posX" : 1050.0,
+      "posY" : 1200,
+      "houseN" : -1
+    }
+  },
+  "Tag 1 Abschnitt 2": {
+    "mutter": {
+      "posX" : 1050.0,
+      "posY" : 1300,
+      "houseN" : -1
+    },
+    "kay": {
+      "posX" : 1000,
+      "posY" : 1000,
+      "houseN" : -1
+    }
+  }
+}

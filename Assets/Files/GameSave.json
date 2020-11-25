@@ -1,8 +1,10 @@
 {
-  "name": "DEFAULT",
-  "posX": 0,
-  "posY": 0,
-  "walkspeed": 0,
+  "posX": 1079,
+  "posY": 1118,
+  "walkspeed": 3,
   "items": [],
-  "lines": []
+  "lines": [
+    "D1.0_00_01",
+    "D1.0_00_02"
+  ]
 }

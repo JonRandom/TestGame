@@ -1,17 +1,13 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ea.Bild;
 import ea.Knoten;
 import ea.Punkt;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class NpcController2 extends Knoten {
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -19,7 +15,15 @@ public class NpcController2 extends Knoten {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_PURPLE = "\u001B[35m";
 
+    //Pfade
+    private String npcTemplatePath = "./Assets/Files/NPCs-Template.json";
+    private String npcFilePath = "./Assets/Files/NPCs_NEW.json";
+    private String npcPositionPath = "./Assets/Files/NPCs_Positions.json";
+
+
+    //JSON GSON
     private HashMap<String, NPC2> NPCs; //für die Json
+    private Map<String, Map<String, DialogController3.NpcPosition>> npcPositions; //für die Json mit den NPC Daten
 
     //for Position Reset
     private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
@@ -27,10 +31,13 @@ public class NpcController2 extends Knoten {
 
 
     private Player AP;
+
     public NpcController2(Player mAP) {
         AP = mAP;
         resetJSON();
         readJSON();
+        readNpcPositionJSON();
+        //System.out.println("TESTETSTET POSX VON NAME: " + npcPositions.get("Tag 1 Abschnitt 1 (Start Zeit)").get("name").getPosX());
         addAllNPCs();
 
         leaveHouse(); //muss am anfang außen sein
@@ -82,13 +89,13 @@ public class NpcController2 extends Knoten {
         return NPCs.get(npcID).lastLine;
     }
 
-    public void resetToLastQuietPos(){
-        AP.positionSetzen(lastQuietX,lastQuietY);
+    public void resetToLastQuietPos() {
+        AP.positionSetzen(lastQuietX, lastQuietY);
     }
 
 
-    public Punkt getLastQuietPos(){
-        return new Punkt(lastQuietX,lastQuietY);
+    public Punkt getLastQuietPos() {
+        return new Punkt(lastQuietX, lastQuietY);
     }
 
     /**
@@ -112,23 +119,25 @@ public class NpcController2 extends Knoten {
             }
         }
     }
-    public void setNpcLastLine(String name, String lineCode){
-        System.out.println("NpcController2: für den NPC:"  + name  + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
+
+    public void setNpcLastLine(String name, String lineCode) {
+        System.out.println("NpcController2: für den NPC:" + name + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
         NPC2 npc = NPCs.get(name);
         npc.setLastLine(lineCode);
         saveJSON();
     }
-    public void highLightNpcs(Set keySet){
+
+    public void highLightNpcs(Set keySet) {
         for (String key : NPCs.keySet()) {  //geht die JSON durch und macht alle aus(false)
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             element.setHighlightState(false);
         }
-        if(!(keySet == null)){
+        if (!(keySet == null)) {
             for (Object npcName : keySet) {
-                System.out.println("NpcController2: Der Spieler mit dem Namen:"  + npcName  +" wird jetzt gehighlightet!");
+                System.out.println("NpcController2: Der Spieler mit dem Namen:" + npcName + " wird jetzt gehighlightet!");
                 NPCs.get(npcName).setHighlightState(true);
             }
-        } else{
+        } else {
             System.out.println("NpcController2: FEHLER: EIN DER HIGHLIGHT KEYSET GRUPPE IST LEER. DAS LIEGT WAHRSCHEINLICH DARAN, DASS ES KEINE WEITEREN DIALOGPACKETE FÜTR DIE NEUE ZEIT GIBT!");
         }
 
@@ -168,7 +177,7 @@ public class NpcController2 extends Knoten {
      */
     private void saveJSON() {
         try {
-            Writer writer = new FileWriter("./Assets/Files/NPCs_NEW.json");
+            Writer writer = new FileWriter(npcFilePath);
             Gson gson = new GsonBuilder() //man könnte noch den gleichen gson von dem readJson nehmen, aber geht auch so
                     .excludeFieldsWithoutExposeAnnotation()
                     .create();
@@ -185,13 +194,42 @@ public class NpcController2 extends Knoten {
 
     }
 
+    public void updateNpcPositions(String timePos) {
+        Map<String, DialogController3.NpcPosition> positionsAtTime = npcPositions.get(timePos);
+        if (!(positionsAtTime == null)) {
+            for (String key : positionsAtTime.keySet()) {  //geht die JSON durch und macht alle aus(false)
+                try {
+                    DialogController3.NpcPosition posObject = positionsAtTime.get(key);
+                    String name = key;
+                    System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
+                    NPC2 npc = NPCs.get(name);
+                    if (!(npc == null)) {
+                        //setzte Position und Hausnummer des NPCs mit dem entsprechenden Namen.
+                        npc.positionSetzen(posObject.getPosX(), posObject.getPosY());
+                        npc.setHouseNumber(posObject.getHouseN());
+                    }else{
+                        System.out.println("NpcController: FEHLER: NPC mit dem name (" + name + ") existiert nicht in der ursprünglichen JSON mit den NPCs");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("NpcController: FEHLER beim update der Positionen der NPCs");
+                }
+
+            }
+        } else {
+            System.out.println("NpcController: Für diese Zeit gibt es kein NPC Pos Update");
+        }
+
+
+    }
+
     /**
      * Liest die JSON(NPCs-Temple.json) Datei und schreibt ihren Inhalt in den Json(NPCs_NEW.json).
      */
     private void resetJSON() {
         try {
-            File originalFile = new File("./Assets/Files/NPCs-Template.json");
-            File destinationFile = new File("./Assets/Files/NPCs_NEW.json");
+            File originalFile = new File(npcTemplatePath);
+            File destinationFile = new File(npcFilePath);
             FileChannel src = new FileInputStream(originalFile).getChannel();
             FileChannel dest = new FileOutputStream(destinationFile).getChannel();
             dest.transferFrom(src, 0, src.size());
@@ -210,26 +248,36 @@ public class NpcController2 extends Knoten {
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./Assets/Files/NPCs_NEW.json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(npcFilePath));
             Type MapType = new TypeToken<HashMap<String, NPC2>>() {
             }.getType();
 
-            /*
-            HashMap<String, NPC2> TestMAP = new HashMap<String, NPC2>();
-            TestMAP.put("01", new NPC2(100,100,1,"paul"));
-            TestMAP.put("01", new NPC2(200,100,1,"erika"));
-            String json = gson.toJson(TestMAP);
-            System.out.println("JSON INHALT: " + json);
-            HashMap<String, NPC2> TestMAP2 = gson.fromJson(json, MapType);
-            this.add(TestMAP2.get("01"));
 
-             */
             NPCs = gson.fromJson(bufferedReader, MapType);
-            System.out.println(ANSI_GREEN + "NpcController2: JSON(./Assets/Files/NPCs_NEW.json) erfolgreich gelesen" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcFilePath + ") erfolgreich gelesen" + ANSI_RESET);
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
-            System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim Lesen der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim Lesen der JSON(" + npcFilePath + ") Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+
+        }
+
+    }
+
+
+    private void readNpcPositionJSON() {
+        Gson gson = new Gson();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(npcPositionPath));
+
+            Type MapType = new TypeToken<Map<String, Map<String, DialogController3.NpcPosition>>>() {
+            }.getType();
+            npcPositions = gson.fromJson(bufferedReader, MapType);
+            System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcPositionPath + ")  erfolgreich gelesen" + ANSI_RESET);
+            //System.out.println("ANTWORT: " + dialogPackets.get("01").get("11").NpcID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim Lesen der Json Datei(" + npcPositionPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
 
         }
 

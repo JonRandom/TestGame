@@ -6,10 +6,16 @@ import ea.Knoten;
 import java.lang.reflect.Type;
 
 public class NPC2 extends Knoten {
+
     @Expose
     public String name;
     //@Expose
     private Bild img;
+
+
+    private final String highlighterPath = "./Assets/NPCs/highLight.png";
+    private final Bild highLightImg;
+    private boolean highlightState = true;
 
     @Expose
     private float posX;
@@ -28,6 +34,9 @@ public class NPC2 extends Knoten {
         this.houseNumber = hN;
         this.lastLine = mlastLine;
 
+
+
+
         try{
             String path = "./Assets/NPCs/" + name + ".png";
             img = new Bild(pX,pY,path);
@@ -37,7 +46,13 @@ public class NPC2 extends Knoten {
             System.out.println("NPC2: Fehler beim importieren der Datei");
             System.out.println("NPC2: " + e);
         }
+        highLightImg = new Bild(posX-5, posY-5, highlighterPath);
+        this.add(highLightImg);
+        highLightImg.sichtbarSetzen(highlightState);
 
+    }
+    public void setLastLine(String code){
+        this.lastLine = code;
     }
     @Override
     public void verschieben(float dX, float dY) {
@@ -70,6 +85,11 @@ public class NPC2 extends Knoten {
             System.out.println("NPC2: Fetter Fail: Spieler ist in dem negativen Haus: " + houseNumber + " und nicht >=(-1)");
             return false;
         }
+    }
+
+    public void setHighlightState(boolean h){
+        highlightState = h;
+        highLightImg.sichtbarSetzen(highlightState);
     }
 
     @Override

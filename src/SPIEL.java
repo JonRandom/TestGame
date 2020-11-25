@@ -122,6 +122,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         tickerAnmelden(this, 10);
 
+        DialogController3.highLightReadyNpcs(); //einmal alle highlighten die können
     }
 
 
@@ -192,7 +193,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DialogController3.startDialog(npcID);
 
         }
-
 
         gamesaver.SavePlayer(ActivePlayer);
         //pet1.follow(ActivePlayer);

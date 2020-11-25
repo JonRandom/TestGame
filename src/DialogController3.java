@@ -7,8 +7,7 @@ import ea.Text;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public class DialogController3 extends Knoten {
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -50,6 +49,9 @@ public class DialogController3 extends Knoten {
     //WAHL;
     private int buttonCursor = 0;
     private boolean oneButtonMode = false; //Wenn es nur eine Wahl gibt, wird ein Knopf ausgeblendet
+
+    //lastLine
+    private Map<String, String> lastLines = new HashMap<String, String>(){}; //key mit name und als inhalt den Code
 
 
     public DialogController3(NpcController2 NPC_C2) {
@@ -106,6 +108,18 @@ public class DialogController3 extends Knoten {
             playLastLine(npcID);
         }
     }
+    public void highLightReadyNpcs(){
+        if (dialogPackets.containsKey(globalTemporalPosition)) {
+            Map<String, DialogController3.DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
+            Set keys = innnerPacketMap.keySet();
+            if (keys.isEmpty()) {
+                System.out.println("DialogController2: FEHLER BEIM HIGHLIGHTEN, KEIN SPIELER KANN GERADE SPRECHEN");
+            } else{
+                NPC_Controller2.highLightNpcs(keys);
+            }
+        }
+
+    }
 
     private void displayCurrentDialogLine() {
         playingLastLine = false;
@@ -120,6 +134,11 @@ public class DialogController3 extends Knoten {
             if(!currentLine.name.equals("self")){ //wenn nicht mehr self
                 System.out.println("DialogController3: SELF spricht nicht mehr" + currentDialogCode);
                 lastLineSelf = false;
+
+                if(true) { //Speicherung der aktuellen Line als LastLine
+                    String name = currentLine.name;
+                    lastLines.put(name, currentDialogCode);
+                }
             }
             //displayResponseTextObject.sichtbarSetzen(true);
             if (currentLine.wahl2.equals("")) { //nur eine Wahl
@@ -167,6 +186,7 @@ public class DialogController3 extends Knoten {
             if (!currentLine.nextTime.equals("")) {
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
+                highLightReadyNpcs(); //updatet die Highlights
             } else {
                 displayCurrentDialogLine();
             }
@@ -176,6 +196,15 @@ public class DialogController3 extends Knoten {
             endDialog();
         }
 
+    }
+    private void saveLastLines(){
+        System.out.println("Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
+        for (String key : lastLines.keySet()) {
+            String npcName = key;
+            String code = lastLines.get(key);
+            NPC_Controller2.setNpcLastLine(npcName, code);
+        }
+        lastLines.clear();
     }
 
     private void endDialog() {
@@ -187,6 +216,7 @@ public class DialogController3 extends Knoten {
         playingLastLine = false;
         //NPC_Controller2.prepareReset(); //setzt flag hig, damit Spieler nächsten Tick(in SPIEL.java) zurückgesetzt wird.
         NPC_Controller2.resetToLastQuietPos();
+        saveLastLines();
     }
 
     private void playLastLine(String npcID) {

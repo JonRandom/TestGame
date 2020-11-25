@@ -1,13 +1,17 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import ea.Bild;
 import ea.Knoten;
 import ea.Punkt;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class NpcController2 extends Knoten {
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -20,6 +24,10 @@ public class NpcController2 extends Knoten {
     //for Position Reset
     private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
     private float lastQuietY = 0;
+
+    //highLighted NPCS:
+    private String highlighterPath = "./Asstets/NPCs/highLight.png";
+    private List<Bild> highLightImgs = new ArrayList<Bild>();
 
     private Player AP;
     public NpcController2(Player mAP) {
@@ -105,6 +113,23 @@ public class NpcController2 extends Knoten {
                 element.positionSetzen(offsetX + (int) element.getPosX(), offsetY + (int) element.getPosY());
 
             }
+        }
+    }
+    public void setNpcLastLine(String name, String lineCode){
+        System.out.println("NpcController2: für den NPC:"  + name  + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
+        NPC2 npc = NPCs.get(name);
+        npc.setLastLine(lineCode);
+        saveJSON();
+    }
+    public void highLightNpcs(Set keySet){
+        highLightImgs.clear();
+        for (String key : NPCs.keySet()) {  //geht die JSON durch und macht alle aus(false)
+            NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+            element.setHighlightState(false);
+        }
+        for (Object npcName : keySet) {
+            System.out.println("NpcController2: Der Spieler mit dem Namen:"  + npcName  +" wird jetzt gehighlightet!");
+            NPCs.get(npcName).setHighlightState(true);
         }
     }
 

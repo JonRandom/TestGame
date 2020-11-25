@@ -7,6 +7,7 @@ import ea.Vektor;
  */
 public class ObjectController extends Knoten{
 
+
     Auto Auto1;
 
     public ObjectController(){

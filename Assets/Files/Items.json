@@ -1,0 +1,16 @@
+[
+  {
+    "name": "stick",
+    "posX": 200,
+    "posY": 400,
+    "houseN": -1,
+    "visible": true
+  },
+  {
+    "name": "money",
+    "posX": 200,
+    "posY": 500,
+    "houseN": -1,
+    "visible": true
+  }
+]

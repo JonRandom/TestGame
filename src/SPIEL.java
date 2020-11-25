@@ -9,6 +9,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private Player ActivePlayer;
     private DialogController3 DialogController3;
     private Map3 map;
+    private ItemController itemController;
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
     private DebugAnzeige debugAnzeige3;
@@ -67,6 +68,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige9 = new DebugAnzeige(650,30);
         debugAnzeige10 = new DebugAnzeige(1000,30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
+        itemController = new ItemController(ActivePlayer, gamesaver);
         //ObjectController Autos = new ObjectController();
 
 
@@ -91,6 +93,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
+        wurzel.add(itemController);
         //
         //wrzel.add(pet1);
 
@@ -131,6 +134,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     }
 
     public void tick() {
+        if(itemController.checkForCollision()){
+            gamesaver.addItem(itemController.getCollidingItemName());
+            itemController.hideCollidingItem();
+
+        }
 
         int playerX = ActivePlayer.positionX();
         int playerY = ActivePlayer.positionY();

@@ -103,6 +103,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(testauto3);
         animationsManager.streckenAnimation(testauto3, 80000,new Punkt(220, 4800),new Punkt(220,3640), new Punkt(5300, 3640), new Punkt(5300,4900),new Punkt(7420,4890), new Punkt(7420,3550), new Punkt(5300,3550), new Punkt(5300, 4800) );
 
+        //Auto 4 ...
 
 
         //wurzel.add(Autos);

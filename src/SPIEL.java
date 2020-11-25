@@ -85,6 +85,22 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         mausAnmelden(maus);
         maus.klickReagierbarAnmelden(this);
         */
+        //Auto 1 fährt um Häuserblock obere Reihe Wohnhäuser
+        //Beginn oben links, im Uhrzeigersinn
+        Bild testauto1 = new Bild(220, 1550,"./Assets/Tests/Testauto.png");
+        wurzel.add(testauto1);
+        animationsManager.streckenAnimation(testauto1, 40000, new Punkt(220, 1550), new Punkt(5300,1550),new Punkt(5300, 2500),new Punkt(220,2500) );
+        //Auto 2 fährt um Häuserblock beide Reihen Wphnhäuser
+        //Beginn unten rechts, im Uhrzeigersinn
+        Bild testauto2 = new Bild(5300, 3550,"./Assets/Tests/Testauto.png");
+        wurzel.add(testauto2);
+        animationsManager.streckenAnimation(testauto2, 40000,new Punkt(5300, 3550),new Punkt(220,3550), new Punkt(220, 1550), new Punkt(5300,1550) );
+        //Auto 3 fährt um Häuserblock Schule, Baustelle, Polizei,...
+        //Beginn unten links, im Uhrzeigersinn, gegen Uhrzeigersinn, im Uhrzeigersinn => fährt "liegende 8"
+        Bild testauto3 = new Bild(220, 4800,"./Assets/Tests/Testauto.png");
+        wurzel.add(testauto3);
+        animationsManager.streckenAnimation(testauto3, 80000,new Punkt(220, 4800),new Punkt(220,3640), new Punkt(5300, 3640), new Punkt(5300,4900),new Punkt(7420,4890), new Punkt(7420,3550), new Punkt(5300,3550), new Punkt(5300, 4800) );
+
 
 
 

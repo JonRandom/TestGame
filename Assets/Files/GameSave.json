@@ -1,10 +1,10 @@
 {
-  "posX": 188,
-  "posY": 413,
+  "posX": 1097,
+  "posY": 1181,
   "walkspeed": 3,
-  "items": [
-    "stick",
-    "money"
-  ],
-  "lines": []
+  "items": [],
+  "lines": [
+    "D1.0_00_01",
+    "D1.0_00_02"
+  ]
 }

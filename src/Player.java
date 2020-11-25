@@ -8,6 +8,8 @@ import ea.Punkt;
  */
 public class Player extends Knoten {
 
+    private GameSaver gamesaver;
+
     private String name;
     private float posX;
     private float posY;
@@ -18,25 +20,15 @@ public class Player extends Knoten {
 
     private ImageCollection2 IC2;
 
-    public Player(float posX,float posY){
-
-        super();
+    public Player(float posX,float posY, GameSaver gs){
+        this.gamesaver = gs;
         this.posX=posX;
         this.posY=posY;
         this.money = 0;
 
         IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/BasicMale");
         IC2.Init();
-
-
         this.add(IC2);
-
-        IC2.newtonschMachen();
-        //IC2.aktivMachen();
-        //I/C2.beeinflussbarSetzen(true);
-
-
-        ;
 
     }
 
@@ -98,8 +90,6 @@ float lastX = posX;
     public void addMoney(int x){
         money += x;
     }
-
-
 
 
     public float getCenterX(){

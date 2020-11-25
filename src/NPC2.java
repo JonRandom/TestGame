@@ -62,6 +62,17 @@ public class NPC2 extends Knoten {
 
     }
 
+    @Override
+    public void positionSetzen(float x, float y) {
+        posX = posX - x;
+        posY = posY - y;
+        super.positionSetzen(x, y);
+    }
+
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
     public float getPosY() {
         return posY;
     }

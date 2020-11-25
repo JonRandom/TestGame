@@ -21,16 +21,17 @@ public class DialogController3 extends Knoten {
 
     //GLOBAL STUFF;
     private String globalTemporalPosition = "Tag 1 Abschnitt 1 (Start Zeit)";
-    ArrayList<String> foundItems = new ArrayList<String>();
-    ArrayList<String> readLines = new ArrayList<String>();
 
     private boolean active = false;
     private boolean waitingForInput = false;
     private boolean playingLastLine = false; // Sonderfall es wird kein echter Dialog abgespielt;
 
-
+    //sub-Objects
     private final NpcController2 NPC_Controller2;
+    private final GameSaver gameSaver;
 
+
+    //JSON GSON
     private Map<String, DialogController3.DialogLine> dialogLines; //für die Json mit den DialogZeilen
     private Map<String, Map<String, DialogController3.DialogPacket>> dialogPackets; //für die Json mit den DialogPackets
 
@@ -51,17 +52,20 @@ public class DialogController3 extends Knoten {
     private boolean oneButtonMode = false; //Wenn es nur eine Wahl gibt, wird ein Knopf ausgeblendet
 
     //lastLine
-    private Map<String, String> lastLines = new HashMap<String, String>(){}; //key mit name und als inhalt den Code
+    private Map<String, String> lastLines = new HashMap<String, String>() {
+    }; //key mit name und als inhalt den Code
 
 
-    public DialogController3(NpcController2 NPC_C2) {
+    public DialogController3(NpcController2 NPC_C2, GameSaver gs) {
         this.NPC_Controller2 = NPC_C2;
+        this.gameSaver = gs;
         //initialisert
         readJSON_DialogLines();
         readJSON_DialogPackets();
 
         addDisplayObjects();
         hideWindow();
+        NPC_Controller2.updateNpcPositions(globalTemporalPosition);
     }
 
     private void addDisplayObjects() {
@@ -81,11 +85,11 @@ public class DialogController3 extends Knoten {
             this.add(displayButtons[0], displayButtons[1]);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DialogController2: FEHLER beim Importieren der Bilder");
+            System.out.println("DialogController3: FEHLER beim Importieren der Bilder");
         }
 
         //Text als letztes also ganz oben
-        displayResponseTextObject = new Text(textPosX, textPosY - 50, "DEFAULT RESONSE TEXT");
+        displayResponseTextObject = new Text(textPosX, textPosY - 50, "DEFAULT RESPONSE TEXT");
         displayTextObject = new Text(textPosX, textPosY, "DEFAULT TEXT");
         this.add(displayTextObject, displayResponseTextObject);
     }
@@ -108,15 +112,20 @@ public class DialogController3 extends Knoten {
             playLastLine(npcID);
         }
     }
-    public void highLightReadyNpcs(){
+
+    public void highLightReadyNpcs() {
         if (dialogPackets.containsKey(globalTemporalPosition)) {
             Map<String, DialogController3.DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
             Set keys = innnerPacketMap.keySet();
             if (keys.isEmpty()) {
-                System.out.println("DialogController2: FEHLER BEIM HIGHLIGHTEN, KEIN SPIELER KANN GERADE SPRECHEN");
-            } else{
+                System.out.println("DialogController3: FEHLER BEIM HIGHLIGHTEN, KEIN SPIELER KANN GERADE SPRECHEN");
+            } else {
                 NPC_Controller2.highLightNpcs(keys);
             }
+        } else {
+            System.out.println("DialogController3: FEHLER BEIM HIGHLIGHTEN, DIE NÄCHSTE ZEIT GIBT ES GAR NICHT");
+            System.out.println("DialogController3: Die Zeit POS ist:" + globalTemporalPosition);
+            NPC_Controller2.highLightNpcs(null);
         }
 
     }
@@ -124,6 +133,7 @@ public class DialogController3 extends Knoten {
     private void displayCurrentDialogLine() {
         playingLastLine = false;
         DialogController3.DialogLine currentLine = dialogLines.get(currentDialogCode);
+        gameSaver.addLine(currentDialogCode);
         System.out.println("DialogController3: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
         if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
@@ -131,11 +141,11 @@ public class DialogController3 extends Knoten {
             skipLine(); //effectivly skipps the next dialog line
 
         } else { //dialog wird nicht geskippt
-            if(!currentLine.name.equals("self")){ //wenn nicht mehr self
+            if (!currentLine.name.equals("self")) { //wenn nicht mehr self
                 System.out.println("DialogController3: SELF spricht nicht mehr" + currentDialogCode);
                 lastLineSelf = false;
 
-                if(true) { //Speicherung der aktuellen Line als LastLine
+                if (true) { //Speicherung der aktuellen Line als LastLine
                     String name = currentLine.name;
                     lastLines.put(name, currentDialogCode);
                 }
@@ -184,9 +194,11 @@ public class DialogController3 extends Knoten {
                 currentDialogCode = currentLine.wahl2;
             }
             if (!currentLine.nextTime.equals("")) {
+                System.out.println("NextTime des Dialogs ist nicht mehr leer, und deswegen wir beendet");
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
                 highLightReadyNpcs(); //updatet die Highlights
+                NPC_Controller2.updateNpcPositions(globalTemporalPosition);
             } else {
                 displayCurrentDialogLine();
             }
@@ -197,8 +209,9 @@ public class DialogController3 extends Knoten {
         }
 
     }
-    private void saveLastLines(){
-        System.out.println("Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
+
+    private void saveLastLines() {
+        System.out.println("DialogController3: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
         for (String key : lastLines.keySet()) {
             String npcName = key;
             String code = lastLines.get(key);
@@ -243,31 +256,48 @@ public class DialogController3 extends Knoten {
             displayTextObject.inhaltSetzen("FEHLER! Für diesem NPC gibt es scheinbar kein lastLine Eintrag!");
         }
     }
+    /*
+    public void updateNpcPos(){
+        Map<String, DialogPacket> packet = dialogPackets.get(globalTemporalPosition);
+        for (String key : packet.keySet()) {
+            String code = packet.get(key).code;
+            String name = dialogLines.get(code).name; //name des ersten aktüres
+
+
+            NPC_Controller2.updateNpcPos();
+        }
+        NPC_Controller2.updateNpcPos();
+    }
+
+     */
+
 
     public boolean isDialogPacketPlayable(String npcID) {
         if (dialogPackets.containsKey(globalTemporalPosition)) {
             Map<String, DialogController3.DialogPacket> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
             if (innnerPacketMap.containsKey(npcID)) {
                 DialogController3.DialogPacket element = innnerPacketMap.get(npcID);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+                List<String> foundItems = gameSaver.getItems(); //holt sich aus dem Savefile die momentanen Items
                 if (foundItems.containsAll(element.requiredItems)) {
+                    List<String> readLines = gameSaver.getLines(); //holt sich aus dem Savefile die momentanen gelesenen Lines;
                     if (readLines.containsAll(element.requiredLines)) {
-                        System.out.println("DialogController2: Es sind alle nötigen Items und Zeilen vorhanden");
+                        System.out.println("DialogController3: Es sind alle nötigen Items und Zeilen vorhanden");
                         return true;
                     } else {
-                        System.out.println("DialogController2: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen");
+                        System.out.println("DialogController3: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen");
                         return false;
                     }
                 } else {
-                    System.out.println("DialogController2: Es sind nicht alle nötigen Items gefunden worden");
+                    System.out.println("DialogController3: Es sind nicht alle nötigen Items gefunden worden");
                     return false;
                 }
             } else {
-                System.out.println("DialogController2: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");
+                System.out.println("DialogController3: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");
                 return false;
 
             }
         } else {
-            System.out.println("DialogController2: FEHLER: Zu diesem Zeitpunkt gibt es keinen Eintrag");
+            System.out.println("DialogController3: FEHLER: Zu diesem Zeitpunkt gibt es keinen Eintrag");
             return false;
         }
     }
@@ -309,11 +339,11 @@ public class DialogController3 extends Knoten {
                     break;
 
                 default:
-                    System.out.println("DialogController2: Kein valider Input");
+                    System.out.println("DialogController3: Kein valider Input");
             }
             updateButtons();
         } else {
-            System.out.println("DialogController2: WARTET NICHT AUF INPUT");
+            System.out.println("DialogController3: WARTET NICHT AUF INPUT");
         }
     }
 
@@ -398,10 +428,10 @@ public class DialogController3 extends Knoten {
             }.getType();
             dialogLines = gson.fromJson(bufferedReader, MapType);
             System.out.println();
-            System.out.println(ANSI_GREEN + "DialogController2: JSON(" + dialogLinesPath + ")  erfolgreich gelesen" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "DialogController3: JSON(" + dialogLinesPath + ")  erfolgreich gelesen" + ANSI_RESET);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(ANSI_PURPLE + "DialogController2: Ein Fehler beim Lesen der Json Datei(" + dialogLinesPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "DialogController3: Ein Fehler beim Lesen der Json Datei(" + dialogLinesPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
 
         }
 
@@ -415,15 +445,15 @@ public class DialogController3 extends Knoten {
             Type MapType = new TypeToken<Map<String, Map<String, DialogController3.DialogPacket>>>() {
             }.getType();
             dialogPackets = gson.fromJson(bufferedReader, MapType);
-            System.out.println(ANSI_GREEN + "DialogController2: JSON(" + dialogPacketsPath + ")  erfolgreich gelesen" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "DialogController3: JSON(" + dialogPacketsPath + ")  erfolgreich gelesen" + ANSI_RESET);
             //System.out.println("ANTWORT: " + dialogPackets.get("01").get("11").NpcID);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(ANSI_PURPLE + "DialogController2: Ein Fehler beim Lesen der Json Datei(" + dialogPacketsPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "DialogController3: Ein Fehler beim Lesen der Json Datei(" + dialogPacketsPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
 
         }
-
     }
+
 
     public boolean isPlayingLastLine() {
         return playingLastLine;
@@ -490,9 +520,58 @@ public class DialogController3 extends Knoten {
         ArrayList<String> requiredItems;
         ArrayList<String> requiredLines;
 
+        //NpcPosition npcPos;
         String code; // erster Code des Dialogs
 
 
     }
+
+
+    public class NpcPosition {
+        private String name;
+        private float posX;
+        private float posY;
+        private int houseN;
+
+
+        public NpcPosition(String name, int x, int y, int hn) {
+            this.name = name;
+            this.posX = x;
+            this.posY = y;
+            this.houseN = hn;
+        }
+
+        public float getPosX() {
+            return posX;
+        }
+
+        public float getPosY() {
+            return posY;
+        }
+
+        public int getHouseN() {
+            return houseN;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Don't use for now!
+         * @return
+         */
+        public boolean isInHouse() {
+            if (houseN > -1) {
+                return true;
+
+            } else {
+                //hier landet man auch mit falschen Eingaben!!
+                return false;
+            }
+        }
+    }
+
+
 }
 

@@ -44,19 +44,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         super(MAIN.x,MAIN.y,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
-
-
+        gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         StartSc = new StartingScreen();
 
         DP = new DummyPlayer(600,400);
 
 
-        ActivePlayer = new Player(1100,1100);
+        ActivePlayer = new Player(1100,1100, gamesaver);
 
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer);
         map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2);
-        DialogController3 = new DialogController3(NpcController2);
+        DialogController3 = new DialogController3(NpcController2, gamesaver);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
         debugAnzeige3 = new DebugAnzeige(350,0);
@@ -67,7 +66,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige8 = new DebugAnzeige(400,30); //ButtonCursor
         debugAnzeige9 = new DebugAnzeige(650,30);
         debugAnzeige10 = new DebugAnzeige(1000,30); //LastSelfBoolean
-        gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
         Minigame2 = new Minigame2(ActivePlayer);
         //ObjectController Autos = new ObjectController();
 

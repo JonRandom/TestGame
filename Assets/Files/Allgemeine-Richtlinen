@@ -76,7 +76,7 @@ Bsp.:
   }
 }
 
-Das Komma hinten ist nötig, wenn danach noch ein Satz hat.
+Das Komma hinten ist nötig, wenn es danach noch ein Satz gibt.
 
 DIALOGPACKETS.JSON----------------
 In der DialogPackets.json Datei wird jeder Beginn eines Dialogs eingetragen.
@@ -111,4 +111,4 @@ Bsp.:
   }
 }
 Es gibt hier Zwei Zeiten "01" und "11". Oben gibt es zwei mögliche Spieler "11" und "02".
-Das Komma hinten ist nötig, wenn danach noch ein Satz hat.
+Das Komma hinten ist nötig, wenn es danach noch ein Satz gibt.

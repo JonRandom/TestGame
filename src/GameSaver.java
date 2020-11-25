@@ -3,19 +3,18 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ea.Game;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.*;
 
 public class GameSaver {
+    public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_PURPLE = "\u001B[35m";
 
     private Save saveState = new Save();
+    private final String gameSaveFilePath = "./Assets/Files/GameSave.json";
 
 
     /**
@@ -27,23 +26,12 @@ public class GameSaver {
         saveState.setPosY(0);
         saveState.setWalkspeed(0);
         saveJSON();
+        readJSON();
+        System.out.println("GameSaver: Erster Save TEST gelesen: " + saveState);
+
 
     }
 
-    private void saveJSON() {
-
-        try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            FileOutputStream fout = new FileOutputStream("./Assets/Files/GameSave.json");
-            fout.write(gson.toJson(saveState).getBytes());
-            fout.close();
-
-        }
-        catch(Exception e) {
-            System.out.println(ANSI_PURPLE + "Ein Fehler beim Schreiben der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
-        }
-
-    }
     public void SavePlayer(Player Player) {
         //System.out.println("Saved Game");
 
@@ -52,8 +40,68 @@ public class GameSaver {
         saveState.setPosY((int)Player.getPosY());
         saveState.setWalkspeed(Player.getWalkspeed());
 
+        //saveJSON();
+
+    }
+
+    public List<String> getItems(){
+        return saveState.items;
+    }
+    public void addItem(String item){
+        saveState.items.add(item);
         saveJSON();
     }
+    public void addLine(String code){
+        saveState.lines.add(code);
+        saveJSON();
+    }
+
+    public List<String> getLines() {
+        return saveState.lines;
+    }
+
+    public void setTemporalPosition(String newTemporalPosition) {
+        saveState.temporalPosition = newTemporalPosition;
+        saveJSON();
+    }
+
+    public String getTemporalPosition() {
+        return saveState.temporalPosition;
+    }
+
+
+    private void readJSON() {
+        Gson gson = new GsonBuilder().create();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(gameSaveFilePath));
+            Type JsonType = new TypeToken<Save>() {
+            }.getType();
+
+            saveState = gson.fromJson(bufferedReader, JsonType);
+            System.out.println(ANSI_GREEN + "GameSaver: JSON(" +  gameSaveFilePath + ") erfolgreich gelesen" + ANSI_RESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(ANSI_PURPLE + "GameSaver: Ein Fehler beim Lesen der Json Datei(" +  gameSaveFilePath + "). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+
+        }
+    }
+    private void saveJSON() {
+
+        try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            FileOutputStream fout = new FileOutputStream(gameSaveFilePath);
+            fout.write(gson.toJson(saveState).getBytes());
+            fout.close();
+            System.out.println(ANSI_GREEN + "GameSaver: JSON(" +  gameSaveFilePath + ") erfolgreich gespeichert" + ANSI_RESET);
+        }
+        catch(Exception e) {
+            System.out.println(ANSI_PURPLE + "Ein Fehler beim Schreiben der Json Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+        }
+        readJSON(); //update saveState
+
+    }
+
+
 
     /**
      * template klasse für die Speicherung von Daten in der JSON datei
@@ -64,7 +112,14 @@ public class GameSaver {
         public int posY;
         public int walkspeed;
 
-        public int DialogCode;
+        public String temporalPosition;
+        public List<String> items;
+        public List<String> lines;
+
+        public Save(){
+            items = new ArrayList<>();
+            lines = new ArrayList<>();
+            }
 
         public void setName(String name) {
             this.name = name;
@@ -82,8 +137,18 @@ public class GameSaver {
             this.walkspeed = walkspeed;
         }
 
-        public void setDialogCode(int dialogCode) {
-            DialogCode = dialogCode;
+
+        @Override
+        public String toString() {
+            return "Save{" +
+                    "name='" + name + '\'' +
+                    ", posX=" + posX +
+                    ", posY=" + posY +
+                    ", walkspeed=" + walkspeed +
+                    ", temporalPosition='" + temporalPosition + '\'' +
+                    ", items=" + items +
+                    ", lines=" + lines +
+                    '}';
         }
     }
 }

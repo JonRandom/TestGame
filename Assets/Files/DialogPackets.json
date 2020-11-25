@@ -3,7 +3,12 @@
     "mutter": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "D1.0_00_01"
+      "code": "D1.0_00_01",
+      "npcPos": {
+        "posX": 1100,
+        "posY": 1300,
+        "houseN": -1
+      }
     }
 
   },
@@ -11,7 +16,12 @@
     "kay": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "D1.1_00_01"
+      "code": "D1.1_00_01",
+      "npcPos": {
+        "posX": 1100,
+        "posY": 1300,
+        "houseN": -1
+      }
     }
   },
 
@@ -19,12 +29,22 @@
     "felix": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "D1.3_00_01"
+      "code": "D1.3_00_01",
+      "npcPos": {
+        "posX": 1100,
+        "posY": 1300,
+        "houseN": -1
+      }
     },
     "mutter": {
       "requiredItems": [],
       "requiredLines": [],
-      "code": "D1.2_00_01"
+      "code": "D1.2_00_01",
+      "npcPos": {
+        "posX": 1100,
+        "posY": 1300,
+        "houseN": -1
+      }
     }
   }
 }

@@ -25,9 +25,6 @@ public class NpcController2 extends Knoten {
     private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
     private float lastQuietY = 0;
 
-    //highLighted NPCS:
-    private String highlighterPath = "./Asstets/NPCs/highLight.png";
-    private List<Bild> highLightImgs = new ArrayList<Bild>();
 
     private Player AP;
     public NpcController2(Player mAP) {
@@ -122,15 +119,19 @@ public class NpcController2 extends Knoten {
         saveJSON();
     }
     public void highLightNpcs(Set keySet){
-        highLightImgs.clear();
         for (String key : NPCs.keySet()) {  //geht die JSON durch und macht alle aus(false)
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             element.setHighlightState(false);
         }
-        for (Object npcName : keySet) {
-            System.out.println("NpcController2: Der Spieler mit dem Namen:"  + npcName  +" wird jetzt gehighlightet!");
-            NPCs.get(npcName).setHighlightState(true);
+        if(!(keySet == null)){
+            for (Object npcName : keySet) {
+                System.out.println("NpcController2: Der Spieler mit dem Namen:"  + npcName  +" wird jetzt gehighlightet!");
+                NPCs.get(npcName).setHighlightState(true);
+            }
+        } else{
+            System.out.println("NpcController2: FEHLER: EIN DER HIGHLIGHT KEYSET GRUPPE IST LEER. DAS LIEGT WAHRSCHEINLICH DARAN, DASS ES KEINE WEITEREN DIALOGPACKETE FÜTR DIE NEUE ZEIT GIBT!");
         }
+
     }
 
     public void leaveHouse() {

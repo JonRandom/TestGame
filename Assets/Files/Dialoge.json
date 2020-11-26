@@ -2,14 +2,14 @@
   //Start Dialog mit der Mutter
   "D1.0_00_01": {
     "inhalt": "Aufstehen!",
-    "name": "mutter",
-    "wahl1": "D1.0_00_02",
+    "name": "kay",
+    "wahl1": "D1.1_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D1.0_00_02": {
     "inhalt": "Du musst zur Schule!",
-    "name": "mutter",
+    "name": "kay",
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 2"
@@ -80,30 +80,24 @@
   "D1.2_00_02": {
     "inhalt": "Ich bin grade beschäftigt.",
     "name": "mutter",
-    "wahl1": "D1.2_00_03",
+    "wahl1": "D1.1_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D1.2_00_03": {
     "inhalt": "...tippt...",
     "name": "mutter",
-    "wahl1": "D1.2_00_04",
+    "wahl1": "D1.1_00_04",
     "wahl2": "",
     "nextTime": ""
+
   },
   "D1.2_00_04": {
-    "inhalt": "Sprich mit deinen Lehrern darüber, wenn es so wichtig ist!",
-    "name": "mutter",
-    "wahl1": "D1.2_00_05",
-    "wahl2": "",
-    "nextTime": ""
-  },
-  "D1.2_00_05": {
     "inhalt": "Sprich mit deinen Lehrern darüber wenn es so wichtig ist!",
     "name": "mutter",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "Tag 1 Abschnitt 3"
+    "nextTime": "Tag 2 Abschnitt 1"
   },
 
   //erster Tag Dialog felix
@@ -176,7 +170,7 @@
     "name": "felix",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "GGGGGGGGGG"
+    "nextTime": ""
   },
 
   "D1.3_12_01": {
@@ -214,6 +208,384 @@
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 3"
+  },
+  //Tag 2 Abschnitt 1 Bully
+  //1. Keine Hilfe von Freunden
+  "D2.1.1_00_01": {
+    "inhalt": "hahaha! Wie ist es eigentlich so ein hässliches Bild von sich hochzuladen?",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_02": {
+    "inhalt": "Ich freue mich schon wenn wieder das nächste kommt!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_03": {
+    "inhalt": "Du warst und bist schon immer einfach nur komisch!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_04": {
+    "inhalt": "Lass mich in Ruhe…",
+    "name": "self",
+    "wahl1": "D2.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_05": {
+    "inhalt": "Ich hab dir nichts getan!",
+    "name": "self",
+    "wahl1": "D2.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_06": {
+    "inhalt": "Willst du etwa gehen um noch so ein Bild zu posten?",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_07": {
+    "inhalt": "hahaha",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_08": {
+    "inhalt": "(zu seinen Freunden)Leute, warum sagt ihr denn nichts ?",
+    "name": "self",
+    "wahl1": "D2.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_09": {
+    "inhalt": "Helft mir doch!",
+    "name": "self",
+    "wahl1": "D2.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_10": {
+    "inhalt": "Ne man...wir reden nachher darüber…",
+    "name": "felix",
+    "wahl1": "D2.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.1_00_11": {
+    "inhalt": "Wir müssen jetzt eh zu so einem blöden Vortrag…ciao!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 2 Abschnitt 2"
+  },
+
+
+  //Hilfe von Freunden
+  "D2.1.2_00_01": {
+    "inhalt": "hahaha! Wie ist es eigentlich so ein hässliches Bild von sich hochzuladen?",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_02": {
+    "inhalt": "Ich freue mich schon wenn wieder das nächste kommt!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_03": {
+    "inhalt": "Du warst und bist schon immer einfach nur komisch!",
+    "name": "self",
+    "wahl1": "D2.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_04": {
+    "inhalt": "Hey hey hey, stop mal!",
+    "name": "tim",
+    "wahl1": "D2.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_05": {
+    "inhalt": "Du weißt genau, dass er das nicht selbst gepostet hat!",
+    "name": "tim",
+    "wahl1": "D2.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_06": {
+    "inhalt": "Das glaubst du doch nicht ernsthaft, oder?",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_07": {
+    "inhalt": "Schau ihn dir doch mal an!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_08": {
+    "inhalt": "Dem traue ich alles zu!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_09": {
+    "inhalt": "Alter , dein dummes Gelaber kann hier jetzt niemand gebrauchen.",
+    "name": "felix",
+    "wahl1": "D2.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_10": {
+    "inhalt": "Verschwinde einfach!",
+    "name": "felix",
+    "wahl1": "D2.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_11": {
+    "inhalt": "Alles klar Mr. Babysitter.",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_12": {
+    "inhalt": "Pass auf, dass dein Junge nicht noch mehr Unsinn anstellt.",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_13",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_13": {
+    "inhalt": "Danke Jungs!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_14",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_14": {
+    "inhalt": "Auf euch ist Verlass!",
+    "name": "kay",
+    "wahl1": "D2.1.1_00_15",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.1.2_00_15": {
+    "inhalt": "Na klar, aber jetzt lass uns auch gehen.",
+    "name": "tim",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 2 Abschnitt 2"
+  },
+
+
+
+
+  //Tag 3
+  //Tag 3 Dialog 1
+  //Tag 3 Dialog 1 Information Post
+
+
+
+
+
+  "D3.1.1_00_01": {
+    "inhalt": "Hi, gut das ihr schon da seid.",
+    "name": "self",
+    "wahl1": "D3.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_02": {
+    "inhalt": "Deine Mutter hat uns reingelassen, musste dann aber los-zu einem Geschäftsessen oder so.",
+    "name": "felix",
+    "wahl1": "D3.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_03": {
+    "inhalt": "Wir haben dir die alte Pinnwand von meinem Vater mitgebracht.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_04": {
+    "inhalt": "Hier kannst du alle Informationen sammeln, die du über den Täter und das Internet findest.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_05": {
+    "inhalt": "Und die Informationen die du von Fr. Enland hast, stehen auch schon dabei.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_06": {
+    "inhalt": "Super Leute, dann können wir diesem Hinweis ja gleich nachgehen!",
+    "name": "self",
+    "wahl1": "D3.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_07": {
+    "inhalt": "Naja eine Sache gibts noch…",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_08": {
+    "inhalt": "Hast du den neuen Post auf deinem Profil schon gesehen?",
+    "name": "felix",
+    "wahl1": "D3.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_09": {
+    "inhalt": "Nein…",
+    "name": "self",
+    "wahl1": "D3.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_10": {
+    "inhalt": "Naja ist jetzt auch nicht so wichtig...",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_11": {
+    "inhalt": "Lasst uns erstmal weiter machen damit der Spuk schon bald vorbei ist.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.1_00_12": {
+    "inhalt": "Gut, gut!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 3 Abschnitt 2"
+  },
+
+
+
+
+
+  //Tag 3 Dialog 1 Information Taeter
+
+
+
+
+
+  "D3.1.2_00_01": {
+    "inhalt": "Hi, gut das ihr schon da seid.",
+    "name": "self",
+    "wahl1": "D3.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_02": {
+    "inhalt": "Deine Mutter hat uns reingelassen, musste dann aber los-zu einem Geschäftsessen oder so.",
+    "name": "felix",
+    "wahl1": "D3.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_03": {
+    "inhalt": "Wir haben dir die alte Pinnwand von meinem Vater mitgebracht.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_04": {
+    "inhalt": "Hier kannst du alle Informationen sammeln, die du über den Täter und das Internet findest.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_05": {
+    "inhalt": "Und die Informationen die wir gemeinsam gesammelt haben, sind auch schon dabei.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_06": {
+    "inhalt": "Super Leute, dann können wir diesem Hinweis ja gleich nachgehen!",
+    "name": "self",
+    "wahl1": "D3.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_07": {
+    "inhalt": "Naja eine Sache gibts noch…",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_08": {
+    "inhalt": "Hast du den neuen Post auf deinem Profil schon gesehen?",
+    "name": "felix",
+    "wahl1": "D3.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_09": {
+    "inhalt": "Nein…",
+    "name": "self",
+    "wahl1": "D3.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_10": {
+    "inhalt": "Naja ist jetzt auch nicht so wichtig...",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_11": {
+    "inhalt": "Lasst uns erstmal weiter machen damit der Spuk schon bald vorbei ist.",
+    "name": "tim",
+    "wahl1": "D3.1.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.1.2_00_12": {
+    "inhalt": "Gut, gut!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 3 Abschnitt 2"
   }
 }
 

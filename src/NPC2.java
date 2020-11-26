@@ -64,8 +64,8 @@ public class NPC2 extends Knoten {
 
     @Override
     public void positionSetzen(float x, float y) {
-        posX = posX - x;
-        posY = posY - y;
+        posX = x;
+        posY = y;
         super.positionSetzen(x, y);
     }
 
@@ -101,6 +101,11 @@ public class NPC2 extends Knoten {
     public void setHighlightState(boolean h){
         highlightState = h;
         highLightImg.sichtbarSetzen(highlightState);
+    }
+
+    public void setPos(float x, float y){
+        this.posX = x;
+        this.posX = y;
     }
 
     @Override

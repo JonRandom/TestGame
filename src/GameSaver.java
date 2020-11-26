@@ -25,6 +25,7 @@ public class GameSaver {
         saveState.setPosX(0);
         saveState.setPosY(0);
         saveState.setWalkspeed(0);
+        saveState.setTemporalPosition("qwrr0");
         saveJSON();
         readJSON();
         System.out.println("GameSaver: Erster Save TEST gelesen: " + saveState);
@@ -137,6 +138,9 @@ public class GameSaver {
             this.walkspeed = walkspeed;
         }
 
+        public void setTemporalPosition(String temporalPosition) {
+            this.temporalPosition = temporalPosition;
+        }
 
         @Override
         public String toString() {

@@ -113,8 +113,11 @@ public class NpcController2 extends Knoten {
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (element.getHouseNumber() == houseN) {
                 System.out.println("Der NPC names " + element.name + "ist im Haus sichtbar");
+                System.out.println("Er ist an der relativen Posiiton x:" + element.getPosX() + " und y:" + element.getPosY());
                 element.sichtbarSetzen(true);
+                this.add(element);
                 element.positionSetzen(offsetX + (int) element.getPosX(), offsetY + (int) element.getPosY());
+
 
             }
         }
@@ -201,13 +204,15 @@ public class NpcController2 extends Knoten {
                 try {
                     DialogController3.NpcPosition posObject = positionsAtTime.get(key);
                     String name = key;
-                    System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
+
                     NPC2 npc = NPCs.get(name);
                     if (!(npc == null)) {
+                        System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
                         //setzte Position und Hausnummer des NPCs mit dem entsprechenden Namen.
                         npc.positionSetzen(posObject.getPosX(), posObject.getPosY());
                         npc.setHouseNumber(posObject.getHouseN());
-                    }else{
+                        System.out.println("NpcController2: Er befindet sich jz um Haus: " + npc.getHouseNumber() + " und x:" + npc.getPosX() + "| y:" + npc.getPosY());
+                    } else {
                         System.out.println("NpcController: FEHLER: NPC mit dem name (" + name + ") existiert nicht in der ursprünglichen JSON mit den NPCs");
                     }
                 } catch (Exception e) {

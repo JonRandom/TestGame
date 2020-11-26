@@ -1,7 +1,5 @@
 import ea.*;
 
-import java.lang.management.MemoryNotificationInfo;
-
 public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar
 {
 
@@ -20,6 +18,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige8;
     private DebugAnzeige debugAnzeige9;
     private DebugAnzeige debugAnzeige10;
+
+    //sound
+    private SoundController soundController;
 
 
     private DummyPlayer DP;
@@ -52,10 +53,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         ActivePlayer = new Player(1100,1100, gamesaver);
-
+        soundController = new SoundController();
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer);
-        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2);
+        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2, soundController);
         DialogController3 = new DialogController3(NpcController2, gamesaver);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);

@@ -56,14 +56,17 @@ public class Map3 extends Knoten {
     private int lastWhiteY;
 
     private NpcController2 NPC_C;
+    private SoundController sound_c;
 
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(float PW, float PH, NpcController2 NPC_C) {
+    public Map3(float PW, float PH, NpcController2 NPC_C, SoundController sc) {
         this.PlayerW = (int) PW;
         this.PlayerH = (int) PH;
         this.NPC_C = NPC_C;
+        this.sound_c = sc;
+
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
 
@@ -166,6 +169,7 @@ public class Map3 extends Knoten {
     }
     public void enterHouse(Player AP, int HouseN){
         System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
+        sound_c.playDoorSound();
         hideAllHouses();
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
@@ -176,6 +180,7 @@ public class Map3 extends Knoten {
         backgroundImg.positionSetzen(AP.getPosX() - MAIN.x/2, AP.getPosY()-MAIN.y/2);
     }
     public void leaveHouse(Player AP){
+        sound_c.playDoorSound();
         visiting = false;
         houseNumber = -1;
         hideAllHouses();

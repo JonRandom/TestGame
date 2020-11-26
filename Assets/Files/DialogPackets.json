@@ -1,7 +1,6 @@
 {
   "Tag 1 Abschnitt 1 (Start Zeit)": {
-    "mutter":
-    [{
+    "mutter": [{
       "requiredItems": [],
       "requiredLines": [],
       "code": "D1.0_00_01"
@@ -9,24 +8,20 @@
 
   },
   "Tag 1 Abschnitt 2": {
-    "kay":
-    [{
+    "kay": [{
       "requiredItems": [],
       "requiredLines": [],
       "code": "D1.1_00_01"
     }]
-
   },
 
   "Tag 1 Abschnitt 3": {
-    "felix":
-    [{
+    "felix": [{
       "requiredItems": [],
       "requiredLines": [],
       "code": "D1.3_00_01"
     }],
-    "mutter":
-    [{
+    "mutter": [{
       "requiredItems": [],
       "requiredLines": [],
       "code": "D1.2_00_01"
@@ -39,8 +34,17 @@
       "requiredItems": [],
       "requiredLines": ["D1.3_11_02"],
       "code": "D2.1.1_00_01"
-    }]
-
+    },
+      {
+        "requiredItems": [],
+        "requiredLines": ["D1.2_00_02"],
+        "code": "D2.1.1_00_01"
+      },
+      {
+        "requiredItems": [],
+        "requiredLines": ["D1.3_12_02"],
+        "code": "D2.1.2_00_01"
+      }]
   },
 
   //Required lines anpassen
@@ -50,7 +54,16 @@
       "requiredItems": [],
       "requiredLines": [],
       "code": "D3.1.1_00_01"
-    }]
-
+    },
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D3.1.1_00_01"
+      },
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D3.1.2_00_01"
+      }]
   }
 }

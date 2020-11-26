@@ -133,7 +133,13 @@ public class DialogController4 extends Knoten {
     private void displayCurrentDialogLine() {
         playingLastLine = false;
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
+        if(currentLine == null){
+            System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie zeigt auf eine andere leere Line: " + currentLine);
+        }
         gameSaver.addLine(currentDialogCode);
+        if(currentDialogCode == null){
+            System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie hat scheinbar keinen Code??");
+        }
         System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
         if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
@@ -492,7 +498,7 @@ public class DialogController4 extends Knoten {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(dialogPacketsPath));
 
-            Type MapType = new TypeToken<Map<String, Map<String, Map<String, DialogController4.DialogPacket>>>>() {
+            Type MapType = new TypeToken<Map<String, Map<String, List<DialogController4.DialogPacket>>>>() {
             }.getType();
             dialogPackets = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "DialogController4: JSON(" + dialogPacketsPath + ")  erfolgreich gelesen" + ANSI_RESET);

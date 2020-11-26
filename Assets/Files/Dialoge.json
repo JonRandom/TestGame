@@ -3,7 +3,7 @@
   "D1.0_00_01": {
     "inhalt": "Aufstehen!",
     "name": "kay",
-    "wahl1": "D1.1_00_02",
+    "wahl1": "D1.0_00_02",
     "wahl2": "",
     "nextTime": ""
   },
@@ -80,14 +80,14 @@
   "D1.2_00_02": {
     "inhalt": "Ich bin grade beschäftigt.",
     "name": "mutter",
-    "wahl1": "D1.1_00_03",
+    "wahl1": "D1.2_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D1.2_00_03": {
     "inhalt": "...tippt...",
     "name": "mutter",
-    "wahl1": "D1.1_00_04",
+    "wahl1": "D1.2_00_04",
     "wahl2": "",
     "nextTime": ""
 
@@ -170,7 +170,7 @@
     "name": "felix",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": ""
+    "nextTime": "HIER MUSS WAS REIN"
   },
 
   "D1.3_12_01": {

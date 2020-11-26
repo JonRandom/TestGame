@@ -14,7 +14,7 @@ public class SoundController {
 
     public SoundController(){
         sadMusic = new Sound(mainPath + "musik1.mp3");
-        sadMusic.loop();
+        //sadMusic.loop();
         doorSound = new Sound(mainPath + "door.wav");
     }
 

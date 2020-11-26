@@ -90,25 +90,29 @@ Die restlichen Felder sind für die Zukunft.
 
 Bsp.:
 {
-  "01": {
-    "11": {
+"Tag 1 Abschnitt 1 (Start Zeit)": {
+    "mutter":
+    [{
       "requiredItems": [],
       "requiredLines": [],
-      "code": "120002"
+      "code": "D1.0_00_01"
+    }],
+
+},
+"Tag 1 Abschnitt 2": {
+    "kay":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.1_00_01"
     },
-    "02": {
-      "requiredItems": [],
+    {
+      "requiredItems": ["UsbStick"],
       "requiredLines": [],
-      "code": "120002"
-    }
-  },
-  "11": {
-    "11": {
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "120002"
-    }
-  }
+      "code": "D1.1_00_01"
+    }]
 }
-Es gibt hier Zwei Zeiten "01" und "11". Oben gibt es zwei mögliche Spieler "11" und "02".
+}
+Es gibt hier Zwei Zeiten "Tag 1 Abschnitt 1 (Start Zeit)" und "Tag 1 Abschnitt 2". Es gibt zwei mögliche Spieler "mutter" und "kay".
+Bei Kay gibt es zwei mögliche Dialoge die verschiedene Bedingungen haben.
 Das Komma hinten ist nötig, wenn es danach noch ein Satz gibt.

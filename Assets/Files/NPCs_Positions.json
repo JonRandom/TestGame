@@ -17,5 +17,18 @@
       "posY" : 100,
       "houseN" : 0
     }
+  },
+  "Tag 1 Abschnitt 3": {
+    "mutter": {
+      "posX" : 300,
+      "posY" : 300,
+      "houseN" : 0
+    },
+    "kay": {
+      "posX" : 1000,
+      "posY" : 1200,
+      "houseN" : -1
+    }
+
   }
 }

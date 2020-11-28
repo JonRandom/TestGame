@@ -39,6 +39,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private Punkt hotspot;
     private Maus maus;
 
+    //zähler für 2. tick routine;
+    public int tickCounter;
+
 
 
 
@@ -52,11 +55,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         DP = new DummyPlayer(600,400);
 
 
-        ActivePlayer = new Player(1100,1100, gamesaver);
+        ActivePlayer = new Player(gamesaver.getPosX(),gamesaver.getPosX(), gamesaver);
         soundController = new SoundController();
         //pet1 = new Pet(1100,1100);
-        NpcController2 = new NpcController2(ActivePlayer);
-        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2, soundController);
+        NpcController2 = new NpcController2(ActivePlayer, gamesaver);
+        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2, soundController, gamesaver);
         DialogController4 = new DialogController4(NpcController2, gamesaver);
         debugAnzeige1 = new DebugAnzeige(0,0);
         debugAnzeige2 = new DebugAnzeige(200,0);
@@ -220,6 +223,19 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         gamesaver.SavePlayer(ActivePlayer);
         //pet1.follow(ActivePlayer);
         Minigame2.tick();
+        tickCounter++;
+        if(tickCounter > 100) {
+            tickCounter = 0;
+            slowTick();
+        }
+    }
+
+    public void slowTick(){
+        gamesaver.saveJSON();
+    }
+
+    public void startNewGame(){
+        NpcController2.startNewGame();
     }
 
 

@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import ea.Bild;
+import ea.Game;
 import ea.Knoten;
 
 import java.awt.*;
@@ -57,21 +58,24 @@ public class Map3 extends Knoten {
 
     private NpcController2 NPC_C;
     private SoundController sound_c;
+    private GameSaver gamesaver;
 
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(float PW, float PH, NpcController2 NPC_C, SoundController sc) {
+    public Map3(float PW, float PH, NpcController2 NPC_C, SoundController sc, GameSaver gs) {
         this.PlayerW = (int) PW;
         this.PlayerH = (int) PH;
         this.NPC_C = NPC_C;
         this.sound_c = sc;
+        this.gamesaver = gs;
 
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
 
         InitArrays();
         FillArrays();
+        houseNumber = gs.getHouseNumber(); //init HN
     }
 
 
@@ -161,7 +165,6 @@ public class Map3 extends Knoten {
 
         houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
         houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
-        NPC_C.enterHouse((int)finalPosX, (int)finalPosY, HouseN);
         NPC_C.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
         //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll

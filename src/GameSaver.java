@@ -21,16 +21,20 @@ public class GameSaver {
      * Setze defualt werte, dass ein JSON generiert wird ohne Lücken
      */
     public GameSaver()  {
-        saveState.setName("DEFAULT");
-        saveState.setPosX(0);
-        saveState.setPosY(0);
-        saveState.setWalkspeed(0);
-        saveState.setTemporalPosition("qwrr0");
-        saveJSON();
+        //saveJSON();
         readJSON();
         System.out.println("GameSaver: Erster Save TEST gelesen: " + saveState);
 
 
+    }
+    public void StartNewGame(){
+        saveState.setName("DEFAULT");
+        saveState.setPosX(1100);
+        saveState.setPosY(1100);
+        saveState.setWalkspeed(0);
+        saveState.setHouseNumber(-1);
+        saveState.setTemporalPosition("Tag 1 Abschnitt 1 (Start Zeit)");
+        saveJSON();
     }
 
     public void SavePlayer(Player Player) {
@@ -65,6 +69,19 @@ public class GameSaver {
         saveState.temporalPosition = newTemporalPosition;
         saveJSON();
     }
+    public void setHouseNumber(int HouseNumber){
+        saveState.setHouseNumber(HouseNumber);
+    }
+    public int getHouseNumber(){
+        return saveState.houseNumber;
+    }
+
+    public int getPosX(){
+        return saveState.posX;
+    }
+    public int getPosY(){
+        return saveState.posY;
+    }
 
     public String getTemporalPosition() {
         return saveState.temporalPosition;
@@ -86,7 +103,7 @@ public class GameSaver {
 
         }
     }
-    private void saveJSON() {
+    public void saveJSON() {
 
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -112,6 +129,7 @@ public class GameSaver {
         public int posX;
         public int posY;
         public int walkspeed;
+        public int houseNumber;
 
         public String temporalPosition;
         public List<String> items;
@@ -138,9 +156,14 @@ public class GameSaver {
             this.walkspeed = walkspeed;
         }
 
+        public void setHouseNumber(int houseNumber) {
+            this.houseNumber = houseNumber;
+        }
+
         public void setTemporalPosition(String temporalPosition) {
             this.temporalPosition = temporalPosition;
         }
+
 
         @Override
         public String toString() {
@@ -149,6 +172,7 @@ public class GameSaver {
                     ", posX=" + posX +
                     ", posY=" + posY +
                     ", walkspeed=" + walkspeed +
+                    ", houseNumber=" + houseNumber +
                     ", temporalPosition='" + temporalPosition + '\'' +
                     ", items=" + items +
                     ", lines=" + lines +

@@ -140,7 +140,7 @@ public class DialogController4 extends Knoten {
         if(currentDialogCode == null){
             System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie hat scheinbar keinen Code??");
         }
-        System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
+        //System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
         if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
             lastLineSelf = true;
@@ -148,7 +148,7 @@ public class DialogController4 extends Knoten {
 
         } else { //dialog wird nicht geskippt
             if (!currentLine.name.equals("self")) { //wenn nicht mehr self
-                System.out.println("DialogController4: SELF spricht nicht mehr" + currentDialogCode);
+                //System.out.println("DialogController4: SELF spricht nicht mehr" + currentDialogCode);
                 lastLineSelf = false;
 
                 if (true) { //Speicherung der aktuellen Line als LastLine
@@ -175,8 +175,8 @@ public class DialogController4 extends Knoten {
 
     private void skipLine() {
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
-        System.out.println("DialogController4: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
-        System.out.println("->DialogController4: Sein Inhalt war: " + currentLine.inhalt);
+        //System.out.println("DialogController4: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
+        //System.out.println("->DialogController4: Sein Inhalt war: " + currentLine.inhalt);
         oneButtonMode = true;
         currentDialogCode = currentLine.wahl1; //skipped die nächste Zeile, weil dies
         displayCurrentDialogLine();
@@ -200,7 +200,7 @@ public class DialogController4 extends Knoten {
                 currentDialogCode = currentLine.wahl2;
             }
             if (!currentLine.nextTime.equals("")) {
-                System.out.println("NextTime des Dialogs ist nicht mehr leer, und deswegen wir beendet");
+                System.out.println("NextTime des Dialogs ist nicht mehr leer, und deswegen wir beendet jz wird beendet und gehighlighted");
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
                 highLightReadyNpcs(); //updatet die Highlights
@@ -217,7 +217,7 @@ public class DialogController4 extends Knoten {
     }
 
     private void saveLastLines() {
-        System.out.println("DialogController4: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
+        //System.out.println("DialogController4: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
         for (String key : lastLines.keySet()) {
             String npcName = key;
             String code = lastLines.get(key);
@@ -227,7 +227,7 @@ public class DialogController4 extends Knoten {
     }
 
     private void endDialog() {
-        System.out.println("DialogController4: EndDialog() aufgerufen");
+        System.out.println("DialogController4: endDialog() aufgerufen");
         hideWindow();
         active = false;
         currentDialogCode = null; //kontorvers ob das hier Sinn macht
@@ -235,6 +235,7 @@ public class DialogController4 extends Knoten {
         playingLastLine = false;
         //NPC_Controller2.prepareReset(); //setzt flag hig, damit Spieler nächsten Tick(in SPIEL.java) zurückgesetzt wird.
         NPC_Controller2.resetToLastQuietPos();
+        //NPC_Controller2.updateNpcPositions(globalTemporalPosition);
         saveLastLines();
     }
 
@@ -289,7 +290,7 @@ public class DialogController4 extends Knoten {
                 for (DialogController4.DialogPacket packet : npcOccs) { //get also alle Packete einer Occ durch
                     if (foundItems.containsAll(packet.requiredItems)) {
                         if (readLines.containsAll(packet.requiredLines)) {
-                            System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
+                            //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
                             returnPacket = packet;
                         } else {
                             System.out.println("DialogController4: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
@@ -301,11 +302,11 @@ public class DialogController4 extends Knoten {
                     }
 
                 }
-                System.out.println("DialogController4: FEHLER: Zu diesem Spieler sind zwar Einträge aber keine Occs vorhanden");
+                //System.out.println("DialogController4: FEHLER: Zu diesem NPC sind zwar Einträge aber keine Occs vorhanden");
                 //return false;
 
             } else {
-                System.out.println("DialogController4: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");
+                System.out.println("DialogController4: Zu diesem NPC gibt es im Moment kein Eintrag in der Story");
                 //return false;
 
             }
@@ -430,7 +431,7 @@ public class DialogController4 extends Knoten {
         System.out.println("DialogController4: setReplyText() aufgerufen");
         displayResponseTextObject.sichtbarSetzen(false);
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
-        System.out.println("DialogController4: currentLine:" + currentLine.toString());
+        //System.out.println("DialogController4: currentLine:" + currentLine.toString());
         if (currentLine.nextTime.equals("")) { //nur wenn der nächste dialog auch echt was beinhaltet
             if (isNextLineSelf(currentDialogCode)) {
                 displayResponseTextObject.sichtbarSetzen(true);
@@ -516,9 +517,9 @@ public class DialogController4 extends Knoten {
     }
 
     private boolean isNextLineSelf(String code) {
-        System.out.println("Schaut, ob die Line mit dem Code=" + code + " eine nächste hat die Self ist");
+        //System.out.println("Schaut, ob die Line mit dem Code=" + code + " eine nächste hat die Self ist");
         String w = dialogLines.get(code).wahl1;
-        System.out.println("Der code der nächsten Line ist=" + w);
+        //System.out.println("Der code der nächsten Line ist=" + w);
         DialogLine nextLine = dialogLines.get(w);
         if (nextLine == null) {
             System.out.println("DialogController4: FEHLER: Es die nächste Line ist null. Das bedeutet meistens ein Fehler in der Json");

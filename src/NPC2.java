@@ -22,14 +22,20 @@ public class NPC2 extends Knoten {
     @Expose
     private float posY;
     @Expose
+    private float relativPosX;
+    @Expose
+    private float relativPosY;
+    @Expose
     private int houseNumber;
 
     @Expose
     public String lastLine; //letzte DialogZeile
 
-    public NPC2(int pX, int pY, int hN, String n, String mlastLine){
+    public NPC2(int pX, int pY, int rX, int rY, int hN, String n, String mlastLine){
         this.posX=pX;
         this.posY=pY;
+        this.relativPosX = rX;
+        this.relativPosY = rY;
         this.name = n;
         this.houseNumber = hN;
         this.lastLine = mlastLine;
@@ -45,12 +51,14 @@ public class NPC2 extends Knoten {
         catch(Exception e){
             System.out.println("NPC2: Fehler beim importieren der Datei");
             System.out.println("NPC2: " + e);
+            e.printStackTrace();
         }
         highLightImg = new Bild(posX-5, posY-5, highlighterPath);
         this.add(highLightImg);
         highLightImg.sichtbarSetzen(highlightState);
 
     }
+
     public void setLastLine(String code){
         this.lastLine = code;
     }
@@ -67,6 +75,18 @@ public class NPC2 extends Knoten {
         posX = x;
         posY = y;
         super.positionSetzen(x, y);
+    }
+    public void setRelativPos(int x, int y){
+        relativPosX = x;
+        relativPosY = y;
+    }
+
+    public float getRelativPosX() {
+        return relativPosX;
+    }
+
+    public float getRelativPosY() {
+        return relativPosY;
     }
 
     public void setHouseNumber(int houseNumber) {
@@ -103,18 +123,18 @@ public class NPC2 extends Knoten {
         highLightImg.sichtbarSetzen(highlightState);
     }
 
-    public void setPos(float x, float y){
-        this.posX = x;
-        this.posX = y;
-    }
-
     @Override
     public String toString() {
         return "NPC2{" +
                 "name='" + name + '\'' +
                 ", img=" + img +
+                ", highlighterPath='" + highlighterPath + '\'' +
+                ", highLightImg=" + highLightImg +
+                ", highlightState=" + highlightState +
                 ", posX=" + posX +
                 ", posY=" + posY +
+                ", relativPosX=" + relativPosX +
+                ", relativPosY=" + relativPosY +
                 ", houseNumber=" + houseNumber +
                 ", lastLine='" + lastLine + '\'' +
                 '}';
@@ -125,7 +145,7 @@ public class NPC2 extends Knoten {
         public NPC2 deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
+            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativPosX").getAsInt(), jsonObject.get("relativPosY").getAsInt(),jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
         }
     }
 }

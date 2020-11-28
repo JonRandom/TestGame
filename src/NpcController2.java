@@ -23,18 +23,24 @@ public class NpcController2 extends Knoten {
 
     //JSON GSON
     private HashMap<String, NPC2> NPCs; //für die Json
-    private Map<String, Map<String, DialogController3.NpcPosition>> npcPositions; //für die Json mit den NPC Daten
+    private Map<String, Map<String, DialogController4.NpcPosition>> npcPositions; //für die Json mit den NPC Daten
 
     //for Position Reset
     private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
     private float lastQuietY = 0;
 
+    //für die anzeige
+    //private int currentHouseNumber = -1; //muss eig als Map kommen und darf am anfang nicht unbedingt -1 sein;
+
 
     private Player AP;
+    private GameSaver gamesaver;
 
-    public NpcController2(Player mAP) {
+    public NpcController2(Player mAP, GameSaver gs) {
         AP = mAP;
-        resetJSON();
+        this.gamesaver = gs;
+        //resetJSON();
+
         readJSON();
         readNpcPositionJSON();
         //System.out.println("TESTETSTET POSX VON NAME: " + npcPositions.get("Tag 1 Abschnitt 1 (Start Zeit)").get("name").getPosX());
@@ -44,8 +50,18 @@ public class NpcController2 extends Knoten {
         /*
         NPCs.get("01").verschieben(100,0);
         saveJSON();
-         */
+
+        */
     }
+    public void startNewGame(){
+        System.out.println("NpcController2");
+        resetJSON();
+        readJSON();
+        readNpcPositionJSON();
+
+        leaveHouse();
+    }
+
 
     public boolean checkForCollision(Player AP) {
         boolean coll = false;
@@ -106,6 +122,9 @@ public class NpcController2 extends Knoten {
      * @param offsetY Relle Postion der oberen ecke des Bildes
      */
     public void enterHouse(int houseN, int offsetX, int offsetY) {
+        System.out.println("NpcController: enterhouse wird aufgerufen()");
+        gamesaver.setHouseNumber(houseN);
+        //currentHouseNumber = houseN;
         hideAllNPCs();  //alle ausblenden
         //System.out.println("Der NPC Controller betritt auch ein Haus mit der Nummer: " + houseN);
 
@@ -113,18 +132,16 @@ public class NpcController2 extends Knoten {
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (element.getHouseNumber() == houseN) {
                 System.out.println("Der NPC names " + element.name + "ist im Haus sichtbar");
-                System.out.println("Er ist an der relativen Posiiton x:" + element.getPosX() + " und y:" + element.getPosY());
+                //System.out.println("Er ist an der relativen Posiiton x:" + element.getRelativPosX() + " und y:" + element.getRelativPosY());
                 element.sichtbarSetzen(true);
                 this.add(element);
-                element.positionSetzen(offsetX + (int) element.getPosX(), offsetY + (int) element.getPosY());
-
-
+                element.positionSetzen(offsetX + (int) element.getRelativPosX(), offsetY + (int) element.getRelativPosX());
             }
         }
     }
 
     public void setNpcLastLine(String name, String lineCode) {
-        System.out.println("NpcController2: für den NPC:" + name + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
+        //System.out.println("NpcController2: für den NPC:" + name + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
         NPC2 npc = NPCs.get(name);
         npc.setLastLine(lineCode);
         saveJSON();
@@ -147,12 +164,25 @@ public class NpcController2 extends Knoten {
     }
 
     public void leaveHouse() {
+        int currentHouseNumber = gamesaver.getHouseNumber();
         hideAllNPCs();
 
         //System.out.println("NpcController2: Haus wird verlassen");
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (!element.isInHouse()) {
+                //System.out.println("Npc_Controller2: Player ID -> sichtbar: " + element.name);
+                element.sichtbarSetzen(true);
+            }
+        }
+    }
+    public void updateNpcVisibility(){
+        int currentHouseNumber = gamesaver.getHouseNumber();
+        hideAllNPCs();
+        //System.out.println("NpcController2: Haus wird verlassen");
+        for (String key : NPCs.keySet()) {  //geht die JSON durch und
+            NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+            if (element.getHouseNumber() == currentHouseNumber) {
                 //System.out.println("Npc_Controller2: Player ID -> sichtbar: " + element.name);
                 element.sichtbarSetzen(true);
             }
@@ -198,19 +228,24 @@ public class NpcController2 extends Knoten {
     }
 
     public void updateNpcPositions(String timePos) {
-        Map<String, DialogController3.NpcPosition> positionsAtTime = npcPositions.get(timePos);
+        System.out.println("NpcController2: updateNpcPositions aufgerufen");
+        Map<String, DialogController4.NpcPosition> positionsAtTime = npcPositions.get(timePos);
         if (!(positionsAtTime == null)) {
             for (String key : positionsAtTime.keySet()) {  //geht die JSON durch und macht alle aus(false)
                 try {
-                    DialogController3.NpcPosition posObject = positionsAtTime.get(key);
+                    DialogController4.NpcPosition posObject = positionsAtTime.get(key);
                     String name = key;
 
                     NPC2 npc = NPCs.get(name);
                     if (!(npc == null)) {
                         System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
                         //setzte Position und Hausnummer des NPCs mit dem entsprechenden Namen.
+                        if(npc.getHouseNumber() == -1){ //er ist in keinem Haus
+                            npc.setRelativPos((int)posObject.getPosX(), (int)posObject.getPosY()); //dann sind die relativen Pos = die absoluten
+                        }
                         npc.positionSetzen(posObject.getPosX(), posObject.getPosY());
                         npc.setHouseNumber(posObject.getHouseN());
+
                         System.out.println("NpcController2: Er befindet sich jz um Haus: " + npc.getHouseNumber() + " und x:" + npc.getPosX() + "| y:" + npc.getPosY());
                     } else {
                         System.out.println("NpcController: FEHLER: NPC mit dem name (" + name + ") existiert nicht in der ursprünglichen JSON mit den NPCs");
@@ -221,6 +256,7 @@ public class NpcController2 extends Knoten {
                 }
 
             }
+            updateNpcVisibility();
         } else {
             System.out.println("NpcController: Für diese Zeit gibt es kein NPC Pos Update");
         }
@@ -261,12 +297,10 @@ public class NpcController2 extends Knoten {
             NPCs = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcFilePath + ") erfolgreich gelesen" + ANSI_RESET);
         } catch (Exception e) {
-            System.out.println(e);
             e.printStackTrace();
             System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim Lesen der JSON(" + npcFilePath + ") Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
 
         }
-
     }
 
 
@@ -275,7 +309,7 @@ public class NpcController2 extends Knoten {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(npcPositionPath));
 
-            Type MapType = new TypeToken<Map<String, Map<String, DialogController3.NpcPosition>>>() {
+            Type MapType = new TypeToken<Map<String, Map<String, DialogController4.NpcPosition>>>() {
             }.getType();
             npcPositions = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcPositionPath + ")  erfolgreich gelesen" + ANSI_RESET);

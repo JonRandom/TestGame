@@ -22,9 +22,9 @@ public class NPC2 extends Knoten {
     @Expose
     private float posY;
     @Expose
-    private float relativPosX;
+    private float relativePosX;
     @Expose
-    private float relativPosY;
+    private float relativePosY;
     @Expose
     private int houseNumber;
 
@@ -34,8 +34,8 @@ public class NPC2 extends Knoten {
     public NPC2(int pX, int pY, int rX, int rY, int hN, String n, String mlastLine){
         this.posX=pX;
         this.posY=pY;
-        this.relativPosX = rX;
-        this.relativPosY = rY;
+        this.relativePosX = rX;
+        this.relativePosY = rY;
         this.name = n;
         this.houseNumber = hN;
         this.lastLine = mlastLine;
@@ -77,16 +77,16 @@ public class NPC2 extends Knoten {
         super.positionSetzen(x, y);
     }
     public void setRelativPos(int x, int y){
-        relativPosX = x;
-        relativPosY = y;
+        relativePosX = x;
+        relativePosY = y;
     }
 
     public float getRelativPosX() {
-        return relativPosX;
+        return relativePosX;
     }
 
     public float getRelativPosY() {
-        return relativPosY;
+        return relativePosY;
     }
 
     public void setHouseNumber(int houseNumber) {
@@ -133,8 +133,8 @@ public class NPC2 extends Knoten {
                 ", highlightState=" + highlightState +
                 ", posX=" + posX +
                 ", posY=" + posY +
-                ", relativPosX=" + relativPosX +
-                ", relativPosY=" + relativPosY +
+                ", relativePosX=" + relativePosX +
+                ", relativePosY=" + relativePosY +
                 ", houseNumber=" + houseNumber +
                 ", lastLine='" + lastLine + '\'' +
                 '}';
@@ -145,7 +145,7 @@ public class NPC2 extends Knoten {
         public NPC2 deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativPosX").getAsInt(), jsonObject.get("relativPosY").getAsInt(),jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
+            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(),jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
         }
     }
 }

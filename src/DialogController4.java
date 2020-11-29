@@ -66,6 +66,8 @@ public class DialogController4 extends Knoten {
 
         addDisplayObjects();
         hideWindow();
+
+        globalTemporalPosition = gameSaver.getTemporalPosition();
         NPC_Controller2.updateNpcPositions(globalTemporalPosition);
     }
 
@@ -203,6 +205,7 @@ public class DialogController4 extends Knoten {
                 System.out.println("NextTime des Dialogs ist nicht mehr leer, und deswegen wir beendet jz wird beendet und gehighlighted");
                 endDialog();
                 globalTemporalPosition = currentLine.nextTime;
+                gameSaver.setTemporalPosition(globalTemporalPosition);
                 highLightReadyNpcs(); //updatet die Highlights
                 NPC_Controller2.updateNpcPositions(globalTemporalPosition);
             } else {

@@ -53,29 +53,41 @@ public class Map3 extends Knoten {
     private int[][] intSpawnPos; //da wo der Spieler im Inneren, wenn er durch die Tür geht spawnt ->s. JSON Template-Klasse(Haus) //[i][0] = x | [i][1] = y
     private boolean[] defaultLock; //->s. JSON Template-Klasse(Haus)
 
-    private int lastWhiteX;
-    private int lastWhiteY;
 
-    private NpcController2 NPC_C;
+    //bestimmte init Zahl, um beim Start nicht diese zu nehmen
+    private int lastWhiteX = -1;
+    private int lastWhiteY = -1;
+
+    //für den start des Spiels um pos zu fixen
+    private float lastFinalPosX;
+    private float lastFinalPosY;
+
+
+    private NpcController2 npc_C;
     private SoundController sound_c;
     private GameSaver gamesaver;
+    private Player player;
 
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(float PW, float PH, NpcController2 NPC_C, SoundController sc, GameSaver gs) {
-        this.PlayerW = (int) PW;
-        this.PlayerH = (int) PH;
-        this.NPC_C = NPC_C;
+    public Map3(NpcController2 NPC_C, SoundController sc, Player ap, GameSaver gs) {
+        this.npc_C = NPC_C;
         this.sound_c = sc;
+        this.player = ap;
         this.gamesaver = gs;
 
+        this.PlayerW = (int)player.getBreite();
+        this.PlayerH = (int)player.getHoehe();
+        houseNumber = gs.getHouseNumber(); //init HN
 
         readJSON();//muss erst gelesen werden, um länge für Arrays zu geben
 
+
         InitArrays();
         FillArrays();
-        houseNumber = gs.getHouseNumber(); //init HN
+
+        loadStartPos();
     }
 
 
@@ -91,7 +103,6 @@ public class Map3 extends Knoten {
         intSpawnPos = new int[numberofB][2];//[i][0] = x | [i][1] = y
         defaultLock = new boolean[numberofB];
     }
-
     /**
      * Füllt die Arrays & variablen mit allen Nötigen Daten aus dem Json und berechnet schon bestimmte Sachen.
      */
@@ -150,27 +161,44 @@ public class Map3 extends Knoten {
         }
         System.out.println("MAP3, ARRAYS SIND GEFÜLLT");
     }
-
-
     /**
      * Aus der AP Position wird die Mitte des Bildschirms berechnet und dort wird das bild positioniert.
      */
+
+    public void loadStartPos(){
+        System.out.println("Map3: Aus den gespeicherten GameSave Daten wird die startPos des Spielers gelesen.");
+        int houseN = gamesaver.getHouseNumber();
+        player.positionSetzen(gamesaver.getPosX(), gamesaver.getPosY());
+        if(houseN != -1){
+            enterHouse(player, houseN);
+            // redundant wird schon in FoxPos aufgerufen npc_C.enterHouse(houseN, (int)lastFinalPosX, (int)lastFinalPosY);
+        }
+
+    }
+
     public void FixInteriorPos(Player AP, int HouseN){
         float imgWidth = houseImgs[HouseN].getBreite();
         float imgHeight = houseImgs[HouseN].getHoehe();
         float finalPosX = AP.getPosX() - imgWidth/2;
         float finalPosY = AP.getPosY() - imgHeight/2;
-        //float centerX = AP_x - MAIN.x/2;
-        //float centerY = AP_y - MAIN.y/2;
+        lastFinalPosX = finalPosX;
+        lastFinalPosY = finalPosY;
 
         houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
         houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
-        NPC_C.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
+        npc_C.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
         //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
     public void enterHouse(Player AP, int HouseN){
+        if(lastWhiteX == -1){
+            //soll die InitDaten aus der Gamesave Json nicht überschreiben
+        } else{
+            gamesaver.setLastOutsidePos(lastWhiteX,lastWhiteY);
+        }
+
+        gamesaver.setHouseNumber(HouseN);
         System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
         sound_c.playDoorSound();
         hideAllHouses();
@@ -183,13 +211,16 @@ public class Map3 extends Knoten {
         backgroundImg.positionSetzen(AP.getPosX() - MAIN.x/2, AP.getPosY()-MAIN.y/2);
     }
     public void leaveHouse(Player AP){
+        gamesaver.setHouseNumber(-1);
+        lastWhiteX = gamesaver.getLastOutsidePosX();
+        lastWhiteY = gamesaver.getLastOutsidePosY();
         sound_c.playDoorSound();
         visiting = false;
         houseNumber = -1;
         hideAllHouses();
         backgroundImg.sichtbarSetzen(false);
         AP.positionSetzen(lastWhiteX,lastWhiteY);
-        NPC_C.leaveHouse();
+        npc_C.leaveHouse();
 
     }
     public void hideAllHouses(){

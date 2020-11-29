@@ -14,27 +14,34 @@ public class GameSaver {
     public static final String ANSI_PURPLE = "\u001B[35m";
 
     private Save saveState = new Save();
-    private final String gameSaveFilePath = "./Assets/Files/GameSave.json";
+    private final String gameSaveFilePath = MAIN.gameSaveFilePath;
 
 
     /**
      * Setze defualt werte, dass ein JSON generiert wird ohne Lücken
      */
     public GameSaver()  {
-        //saveJSON();
         readJSON();
         System.out.println("GameSaver: Erster Save TEST gelesen: " + saveState);
 
 
     }
-    public void StartNewGame(){
-        saveState.setName("DEFAULT");
-        saveState.setPosX(1100);
-        saveState.setPosY(1100);
-        saveState.setWalkspeed(0);
-        saveState.setHouseNumber(-1);
-        saveState.setTemporalPosition("Tag 1 Abschnitt 1 (Start Zeit)");
-        saveJSON();
+    public void startNewGame(){
+        try {
+            readJSON();
+            saveState.setName("DEFAULT");
+            saveState.setPosX(1100);
+            saveState.setPosY(1100);
+            saveState.setWalkspeed(0);
+            saveState.setHouseNumber(0);
+            saveState.setLastOutsidePos(1000, 1000);
+            saveState.setTemporalPosition("Tag 1 Abschnitt 1 (Start Zeit)");
+            saveJSON();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("FETTER FEHLER BEIM ÜBERSCHREIBEN " + saveState);
+        }
     }
 
     public void SavePlayer(Player Player) {
@@ -81,6 +88,18 @@ public class GameSaver {
     }
     public int getPosY(){
         return saveState.posY;
+    }
+
+    public void setLastOutsidePos(int x, int y){
+        saveState.lastOutsidePosX = x;
+        saveState.lastOutsidePosY = y;
+        //saveJSON();
+    }
+    public int getLastOutsidePosX(){
+        return saveState.lastOutsidePosX;
+    }
+    public int getLastOutsidePosY(){
+        return saveState.lastOutsidePosY;
     }
 
     public String getTemporalPosition() {
@@ -131,6 +150,9 @@ public class GameSaver {
         public int walkspeed;
         public int houseNumber;
 
+        public int lastOutsidePosX;
+        public int lastOutsidePosY;
+
         public String temporalPosition;
         public List<String> items;
         public List<String> lines;
@@ -164,7 +186,10 @@ public class GameSaver {
             this.temporalPosition = temporalPosition;
         }
 
-
+        public void setLastOutsidePos(int x, int y){
+            lastOutsidePosX = x;
+            lastOutsidePosY = y;
+        }
         @Override
         public String toString() {
             return "Save{" +
@@ -173,6 +198,8 @@ public class GameSaver {
                     ", posY=" + posY +
                     ", walkspeed=" + walkspeed +
                     ", houseNumber=" + houseNumber +
+                    ", lastOutSidePosX=" + lastOutsidePosX +
+                    ", lastOutSidePosY=" + lastOutsidePosY +
                     ", temporalPosition='" + temporalPosition + '\'' +
                     ", items=" + items +
                     ", lines=" + lines +

@@ -16,9 +16,9 @@ public class NpcController2 extends Knoten {
     public static final String ANSI_PURPLE = "\u001B[35m";
 
     //Pfade
-    private String npcTemplatePath = "./Assets/Files/NPCs-Template.json";
-    private String npcFilePath = "./Assets/Files/NPCs_NEW.json";
-    private String npcPositionPath = "./Assets/Files/NPCs_Positions.json";
+    private String npcTemplatePath = MAIN.npcTemplatePath;
+    private String npcFilePath = MAIN.npcFilePath;
+    private String npcPositionPath = MAIN.npcPositionPath;
 
 
     //JSON GSON
@@ -46,7 +46,8 @@ public class NpcController2 extends Knoten {
         //System.out.println("TESTETSTET POSX VON NAME: " + npcPositions.get("Tag 1 Abschnitt 1 (Start Zeit)").get("name").getPosX());
         addAllNPCs();
 
-        leaveHouse(); //muss am anfang außen sein
+        //leaveHouse(); //muss am anfang außen sein
+        updateNpcPositions(gamesaver.getTemporalPosition());
         /*
         NPCs.get("01").verschieben(100,0);
         saveJSON();
@@ -55,10 +56,8 @@ public class NpcController2 extends Knoten {
     }
     public void startNewGame(){
         System.out.println("NpcController2");
-        resetJSON();
         readJSON();
         readNpcPositionJSON();
-
         leaveHouse();
     }
 
@@ -123,7 +122,7 @@ public class NpcController2 extends Knoten {
      */
     public void enterHouse(int houseN, int offsetX, int offsetY) {
         System.out.println("NpcController: enterhouse wird aufgerufen()");
-        gamesaver.setHouseNumber(houseN);
+        // wird in Map geregelt gamesaver.setHouseNumber(houseN);
         //currentHouseNumber = houseN;
         hideAllNPCs();  //alle ausblenden
         //System.out.println("Der NPC Controller betritt auch ein Haus mit der Nummer: " + houseN);
@@ -164,7 +163,6 @@ public class NpcController2 extends Knoten {
     }
 
     public void leaveHouse() {
-        int currentHouseNumber = gamesaver.getHouseNumber();
         hideAllNPCs();
 
         //System.out.println("NpcController2: Haus wird verlassen");
@@ -231,7 +229,7 @@ public class NpcController2 extends Knoten {
         System.out.println("NpcController2: updateNpcPositions aufgerufen");
         Map<String, DialogController4.NpcPosition> positionsAtTime = npcPositions.get(timePos);
         if (!(positionsAtTime == null)) {
-            for (String key : positionsAtTime.keySet()) {  //geht die JSON durch und macht alle aus(false)
+            for (String key : positionsAtTime.keySet()) {  //geht die JSON durch
                 try {
                     DialogController4.NpcPosition posObject = positionsAtTime.get(key);
                     String name = key;
@@ -267,21 +265,6 @@ public class NpcController2 extends Knoten {
     /**
      * Liest die JSON(NPCs-Temple.json) Datei und schreibt ihren Inhalt in den Json(NPCs_NEW.json).
      */
-    private void resetJSON() {
-        try {
-            File originalFile = new File(npcTemplatePath);
-            File destinationFile = new File(npcFilePath);
-            FileChannel src = new FileInputStream(originalFile).getChannel();
-            FileChannel dest = new FileOutputStream(destinationFile).getChannel();
-            dest.transferFrom(src, 0, src.size());
-
-            System.out.println(ANSI_GREEN + "NpcController2: JSON erfolgreich aus Template überschrieben" + ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(ANSI_PURPLE + "NpcController: Fehler beim Überschreiben der JSON aus Template:" + ANSI_RESET);
-            e.printStackTrace();
-
-        }
-    }
 
     private void readJSON() {
         Gson gson = new GsonBuilder()

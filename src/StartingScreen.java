@@ -38,10 +38,7 @@ public class StartingScreen extends Knoten {
     public StartingScreen() {
         BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/StartbilschirmOHNEButtonsundTitel.png");
         this.add(BackgroundPic);
-
         FillButtonObjects();
-
-
     }
 
     private void FillButtonObjects() {
@@ -58,6 +55,7 @@ public class StartingScreen extends Knoten {
      * Updatet die Auswahl der Knöpfe(auch graphisch) nach der -selection- Variable
      */
     private void UpdateButtons() {
+        this.TextStartScEntfernen();
         for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].setOpacity(0.5f);//alle halb sichbar
         }
@@ -75,7 +73,7 @@ public class StartingScreen extends Knoten {
         if (selection < 0) {
             selection = 0;//stay at first
         }
-        this.TextStartScEntfernen();
+
         UpdateButtons();
     }
 
@@ -84,10 +82,8 @@ public class StartingScreen extends Knoten {
         if (selection >= ButtonCount) {
             selection = ButtonCount - 1;//stay at last
         }
-        this.TextStartScEntfernen();
         UpdateButtons();
     }
-
 
     public boolean isActive() {
         return active;
@@ -107,6 +103,8 @@ public class StartingScreen extends Knoten {
     }
 
 
+
+    //unbenutzt
     public void SelectButtons() { //Enter = 31
         switch (selection) {
             case 0: {
@@ -124,25 +122,10 @@ public class StartingScreen extends Knoten {
                 //this.add(tb1);
             }
             break;
-            /*
-            case 2: {
-                TextStartScEntfernen();
-                System.out.println("Button 3: neues Spiel");
-                tb2 = new Text("Text fuer Button 2",550,350);
-                this.add(tb2);
-            }
-            break;
-            case 3: {
-                TextStartScEntfernen();
-                System.out.println("Button 4: Spiel fortsetzen");
-                tb3 = new Text("Text fuer Button 3",750,350);
-                this.add(tb3);
-            }
-            break;
-            */
         }
 
     }
+
 
     public void TextStartScEntfernen(){
         //JF: Du kannst auch einfach tb0.sichtbarSetzen(false); machen

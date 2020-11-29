@@ -1,7 +1,6 @@
 import ea.*;
 
-public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar
-{
+public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar {
 
     private int zaehler;
     private Player ActivePlayer;
@@ -26,11 +25,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DummyPlayer DP;
     private NpcController2 NpcController2;
     private StartingScreen StartSc;
-    private Minigame1 Minigame1;
+    //private Minigame1 Minigame1;
     private Minigame2 Minigame2;
     private Pet pet1;
     //private HouseLoader HouseLoader1;
-
 
 
     public GameSaver gamesaver;
@@ -43,69 +41,58 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     public int tickCounter;
 
 
-
-
     public SPIEL() {
-        super(MAIN.x,MAIN.y,"P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
-        //Zaehler fuer Tick, Tack, ...
+        super(MAIN.x, MAIN.y, "P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
+
+        StartSc = new StartingScreen();
+        statischeWurzel.add(StartSc);
+        StartSc.setActive(true);
+    }
+
+    public void Konstruktor() {
+        fokusSetzten();
         zaehler = 0;
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
-        StartSc = new StartingScreen();
 
-        DP = new DummyPlayer(600,400);
+        DP = new DummyPlayer(600, 400);
 
 
-        ActivePlayer = new Player(gamesaver.getPosX(),gamesaver.getPosX(), gamesaver);
+        ActivePlayer = new Player(gamesaver.getPosX(), gamesaver.getPosX(), gamesaver);
         soundController = new SoundController();
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
-        map = new Map3(ActivePlayer.getBreite(),ActivePlayer.getHoehe(),NpcController2, soundController, gamesaver);
+        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver);
         DialogController4 = new DialogController4(NpcController2, gamesaver);
-        debugAnzeige1 = new DebugAnzeige(0,0);
-        debugAnzeige2 = new DebugAnzeige(200,0);
-        debugAnzeige3 = new DebugAnzeige(350,0);
-        debugAnzeige4 = new DebugAnzeige(500,0);
-        debugAnzeige5 = new DebugAnzeige(700,0);
-        debugAnzeige6 = new DebugAnzeige(1300,0);
-        debugAnzeige7 = new DebugAnzeige(0,30); //dialogPos
-        debugAnzeige8 = new DebugAnzeige(400,30); //ButtonCursor
-        debugAnzeige9 = new DebugAnzeige(650,30);
-        debugAnzeige10 = new DebugAnzeige(1000,30); //LastSelfBoolean
+        debugAnzeige1 = new DebugAnzeige(0, 0);
+        debugAnzeige2 = new DebugAnzeige(200, 0);
+        debugAnzeige3 = new DebugAnzeige(350, 0);
+        debugAnzeige4 = new DebugAnzeige(500, 0);
+        debugAnzeige5 = new DebugAnzeige(700, 0);
+        debugAnzeige6 = new DebugAnzeige(1300, 0);
+        debugAnzeige7 = new DebugAnzeige(0, 30); //dialogPos
+        debugAnzeige8 = new DebugAnzeige(400, 30); //ButtonCursor
+        debugAnzeige9 = new DebugAnzeige(650, 30);
+        debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemController = new ItemController(ActivePlayer, gamesaver);
         //ObjectController Autos = new ObjectController();
 
-
-
-        //HouseLoader1 = new HouseLoader(map);
-
-
-        //Minigame1 = new Minigame1(); // unused do to lack of ideas
-
-        /* MAUS
-        cursor = new Bild(0, 0, "./Assets/MouseC.png");
-        hotspot = new Punkt(11,11);
-        maus = new Maus(cursor, hotspot);
-        mausAnmelden(maus);
-        maus.klickReagierbarAnmelden(this);
-        */
-        //Auto 1 fährt um Häuserblock obere Reihe Wohnhäuser
-        //Beginn oben links, im Uhrzeigersinn
-        Bild testauto1 = new Bild(220, 1550,"./Assets/Tests/Testauto.png");
-        wurzel.add(testauto1);
-        animationsManager.streckenAnimation(testauto1, 40000, new Punkt(220, 1550), new Punkt(5300,1550),new Punkt(5300, 2500),new Punkt(220,2500) );
-        //Auto 2 fährt um Häuserblock beide Reihen Wphnhäuser
-        //Beginn unten rechts, im Uhrzeigersinn
-        Bild testauto2 = new Bild(5300, 3550,"./Assets/Tests/Testauto.png");
-        wurzel.add(testauto2);
-        animationsManager.streckenAnimation(testauto2, 40000,new Punkt(5300, 3550),new Punkt(220,3550), new Punkt(220, 1550), new Punkt(5300,1550) );
-        //Auto 3 fährt um Häuserblock Schule, Baustelle, Polizei,...
-        //Beginn unten links, im Uhrzeigersinn, gegen Uhrzeigersinn, im Uhrzeigersinn => fährt "liegende 8"
-        Bild testauto3 = new Bild(220, 4800,"./Assets/Tests/Testauto.png");
-        wurzel.add(testauto3);
-        animationsManager.streckenAnimation(testauto3, 80000,new Punkt(220, 4800),new Punkt(220,3640), new Punkt(5300, 3640), new Punkt(5300,4900),new Punkt(7420,4890), new Punkt(7420,3550), new Punkt(5300,3550), new Punkt(5300, 4800) );
-
-
+        if (true) {
+            //Beginn oben links, im Uhrzeigersinn
+            Bild testauto1 = new Bild(220, 1550, "./Assets/Tests/Testauto.png");
+            wurzel.add(testauto1);
+            animationsManager.streckenAnimation(testauto1, 40000, new Punkt(220, 1550), new Punkt(5300, 1550), new Punkt(5300, 2500), new Punkt(220, 2500));
+            //Auto 2 fährt um Häuserblock beide Reihen Wphnhäuser
+            //Beginn unten rechts, im Uhrzeigersinn
+            Bild testauto2 = new Bild(5300, 3550, "./Assets/Tests/Testauto.png");
+            wurzel.add(testauto2);
+            animationsManager.streckenAnimation(testauto2, 40000, new Punkt(5300, 3550), new Punkt(220, 3550), new Punkt(220, 1550), new Punkt(5300, 1550));
+            //Auto 3 fährt um Häuserblock Schule, Baustelle, Polizei,...
+            //Beginn unten links, im Uhrzeigersinn, gegen Uhrzeigersinn, im Uhrzeigersinn => fährt "liegende 8"
+            Bild testauto3 = new Bild(220, 4800, "./Assets/Tests/Testauto.png");
+            wurzel.add(testauto3);
+            animationsManager.streckenAnimation(testauto3, 80000, new Punkt(220, 4800), new Punkt(220, 3640), new Punkt(5300, 3640), new Punkt(5300, 4900), new Punkt(7420, 4890), new Punkt(7420, 3550), new Punkt(5300, 3550), new Punkt(5300, 4800));
+        }
 
 
         //wurzel.add(Autos);
@@ -118,8 +105,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //wrzel.add(pet1);
 
         //statischeWurzel.add(HouseLoader1);
-        statischeWurzel.add(StartSc);
-        StartSc.setActive(true);
         statischeWurzel.add(DialogController4);
 
         statischeWurzel.add(Minigame2);
@@ -137,24 +122,23 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige10);
 
 
-
         tastenReagierbarAnmelden(this);
         tastenLosgelassenReagierbarAnmelden(this);
 
-        tickerAnmelden(this, 10);
+        tickerAnmelden(this, 16);
 
         DialogController4.highLightReadyNpcs(); //einmal alle highlighten die können
     }
 
 
-    public void fokusSetzten(){
+    public void fokusSetzten() {
         cam.fokusSetzen(ActivePlayer);
-        BoundingRechteck CamBounds = new BoundingRechteck(0,0,map.getBreite(),map.getHoehe());
+        BoundingRechteck CamBounds = new BoundingRechteck(0, 0, MAIN.x, MAIN.y);
         cam.boundsSetzen(CamBounds);
     }
 
     public void tick() {
-        if(itemController.checkForCollision()){
+        if (itemController.checkForCollision()) {
             gamesaver.addItem(itemController.getCollidingItemName());
             itemController.hideCollidingItem();
 
@@ -164,7 +148,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         int playerY = ActivePlayer.positionY();
 
         debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
-        debugAnzeige2.SetContent("Visiting:" +map.isVisiting());
+        debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
         debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
         debugAnzeige4.SetContent("Dialog2Activ:" + DialogController4.isActive());
         debugAnzeige5.SetContent("ZeitPosition: " + DialogController4.getGlobalTemporalPosition());
@@ -174,48 +158,48 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige9.SetContent("OneButtonMode?: " + DialogController4.isOneButtonMode());
         debugAnzeige10.SetContent("LastSelf: " + DialogController4.isPlayingLastLine());
 
-        DP.positionSetzen(playerX,playerY);
+        DP.positionSetzen(playerX, playerY);
 
 
-        if(!DialogController4.isActive() && !StartSc.isActive()) {
+        if (!DialogController4.isActive() && !StartSc.isActive()) {
             int walkspeed = ActivePlayer.getWalkspeed();
 
             if (tasteGedrueckt(Taste.W)) {
-                DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() -walkspeed);
+                DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() - walkspeed);
 
-                if(map.isWalkable2(DP,ActivePlayer)){
+                if (map.isWalkable2(DP, ActivePlayer)) {
                     ActivePlayer.WalkTop();
                 }
 
             }
             if (tasteGedrueckt(Taste.S)) {
-                DP.positionSetzen(ActivePlayer.getPosX(),ActivePlayer.getPosY() + walkspeed);
+                DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() + walkspeed);
 
-                if(map.isWalkable2(DP,ActivePlayer)){
+                if (map.isWalkable2(DP, ActivePlayer)) {
                     ActivePlayer.WalkBottom();
                 }
             }
 
             if (tasteGedrueckt(Taste.A)) {
-                DP.positionSetzen(ActivePlayer.getPosX() - walkspeed,ActivePlayer.getPosY());
+                DP.positionSetzen(ActivePlayer.getPosX() - walkspeed, ActivePlayer.getPosY());
 //
-                if(map.isWalkable2(DP,ActivePlayer)){
+                if (map.isWalkable2(DP, ActivePlayer)) {
                     ActivePlayer.WalkLeft();
                 }
             }
 
             if (tasteGedrueckt(Taste.D)) {
-                DP.positionSetzen(ActivePlayer.getPosX() + walkspeed,ActivePlayer.getPosY());
+                DP.positionSetzen(ActivePlayer.getPosX() + walkspeed, ActivePlayer.getPosY());
 
 
-                if(map.isWalkable2(DP,ActivePlayer)){
+                if (map.isWalkable2(DP, ActivePlayer)) {
                     ActivePlayer.WalkRight();
                 }
             }
-            }
-        if(NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()){
+        }
+        if (NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()) {
             String npcID = NpcController2.getCollidingNPC(ActivePlayer);
-            System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID );
+            System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID);
             DialogController4.startDialog(npcID);
 
         }
@@ -224,90 +208,82 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //pet1.follow(ActivePlayer);
         Minigame2.tick();
         tickCounter++;
-        if(tickCounter > 100) {
+        if (tickCounter > 400) { //alle vier sekunden
             tickCounter = 0;
             slowTick();
         }
     }
 
-    public void slowTick(){
+    public void slowTick() {
         gamesaver.saveJSON();
     }
-
-    public void startNewGame(){
-        NpcController2.startNewGame();
-    }
-
 
 
 
     //  https://engine-alpha.org/wiki/Tastaturtabelle
-    public void tasteReagieren(int tastenkuerzel)
-    {
-        if(tastenkuerzel == 8){//I als in
-            //map.enterHouse(ActivePlayer,0);
-        }
-        if(tastenkuerzel == 14){//o als out
-            //HouseLoader1.HideView();
-            map.leaveHouse(ActivePlayer);
-        }
-        if(tastenkuerzel == 17){ //Wenn R gedrückt
+    public void tasteReagieren(int tastenkuerzel) {
+        if (!StartSc.isActive()) {
+            if (tastenkuerzel == 8) {//I als in
+                //map.enterHouse(ActivePlayer,0);
+            }
+            if (tastenkuerzel == 14) {//o als out
+                //HouseLoader1.HideView();
+                map.leaveHouse(ActivePlayer);
+            }
+            if (tastenkuerzel == 17) { //Wenn R gedrückt
 
+            }
+
+            if (tastenkuerzel == 12) {//M für minigame
+                Minigame2.startGame();
+            }
+
+
+            if (tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
+                map.toggleVisting();
+            }
+            if (tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
+                ActivePlayer.positionSetzen(ActivePlayer.positionX() + 10, ActivePlayer.positionY());
+
+            }
+
+
+
+            if (DialogController4.isWaitingForInput()) {
+                if (tastenkuerzel == 0) {
+                    //System.out.println("Taste ist gedrückt und isWaitingForInputs = true");
+                    DialogController4.input("links");
+                } else if (tastenkuerzel == 3) {
+                    DialogController4.input("rechts");
+                } else if (tastenkuerzel == 31) {
+                    System.out.println("SPIEL: ENTER GEDRÜCKt");
+                    DialogController4.input("enter");
+                }
+            }
         }
 
-        if(tastenkuerzel == 12){//M für minigame
-            Minigame2.startGame();
-        }
-
-
-        if(tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
-            map.toggleVisting();
-        }
-        if(tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
-            ActivePlayer.positionSetzen(ActivePlayer.positionX()+10,ActivePlayer.positionY());
-
-        }
-        if(StartSc.isActive()){
-            if(tastenkuerzel == 0){
+        if (StartSc.isActive()) {
+            if (tastenkuerzel == 0) {
                 StartSc.ShiftLeft();
-            }
-            else if(tastenkuerzel == 3){
+            } else if (tastenkuerzel == 3) {
                 StartSc.ShiftRight();
-            }
-            else if (tastenkuerzel == 31) {
-                StartSc.SelectButtons();
-            }
-
-        }
-
-        if(DialogController4.isWaitingForInput()){
-            if(tastenkuerzel == 0){
-                //System.out.println("Taste ist gedrückt und isWaitingForInputs = true");
-                DialogController4.input("links");
-            }
-            else if(tastenkuerzel == 3){
-                DialogController4.input("rechts");
-            }
-            else if(tastenkuerzel == 31){
-                System.out.println("SPIEL: ENTER GEDRÜCKt");
-                DialogController4.input("enter");
+            } else if (tastenkuerzel == 31) { //enter
+                int sel = StartSc.getSelection();
+                StartSc.setActive(false);
+                if (sel == 1) {
+                    NewGameLoader gl = new NewGameLoader();
+                    System.out.println("fertig mit Laden");
+                }
+                Konstruktor();
             }
         }
-
-
-
-
     }
 
 
-    public void warte(int ms)
-    {
-        try
-        {
+    public void warte(int ms) {
+        try {
             Thread.sleep(ms);
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -320,11 +296,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
     @Override
     public void klickReagieren(Punkt punkt) {
-        System.out.println("Klick bei ("+ punkt+ ").");
-        int dx = (int)ActivePlayer.getPosX()-(int)punkt.x();
-        int dy = (int)ActivePlayer.getPosY()-(int)punkt.y();
-        System.out.println(dx+dy);
-        BallTest ball1 = new BallTest((int)ActivePlayer.getPosX(),(int)ActivePlayer.getPosY(),dx,dy);
+        System.out.println("Klick bei (" + punkt + ").");
+        int dx = (int) ActivePlayer.getPosX() - (int) punkt.x();
+        int dy = (int) ActivePlayer.getPosY() - (int) punkt.y();
+        System.out.println(dx + dy);
+        BallTest ball1 = new BallTest((int) ActivePlayer.getPosX(), (int) ActivePlayer.getPosY(), dx, dy);
         wurzel.add(ball1);
     }
 }

@@ -29,7 +29,7 @@ public class MAIN {
     public static void main(String[] args){
 
         SPIEL spiel  = new SPIEL();
-        //spiel.fokusSetzten();
+
 
 
 

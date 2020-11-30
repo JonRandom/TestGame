@@ -1,14 +1,14 @@
 /**
  * Bereitet einen Startbildschim vor und zeigt diesen auch an.
  * Hier kann ausgewählt werden zwischen:
- *  - Neues Spiel starten
- *  - SaveGame Laden
- *  - LEER
- *  - Über Spiel
- *
+ * - Neues Spiel starten
+ * - SaveGame Laden
+ * - LEER
+ * - Über Spiel
+ * <p>
  * ButtonBenennung:
- *  -ButtonX.png
- *  -X von 0 bis ButtonCount(z.B 4)
+ * -ButtonX.png
+ * -X von 0 bis ButtonCount(z.B 4)
  */
 
 import ea.Bild;
@@ -18,6 +18,7 @@ import ea.Text;
 public class StartingScreen extends Knoten {
 
     private Bild BackgroundPic;
+    private Bild loadingPic;
 
 
     private int ButtonCount = 2;
@@ -37,7 +38,11 @@ public class StartingScreen extends Knoten {
 
     public StartingScreen() {
         BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/StartbilschirmOHNEButtonsundTitel.png");
+        loadingPic = new Bild(0, 0, "./Assets/StartingScreen/loading.png");
+        loadingPic.positionSetzen(MAIN.x / 2 - loadingPic.getBreite() / 2, MAIN.y / 2 - loadingPic.getHoehe());
         this.add(BackgroundPic);
+        this.add(loadingPic);
+        loadingPic.sichtbarSetzen(false);
         FillButtonObjects();
     }
 
@@ -97,11 +102,18 @@ public class StartingScreen extends Knoten {
         this.active = active;
 
         BackgroundPic.sichtbarSetzen(active);
+        loadingPic.sichtbarSetzen(active);
         for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].sichtbarSetzen(active);
         }
     }
 
+    public void tickLoadingAnimation() {
+        if (this.active) {
+            //System.out.println("StartingScreen: tickLoadingAnimation();");
+            loadingPic.drehenRelativ(6);
+        }
+    }
 
 
     //unbenutzt
@@ -123,11 +135,22 @@ public class StartingScreen extends Knoten {
             }
             break;
         }
+    }
+
+    public void startLoadingScreen() {
+        BackgroundPic.sichtbarSetzen(false);
+        Buttons[0].sichtbarSetzen(false);
+        Buttons[1].sichtbarSetzen(false);
+        loadingPic.sichtbarSetzen(true);
+    }
+
+    public void hideLoadingScreen() {
+        this.setActive(false);
 
     }
 
 
-    public void TextStartScEntfernen(){
+    public void TextStartScEntfernen() {
         //JF: Du kannst auch einfach tb0.sichtbarSetzen(false); machen
         //JF: Oder füg die einfach zur Mehtode setActive hinzu. Da wird alles ausgeblendet.
         this.entfernen(tb0);

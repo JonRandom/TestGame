@@ -21,6 +21,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     //sound
     private SoundController soundController;
 
+    //MAIN LOADING
+    private boolean initDone = false;
 
     private DummyPlayer DP;
     private NpcController2 NpcController2;
@@ -28,8 +30,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     //private Minigame1 Minigame1;
     private Minigame2 Minigame2;
     private Pet pet1;
-    //private HouseLoader HouseLoader1;
-
 
     public GameSaver gamesaver;
 
@@ -50,7 +50,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     }
 
     public void Konstruktor() {
-        fokusSetzten();
+        tickerAnmelden(this, 16);
+
         zaehler = 0;
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
@@ -125,93 +126,102 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         tastenReagierbarAnmelden(this);
         tastenLosgelassenReagierbarAnmelden(this);
 
-        tickerAnmelden(this, 16);
+
 
         DialogController4.highLightReadyNpcs(); //einmal alle highlighten die können
+
+        fokusSetzten();
+        StartSc.hideLoadingScreen();
+        initDone = true;
     }
 
 
     public void fokusSetzten() {
+        System.out.println("FOKUS SETZEN");
         cam.fokusSetzen(ActivePlayer);
-        BoundingRechteck CamBounds = new BoundingRechteck(0, 0, MAIN.x, MAIN.y);
+        BoundingRechteck CamBounds = new BoundingRechteck(0, 0, map.getBreite(), map.getHoehe());
         cam.boundsSetzen(CamBounds);
     }
 
     public void tick() {
-        if (itemController.checkForCollision()) {
-            gamesaver.addItem(itemController.getCollidingItemName());
-            itemController.hideCollidingItem();
-
-        }
-
-        int playerX = ActivePlayer.positionX();
-        int playerY = ActivePlayer.positionY();
-
-        debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
-        debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
-        debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-        debugAnzeige4.SetContent("Dialog2Activ:" + DialogController4.isActive());
-        debugAnzeige5.SetContent("ZeitPosition: " + DialogController4.getGlobalTemporalPosition());
-        debugAnzeige6.SetContent("PlayingLastLine: " + DialogController4.isPlayingLastLine());
-        debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController4.getCurrentDialogCode());
-        debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController4.getButtonCursor());
-        debugAnzeige9.SetContent("OneButtonMode?: " + DialogController4.isOneButtonMode());
-        debugAnzeige10.SetContent("LastSelf: " + DialogController4.isPlayingLastLine());
-
-        DP.positionSetzen(playerX, playerY);
-
-
-        if (!DialogController4.isActive() && !StartSc.isActive()) {
-            int walkspeed = ActivePlayer.getWalkspeed();
-
-            if (tasteGedrueckt(Taste.W)) {
-                DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() - walkspeed);
-
-                if (map.isWalkable2(DP, ActivePlayer)) {
-                    ActivePlayer.WalkTop();
-                }
+        if(initDone) {
+            if (itemController.checkForCollision()) {
+                gamesaver.addItem(itemController.getCollidingItemName());
+                itemController.hideCollidingItem();
 
             }
-            if (tasteGedrueckt(Taste.S)) {
-                DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() + walkspeed);
 
-                if (map.isWalkable2(DP, ActivePlayer)) {
-                    ActivePlayer.WalkBottom();
+            int playerX = ActivePlayer.positionX();
+            int playerY = ActivePlayer.positionY();
+
+            debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
+            debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
+            debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
+            debugAnzeige4.SetContent("Dialog2Activ:" + DialogController4.isActive());
+            debugAnzeige5.SetContent("ZeitPosition: " + DialogController4.getGlobalTemporalPosition());
+            debugAnzeige6.SetContent("PlayingLastLine: " + DialogController4.isPlayingLastLine());
+            debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController4.getCurrentDialogCode());
+            debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController4.getButtonCursor());
+            debugAnzeige9.SetContent("OneButtonMode?: " + DialogController4.isOneButtonMode());
+            debugAnzeige10.SetContent("LastSelf: " + DialogController4.isPlayingLastLine());
+
+            DP.positionSetzen(playerX, playerY);
+
+
+            if (!DialogController4.isActive() && !StartSc.isActive()) {
+                int walkspeed = ActivePlayer.getWalkspeed();
+
+                if (tasteGedrueckt(Taste.W)) {
+                    DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() - walkspeed);
+
+                    if (map.isWalkable2(DP, ActivePlayer)) {
+                        ActivePlayer.WalkTop();
+                    }
+
                 }
-            }
+                if (tasteGedrueckt(Taste.S)) {
+                    DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() + walkspeed);
 
-            if (tasteGedrueckt(Taste.A)) {
-                DP.positionSetzen(ActivePlayer.getPosX() - walkspeed, ActivePlayer.getPosY());
+                    if (map.isWalkable2(DP, ActivePlayer)) {
+                        ActivePlayer.WalkBottom();
+                    }
+                }
+
+                if (tasteGedrueckt(Taste.A)) {
+                    DP.positionSetzen(ActivePlayer.getPosX() - walkspeed, ActivePlayer.getPosY());
 //
-                if (map.isWalkable2(DP, ActivePlayer)) {
-                    ActivePlayer.WalkLeft();
+                    if (map.isWalkable2(DP, ActivePlayer)) {
+                        ActivePlayer.WalkLeft();
+                    }
+                }
+
+                if (tasteGedrueckt(Taste.D)) {
+                    DP.positionSetzen(ActivePlayer.getPosX() + walkspeed, ActivePlayer.getPosY());
+
+
+                    if (map.isWalkable2(DP, ActivePlayer)) {
+                        ActivePlayer.WalkRight();
+                    }
                 }
             }
+            if (NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()) {
+                String npcID = NpcController2.getCollidingNPC(ActivePlayer);
+                System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID);
+                DialogController4.startDialog(npcID);
 
-            if (tasteGedrueckt(Taste.D)) {
-                DP.positionSetzen(ActivePlayer.getPosX() + walkspeed, ActivePlayer.getPosY());
-
-
-                if (map.isWalkable2(DP, ActivePlayer)) {
-                    ActivePlayer.WalkRight();
-                }
             }
-        }
-        if (NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()) {
-            String npcID = NpcController2.getCollidingNPC(ActivePlayer);
-            System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID);
-            DialogController4.startDialog(npcID);
+
+            gamesaver.SavePlayer(ActivePlayer);
+            //pet1.follow(ActivePlayer);
+            Minigame2.tick();
+            tickCounter++;
+            if (tickCounter > 400) { //alle vier sekunden
+                tickCounter = 0;
+                slowTick();
+            }
 
         }
-
-        gamesaver.SavePlayer(ActivePlayer);
-        //pet1.follow(ActivePlayer);
-        Minigame2.tick();
-        tickCounter++;
-        if (tickCounter > 400) { //alle vier sekunden
-            tickCounter = 0;
-            slowTick();
-        }
+        StartSc.tickLoadingAnimation();
     }
 
     public void slowTick() {
@@ -269,8 +279,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 StartSc.ShiftRight();
             } else if (tastenkuerzel == 31) { //enter
                 int sel = StartSc.getSelection();
-                StartSc.setActive(false);
+                StartSc.startLoadingScreen();
                 if (sel == 1) {
+
                     NewGameLoader gl = new NewGameLoader();
                     System.out.println("fertig mit Laden");
                 }

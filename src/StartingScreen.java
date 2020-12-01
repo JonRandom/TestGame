@@ -39,7 +39,9 @@ public class StartingScreen extends Knoten {
     public StartingScreen() {
         BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/StartbilschirmOHNEButtonsundTitel.png");
         loadingPic = new Bild(0, 0, "./Assets/StartingScreen/loading.png");
-        loadingPic.positionSetzen(MAIN.x / 2 - loadingPic.getBreite() / 2, MAIN.y / 2 - loadingPic.getHoehe());
+        float xPos = MAIN.x / 2 - (loadingPic.getBreite() / 2);
+        float yPos = MAIN.y / 2 - (loadingPic.getHoehe() / 2);
+        loadingPic.positionSetzen(xPos, yPos);
         this.add(BackgroundPic);
         this.add(loadingPic);
         loadingPic.sichtbarSetzen(false);
@@ -102,7 +104,8 @@ public class StartingScreen extends Knoten {
         this.active = active;
 
         BackgroundPic.sichtbarSetzen(active);
-        loadingPic.sichtbarSetzen(active);
+        loadingPic.sichtbarSetzen(false);
+
         for (int i = 0; i < ButtonCount; i++) {
             Buttons[i].sichtbarSetzen(active);
         }

@@ -42,7 +42,7 @@ public class DialogController4 extends Knoten {
     private Text displayResponseTextObject;
     private Bild displayDialogBackground;
     private Bild[] displayButtons;
-    private final int textPosY = 850;
+    private int textPosY = 600;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -53,7 +53,7 @@ public class DialogController4 extends Knoten {
     private boolean oneButtonMode = false; //Wenn es nur eine Wahl gibt, wird ein Knopf ausgeblendet
 
     //lastLine
-    private Map<String, String> lastLines = new HashMap<String, String>() {
+    private Map<String, String> lastLines = new HashMap<String, String>() { //<NAME, INHALT>
     }; //key mit name und als inhalt den Code
 
 
@@ -77,7 +77,8 @@ public class DialogController4 extends Knoten {
         //Bilder mit try catch
         try {
             displayDialogBackground = new Bild(defaultPath + "DialogFenster.png");
-            displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite() / 2, textPosX);
+            float backPosY = (MAIN.y  - (displayDialogBackground.getHoehe()));
+            displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite() / 2, backPosY);
             displayButtons[0] = new Bild(defaultPath + "ButtonWahl0.png");
             displayButtons[0].positionSetzen(400, textPosY + 50);
             displayButtons[1] = new Bild(defaultPath + "ButtonWahl1.png");
@@ -90,8 +91,9 @@ public class DialogController4 extends Knoten {
         }
 
         //Text als letztes also ganz oben
-        displayResponseTextObject = new Text(textPosX, textPosY - 50, "DEFAULT RESPONSE TEXT");
-        displayTextObject = new Text(textPosX, textPosY, "DEFAULT TEXT");
+
+        displayResponseTextObject = new Text(textPosX, textPosY + 100, "DEFAULT RESPONSE TEXT");
+        displayTextObject = new Text(textPosX, textPosY + 50, "DEFAULT TEXT");
         this.add(displayTextObject, displayResponseTextObject);
     }
 
@@ -115,13 +117,30 @@ public class DialogController4 extends Knoten {
     }
 
     public void highLightReadyNpcs() {
+        NPC_Controller2.disguiseAllNPCs();
         if (dialogPackets.containsKey(globalTemporalPosition)) {
             Map<String, List<DialogController4.DialogPacket>> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
             Set keys = innnerPacketMap.keySet();
-            if (keys.isEmpty()) {
-                System.out.println("DialogController4: FEHLER BEIM HIGHLIGHTEN, KEIN SPIELER KANN GERADE SPRECHEN");
-            } else {
-                NPC_Controller2.highLightNpcs(keys);
+            for (String npcName : innnerPacketMap.keySet()) { //get die NPC durch
+                List<DialogController4.DialogPacket> npcOccs = innnerPacketMap.get(npcName); //gibt mir alle Occs zu einem NPC
+                List<String> foundItems = gameSaver.getItems(); //holt sich aus dem Savefile die momentanen Items
+                List<String> readLines = gameSaver.getLines(); //holt sich aus dem Savefile die momentanen gelesenen Lines;
+
+                for (DialogController4.DialogPacket packet : npcOccs) { //get also alle Packete einer Occ durch
+                    if (foundItems.containsAll(packet.requiredItems)) {
+                        if (readLines.containsAll(packet.requiredLines)) {
+                            //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
+                            NPC_Controller2.highLightNpcsByName(npcName);
+                        } else {
+                            System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
+                            //return false;
+                        }
+                    } else {
+                        System.out.println("DialogController4: highLightReadyNpcs(): Es sind nicht alle nötigen Items gefunden worden");
+                        //return false;
+                    }
+
+                }
             }
         } else {
             System.out.println("DialogController4: FEHLER BEIM HIGHLIGHTEN, DIE NÄCHSTE ZEIT GIBT ES GAR NICHT");
@@ -132,7 +151,10 @@ public class DialogController4 extends Knoten {
     }
 
 
+
+
     private void displayCurrentDialogLine() {
+        System.out.println("DialogController4: displayCurrentDialogLine aufgerufen");
         playingLastLine = false;
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
         if(currentLine == null){
@@ -145,6 +167,7 @@ public class DialogController4 extends Knoten {
         //System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
         if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
+
             lastLineSelf = true;
             skipLine(); //effectivly skipps the next dialog line
 
@@ -155,6 +178,7 @@ public class DialogController4 extends Knoten {
 
                 if (true) { //Speicherung der aktuellen Line als LastLine
                     String name = currentLine.name;
+                    System.out.println("Für den NPC mit dem name: " + name + " wird die LastLine: " + currentDialogCode  + " gespeichert");
                     lastLines.put(name, currentDialogCode);
                 }
             }
@@ -177,7 +201,7 @@ public class DialogController4 extends Knoten {
 
     private void skipLine() {
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
-        //System.out.println("DialogController4: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
+        System.out.println("DialogController4: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
         //System.out.println("->DialogController4: Sein Inhalt war: " + currentLine.inhalt);
         oneButtonMode = true;
         currentDialogCode = currentLine.wahl1; //skipped die nächste Zeile, weil dies
@@ -221,9 +245,8 @@ public class DialogController4 extends Knoten {
 
     private void saveLastLines() {
         //System.out.println("DialogController4: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
-        for (String key : lastLines.keySet()) {
-            String npcName = key;
-            String code = lastLines.get(key);
+        for (String npcName : lastLines.keySet()) {
+            String code = lastLines.get(npcName);
             NPC_Controller2.setNpcLastLine(npcName, code);
         }
         lastLines.clear();
@@ -307,7 +330,6 @@ public class DialogController4 extends Knoten {
                 }
                 //System.out.println("DialogController4: FEHLER: Zu diesem NPC sind zwar Einträge aber keine Occs vorhanden");
                 //return false;
-
             } else {
                 System.out.println("DialogController4: Zu diesem NPC gibt es im Moment kein Eintrag in der Story");
                 //return false;

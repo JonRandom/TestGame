@@ -2,14 +2,14 @@
   //Start Dialog mit der Mutter
   "D1.0_00_01": {
     "inhalt": "Aufstehen!",
-    "name": "kay",
+    "name": "mutter",
     "wahl1": "D1.0_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D1.0_00_02": {
     "inhalt": "Du musst zur Schule!",
-    "name": "kay",
+    "name": "mutter",
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 2"

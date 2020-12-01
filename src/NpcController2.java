@@ -161,6 +161,20 @@ public class NpcController2 extends Knoten {
         }
 
     }
+    public void highLightNpcsByName(String name) {
+        if (name == null) {
+            System.out.println("NpcController2: FEHLER: EIN DER HIGHLIGHT NAME  IST LEER. (DAS LIEGT Vielleicht DARAN, DASS ES KEINE WEITEREN DIALOGPACKETE FÜTR DIE NEUE ZEIT GIBT!)");
+        } else{
+            NPCs.get(name).setHighlightState(true);
+        }
+    }
+
+    public void disguiseAllNPCs(){
+        for (String key : NPCs.keySet()) {  //geht die JSON durch und macht alle aus(false)
+            NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
+            element.setHighlightState(false);
+        }
+    }
 
     public void leaveHouse() {
         hideAllNPCs();
@@ -217,7 +231,7 @@ public class NpcController2 extends Knoten {
             writer.write(json);
             writer.close(); //wichtig
 
-            System.out.println(ANSI_GREEN + "NpcController2: JSON(./Assets/Files/NPCs_NEW.json) erfolgreich überschrieben" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "NpcController2: JSON(./Assets/Files/NPCs_NEW.json) erfolgreich gespeichert" + ANSI_RESET);
         } catch (Exception e) {
             System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim SCHREIBEN der Json Datei:" + ANSI_RESET);
             System.out.println(e);

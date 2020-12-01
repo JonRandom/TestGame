@@ -25,10 +25,12 @@ public class ItemController extends Knoten {
     //für Kollision und Items sammeln
     private Player activPlayer;
     private GameSaver gamesaver;
+    private DialogController4 diaController;
 
-    public ItemController(Player ap, GameSaver gs) {
+    public ItemController(Player ap, GameSaver gs, DialogController4 diaC) {
         this.activPlayer = ap;
         this.gamesaver = gs;
+        this.diaController = diaC;
 
         readJSON();
         addAllItems();
@@ -44,6 +46,7 @@ public class ItemController extends Knoten {
         return coll;
     }
     public String getCollidingItemName(){
+        diaController.highLightReadyNpcs();
         Item collItem = null;
         for (Item item : items) {  //geht die JSON durch und
             if(activPlayer.schneidet(item) && item.visible){ //wenn der Spieler ein sichbares Item schneidet

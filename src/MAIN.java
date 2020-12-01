@@ -12,8 +12,9 @@ import java.util.List;
 
 
 public class MAIN {
-    public static int x = 1500;
-    public static int y = 1000;
+
+    public static int x = 1368;
+    public static int y = 768;
 
     public static int blackThreshold = 4;// für die Kolliderbildbearbeitung
     public static int whiteThreshold = 250;// für die Kolliderbildbearbeitung

@@ -75,7 +75,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige9 = new DebugAnzeige(650, 30);
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
-        itemController = new ItemController(ActivePlayer, gamesaver);
+        itemController = new ItemController(ActivePlayer, gamesaver, DialogController4);
         //ObjectController Autos = new ObjectController();
 
         if (true) {
@@ -148,7 +148,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             if (itemController.checkForCollision()) {
                 gamesaver.addItem(itemController.getCollidingItemName());
                 itemController.hideCollidingItem();
-
             }
 
             int playerX = ActivePlayer.positionX();

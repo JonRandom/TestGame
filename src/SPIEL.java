@@ -62,7 +62,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         soundController = new SoundController();
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
-        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver);
+
+
         DialogController4 = new DialogController4(NpcController2, gamesaver);
         debugAnzeige1 = new DebugAnzeige(0, 0);
         debugAnzeige2 = new DebugAnzeige(200, 0);
@@ -98,6 +99,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         //wurzel.add(Autos);
         wurzel.add(DP);
+        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
@@ -237,7 +239,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
             if (tastenkuerzel == 14) {//o als out
                 //HouseLoader1.HideView();
-                map.leaveHouse(ActivePlayer);
+                map.leaveHouse();
             }
             if (tastenkuerzel == 17) { //Wenn R gedrückt
 

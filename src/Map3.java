@@ -168,6 +168,8 @@ public class Map3 extends Knoten {
     public void loadStartPos(){
         System.out.println("Map3: Aus den gespeicherten GameSave Daten wird die startPos des Spielers gelesen.");
         int houseN = gamesaver.getHouseNumber();
+        leaveHouse();
+        enterHouse(player, houseN);
         player.positionSetzen(gamesaver.getPosX(), gamesaver.getPosY());
         if(houseN != -1){
             enterHouse(player, houseN);
@@ -210,7 +212,7 @@ public class Map3 extends Knoten {
         backgroundImg.sichtbarSetzen(true);
         backgroundImg.positionSetzen(AP.getPosX() - MAIN.x/2, AP.getPosY()-MAIN.y/2);
     }
-    public void leaveHouse(Player AP){
+    public void leaveHouse(){
         gamesaver.setHouseNumber(-1);
         lastWhiteX = gamesaver.getLastOutsidePosX();
         lastWhiteY = gamesaver.getLastOutsidePosY();
@@ -219,7 +221,7 @@ public class Map3 extends Knoten {
         houseNumber = -1;
         hideAllHouses();
         backgroundImg.sichtbarSetzen(false);
-        AP.positionSetzen(lastWhiteX,lastWhiteY);
+        player.positionSetzen(lastWhiteX,lastWhiteY);
         npc_C.leaveHouse();
 
     }
@@ -297,7 +299,7 @@ public class Map3 extends Knoten {
 
             ImageCollider.ColliderReturnType result2 =  houseHitbox[houseNumber].scanSurrounding(dp);
             if(result2.isOutOfBounds()){
-                leaveHouse(ap);
+                leaveHouse();
                 return false;
             }
             else if(result2.isBlack()){

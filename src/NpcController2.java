@@ -32,6 +32,10 @@ public class NpcController2 extends Knoten {
     //für die anzeige
     //private int currentHouseNumber = -1; //muss eig als Map kommen und darf am anfang nicht unbedingt -1 sein;
 
+    //Konstruktor Init
+    //besonders JSONs Lesen ist langsam(?)
+    public boolean initDone = false;
+
 
     private Player AP;
     private GameSaver gamesaver;
@@ -53,6 +57,7 @@ public class NpcController2 extends Knoten {
         saveJSON();
 
         */
+        initDone = true;
     }
     public void startNewGame(){
         System.out.println("NpcController2");
@@ -311,6 +316,7 @@ public class NpcController2 extends Knoten {
             npcPositions = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcPositionPath + ")  erfolgreich gelesen" + ANSI_RESET);
             //System.out.println("ANTWORT: " + dialogPackets.get("01").get("11").NpcID);
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(ANSI_PURPLE + "NpcController2: Ein Fehler beim Lesen der Json Datei(" + npcPositionPath + " ). Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);

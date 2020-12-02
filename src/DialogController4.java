@@ -77,7 +77,7 @@ public class DialogController4 extends Knoten {
         //Bilder mit try catch
         try {
             displayDialogBackground = new Bild(defaultPath + "DialogFenster.png");
-            float backPosY = (MAIN.y  - (displayDialogBackground.getHoehe()));
+            float backPosY = (MAIN.y - (displayDialogBackground.getHoehe()));
             displayDialogBackground.positionSetzen(textPosX - displayDialogBackground.getBreite() / 2, backPosY);
             displayButtons[0] = new Bild(defaultPath + "ButtonWahl0.png");
             displayButtons[0].positionSetzen(400, textPosY + 50);
@@ -130,7 +130,18 @@ public class DialogController4 extends Knoten {
                     if (foundItems.containsAll(packet.requiredItems)) {
                         if (readLines.containsAll(packet.requiredLines)) {
                             //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
-                            NPC_Controller2.highLightNpcsByName(npcName);
+                            if (packet.forbiddenLines == null) {
+                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten");
+                                NPC_Controller2.highLightNpcsByName(npcName);
+                            } else if (inverseContains(packet.forbiddenLines, readLines)) {
+                                //es gibt forbiddenLines, meine sind aber nicht dabei
+                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei");
+                                NPC_Controller2.highLightNpcsByName(npcName);
+                            } else {
+                                System.out.println("DialogController4: Das Dialogpacket ist verboten!");
+                                //nix machen
+
+                            }
                         } else {
                             System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
                             //return false;
@@ -154,11 +165,11 @@ public class DialogController4 extends Knoten {
         System.out.println("DialogController4: displayCurrentDialogLine aufgerufen");
         playingLastLine = false;
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
-        if(currentLine == null){
+        if (currentLine == null) {
             System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie zeigt auf eine andere leere Line: " + currentLine);
         }
         gameSaver.addLine(currentDialogCode);
-        if(currentDialogCode == null){
+        if (currentDialogCode == null) {
             System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie hat scheinbar keinen Code??");
         }
         //System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
@@ -175,7 +186,7 @@ public class DialogController4 extends Knoten {
 
                 if (true) { //Speicherung der aktuellen Line als LastLine
                     String name = currentLine.name;
-                    System.out.println("Für den NPC mit dem name: " + name + " wird die LastLine: " + currentDialogCode  + " gespeichert");
+                    System.out.println("Für den NPC mit dem name: " + name + " wird die LastLine: " + currentDialogCode + " gespeichert");
                     lastLines.put(name, currentDialogCode);
                 }
             }
@@ -287,7 +298,7 @@ public class DialogController4 extends Knoten {
         }
     }
 
-    private DialogController4.DialogPacket getPlayableDialogPacket(String npcID){
+    private DialogController4.DialogPacket getPlayableDialogPacket(String npcID) {
         DialogPacket returnPacket = null;
         if (dialogPackets.containsKey(globalTemporalPosition)) {
             Map<String, List<DialogController4.DialogPacket>> innnerPacketMap = dialogPackets.get(globalTemporalPosition); //gibt mir alle einträge zu einer Zeit
@@ -300,7 +311,19 @@ public class DialogController4 extends Knoten {
                     if (foundItems.containsAll(packet.requiredItems)) {
                         if (readLines.containsAll(packet.requiredLines)) {
                             //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
-                            returnPacket = packet;
+                            if (packet.forbiddenLines == null) {
+                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten");
+                                returnPacket = packet;
+                            } else if (inverseContains(packet.forbiddenLines, readLines)) {
+                                //es gibt forbiddenLines, meine sind aber nicht dabei
+                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei");
+                                returnPacket = packet;
+                            } else {
+                                System.out.println("DialogController4: Das Dialogpacket ist verboten!");
+                               //nix machen
+
+                            }
+
                         } else {
                             System.out.println("DialogController4: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
                             //return false;
@@ -322,7 +345,7 @@ public class DialogController4 extends Knoten {
             System.out.println("DialogController4: FEHLER: Zu diesem Zeitpunkt gibt es keinen Eintrag");
             //return false;
         }
-        if(returnPacket == null){
+        if (returnPacket == null) {
             System.out.println("DialogController4: FEHLER: Obwohl erwartet gibt es kein DialogPacket was abgespielt werden, oder ist null");
         }
 
@@ -340,8 +363,18 @@ public class DialogController4 extends Knoten {
                 for (DialogController4.DialogPacket packet : npcOccs) { //get also alle Packete einer Occ durch
                     if (foundItems.containsAll(packet.requiredItems)) {
                         if (readLines.containsAll(packet.requiredLines)) {
-                            System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
-                            return true;
+                            if (packet.forbiddenLines == null) {
+                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten");
+                                return true;
+                            } else if (inverseContains(packet.forbiddenLines, readLines)) {
+                                //es gibt forbiddenLines, meine sind aber nicht dabei
+                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei");
+                                return true;
+                            } else {
+                                System.out.println("DialogController4: Das Dialogpacket ist verboten!");
+                                return false;
+
+                            }
                         } else {
                             System.out.println("DialogController4: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
                             return false;
@@ -551,6 +584,10 @@ public class DialogController4 extends Knoten {
         return lastLineSelf;
     }
 
+    public static <T> boolean inverseContains(List<T> a, List<T> b) {
+        return a.stream().noneMatch(b::contains);
+    }
+
     /**
      * JF:
      * Das ist die Klasse die als Muster zum Auslesen des JSON (mit GSON) dient.
@@ -583,6 +620,7 @@ public class DialogController4 extends Knoten {
 
         ArrayList<String> requiredItems;
         ArrayList<String> requiredLines;
+        ArrayList<String> forbiddenLines;
 
         //NpcPosition npcPos;
         String code; // erster Code des Dialogs
@@ -622,6 +660,7 @@ public class DialogController4 extends Knoten {
 
         /**
          * Don't use for now!
+         *
          * @return
          */
         public boolean isInHouse() {

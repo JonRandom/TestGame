@@ -54,7 +54,7 @@ public class NPC2 extends Knoten {
             e.printStackTrace();
         }
         highLightImg = new Bild(posX+2, posY-50, highlighterPath);
-        this.add(highLightImg);
+        this.add(highLightImg); //wird beim highLighten gemacht
         highLightImg.sichtbarSetzen(highlightState);
 
     }
@@ -121,6 +121,16 @@ public class NPC2 extends Knoten {
     public void setHighlightState(boolean h){
         highlightState = h;
         highLightImg.sichtbarSetzen(highlightState);
+        if(h){
+            this.add(highLightImg);
+        } else{
+            try{
+                this.entfernen(highLightImg);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @Override

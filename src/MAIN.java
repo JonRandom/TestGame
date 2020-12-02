@@ -31,6 +31,9 @@ public class MAIN {
     //SOUNDS, MUSIC
     public static final String musicMainPath = "./Assets/Audio/";
 
+    //Fadescreen
+    public static final String fadeBlackPlate = "./Assets/ColorPlates/black.png";
+
 
     public static void main(String[] args){
 

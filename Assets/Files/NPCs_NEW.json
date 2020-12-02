@@ -1,1 +1,34 @@
-{"felix":{"name":"felix","posX":1300.0,"posY":1220.0,"relativePosX":1200.0,"relativePosY":1220.0,"houseNumber":-1,"lastLine":"D1.3_11_03"},"kay":{"name":"kay","posX":1000.0,"posY":1200.0,"relativePosX":1000.0,"relativePosY":1200.0,"houseNumber":-1,"lastLine":"D1.1_11_03"},"mutter":{"name":"mutter","posX":300.0,"posY":300.0,"relativePosX":300.0,"relativePosY":300.0,"houseNumber":0,"lastLine":"D1.0_00_02"}}
+/*
+Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
+
+ */
+
+{
+  "kay": {
+    "name": "kay",
+    "posX": 1220,
+    "posY": 1200,
+    "relativePosX": 1200,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "mutter": {
+    "name": "mutter",
+    "posX": 100,
+    "posY": 100,
+    "relativePosX": 100,
+    "relativePosY": 100,
+    "houseNumber": -1,
+    "lastLine": "0"
+  },
+  "felix": {
+    "name": "felix",
+    "posX": 1300,
+    "posY": 1220,
+    "relativePosX": 1200,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  }
+}

@@ -150,9 +150,6 @@ public class DialogController4 extends Knoten {
 
     }
 
-
-
-
     private void displayCurrentDialogLine() {
         System.out.println("DialogController4: displayCurrentDialogLine aufgerufen");
         playingLastLine = false;
@@ -289,20 +286,6 @@ public class DialogController4 extends Knoten {
             displayTextObject.inhaltSetzen("FEHLER! Für diesem NPC gibt es scheinbar kein lastLine Eintrag!");
         }
     }
-    /*
-    public void updateNpcPos(){
-        Map<String, DialogPacket> packet = dialogPackets.get(globalTemporalPosition);
-        for (String key : packet.keySet()) {
-            String code = packet.get(key).code;
-            String name = dialogLines.get(code).name; //name des ersten aktüres
-
-
-            NPC_Controller2.updateNpcPos();
-        }
-        NPC_Controller2.updateNpcPos();
-    }
-
-     */
 
     private DialogController4.DialogPacket getPlayableDialogPacket(String npcID){
         DialogPacket returnPacket = null;
@@ -345,7 +328,6 @@ public class DialogController4 extends Knoten {
 
         return returnPacket;
     }
-
 
     public boolean isDialogPacketPlayable(String npcID) {
         if (dialogPackets.containsKey(globalTemporalPosition)) {
@@ -607,7 +589,6 @@ public class DialogController4 extends Knoten {
 
 
     }
-
 
     public class NpcPosition {
         private String name;

@@ -18,6 +18,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige9;
     private DebugAnzeige debugAnzeige10;
 
+    private FadeScreen fadeScreen;
+
     //sound
     private SoundController soundController;
 
@@ -77,7 +79,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController4);
-        //ObjectController Autos = new ObjectController();
+
+        fadeScreen = new FadeScreen();
 
         if (true) {
             //Beginn oben links, im Uhrzeigersinn
@@ -104,8 +107,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
         wurzel.add(itemController);
-        //
-        //wrzel.add(pet1);
+
+
 
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(DialogController4);
@@ -123,6 +126,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige8);
         statischeWurzel.add(debugAnzeige9);
         statischeWurzel.add(debugAnzeige10);
+
+        statischeWurzel.add(fadeScreen);
 
 
         tastenReagierbarAnmelden(this);
@@ -221,8 +226,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 slowTick();
             }
 
+            fadeScreen.tick();
+
         }
         StartSc.tickLoadingAnimation();
+
     }
 
     public void slowTick() {
@@ -236,6 +244,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         if (!StartSc.isActive()) {
             if (tastenkuerzel == 8) {//I als in
                 //map.enterHouse(ActivePlayer,0);
+                fadeScreen.startBlackFade();
             }
             if (tastenkuerzel == 14) {//o als out
                 //HouseLoader1.HideView();

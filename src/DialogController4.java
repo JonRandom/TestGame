@@ -131,11 +131,12 @@ public class DialogController4 extends Knoten {
                         if (readLines.containsAll(packet.requiredLines)) {
                             //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
                             if (packet.forbiddenLines == null) {
-                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten");
+                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten für den NPC: " + npcName);
+                                //System.out.println(;
                                 NPC_Controller2.highLightNpcsByName(npcName);
                             } else if (inverseContains(packet.forbiddenLines, readLines)) {
                                 //es gibt forbiddenLines, meine sind aber nicht dabei
-                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei");
+                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei für den NPC: " + npcName);
                                 NPC_Controller2.highLightNpcsByName(npcName);
                             } else {
                                 System.out.println("DialogController4: Das Dialogpacket ist verboten!");
@@ -143,15 +144,17 @@ public class DialogController4 extends Knoten {
 
                             }
                         } else {
-                            System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
+                            System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen für den NPC: " + npcName);
                             //return false;
                         }
                     } else {
                         System.out.println("DialogController4: highLightReadyNpcs(): Es sind nicht alle nötigen Items gefunden worden");
                         //return false;
+
                     }
 
                 }
+
             }
         } else {
             System.out.println("DialogController4: FEHLER BEIM HIGHLIGHTEN, DIE NÄCHSTE ZEIT GIBT ES GAR NICHT");
@@ -353,6 +356,7 @@ public class DialogController4 extends Knoten {
     }
 
     public boolean isDialogPacketPlayable(String npcID) {
+        boolean returnState = false;
         if (dialogPackets.containsKey(globalTemporalPosition)) {
             Map<String, List<DialogController4.DialogPacket>> innnerPacketMap = dialogPackets.get(globalTemporalPosition); //gibt mir alle einträge zu einer Zeit
             if (innnerPacketMap.containsKey(npcID)) {
@@ -365,28 +369,27 @@ public class DialogController4 extends Knoten {
                         if (readLines.containsAll(packet.requiredLines)) {
                             if (packet.forbiddenLines == null) {
                                 System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten");
-                                return true;
+                                returnState =  true;
                             } else if (inverseContains(packet.forbiddenLines, readLines)) {
                                 //es gibt forbiddenLines, meine sind aber nicht dabei
                                 System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei");
-                                return true;
+                                returnState =  true;
                             } else {
                                 System.out.println("DialogController4: Das Dialogpacket ist verboten!");
-                                return false;
-
+                                //kein return false
                             }
                         } else {
                             System.out.println("DialogController4: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen.");
-                            return false;
+                            //kein return false
                         }
                     } else {
                         System.out.println("DialogController4: Es sind nicht alle nötigen Items gefunden worden");
-                        return false;
+                        //kein return false
                     }
 
                 }
-                System.out.println("DialogController4: FEHLER: Zu diesem Spieler sind zwar Einträge aber keine Occs vorhanden");
-                return false;
+                //System.out.println("DialogController4: FEHLER: Zu diesem Spieler sind zwar Einträge aber keine Occs vorhanden");
+                return returnState;
 
             } else {
                 System.out.println("DialogController4: Zu diesem Spieler gibt es im Moment kein Eintrag in der Story");

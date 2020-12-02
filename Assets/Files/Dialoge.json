@@ -390,7 +390,7 @@
 
   "D2.2.1_00_01": {
     "inhalt": "Guten Tag Frau Enland, könnte ich sie kurz etwas fragen? Es ist wirklich wichtig.",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_02",
     "wahl2": "",
     "nextTime": ""
@@ -404,28 +404,28 @@
   },
   "D2.2.1_00_03": {
     "inhalt": "Gestern ist auf meinem Ynstagramprofil ein unangenehmes Bild von mir hochgeladen worden.",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_04": {
     "inhalt": "Ich war das aber nicht!",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_05": {
     "inhalt": "Können sie mir vielleicht irgendwie helfen, dieses Bild zu löschen und meinen Account wiederzubekommen?",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_06",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_06": {
     "inhalt": "So wie mich Kay gerade ausgelacht hat, muss es wohl ziemlich übel sein….",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_07",
     "wahl2": "",
     "nextTime": ""
@@ -439,7 +439,7 @@
   },
   "D2.2.1_00_08": {
     "inhalt": "Nein…",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_09",
     "wahl2": "",
     "nextTime": ""
@@ -460,7 +460,7 @@
   },
   "D2.2.1_00_11": {
     "inhalt": "Gerne, ja.",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_12",
     "wahl2": "",
     "nextTime": ""
@@ -502,7 +502,7 @@
   },
   "D2.2.1_00_17": {
     "inhalt": "Das Passwort wurde geändert…",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_18",
     "wahl2": "",
     "nextTime": ""
@@ -523,7 +523,7 @@
   },
   "D2.2.1_00_20": {
     "inhalt": "Hab ich schon probiert, aber die Email ist älter und ich hab das Passwort vergessen",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_21",
     "wahl2": "",
     "nextTime": ""
@@ -551,7 +551,7 @@
   },
   "D2.2.1_00_24": {
     "inhalt": "Ok, vielen Dank für ihre Hilfe!",
-    "name": "Self",
+    "name": "self",
     "wahl1": "D2.1.1_00_25",
     "wahl2": "",
     "nextTime": ""
@@ -604,7 +604,7 @@
   },
   "D2.2.2_00_04": {
     "inhalt": "Gut, dann können wir ja gleich anfangen herauszufinden wie du diese Fynsta-Posts los wirst",
-    "name": "Felix",
+    "name": "felix",
     "wahl1": "",
     "wahl2": "",
     "nextTime": ""
@@ -626,12 +626,12 @@
   },
   "D2.2.2_00_07": {
     "inhalt": "Was denkst du?",
-    "name": "Felix",
+    "name": "felix",
     "wahl1": "D2.2.2_01_01",
     "wahl2": "D2.2.2_02_01",
     "nextTime": ""
   },
-  //Felix zustimmen
+  //felix zustimmen
 
   "D2.2.2_01_01": {
     "inhalt": "Okay....Schade....",
@@ -903,7 +903,7 @@
 
 
   "D3.3.1_00_01": {
-    "inhalt": "Hey Felix, die Frau Enland hat mir erzählt, dass man bei Problemen oder Fragen zu seinem Account immer den Support anschreiben kann.",
+    "inhalt": "Hey felix, die Frau Enland hat mir erzählt, dass man bei Problemen oder Fragen zu seinem Account immer den Support anschreiben kann.",
     "name": "self",
     "wahl1": "D3.3.1_00_02",
     "wahl2": "",
@@ -1270,9 +1270,9 @@
     "name": "hacker",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "Tag 4 Hacker Quest"
+    "nextTime": "Tag 4 hacker Quest"
   },
-  //Hacker Aufgabe Rückgabe
+  //hacker Aufgabe Rückgabe
 
 
 

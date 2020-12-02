@@ -42,7 +42,7 @@ public class ItemController extends Knoten {
     public void enterHouse(int hN, int offsetX, int offsetY) {
         hideAllItems();
         for (Item item : items) {  //geht die JSON durch und
-            System.out.println("TestetItem: " + item);
+            //System.out.println("TestetItem: " + item);
             if (item.visible && (item.houseN == hN)) { //wenn der Spieler ein sichbares Item schneidet und es im gleichen Haus ist
 
                 item.positionSetzen(item.relativePosX + offsetX, item.relativePosY + offsetY);

@@ -3,6 +3,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ea.Knoten;
 import ea.Punkt;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -32,8 +33,7 @@ public class NpcController2 extends Knoten {
     //für die anzeige
     //private int currentHouseNumber = -1; //muss eig als Map kommen und darf am anfang nicht unbedingt -1 sein;
 
-    //Konstruktor Init
-    //besonders JSONs Lesen ist langsam(?)
+    //Konstruktor Init //besonders JSONs Lesen ist langsam(?)
     public boolean initDone = false;
 
 
@@ -59,7 +59,8 @@ public class NpcController2 extends Knoten {
         */
         initDone = true;
     }
-    public void startNewGame(){
+
+    public void startNewGame() {
         System.out.println("NpcController2");
         readJSON();
         readNpcPositionJSON();
@@ -135,11 +136,13 @@ public class NpcController2 extends Knoten {
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             if (element.getHouseNumber() == houseN) {
-                System.out.println("Der NPC names " + element.name + "ist im Haus sichtbar");
+                System.out.println("Der NPC names( " + element.name + " )ist im Haus sichtbar");
                 //System.out.println("Er ist an der relativen Posiiton x:" + element.getRelativPosX() + " und y:" + element.getRelativPosY());
-                element.sichtbarSetzen(true);
                 this.add(element);
-                element.positionSetzen(offsetX + (int) element.getRelativPosX(), offsetY + (int) element.getRelativPosX());
+                element.sichtbarSetzen(true);
+                element.positionSetzen(offsetX + (int) element.getRelativPosX(), offsetY + (int) element.getRelativPosY());
+                System.out.println("Er ist an der absoluten Posiiton x:" + element.getPosX() + " und y:" + element.getPosY());
+                System.out.println(element);
             }
         }
     }
@@ -166,15 +169,17 @@ public class NpcController2 extends Knoten {
         }
 
     }
+
     public void highLightNpcsByName(String name) {
+        System.out.println("Der NPC mit dem Namen (" + name  +") wird gehighlightet");
         if (name == null) {
             System.out.println("NpcController2: FEHLER: EIN DER HIGHLIGHT NAME  IST LEER. (DAS LIEGT Vielleicht DARAN, DASS ES KEINE WEITEREN DIALOGPACKETE FÜTR DIE NEUE ZEIT GIBT!)");
-        } else{
+        } else {
             NPCs.get(name).setHighlightState(true);
         }
     }
 
-    public void disguiseAllNPCs(){
+    public void disguiseAllNPCs() {
         for (String key : NPCs.keySet()) {  //geht die JSON durch und macht alle aus(false)
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             element.setHighlightState(false);
@@ -193,7 +198,8 @@ public class NpcController2 extends Knoten {
             }
         }
     }
-    public void updateNpcVisibility(){
+
+    public void updateNpcVisibility() {
         int currentHouseNumber = gamesaver.getHouseNumber();
         hideAllNPCs();
         //System.out.println("NpcController2: Haus wird verlassen");
@@ -208,6 +214,7 @@ public class NpcController2 extends Knoten {
 
 
     private void hideAllNPCs() {
+        System.out.println("NpcController4: HideAllNPCs() aufgerufen");
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
             element.sichtbarSetzen(false);
@@ -257,8 +264,8 @@ public class NpcController2 extends Knoten {
                     if (!(npc == null)) {
                         System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
                         //setzte Position und Hausnummer des NPCs mit dem entsprechenden Namen.
-                        if(npc.getHouseNumber() == -1){ //er ist in keinem Haus
-                            npc.setRelativPos((int)posObject.getPosX(), (int)posObject.getPosY()); //dann sind die relativen Pos = die absoluten
+                        if (npc.getHouseNumber() == -1) { //er ist in keinem Haus
+                            npc.setRelativPos((int) posObject.getPosX(), (int) posObject.getPosY()); //dann sind die relativen Pos = die absoluten
                         }
                         npc.positionSetzen(posObject.getPosX(), posObject.getPosY());
                         npc.setHouseNumber(posObject.getHouseN());

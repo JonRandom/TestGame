@@ -2,6 +2,7 @@ import com.google.gson.*;
 import com.google.gson.annotations.Expose;
 import ea.Bild;
 import ea.Knoten;
+import ea.internal.collision.Collider;
 
 import java.lang.reflect.Type;
 
@@ -42,11 +43,12 @@ public class NPC2 extends Knoten {
 
 
 
-
+        Collider cl = null;
         try{
             String path = "./Assets/NPCs/" + name + ".png";
             img = new Bild(pX,pY,path);
             this.add(img);
+            cl = erzeugeLazyCollider();
         }
         catch(Exception e){
             System.out.println("NPC2: Fehler beim importieren der Datei");
@@ -56,6 +58,7 @@ public class NPC2 extends Knoten {
         highLightImg = new Bild(posX+2, posY-50, highlighterPath);
         this.add(highLightImg); //wird beim highLighten gemacht
         highLightImg.sichtbarSetzen(highlightState);
+        this.colliderSetzen(cl);
 
     }
 
@@ -121,16 +124,6 @@ public class NPC2 extends Knoten {
     public void setHighlightState(boolean h){
         highlightState = h;
         highLightImg.sichtbarSetzen(highlightState);
-        if(h){
-            this.add(highLightImg);
-        } else{
-            try{
-                //this.entfernen(highLightImg);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-
-        }
     }
 
     @Override

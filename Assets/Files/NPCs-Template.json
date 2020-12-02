@@ -30,5 +30,24 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "relativePosY": 1220,
     "houseNumber": -1,
     "lastLine": ""
+  },
+  "tim": {
+    "name": "tim",
+    "posX": 1400,
+    "posY": 1220,
+    "relativePosX": 1200,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "frauenland": {
+    "name": "frauenland",
+    "posX": 1450,
+    "posY": 1220,
+    "relativePosX": 1200,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
   }
+
 }

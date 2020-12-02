@@ -6,7 +6,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private Player ActivePlayer;
     private DialogController4 DialogController4;
     private Map3 map;
-    private ItemController itemController;
+
     private DebugAnzeige debugAnzeige1;
     private DebugAnzeige debugAnzeige2;
     private DebugAnzeige debugAnzeige3;
@@ -18,6 +18,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige9;
     private DebugAnzeige debugAnzeige10;
 
+    //Items
+    private ItemController itemController;
+    private ItemAnimation itemAnimator;
 
     //Fade Screen
     private FadeScreen fadeScreen;
@@ -34,6 +37,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DummyPlayer DP;
     private NpcController2 NpcController2;
     private StartingScreen StartSc;
+
     //private Minigame1 Minigame1;
     private Minigame2 Minigame2;
     private Pet pet1;
@@ -83,7 +87,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige9 = new DebugAnzeige(650, 30);
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
-        itemController = new ItemController(ActivePlayer, gamesaver, DialogController4);
+        itemAnimator = new ItemAnimation();
+        itemController = new ItemController(ActivePlayer, gamesaver, DialogController4, itemAnimator);
         computer = new ComputerScreen();
 
         fadeScreen = new FadeScreen();
@@ -108,7 +113,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         //wurzel.add(Autos);
         wurzel.add(DP);
-        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver);
+        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver, itemController);
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
@@ -133,6 +138,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige10);
 
         statischeWurzel.add(computer);
+        statischeWurzel.add(itemAnimator);
 
         statischeWurzel.add(fadeScreen);
 
@@ -146,6 +152,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         fokusSetzten();
         StartSc.hideLoadingScreen();
         initDone = true;
+
     }
 
 
@@ -180,7 +187,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DP.positionSetzen(playerX, playerY);
 
 
-            if (!DialogController4.isActive() && !StartSc.isActive()) {
+            if (!DialogController4.isActive() && !StartSc.isActive() && !itemAnimator.isActiv()) {
                 int walkspeed = ActivePlayer.getWalkspeed();
 
                 if (tasteGedrueckt(Taste.W)) {
@@ -225,15 +232,16 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
             gamesaver.SavePlayer(ActivePlayer);
             //pet1.follow(ActivePlayer);
+
             Minigame2.tick();
+            itemAnimator.tick();
+            fadeScreen.tick();
+
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden
                 tickCounter = 0;
                 slowTick();
             }
-
-            fadeScreen.tick();
-
         }
         StartSc.tickLoadingAnimation();
 
@@ -249,9 +257,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         if (!StartSc.isActive()) {
             if (tastenkuerzel == 8) {//I als in
 
-                if(computer.isActiv()){
+                if (computer.isActiv()) {
                     computer.closePC();
-                } else{
+                } else {
                     computer.openPC();
                 }
             }
@@ -288,6 +296,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                     DialogController4.input("enter");
                 }
             }
+            if (itemAnimator.isActiv()) {
+                if (tastenkuerzel == 31) {
+                    System.out.println("SPIEL: ENTER GEDRÜCKt");
+                    itemAnimator.hideEverything();
+                }
+            }
         }
 
         if (StartSc.isActive()) {
@@ -302,7 +316,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                         System.out.println("PLAY: Spiel wird gestartet");
                         StartSc.startLoadingScreen();
                         Konstruktor();
-                        fadeScreen.startBlackFade();
                         break;
 
                     case (1):
@@ -311,7 +324,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                         NewGameLoader gl = new NewGameLoader();
                         //System.out.println("LADEN FERTIG!!");
                         Konstruktor();
-                        fadeScreen.startBlackFade();
                         break;
 
                     case (2):

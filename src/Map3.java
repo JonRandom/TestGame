@@ -67,15 +67,17 @@ public class Map3 extends Knoten {
     private SoundController sound_c;
     private GameSaver gamesaver;
     private Player player;
+    private ItemController itemC;
 
     private int blackThreshold = MAIN.blackThreshold; //lower threshold for "black";
 
 
-    public Map3(NpcController2 NPC_C, SoundController sc, Player ap, GameSaver gs) {
+    public Map3(NpcController2 NPC_C, SoundController sc, Player ap, GameSaver gs, ItemController iC) {
         this.npc_C = NPC_C;
         this.sound_c = sc;
         this.player = ap;
         this.gamesaver = gs;
+        this.itemC = iC;
 
         this.PlayerW = (int)player.getBreite();
         this.PlayerH = (int)player.getHoehe();
@@ -189,6 +191,7 @@ public class Map3 extends Knoten {
         houseHitbox[HouseN].setOffset((int)finalPosX,(int)finalPosY);
         houseImgs[HouseN].positionSetzen(finalPosX,finalPosY);
         npc_C.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
+        itemC.enterHouse(HouseN,(int)finalPosX,(int)finalPosY);
         //System.out.println("OFFSET GESTZT IN KARTE: " + (int)AP_x + "," + (int)AP_y);
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
@@ -222,7 +225,9 @@ public class Map3 extends Knoten {
         hideAllHouses();
         backgroundImg.sichtbarSetzen(false);
         player.positionSetzen(lastWhiteX,lastWhiteY);
+
         npc_C.leaveHouse();
+        itemC.leaveHouse();
 
     }
     public void hideAllHouses(){

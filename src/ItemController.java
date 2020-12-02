@@ -20,65 +20,102 @@ public class ItemController extends Knoten {
 
     //für die JSON
     private List<Item> items = new ArrayList<>();
-    private final String itemInitFilePath = "./Assets/Files/Items.json";
+    private final String itemInitFilePath = MAIN.itemInitFilePath;
 
     //für Kollision und Items sammeln
     private Player activPlayer;
     private GameSaver gamesaver;
     private DialogController4 diaController;
+    private ItemAnimation itemAnimator;
 
-    public ItemController(Player ap, GameSaver gs, DialogController4 diaC) {
+    public ItemController(Player ap, GameSaver gs, DialogController4 diaC, ItemAnimation iA) {
         this.activPlayer = ap;
         this.gamesaver = gs;
         this.diaController = diaC;
+        this.itemAnimator = iA;
 
         readJSON();
         addAllItems();
         System.out.println(items.toString());
     }
-    public boolean checkForCollision(){
+
+    public void enterHouse(int hN, int offsetX, int offsetY) {
+        hideAllItems();
+        for (Item item : items) {  //geht die JSON durch und
+            System.out.println("TestetItem: " + item);
+            if (item.visible && (item.houseN == hN)) { //wenn der Spieler ein sichbares Item schneidet und es im gleichen Haus ist
+
+                item.positionSetzen(item.relativePosX + offsetX, item.relativePosY + offsetY);
+                item.sichtbarSetzen(true);
+            }
+        }
+    }
+
+    public void leaveHouse() {
+        hideAllItems();
+        for (Item item : items) {  //geht die JSON durch und
+            if (item.visible && (item.houseN == -1)) { //wenn der Spieler ein sichbares Item schneidet und es im gleichen Haus ist
+                item.positionSetzen(item.relativePosX, item.relativePosY);
+                item.sichtbarSetzen(true);
+            }
+        }
+    }
+
+    public boolean checkForCollision() {
         boolean coll = false;
         for (Item item : items) {  //geht die JSON durch und
-            if(activPlayer.schneidet(item) && item.visible){ //wenn der Spieler ein sichbares Item schneidet
+            if (activPlayer.schneidet(item) && item.visible) { //wenn der Spieler ein sichbares Item schneidet
                 coll = true;
             }
         }
         return coll;
     }
-    public String getCollidingItemName(){
+
+    public String getCollidingItemName() {
         diaController.highLightReadyNpcs();
         Item collItem = null;
         for (Item item : items) {  //geht die JSON durch und
-            if(activPlayer.schneidet(item) && item.visible){ //wenn der Spieler ein sichbares Item schneidet
+            if (activPlayer.schneidet(item) && item.visible) { //wenn der Spieler ein sichbares Item schneidet
                 collItem = item;
             }
         }
-        if(collItem == null){
+        if (collItem == null) {
             System.out.println("ItemController: FEHLER: ER schneidet KEIN Item");
             return null;
-        } else{
+        } else {
             return collItem.name;
         }
     }
 
-    public void hideCollidingItem(){
+    public void hideCollidingItem() {
         Item collItem = null;
         for (Item item : items) {  //geht die JSON durch und
-            if(activPlayer.schneidet(item) && item.visible){ //wenn der Spieler ein sichbares Item schneidet
+            if (activPlayer.schneidet(item) && item.visible) { //wenn der Spieler ein sichbares Item schneidet
                 collItem = item;
             }
         }
-        if(collItem == null){
-            System.out.println("ItemController: FEHLER: ER schneidet KEIN Item");
-        } else{
-            System.out.println("ItemController: Der Spieler schneidet echt ein Item und es wird jz ausgeblendet, Itemname=("+ collItem.name + ").");
+        if (collItem == null) {
+            System.out.println("ItemController: FEHLER: Er schneidet KEIN Item");
+        } else {
+            System.out.println("ItemController: Der Spieler schneidet echt ein Item und es wird jz ausgeblendet, Itemname=(" + collItem.name + ").");
             collItem.hideItem();
+            itemAnimator.openAnimation(collItem.name); //öffnet die Große animation zu dem Item
         }
 
+
     }
-    private void addAllItems(){
+
+    private void hideAllItems() {
+        for (Item item : items) {  //geht die JSON durch und
+
+            item.sichtbarSetzen(false);
+        }
+    }
+
+    private void addAllItems() {
         for (Item item : items) {  //geht die JSON durch und
             this.add(item);
+            item.sichtbarSetzen(false);
         }
     }
 
@@ -106,9 +143,9 @@ public class ItemController extends Knoten {
     }
 
 
-    private class Item extends Knoten {
+    public static class Item extends Knoten {
 
-        private String mainPath = "./Assets/Items/";
+        private String mainPath = MAIN.itemsFilePath;
 
         private Bild img;
 
@@ -119,14 +156,22 @@ public class ItemController extends Knoten {
         @Expose
         private float posY;
         @Expose
+        private float relativePosX;
+        @Expose
+        private float relativePosY;
+        @Expose
         private int houseN;
         @Expose
         private boolean visible;
 
-        private Item(String name, float x, float y, int hn, boolean vb) {
-            this.name = name;
+        private Item(String n, float x, float y, float rX, float rY, int hn, boolean vb) {
+            this.name = n;
             this.posX = x;
             this.posY = y;
+
+            this.relativePosX = rX;
+            this.relativePosY = rY;
+
             this.houseN = hn;
             this.visible = vb;
 
@@ -142,13 +187,18 @@ public class ItemController extends Knoten {
 
         }
 
-        private void showItem(){
+        private void showItem() {
             visible = true;
             this.sichtbarSetzen(true);
         }
-        private void hideItem(){
+
+        private void hideItem() {
             visible = false;
             this.sichtbarSetzen(false);
+        }
+
+        public String getName() {
+            return name;
         }
 
         @Override
@@ -159,18 +209,20 @@ public class ItemController extends Knoten {
                     ", name='" + name + '\'' +
                     ", posX=" + posX +
                     ", posY=" + posY +
+                    ", relativePosX=" + relativePosX +
+                    ", relativePosY=" + relativePosY +
                     ", houseN=" + houseN +
                     ", visible=" + visible +
                     '}';
         }
     }
 
-    public class Deserializer implements JsonDeserializer<Item> {
+    public static class Deserializer implements JsonDeserializer<Item> {
 
-        public Item deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
+        public Item deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new Item(jsonObject.get("name").getAsString(), jsonObject.get("posX").getAsInt(),jsonObject.get("posY").getAsInt(), jsonObject.get("houseN").getAsInt(), jsonObject.get("visible").getAsBoolean());
+            return new Item(jsonObject.get("name").getAsString(), jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(), jsonObject.get("houseN").getAsInt(), jsonObject.get("visible").getAsBoolean());
         }
     }
 }

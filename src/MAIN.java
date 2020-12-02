@@ -34,6 +34,10 @@ public class MAIN {
     //Fadescreen
     public static final String fadeBlackPlate = "./Assets/ColorPlates/black.png";
 
+    //Items
+    public static final String itemInitFilePath = "./Assets/Files/Items.json";
+    public static final String itemsFilePath = "./Assets/Items/";
+
 
     public static void main(String[] args){
 

@@ -53,7 +53,7 @@ public class NPC2 extends Knoten {
             System.out.println("NPC2: " + e);
             e.printStackTrace();
         }
-        highLightImg = new Bild(posX-5, posY-5, highlighterPath);
+        highLightImg = new Bild(posX+2, posY-50, highlighterPath);
         this.add(highLightImg);
         highLightImg.sichtbarSetzen(highlightState);
 

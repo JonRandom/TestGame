@@ -21,7 +21,7 @@ public class StartingScreen extends Knoten {
     private Bild loadingPic;
 
 
-    private int ButtonCount = 2;
+    private int ButtonCount = 5;
     private Bild[] Buttons = new Bild[ButtonCount];
 
     private int selection = 0; //von 0 bis ButtonCount -1
@@ -52,8 +52,8 @@ public class StartingScreen extends Knoten {
         //System.out.println("FillButtonObjects");
         for (int i = 0; i < ButtonCount; i++) {
             //System.out.println(i);
-            Buttons[i] = new Bild(55 + i * 825, 108, "./Assets/StartingScreen/ButtonFinal" + i + ".png"); //jedes Bild 200 pixel weiter rechts
-            this.add(Buttons[i]);   //200 + i * 200, 400
+            Buttons[i] = new Bild(0, 0, "./Assets/StartingScreen/ButtonFinal" + i + ".png"); //jedes Bild 200 pixel weiter rechts
+            this.add(Buttons[i]);
         }
         UpdateButtons();
     }
@@ -98,6 +98,7 @@ public class StartingScreen extends Knoten {
 
     public int getSelection() {
         return selection;
+
     }
 
     public void setActive(boolean active) {
@@ -142,8 +143,9 @@ public class StartingScreen extends Knoten {
 
     public void startLoadingScreen() {
         BackgroundPic.sichtbarSetzen(false);
-        Buttons[0].sichtbarSetzen(false);
-        Buttons[1].sichtbarSetzen(false);
+        for (int i = 0; i < ButtonCount; i++) {
+            Buttons[i].sichtbarSetzen(false);
+        }
         loadingPic.sichtbarSetzen(true);
     }
 

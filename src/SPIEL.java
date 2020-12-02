@@ -18,7 +18,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private DebugAnzeige debugAnzeige9;
     private DebugAnzeige debugAnzeige10;
 
+
+    //Fade Screen
     private FadeScreen fadeScreen;
+
+    //COMPUTER / Fynstergram
+    private ComputerScreen computer;
 
     //sound
     private SoundController soundController;
@@ -39,7 +44,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private Punkt hotspot;
     private Maus maus;
 
-    //zähler für 2. tick routine;
+    //zähler für 2.tick routine;
     public int tickCounter;
 
 
@@ -79,6 +84,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController4);
+        computer = new ComputerScreen();
 
         fadeScreen = new FadeScreen();
 
@@ -109,7 +115,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         wurzel.add(itemController);
 
 
-
         //statischeWurzel.add(HouseLoader1);
         statischeWurzel.add(DialogController4);
 
@@ -127,12 +132,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige9);
         statischeWurzel.add(debugAnzeige10);
 
+        statischeWurzel.add(computer);
+
         statischeWurzel.add(fadeScreen);
 
 
         tastenReagierbarAnmelden(this);
         tastenLosgelassenReagierbarAnmelden(this);
-
 
 
         DialogController4.highLightReadyNpcs(); //einmal alle highlighten die können
@@ -151,7 +157,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     }
 
     public void tick() {
-        if(initDone) {
+        if (initDone) {
             if (itemController.checkForCollision()) {
                 gamesaver.addItem(itemController.getCollidingItemName());
                 itemController.hideCollidingItem();
@@ -238,13 +244,16 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     }
 
 
-
     //  https://engine-alpha.org/wiki/Tastaturtabelle
     public void tasteReagieren(int tastenkuerzel) {
         if (!StartSc.isActive()) {
             if (tastenkuerzel == 8) {//I als in
-                //map.enterHouse(ActivePlayer,0);
-                fadeScreen.startBlackFade();
+
+                if(computer.isActiv()){
+                    computer.closePC();
+                } else{
+                    computer.openPC();
+                }
             }
             if (tastenkuerzel == 14) {//o als out
                 //HouseLoader1.HideView();
@@ -268,7 +277,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
 
 
-
             if (DialogController4.isWaitingForInput()) {
                 if (tastenkuerzel == 0) {
                     //System.out.println("Taste ist gedrückt und isWaitingForInputs = true");
@@ -289,13 +297,38 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 StartSc.ShiftRight();
             } else if (tastenkuerzel == 31) { //enter
                 int sel = StartSc.getSelection();
-                StartSc.startLoadingScreen();
-                if (sel == 1) {
+                switch (sel) {
+                    case (0):
+                        System.out.println("PLAY: Spiel wird gestartet");
+                        StartSc.startLoadingScreen();
+                        Konstruktor();
+                        fadeScreen.startBlackFade();
+                        break;
 
-                    NewGameLoader gl = new NewGameLoader();
-                    System.out.println("fertig mit Laden");
+                    case (1):
+                        System.out.println("NEW GAME: Spiel überschriebt Dateien");
+                        StartSc.startLoadingScreen();
+                        NewGameLoader gl = new NewGameLoader();
+                        //System.out.println("LADEN FERTIG!!");
+                        Konstruktor();
+                        fadeScreen.startBlackFade();
+                        break;
+
+                    case (2):
+                        System.out.println("EXIT KNOPF GEDRÜCKT: Spiel wird geschlossen");
+                        schliessen();
+                        break;
+
+                    case (3):
+                        System.out.println("ABOUT GEDRÜCKT: ------");
+                        break;
+
+                    case (4):
+                        System.out.println("SETTINGS GEDRÜCKT: ------");
+                        break;
                 }
-                Konstruktor();
+
+
             }
         }
     }

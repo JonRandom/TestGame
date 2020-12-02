@@ -1,4 +1,4 @@
-{
+﻿{
   //Start Dialog mit der Mutter
   "D1.0_00_01": {
     "inhalt": "Aufstehen!",
@@ -14,8 +14,6 @@
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 2"
   },
-
-
   //Erster Tag Dialog Bully(aka. kay)
   "D1.1_00_01": {
     "inhalt": "Sind Kinderbilder jetzt der neue Trend auf Fynstagramm?",
@@ -31,7 +29,6 @@
     "wahl2": "D1.1_12_01",
     "nextTime": ""
   },
-
   "D1.1_11_01": {
     "inhalt": "Welches Bild?",
     "name": "self",
@@ -67,7 +64,6 @@
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 2"
   },
-
   //erster Tag Dialog Mutter
 
   "D1.2_00_01": {
@@ -90,7 +86,6 @@
     "wahl1": "D1.2_00_04",
     "wahl2": "",
     "nextTime": ""
-
   },
   "D1.2_00_04": {
     "inhalt": "Sprich mit deinen Lehrern darüber wenn es so wichtig ist!",
@@ -99,7 +94,6 @@
     "wahl2": "",
     "nextTime": "Tag 2 Abschnitt 1"
   },
-
   //erster Tag Dialog felix
   "D1.3_00_01": {
     "inhalt": "Hey, was geht?",
@@ -150,7 +144,6 @@
     "wahl2": "D1.3_12_01",
     "nextTime": ""
   },
-
   "D1.3_11_01": {
     "inhalt": "OK vielleicht hast du ja recht...",
     "name": "self",
@@ -170,9 +163,8 @@
     "name": "felix",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "HIER MUSS WAS REIN"
+    "nextTime": "Tag 1 Abschnitt 3"
   },
-
   "D1.3_12_01": {
     "inhalt": "Hörst du mir überhaupt zu?",
     "name": "self",
@@ -187,7 +179,6 @@
     "wahl2": "",
     "nextTime": ""
   },
-
   "D1.3_12_03": {
     "inhalt": "Na gut wenn dir das so wichtig ist, dann lass uns morgen nochmal mit Tim darüber sprechen.",
     "name": "felix",
@@ -288,8 +279,6 @@
     "wahl2": "",
     "nextTime": "Tag 2 Abschnitt 2"
   },
-
-
   //Hilfe von Freunden
   "D2.1.2_00_01": {
     "inhalt": "hahaha! Wie ist es eigentlich so ein hässliches Bild von sich hochzuladen?",
@@ -396,10 +385,336 @@
     "wahl2": "",
     "nextTime": "Tag 2 Abschnitt 2"
   },
+  //Tag 2 Lehrerin
+
+
+  "D2.2.1_00_01": {
+    "inhalt": "Guten Tag Frau Enland, könnte ich sie kurz etwas fragen? Es ist wirklich wichtig.",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_02": {
+    "inhalt": "Natürlich!",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_03": {
+    "inhalt": "Gestern ist auf meinem Ynstagramprofil ein unangenehmes Bild von mir hochgeladen worden.",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_04": {
+    "inhalt": "Ich war das aber nicht!",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_05": {
+    "inhalt": "Können sie mir vielleicht irgendwie helfen, dieses Bild zu löschen und meinen Account wiederzubekommen?",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_06": {
+    "inhalt": "So wie mich Kay gerade ausgelacht hat, muss es wohl ziemlich übel sein….",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_07": {
+    "inhalt": "Puh… mal sehen. Hast du denn noch Zugriff auf deinen Account?",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_08": {
+    "inhalt": "Nein…",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_09": {
+    "inhalt": "Alles klar, also: Es ist wichtig, dass du die Sicherheit deiner Daten nicht vernachlässigst!",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_10": {
+    "inhalt": "Willst du wissen wie du das machen kannst?",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_11": {
+    "inhalt": "Gerne, ja.",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_12": {
+    "inhalt": "Zuerst sollte dir klar sein, dass das Internet nichts vergisst, überleg‘ dir also zweimal, was du auf Social-Media Plattformen postest und wie viel Persönliches du preisgibst.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_13",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_13": {
+    "inhalt": "Es gibt einige Dinge die du beachten solltest, wenn du im Internet surfst. Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertraust oder die dir seltsam vorkommen.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_14",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_14": {
+    "inhalt": "Dasselbe gilt für Emails mit fragwürdigen Anhängen oder Ähnlichem.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_15",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_15": {
+    "inhalt": "Ich will dir hiermit natürlich keine Angst machen, ich wollte es nur erwähnen.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_16",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_16": {
+    "inhalt": "Zurück zu deinem Problem! Warum hast du keinen Zugriff mehr?",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_17",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_17": {
+    "inhalt": "Das Passwort wurde geändert…",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_18",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_18": {
+    "inhalt": "Alles klar. Du hast nun mehrere Möglichkeiten.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_19",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_19": {
+    "inhalt": "Als erstes würde ich dir empfehlen, dein Passwort über die Email-Adresse zurückzusetzen.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_20",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_20": {
+    "inhalt": "Hab ich schon probiert, aber die Email ist älter und ich hab das Passwort vergessen",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_21",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_21": {
+    "inhalt": "Ok, nun dann kannst du den Ynstagram-Support anschreiben und dein Problem schildern, die werden sicherlich eine Lösung finden!",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_22",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_22": {
+    "inhalt": "Nur für die Zukunft: Deine Passwörter sollten am besten Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten, dann sind sie am sichersten.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_23",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_23": {
+    "inhalt": "Außerdem ist es sinnvoll, dass den Inhalt deines Passwortes nur du kennst, ansonsten kann man es möglicherweise erraten.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_24",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_24": {
+    "inhalt": "Ok, vielen Dank für ihre Hilfe!",
+    "name": "Self",
+    "wahl1": "D2.1.1_00_25",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_25": {
+    "inhalt": "Gerne….",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_26",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_26": {
+    "inhalt": "Ach und….",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_27",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_27": {
+    "inhalt": "Wenn alles schief läuft kannst du auch immer nochmal auf mich zugehen oder dich an die Polizei wenden, es ist immerhin eine Straftat.",
+    "name": "frauenland",
+    "wahl1": "D2.1.1_00_28",
+    "wahl2": "",
+    "nextTime": "Tag 3 Abschnitt 1"
+  },
+  //Tag 2 Freunde 2
 
 
 
+  "D2.2.2_00_01": {
+    "inhalt": "OH....",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_00_02": {
+    "inhalt": "Ihr seid ja schon da",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_00_03": {
+    "inhalt": "Ja, wir haben uns auch schon besprochen",
+    "name": "tim",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_00_04": {
+    "inhalt": "Gut, dann können wir ja gleich anfangen herauszufinden wie du diese Fynsta-Posts los wirst",
+    "name": "Felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_00_05": {
+    "inhalt": "Ich will auf jeden Fall wissen wer dir das angetan hat",
+    "name": "tim",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
 
+  "D2.2.2_00_06": {
+    "inhalt": "Und ich glaube es ist besser zuerst dem auf die Schliche zu kommen",
+    "name": "tim",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_00_07": {
+    "inhalt": "Was denkst du?",
+    "name": "Felix",
+    "wahl1": "D2.2.2_01_01",
+    "wahl2": "D2.2.2_02_01",
+    "nextTime": ""
+  },
+  //Felix zustimmen
+
+  "D2.2.2_01_01": {
+    "inhalt": "Okay....Schade....",
+    "name": "tim",
+    "wahl1": "D2.2.2_01_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_01_02": {
+    "inhalt": "Dann recherchieren ich schonmal nach Möglichkeiten wie du den Post los wirst",
+    "name": "tim",
+    "wahl1": "D2.2.2_01_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_01_03": {
+    "inhalt": "Ok, dann wäre ja alles geklärt.",
+    "name": "felix",
+    "wahl1": "D2.2.2_01_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_01_04": {
+    "inhalt": "Bis Morgen !.",
+    "name": "felix",
+    "wahl1": "D2.2.2_01_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_01_05": {
+    "inhalt": "Ciao",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 3 Abschnitt 1"
+  },
+
+
+  //tim
+  //zustimmen
+
+  "D2.2.2_02_01": {
+    "inhalt": "Naja..... Wie du meinst...",
+    "name": "felix",
+    "wahl1": "D2.2.2_02_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_02_02": {
+    "inhalt": "Ich halte das zwar für keine so gute Idee",
+    "name": "felix",
+    "wahl1": "D2.2.2_02_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_02_03": {
+    "inhalt": "Aber tim und ich schauen mal auf deinen Fynsta-Account ob er einen Hinweis hinterlassen hat.",
+    "name": "felix",
+    "wahl1": "D2.2.2_02_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_02_04": {
+    "inhalt": "Ja, lass das machen",
+    "name": "tim",
+    "wahl1": "D2.2.2_02_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_02_05": {
+    "inhalt": "Okay, dann bis morgen!",
+    "name": "tim",
+    "wahl1": "D2.2.2_02_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.2_02_06": {
+    "inhalt": "Ciao",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 3 Abschnitt 1"
+  },
   //Tag 3
   //Tag 3 Dialog 1
   //Tag 3 Dialog 1 Information Post
@@ -492,11 +807,6 @@
     "wahl2": "",
     "nextTime": "Tag 3 Abschnitt 2"
   },
-
-
-
-
-
   //Tag 3 Dialog 1 Information Taeter
 
 
@@ -586,8 +896,509 @@
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 3 Abschnitt 2"
+  },
+  //Tag 3 Dialog 3 Freunde
+
+
+
+
+  "D3.3.1_00_01": {
+    "inhalt": "Hey Felix, die Frau Enland hat mir erzählt, dass man bei Problemen oder Fragen zu seinem Account immer den Support anschreiben kann.",
+    "name": "self",
+    "wahl1": "D3.3.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_02": {
+    "inhalt": "Die helfen einem dann.",
+    "name": "self",
+    "wahl1": "D3.3.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_03": {
+    "inhalt": "Des hab ich gemacht und die haben mir tatsächlich geantwortet.",
+    "name": "self",
+    "wahl1": "D3.3.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_04": {
+    "inhalt": "In der E-Mail stand, dass sie den Post löschen konnten, zum Glück!",
+    "name": "self",
+    "wahl1": "D3.3.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_05": {
+    "inhalt": "Wow, das ist ja super.",
+    "name": "felix",
+    "wahl1": "D3.3.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_06": {
+    "inhalt": "Wow, das ist ja super.",
+    "name": "felix",
+    "wahl1": "D3.3.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_07": {
+    "inhalt": "Freut mich, dass das jetzt ein Ende hat.",
+    "name": "felix",
+    "wahl1": "D3.3.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_08": {
+    "inhalt": "Bilder von anderen ohne ihre Erlaubnis zu Posten ist ja schließlich illegal!",
+    "name": "felix",
+    "wahl1": "D3.3.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_09": {
+    "inhalt": "Stimmt!",
+    "name": "self",
+    "wahl1": "D3.3.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_10": {
+    "inhalt": "Der Support war aber auch echt nett und hilfsbereit.",
+    "name": "self",
+    "wahl1": "D3.3.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_11": {
+    "inhalt": "Schön, dass sowas möglich ist!",
+    "name": "self",
+    "wahl1": "D3.3.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_12": {
+    "inhalt": "Also dann sieht man sich morgen?",
+    "name": "self",
+    "wahl1": "D3.3.1_00_13",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_13": {
+    "inhalt": "Ich muss noch was erledigen.",
+    "name": "self",
+    "wahl1": "D3.3.1_00_14",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_14": {
+    "inhalt": "Klar! Viel Spass, bis morgen!",
+    "name": "felix",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 4 Abschnitt 1"
+  },
+  // Tag 3 Dialog 3 Tim
+
+
+
+  "D3.3.2_00_01": {
+    "inhalt": "Hey Tim, wie geht's?",
+    "name": "self",
+    "wahl1": "D3.3.2_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_02": {
+    "inhalt": "Gut, dir?",
+    "name": "tim",
+    "wahl1": "D3.3.2_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_03": {
+    "inhalt": "Auch, hör mal, ich hab es satt nur zuzusehen wie sich jemand über mich lustig macht!",
+    "name": "self",
+    "wahl1": "D3.3.2_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_04": {
+    "inhalt": "Was hälst du davon wenn wir dem ganzen auf den Grund gehen?",
+    "name": "self",
+    "wahl1": "D3.3.2_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_05": {
+    "inhalt": "Lass uns rausfinden wer der Fiesling ist, dann können wir ihn zur Rechenschaft ziehen.",
+    "name": "self",
+    "wahl1": "D3.3.2_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_06": {
+    "inhalt": "Bilder von anderen ohne ihre Erlaubnis zu Posten ist immerhin illegal!",
+    "name": "self",
+    "wahl1": "D3.3.2_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_07": {
+    "inhalt": "Und wenn wir ihn gefunden haben, verschwindet auch das Bild.",
+    "name": "self",
+    "wahl1": "D3.3.2_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_08": {
+    "inhalt": "Klingt das nach 'nem Plan?",
+    "name": "self",
+    "wahl1": "D3.3.2_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_09": {
+    "inhalt": "Du willst also Detektiv spielen?",
+    "name": "tim",
+    "wahl1": "D3.3.2_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_10": {
+    "inhalt": "Bin dabei! Aber sowas von. Das wird so lustig!",
+    "name": "tim",
+    "wahl1": "D3.3.2_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_11": {
+    "inhalt": "Cool, dann lass uns morgen treffen und einen Plan machen.",
+    "name": "self",
+    "wahl1": "D3.3.2_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.2_00_12": {
+    "inhalt": "Cool, dann bis morgen!",
+    "name": "tim",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 4 Abschnitt 1"
+  },
+  // Tag 4 Abschnitt 1
+
+  "D4.1.2.1_00_01": {
+    "inhalt": "Hi",
+    "name": "self",
+    "wahl1": "D4.1.1_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_02": {
+    "inhalt": "Was willst du?",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_03": {
+    "inhalt": "Ich hab gehört du kannst Fynsta-Accounts hacken.",
+    "name": "self",
+    "wahl1": "D4.1.1_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_04": {
+    "inhalt": "Wer sagt sowas?",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_05": {
+    "inhalt": "Das ist nicht so wichtig.",
+    "name": "self",
+    "wahl1": "D4.1.1_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_06": {
+    "inhalt": "hmm...",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_07": {
+    "inhalt": "Ok, sagen wir mal Ich kenn kenn mich mit Computern aus.",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_08": {
+    "inhalt": "Und DU willst dass ich DIR helfe?!?",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_09": {
+    "inhalt": "Ja!",
+    "name": "self",
+    "wahl1": "D4.1.1_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_10": {
+    "inhalt": "Das ist mir sehr wichtig!",
+    "name": "self",
+    "wahl1": "D4.1.1_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_11": {
+    "inhalt": "Naja, wenn du etwas für mich erledigst, kann ich dir vielleicht bei den Bildern weiterhelfen, die sich auf dein Fynstagram-Profil verirrt haben.",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_12": {
+    "inhalt": "Woher weißt du…",
+    "name": "self",
+    "wahl1": "D4.1.1_00_13",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_13": {
+    "inhalt": "Wie ich gesagt habe ich kenn mich in dem Bereich aus…",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_14",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_14": {
+    "inhalt": "Ok…",
+    "name": "self",
+    "wahl1": "D4.1.1_00_15",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_15": {
+    "inhalt": "Was soll ich denn für dich erledigen?",
+    "name": "self",
+    "wahl1": "D4.1.1_00_16",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_16": {
+    "inhalt": "Hinter Alis Döner hat ein ´Kumpel´ von mir einen USB-Stick versteckt.",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_17",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_17": {
+    "inhalt": "Wenn du nachschaust was auf dem drauf ist, kriegst du größere Probleme als deinen Fynsta-Account!",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_18",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_18": {
+    "inhalt": "Wofür brauchst du den USB-Stick?",
+    "name": "self",
+    "wahl1": "D4.1.1_00_19",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_19": {
+    "inhalt": "Die wichtigste Regel wenn ich dir Helfen soll:",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_20",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_20": {
+    "inhalt": "Stell mir keine Fragen!!!",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_21",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_21": {
+    "inhalt": "Und jetzt mach dich vom Acker!",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_22",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_22": {
+    "inhalt": "Ich muss gleich noch ein Deal mit jemandem abschließen, mit dem du nicht auf einer Wellenlänge bist…",
+    "name": "hacker",
+    "wahl1": "D4.1.1_00_23",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_23": {
+    "inhalt": "Oh...",
+    "name": "self",
+    "wahl1": "D4.1.1_00_24",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_24": {
+    "inhalt": "Ok...",
+    "name": "self",
+    "wahl1": "D4.1.1_00_25",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_25": {
+    "inhalt": "Ciao...",
+    "name": "self",
+    "wahl1": "D4.1.1_00_26",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_26": {
+    "inhalt": "Wir sehen uns wenn du meinen Stick hast!",
+    "name": "hacker",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 4 Hacker Quest"
+  },
+  //Hacker Aufgabe Rückgabe
+
+
+
+
+
+  "D4.1.2.2_00_01": {
+    "inhalt": "Ist dir irgendwer gefolgt?!?",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_02",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_02": {
+    "inhalt": "Nein…",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_03": {
+    "inhalt": "Ich denke nicht…",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_04",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_04": {
+    "inhalt": "Gut!",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_05",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_05": {
+    "inhalt": "Her mit dem Stick!",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_06",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_06": {
+    "inhalt": "Ok...Alles ist da.",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_07",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_07": {
+    "inhalt": "Und was ist jetzt mit meinem Fynstagram???",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_08",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_08": {
+    "inhalt": "Eyman, schieb mal nicht so einen Stress.",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_09",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_09": {
+    "inhalt": "Ich hab schon alles vorbereitet.",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_10",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_10": {
+    "inhalt": "Woher kennst du meinen…",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_11",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_11": {
+    "inhalt": "Ach ja… Keine Fragen...",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_12",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_12": {
+    "inhalt": "Genau!",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_13",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_13": {
+    "inhalt": "...",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_14",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_14": {
+    "inhalt": "So… Das Bild, das gestern auf deinem Account gepostet wurde, ist jetzt Weg.",
+    "name": "hacker",
+    "wahl1": "D4.1.2.2_00_15",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_15": {
+    "inhalt": "Super!",
+    "name": "self",
+    "wahl1": "D4.1.2.2_00_16",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.2_00_16": {
+    "inhalt": "Danke, Mann!",
+    "name": "self",
+    "wahl1": "",
+    "wahl2": "",
+    "nextTime": "Tag 4 Abschnitt 2"
   }
 }
+
+
+
+
+
+
+
+
 
 
 

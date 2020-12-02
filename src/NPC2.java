@@ -125,7 +125,7 @@ public class NPC2 extends Knoten {
             this.add(highLightImg);
         } else{
             try{
-                this.entfernen(highLightImg);
+                //this.entfernen(highLightImg);
             } catch (Exception e){
                 e.printStackTrace();
             }

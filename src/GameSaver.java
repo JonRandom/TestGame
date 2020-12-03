@@ -72,6 +72,14 @@ public class GameSaver {
         return saveState.lines;
     }
 
+    public int getWalkspeed() {
+        return saveState.walkspeed;
+    }
+    public void setWalkspeed(int w) {
+        saveState.walkspeed = w;
+    }
+
+
     public void setTemporalPosition(String newTemporalPosition) {
         saveState.temporalPosition = newTemporalPosition;
         saveJSON();

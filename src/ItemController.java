@@ -64,7 +64,7 @@ public class ItemController extends Knoten {
     public boolean checkForCollision() {
         boolean coll = false;
         for (Item item : items) {  //geht die JSON durch und
-            if (activPlayer.schneidet(item) && item.visible) { //wenn der Spieler ein sichbares Item schneidet
+            if (activPlayer.schneidet(item) && item.visible && item.sichtbar()) { //wenn der Spieler ein sichbares Item schneidet
                 coll = true;
             }
         }
@@ -75,7 +75,7 @@ public class ItemController extends Knoten {
         diaController.highLightReadyNpcs();
         Item collItem = null;
         for (Item item : items) {  //geht die JSON durch und
-            if (activPlayer.schneidet(item) && item.visible) { //wenn der Spieler ein sichbares Item schneidet
+            if (activPlayer.schneidet(item) && item.visible && item.sichtbar()) { //wenn der Spieler ein sichbares Item schneidet
                 collItem = item;
             }
         }

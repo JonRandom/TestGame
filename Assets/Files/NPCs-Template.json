@@ -48,6 +48,15 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "relativePosY": 1220,
     "houseNumber": -1,
     "lastLine": ""
+  },
+  "hacker": {
+    "name": "hacker",
+    "posX": 1700,
+    "posY": 1220,
+    "relativePosX": 1700,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
   }
 
 }

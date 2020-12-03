@@ -1,35 +1,34 @@
 /**
  * Organisiert die Animation von Laufbewegungen für >Player< und >Npc<
  * Sammelt Bilder für alle Gehrichtungen und entscheidet welches Bild anzuzeigen.
- *
+ * <p>
  * Benennung:
- *
+ * <p>
  * "FigurName" + "-" + "L/R/T/B" + "NUMBER"
  * Bsp.:  "Spieler-R0.png"
  * Bsp.2: "Torben-T0.png"
- *
+ * <p>
  * INDIZES VON 0 AN
- *
  */
 
 
 import ea.Bild;
 import ea.Knoten;
 
-class ImageCollection2 extends Knoten{
+class ImageCollection2 extends Knoten {
 
     private int ImageCount = 2;    //Anzahl der Bilder
-    private int AllImageCount = ImageCount*4;//vielleicht Count*4 + 1
+    private int AllImageCount = ImageCount * 4;//vielleicht Count*4 + 1
 
     private float posX;
     private float posY;
     private String MainDir;
 
 
-    private int stepL=0;
-    private int stepR=0;
-    private int stepT=0;
-    private int stepB=0;
+    private int stepL = 0;
+    private int stepR = 0;
+    private int stepT = 0;
+    private int stepB = 0;
 
     private int distanceL = 0;
     private int distanceR = 0;
@@ -40,15 +39,15 @@ class ImageCollection2 extends Knoten{
     private int stepDistance = 20; // Distanz die einen Schritt ausmacht
 
 
-
     //Listen mit >Bild< Objekten
     private Bild[] ImgL = new Bild[ImageCount];  //Links
     private Bild[] ImgR = new Bild[ImageCount];  //Recht
     private Bild[] ImgT = new Bild[ImageCount];  //Top
     private Bild[] ImgB = new Bild[ImageCount];  //Bottom
 
-    private Bild[] ImgAll = new Bild[AllImageCount*4];//vielleicht Count*4 + 1
+    private Bild[] ImgAll = new Bild[AllImageCount * 4];//vielleicht Count*4 + 1
 
+    private Bild stillImg;
 
 
     /**
@@ -57,22 +56,32 @@ class ImageCollection2 extends Knoten{
      * @param y Position y
      * @param MainDir Übergeordnetes Verzeichnis der Bilder
      */
-    public ImageCollection2(float x, float y, String MainDir){
+    public ImageCollection2(float x, float y, String MainDir) {
         this.posX = x;
         this.posY = y;
         this.MainDir = MainDir;
 
+        String path = MAIN.playerStillImgPath;
+        try {
+
+            stillImg = new Bild(posX, posY, path);
+            this.add(stillImg);
+        } catch (Exception e) {
+            System.out.println("ImageCollection2: Fehler beim Lesen des still-Bilds an der Stelle: + " + path);
+        }
 
 
     }
-    public void HideAll(){
-        for(int i=0;i<AllImageCount;i++){
+
+    public void HideAll() {
+        for (int i = 0; i < AllImageCount; i++) {
             ImgAll[i].sichtbarSetzen(false);
+            stillImg.sichtbarSetzen(false);
         }
     }
 
     //  Run all Init Methods
-    public void Init(){
+    public void Init() {
         initL();
         initR();
         initT();
@@ -81,57 +90,61 @@ class ImageCollection2 extends Knoten{
         combineLists();
 
     }
-    public void initL(){
-        for(int i=0;i<ImageCount;i++){
 
-            String Dir = MainDir + "-L" +(i)+".png";
+    public void initL() {
+        for (int i = 0; i < ImageCount; i++) {
+
+            String Dir = MainDir + "-L" + (i) + ".png";
 
 
-            ImgL[i] = new Bild(posX,posY,Dir);
+            ImgL[i] = new Bild(posX, posY, Dir);
             this.add(ImgL[i]);
         }
 
     }
-    public void initR(){
-        for(int i=0;i<ImageCount;i++){
 
-            String Dir = MainDir + "-R" +(i)+".png";
+    public void initR() {
+        for (int i = 0; i < ImageCount; i++) {
+
+            String Dir = MainDir + "-R" + (i) + ".png";
 
 
-            ImgR[i] = new Bild(posX,posY,Dir);
+            ImgR[i] = new Bild(posX, posY, Dir);
             this.add(ImgR[i]);
         }
     }
-    public void initT(){
-        for(int i=0;i<ImageCount;i++){
+
+    public void initT() {
+        for (int i = 0; i < ImageCount; i++) {
 
 
-            String Dir = MainDir + "-T" +(i)+".png";
+            String Dir = MainDir + "-T" + (i) + ".png";
 
-            ImgT[i] = new Bild(posX,posY,Dir);
+            ImgT[i] = new Bild(posX, posY, Dir);
             this.add(ImgT[i]);
         }
     }
-    public void initB(){
-        for(int i=0;i<ImageCount;i++){
 
-            String Dir = MainDir + "-B" +(i)+".png";
+    public void initB() {
+        for (int i = 0; i < ImageCount; i++) {
+
+            String Dir = MainDir + "-B" + (i) + ".png";
 
 
-            ImgB[i] = new Bild(posX,posY,Dir);
+            ImgB[i] = new Bild(posX, posY, Dir);
             this.add(ImgB[i]);
         }
     }
 
-    public void combineLists(){
+    public void combineLists() {
         System.arraycopy(ImgL, 0, ImgAll, 0, ImageCount);
         System.arraycopy(ImgR, 0, ImgAll, ImageCount, ImageCount);
-        System.arraycopy(ImgT, 0, ImgAll, ImageCount*2, ImageCount);
-        System.arraycopy(ImgB, 0, ImgAll, ImageCount*3, ImageCount);
+        System.arraycopy(ImgT, 0, ImgAll, ImageCount * 2, ImageCount);
+        System.arraycopy(ImgB, 0, ImgAll, ImageCount * 3, ImageCount);
     }
 
     public void walkLeft(int dis) {
-        distanceL = distanceL+ dis ;
+        distanceL = distanceL + dis;
         HideAll();
         ImgL[stepL].sichtbarSetzen(true);
         if (distanceL >= stepDistance) {
@@ -140,13 +153,14 @@ class ImageCollection2 extends Knoten{
             if (stepL >= ImageCount) {
                 stepL = 0;
             }
-            distanceL=0;
+            distanceL = 0;
 
         }
-        this.verschieben(-dis,0);
+        this.verschieben(-dis, 0);
     }
+
     public void walkRight(int dis) {
-        distanceR = distanceR+ dis ;
+        distanceR = distanceR + dis;
         HideAll();
         ImgR[stepR].sichtbarSetzen(true);
         if (distanceR >= stepDistance) {
@@ -155,13 +169,14 @@ class ImageCollection2 extends Knoten{
             if (stepR >= ImageCount) {
                 stepR = 0;
             }
-            distanceR=0;
+            distanceR = 0;
 
         }
-        this.verschieben(dis,0);
+        this.verschieben(dis, 0);
     }
+
     public void walkTop(int dis) {
-        distanceT = distanceT+ dis ;
+        distanceT = distanceT + dis;
         HideAll();
         ImgT[stepT].sichtbarSetzen(true);
         if (distanceT >= stepDistance) {
@@ -170,13 +185,14 @@ class ImageCollection2 extends Knoten{
             if (stepT >= ImageCount) {
                 stepT = 0;
             }
-            distanceT=0;
+            distanceT = 0;
 
         }
-        this.verschieben(0,-dis);
+        this.verschieben(0, -dis);
     }
+
     public void walkBottom(int dis) {
-        distanceB = distanceB+ dis ;
+        distanceB = distanceB + dis;
         HideAll();
         ImgB[stepB].sichtbarSetzen(true);
         if (distanceB >= stepDistance) {
@@ -185,10 +201,20 @@ class ImageCollection2 extends Knoten{
             if (stepB >= ImageCount) {
                 stepB = 0;
             }
-            distanceB=0;
+            distanceB = 0;
 
         }
-        this.verschieben(0,dis);
+        this.verschieben(0, dis);
+    }
+
+
+    public void resetStep() {
+        stepL = 0;
+        stepB = 0;
+        stepT = 0;
+        stepR = 0;
+        //HideAll();
+        //stillImg.sichtbarSetzen(true);
     }
 
     /**
@@ -258,9 +284,15 @@ class ImageCollection2 extends Knoten{
     @Override
     public void positionSetzen(float x, float y) {
         positionSetzen(x, y);
-        posX= x;
-        posY= y;
+        posX = x;
+        posY = y;
     }
 
+    @Override
+    public void verschieben(float dX, float dY) {
+        posX = posX + dX;
+        posY = posY + dY;
+        super.verschieben(dX, dY);
+    }
 }
 

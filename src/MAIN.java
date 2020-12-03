@@ -43,9 +43,12 @@ public class MAIN {
     //debugAnzeigen
     public static final boolean showDebugFields = true;
 
+    //Player
+    public static final String playerStillImgPath = "./Assets/SpielerTest/still.png";
 
 
     public static void main(String[] args){
+        DialogChecker dc = new DialogChecker();
 
         SPIEL spiel  = new SPIEL();
 

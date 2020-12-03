@@ -15,28 +15,29 @@ public class Player extends Knoten {
     private float posY;
     private int money;
 
-    private int walkspeed = 4; // Laufgeschwindigkeit
+    private int walkspeed; // Laufgeschwindigkeit
 
 
     private ImageCollection2 IC2;
 
-    public Player(float posX,float posY, GameSaver gs){
+    public Player(float posX, float posY, GameSaver gs) {
         this.gamesaver = gs;
-        this.posX=posX;
-        this.posY=posY;
+        this.posX = posX;
+        this.posY = posY;
         this.money = 0;
 
-        IC2= new ImageCollection2(this.posX,this.posY,"./Assets/SpielerTest/BasicMale");
+        IC2 = new ImageCollection2(this.posX, this.posY, "./Assets/SpielerTest/BasicMale");
         IC2.Init();
         this.add(IC2);
 
+        walkspeed = gamesaver.getWalkspeed();
     }
 
     @Override
     public void verschieben(float dX, float dY) {
         super.verschieben(dX, dY);
-        posX= posX+dX;
-        posY= posY+dY;
+        posX = posX + dX;
+        posY = posY + dY;
 
     }
 
@@ -46,6 +47,7 @@ public class Player extends Knoten {
         posY = y;
         super.positionSetzen(x, y);
     }
+
     @Override
     public void positionSetzen(Punkt p) {
         super.positionSetzen(p);
@@ -61,47 +63,62 @@ public class Player extends Knoten {
         }
 
          */
-float lastX = posX;
+    float lastX = posX;
+
     public void WalkLeft() {
         IC2.walkLeft(walkspeed);
-        this.posX = posX -walkspeed;
+        //this.verschieben(-walkspeed, 0);
+        this.posX = posX - walkspeed;
         //IC.verschieben(-walkspeed,0);
     }
 
-    public void WalkRight(){
+    public void WalkRight() {
         IC2.walkRight(walkspeed);
-        this.posX = posX +walkspeed;
+        //this.verschieben(walkspeed, 0);
+        this.posX = posX + walkspeed;
         //IC.verschieben(walkspeed,0);
     }
-    public void WalkBottom(){
+
+    public void WalkBottom() {
         IC2.walkBottom(walkspeed);
-        this.posY = posY +walkspeed;
+        this.posY = posY + walkspeed;
+        //this.verschieben(0, walkspeed);
         //IC.verschieben(0, walkspeed);
     }
-    public void WalkTop(){
+
+    public void WalkTop() {
         IC2.walkTop(walkspeed);
-        this.posY = posY -walkspeed;
+        this.posY = posY - walkspeed;
+        //this.verschieben(0,-walkspeed);
         //IC.verschieben(0, -walkspeed);
     }
 
-    public int getMoney(){
+    public void standStill() {
+        //System.out.println("STANDSTILL");
+        IC2.resetStep();
+    }
+
+    public int getMoney() {
         return money;
     }
-    public void addMoney(int x){
+
+    public void addMoney(int x) {
         money += x;
     }
 
 
-    public float getCenterX(){
-        return (posX+this.getBreite()/2);
-    }
-    public float getCenterY(){
-        return (posY+this.getHoehe()/2);
+    public float getCenterX() {
+        return (posX + this.getBreite() / 2);
     }
 
-    public int getWalkspeed(){
+    public float getCenterY() {
+        return (posY + this.getHoehe() / 2);
+    }
+
+    public int getWalkspeed() {
         return walkspeed;
     }
+
     public String getName() {
         return name;
     }
@@ -109,6 +126,7 @@ float lastX = posX;
     public float getPosX() {
         return posX;
     }
+
     public float getPosY() {
         return posY;
     }

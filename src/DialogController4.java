@@ -102,6 +102,7 @@ public class DialogController4 extends Knoten {
 
         //NPC Faces
         HashMap<String, NPC2> NpcMap = NPC_Controller2.getNPCs();
+        npcFaces.put("self", new Bild(faceLocationX, faceLocationY, MAIN.playerStillImgPath));
         for(String name : NpcMap.keySet()){
             try {
                 Bild tempImg = new Bild(faceLocationX, faceLocationY, MAIN.npcFacesPath + name + ".png");
@@ -146,7 +147,10 @@ public class DialogController4 extends Knoten {
         }
     }
 
+
     public void setNpcFace(String npcName){
+        hideAllFaces();
+        System.out.println("Der NPC mit dem Namen = " + npcName + " wird neben dem Fenster als FACE abgebildet");
         npcFaces.get(npcName).sichtbarSetzen(true);
     }
 
@@ -205,28 +209,26 @@ public class DialogController4 extends Knoten {
     }
 
     private void displayCurrentDialogLine() {
-        System.out.println("DialogController4: displayCurrentDialogLine aufgerufen");
+        System.out.println("DialogController4: displayCurrentDialogLine aufgerufen, Mit dem Code:" + currentDialogCode);
         playingLastLine = false;
         DialogController4.DialogLine currentLine = dialogLines.get(currentDialogCode);
         if (currentLine == null) {
             System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie zeigt auf eine andere leere Line: " + currentLine);
         }
-        gameSaver.addLine(currentDialogCode);
         if (currentDialogCode == null) {
             System.out.println("DialogController4: FEHLER: Die Letzte Line war scheinbar korrupt, sie hat scheinbar keinen Code??");
         }
+        gameSaver.addLine(currentDialogCode);
         //System.out.println("DialogController4: Die current line wird displayed. Die Line hat den CODE: " + currentDialogCode);
 
         if (currentLine.name.equals("self") && !lastLineSelf) { //wenn man selber drann ist und nicht schon einmal drann war
-
-            lastLineSelf = true;
             skipLine(); //effectivly skipps the next dialog line
+            lastLineSelf = true;
 
         } else { //dialog wird nicht geskippt
             if (!currentLine.name.equals("self")) { //wenn nicht mehr self
                 //System.out.println("DialogController4: SELF spricht nicht mehr" + currentDialogCode);
                 lastLineSelf = false;
-                setNpcFace(currentLine.name);
 
                 if (true) { //Speicherung der aktuellen Line als LastLine
                     String name = currentLine.name;
@@ -245,6 +247,7 @@ public class DialogController4 extends Knoten {
                 updateButtons();
                 //System.out.println("DialogController4:");
             }
+            setNpcFace(currentLine.name);
             setConvText(currentLine.inhalt);
             setReplyText();
 
@@ -256,7 +259,11 @@ public class DialogController4 extends Knoten {
         System.out.println("DialogController4: Eigener Dialog wird übersprungen während LastLineSelf=" + lastLineSelf);
         //System.out.println("->DialogController4: Sein Inhalt war: " + currentLine.inhalt);
         oneButtonMode = true;
+        if(currentLine.wahl1.equals("")){
+            System.out.println("DialogController4: FEHLER: Die nächste Line ist scheinbar leer. Ursprungsline: " + currentDialogCode);
+        }
         currentDialogCode = currentLine.wahl1; //skipped die nächste Zeile, weil dies
+
         displayCurrentDialogLine();
     }
 

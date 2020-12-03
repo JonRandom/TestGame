@@ -38,7 +38,7 @@ public class StartingScreen extends Knoten {
 
     public StartingScreen() {
         BackgroundPic = new Bild(0, 0, "./Assets/StartingScreen/StartbilschirmOHNEButtonsundTitel.png");
-        loadingPic = new Bild(0, 0, "./Assets/StartingScreen/loading.png");
+        loadingPic = new Bild(0, 0, MAIN.playerStillImgPath);
         float xPos = MAIN.x / 2 - (loadingPic.getBreite() / 2);
         float yPos = MAIN.y / 2 - (loadingPic.getHoehe() / 2);
         loadingPic.positionSetzen(xPos, yPos);

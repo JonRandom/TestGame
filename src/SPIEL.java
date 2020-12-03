@@ -162,7 +162,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
     public void fokusSetzten() {
-        System.out.println("FOKUS SETZEN");
+        //System.out.println("FOKUS SETZEN");
         cam.fokusSetzen(ActivePlayer);
         BoundingRechteck CamBounds = new BoundingRechteck(0, 0, map.getBreite(), map.getHoehe());
         cam.boundsSetzen(CamBounds);
@@ -197,15 +197,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
                 if (tasteGedrueckt(Taste.W)) {
                     DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() - walkspeed);
-
                     if (map.isWalkable2(DP, ActivePlayer)) {
                         ActivePlayer.WalkTop();
                     }
 
                 }
-                if (tasteGedrueckt(Taste.S)) {
+                else if (tasteGedrueckt(Taste.S)) {
                     DP.positionSetzen(ActivePlayer.getPosX(), ActivePlayer.getPosY() + walkspeed);
-
                     if (map.isWalkable2(DP, ActivePlayer)) {
                         ActivePlayer.WalkBottom();
                     }
@@ -213,19 +211,19 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
                 if (tasteGedrueckt(Taste.A)) {
                     DP.positionSetzen(ActivePlayer.getPosX() - walkspeed, ActivePlayer.getPosY());
-//
                     if (map.isWalkable2(DP, ActivePlayer)) {
                         ActivePlayer.WalkLeft();
                     }
                 }
 
-                if (tasteGedrueckt(Taste.D)) {
+                else if (tasteGedrueckt(Taste.D)) {
                     DP.positionSetzen(ActivePlayer.getPosX() + walkspeed, ActivePlayer.getPosY());
-
-
                     if (map.isWalkable2(DP, ActivePlayer)) {
                         ActivePlayer.WalkRight();
                     }
+                }
+                if(!tasteGedrueckt(Taste.W) && !tasteGedrueckt(Taste.S) && !tasteGedrueckt(Taste.A) && !tasteGedrueckt(Taste.D)){ //Es wird keine der Tasten gedrückt
+                    ActivePlayer.standStill();
                 }
             }
             if (NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()) {

@@ -3,7 +3,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ea.Knoten;
 import ea.Punkt;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.*;
 import java.lang.reflect.Type;

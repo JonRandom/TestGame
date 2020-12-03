@@ -76,7 +76,8 @@ public class SoundController {
             if (r >= 0.5) {
                 lysander.play();
             } else {
-                happyMusic.play();
+                //happyMusic.play();
+                lysander.play();
             }
         }
     }

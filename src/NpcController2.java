@@ -73,7 +73,7 @@ public class NpcController2 extends Knoten {
         //geht alle Npcs durch und schaut nach collision, aber nicht nach einer expliziten
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
-            if (AP.schneidet(element) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
+            if (element.schneidetNEU(AP) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
                 //System.out.println("Spieler geschnitten und er ist sichtbar?? : " + element.sichtbar());
                 coll = true;
             }
@@ -92,7 +92,7 @@ public class NpcController2 extends Knoten {
         String returnKey = null;
         for (String key : NPCs.keySet()) {  //geht die JSON durch und
             NPC2 element = NPCs.get(key);   //stellt jedes Element der Map einmal als "element" zur Verfügung
-            if (AP.schneidet(element) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
+            if (element.schneidetNEU(AP) && element.sichtbar()) { //wenn der Spieler mit einem SICHTBAREN Npc kollidiert, dann weiter:
                 returnKey = key; // = current key
             }
         }
@@ -286,6 +286,10 @@ public class NpcController2 extends Knoten {
         }
 
 
+    }
+
+    public HashMap<String, NPC2> getNPCs() {
+        return NPCs;
     }
 
     /**

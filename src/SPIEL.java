@@ -55,9 +55,13 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     public SPIEL() {
         super(MAIN.x, MAIN.y, "P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
 
+        soundController = new SoundController();
+        soundController.startTitleMusic();
         StartSc = new StartingScreen();
         statischeWurzel.add(StartSc);
         StartSc.setActive(true);
+
+
     }
 
     public void Konstruktor() {
@@ -70,7 +74,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         ActivePlayer = new Player(gamesaver.getPosX(), gamesaver.getPosX(), gamesaver);
-        soundController = new SoundController();
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
 
@@ -152,6 +155,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         fokusSetzten();
         StartSc.hideLoadingScreen();
         initDone = true;
+
+        soundController.stopAllMusic();
 
     }
 
@@ -236,6 +241,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             Minigame2.tick();
             itemAnimator.tick();
             fadeScreen.tick();
+            soundController.tickMusic();
 
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden
@@ -268,7 +274,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 map.leaveHouse();
             }
             if (tastenkuerzel == 17) { //Wenn R gedrückt
-
+                soundController.toggleMute();
             }
 
             if (tastenkuerzel == 12) {//M für minigame

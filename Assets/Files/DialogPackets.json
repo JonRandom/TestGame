@@ -1,145 +1,177 @@
 {
   "Tag 1 Abschnitt 1 (Start Zeit)": {
-    "mutter": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D1.0_00_01"
-    }]
-
-  },
-  "Tag 1 Abschnitt 2": {
-    "kay": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D1.1_00_01"
-    }]
-  },
-
-  "Tag 1 Abschnitt 3": {
-    "felix": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D1.3_00_01"
-    }],
-    "mutter": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D1.2_00_01"
-    }]
-  },
-
-  "Tag 2 Abschnitt 1": {
-    "kay":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D1.3_11_02"],
-      "code": "D2.1.1_00_01"
-    },
+    "mutter": [
       {
         "requiredItems": [],
-        "requiredLines": ["D1.2_00_02"],
+        "requiredLines": [],
+        "code": "D1.0_00_01"
+      }
+    ]
+  },
+  "Tag 1 Abschnitt 2": {
+    "kay": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D1.1_00_01"
+      }
+    ]
+  },
+  "Tag 1 Abschnitt 3": {
+    "felix": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D1.3_00_01"
+      }
+    ],
+    "mutter": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D1.2_00_01"
+      }
+    ]
+  },
+  "Tag 2 Abschnitt 1": {
+    "kay": [
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D1.3_11_02"
+        ],
         "code": "D2.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": ["D1.3_12_02"],
+        "requiredLines": [
+          "D1.2_00_02"
+        ],
+        "code": "D2.1.1_00_01"
+      },
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D1.3_12_02"
+        ],
         "code": "D2.1.2_00_01"
-      }]
+      }
+    ]
   },
   "Tag 2 Abschnitt 2": {
-    "felix":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D1.3_11_02"],
-      "code": "D2.2.2_00_01"
-    }],
-	"tim": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D2.2.2_00_01"
-    }],
-	"frauenland": [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D2.2.1_00_01"
-    }]
+    "felix": [
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D1.3_11_02"
+        ],
+        "code": "D2.2.2_00_01"
+      }
+    ],
+    "tim": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D2.2.2_00_01"
+      }
+    ],
+    "frauenland": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D2.2.1_00_01"
+      }
+    ]
   },
-
   //Required lines anpassen
   "Tag 3 Abschnitt 1": {
-    "tim":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D2.2.1_00_27"],
-      "code": "D3.1.1_00_01"
-    },
+    "tim": [
       {
         "requiredItems": [],
-        "requiredLines": ["D2.2.2_01_05"],
+        "requiredLines": [
+          "D2.2.1_00_27"
+        ],
         "code": "D3.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": ["D2.2.2_02_06"],
-        "code": "D3.1.2_00_01"
-      }],
-	  "felix":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D2.2.1_00_27"],
-      "code": "D3.1.1_00_01"
-    },
-      {
-        "requiredItems": [],
-        "requiredLines": ["D2.2.2_01_05"],
+        "requiredLines": [
+          "D2.2.2_01_05"
+        ],
         "code": "D3.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": ["D2.2.2_02_06"],
+        "requiredLines": [
+          "D2.2.2_02_06"
+        ],
         "code": "D3.1.2_00_01"
-      }]
+      }
+    ],
+    "felix": [
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D2.2.1_00_27"
+        ],
+        "code": "D3.1.1_00_01"
+      },
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D2.2.2_01_05"
+        ],
+        "code": "D3.1.1_00_01"
+      },
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D2.2.2_02_06"
+        ],
+        "code": "D3.1.2_00_01"
+      }
+    ]
   },
-  
-  
-  
-  
   "Tag 3 Abschnitt 2": {
-    "tim":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D3.1.2_00_03"],
-      "code": "D3.3.2_00_01"
-    }],
-	"felix":
-    [{
-      "requiredItems": [],
-      "requiredLines": ["D3.1.1_00_04"],
-      "code": "D3.3.1_00_01"
-    }]
+    "tim": [
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D3.1.2_00_03"
+        ],
+        "code": "D3.3.2_00_01"
+      }
+    ],
+    "felix": [
+      {
+        "requiredItems": [],
+        "requiredLines": [
+          "D3.1.1_00_04"
+        ],
+        "code": "D3.3.1_00_01"
+      }
+    ]
   },
-  
-  
-  
-  
   //Tag 4 (Hier wird´s n bissl kompliziert ^^)
   //Tag 4 Erster Hauptdialog
   "Tag 4 Abschnitt 1": {
-    "hacker":
-    [{
-      "requiredItems": [],
-      "requiredLines": [],
-      "code": "D4.1.2.1_00_01"
-    }]
-	
+    "hacker": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "code": "D4.1.2.1_00_01"
+      }
+    ]
   },
   "Tag 4 Hacker Quest": {
-    "hacker":
-    [{
-      "requiredItems": ["stick"],
-      "requiredLines": [],
-      "code": "D4.1.2.2_00_01"
-    }]
+    "hacker": [
+      {
+        "requiredItems": [
+          "stick"
+        ],
+        "requiredLines": [],
+        "code": "D4.1.2.2_00_01"
+      }
+    ]
   }
-  
 }

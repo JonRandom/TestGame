@@ -14,11 +14,11 @@ public class EndScreen extends Knoten {
     }
 
     public void playSadEnding(){
-        soundC.playSadEnding();
+        soundC.playSadMusic();
     }
 
     public void playGoodEnding(){
-        soundC.playGoodEnding();
+        soundC.playHappyMusic();
     }
 
 }

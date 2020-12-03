@@ -11,6 +11,7 @@ public class DebugAnzeige extends Knoten {
         //t.leuchtetSetzen(true);
 
         this.add(t);
+        t.sichtbarSetzen(MAIN.showDebugFields);
 
     }
     public void SetContent(String content){

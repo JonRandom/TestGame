@@ -1,13 +1,16 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import ea.Bild;
+import ea.Farbe;
 import ea.Knoten;
 import ea.Text;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.List;
 
 public class DialogController4 extends Knoten {
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -42,7 +45,7 @@ public class DialogController4 extends Knoten {
     private Text displayResponseTextObject;
     private Bild displayDialogBackground;
     private Bild[] displayButtons;
-    private int textPosY = 600;
+    private int textPosY = 660;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -55,6 +58,13 @@ public class DialogController4 extends Knoten {
     //lastLine
     private Map<String, String> lastLines = new HashMap<String, String>() { //<NAME, INHALT>
     }; //key mit name und als inhalt den Code
+
+    //GESCHIHCTER DIE ANGEZEIGT WERDEN
+    private Map<String, Bild> npcFaces = new HashMap<String, Bild>() {}; //<NAME, INHALT>
+    private final int faceLocationX = 100;
+    private final int faceLocationY = 620;
+
+
 
 
     public DialogController4(NpcController2 NPC_C2, GameSaver gs) {
@@ -90,10 +100,30 @@ public class DialogController4 extends Knoten {
             System.out.println("DialogController4: FEHLER beim Importieren der Bilder");
         }
 
+        //NPC Faces
+        HashMap<String, NPC2> NpcMap = NPC_Controller2.getNPCs();
+        for(String name : NpcMap.keySet()){
+            try {
+                Bild tempImg = new Bild(faceLocationX, faceLocationY, MAIN.npcFacesPath + name + ".png");
+                this.add(tempImg);
+                tempImg.sichtbarSetzen(false);
+                npcFaces.put(name, tempImg);
+                System.out.println("DialogController4: Neues Gesicht hinzugefügt mit dem name: " + name);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("DialogController4: FEHLER beim Importieren der Gesicht-Bilder");
+            }
+        }
+
+
+
         //Text als letztes also ganz oben
 
-        displayResponseTextObject = new Text(textPosX, textPosY + 100, "DEFAULT RESPONSE TEXT");
-        displayTextObject = new Text(textPosX, textPosY + 50, "DEFAULT TEXT");
+
+        displayResponseTextObject = new Text(textPosX, textPosY + 100, "DEFAULT RESPONSE TEXT"); //pos eigentlich egal
+        displayResponseTextObject.farbeSetzen(new Farbe(0, 0, 0));
+        displayTextObject = new Text(textPosX, textPosY + 20, "DEFAULT TEXT");
+        displayTextObject.farbeSetzen(new Farbe(0, 0, 0));
         this.add(displayTextObject, displayResponseTextObject);
     }
 
@@ -113,6 +143,16 @@ public class DialogController4 extends Knoten {
             displayCurrentDialogLine();
         } else { //Es wird kein Dialogpacket für diesen NPC gefunden worden
             playLastLine(npcID);
+        }
+    }
+
+    public void setNpcFace(String npcName){
+        npcFaces.get(npcName).sichtbarSetzen(true);
+    }
+
+    public void hideAllFaces(){
+        for(String name : npcFaces.keySet()){
+            npcFaces.get(name).sichtbarSetzen(false);
         }
     }
 
@@ -186,6 +226,7 @@ public class DialogController4 extends Knoten {
             if (!currentLine.name.equals("self")) { //wenn nicht mehr self
                 //System.out.println("DialogController4: SELF spricht nicht mehr" + currentDialogCode);
                 lastLineSelf = false;
+                setNpcFace(currentLine.name);
 
                 if (true) { //Speicherung der aktuellen Line als LastLine
                     String name = currentLine.name;
@@ -264,6 +305,7 @@ public class DialogController4 extends Knoten {
     }
 
     private void endDialog() {
+        hideAllFaces();
         System.out.println("DialogController4: endDialog() aufgerufen");
         hideWindow();
         active = false;
@@ -295,6 +337,7 @@ public class DialogController4 extends Knoten {
         try {
             inhalt = lastLine.inhalt;
             setConvText(inhalt);
+            setNpcFace(lastLine.name);
         } catch (Exception e) {
             System.out.println("DialogController4: FEHLER: Für diesem NPC gibt es scheinbar kein lastLine Eintrag");
             displayTextObject.inhaltSetzen("FEHLER! Für diesem NPC gibt es scheinbar kein lastLine Eintrag!");
@@ -456,6 +499,7 @@ public class DialogController4 extends Knoten {
     }
 
     private void hideWindow() {
+        hideAllFaces();
         displayButtons[0].sichtbarSetzen(false);
         displayButtons[1].sichtbarSetzen(false);
         displayTextObject.sichtbarSetzen(false);

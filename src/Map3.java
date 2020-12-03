@@ -42,7 +42,7 @@ public class Map3 extends Knoten {
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
     private String pathHitboxImg = "./Assets/Tests/Map3_coll.png";
-    private String pathMainImg = "./Assets/Map3.jpg";
+    private String pathMainImg = "./Assets/Map3.png";
     private String pathBackgroundImg = "./Assets/Tests/blur.png";
 
     private HashMap<String, Map3.Haus> MAP; //für die Json
@@ -171,9 +171,9 @@ public class Map3 extends Knoten {
         System.out.println("Map3: Aus den gespeicherten GameSave Daten wird die startPos des Spielers gelesen.");
         int houseN = gamesaver.getHouseNumber();
         leaveHouse();
-        enterHouse(player, houseN);
         player.positionSetzen(gamesaver.getPosX(), gamesaver.getPosY());
         if(houseN != -1){
+            System.out.println("Aus loadStartPos mit Hausnummer -> betreten:"  + houseN);
             enterHouse(player, houseN);
             // redundant wird schon in FoxPos aufgerufen npc_C.enterHouse(houseN, (int)lastFinalPosX, (int)lastFinalPosY);
         }

@@ -44,9 +44,9 @@ public class DialogController5 extends Knoten {
     private Bild displayDialogBackgroundRight;
 
     //Text Stuff
-    private final int textPosY = 600;
-    private final int defaultTextSize = 12;
-    private final int maxTextWidth = 400;
+    private final int textPosY = 630;
+    private final int defaultTextSize = 30;
+    private final int maxTextWidth = 800;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -56,14 +56,16 @@ public class DialogController5 extends Knoten {
 
 
     //lastLine
-    private Map<String, String> lastLines = new HashMap<String, String>() {}; //<NAME, INHALT>
+    private Map<String, String> lastLines = new HashMap<String, String>() {
+    }; //<NAME, INHALT>
 
     //GESCHIHCTER DIE ANGEZEIGT WERDEN
-    private Map<String, Bild> npcFaces = new HashMap<String, Bild>() {}; //<NAME, INHALT>
+    private Map<String, Bild> npcFaces = new HashMap<String, Bild>() {
+    }; //<NAME, INHALT>
 
     private final int faceLocationX = 100;
     private final int faceLocationY = 620;
-    private final int selfFaceLocationX = 800;
+    private final int selfFaceLocationX = MAIN.x - faceLocationX;
 
 
     public DialogController5(NpcController2 NPC_C2, GameSaver gs) {
@@ -88,6 +90,8 @@ public class DialogController5 extends Knoten {
         try { //Bilder mit try catch
             displayDialogBackgroundLeft = new Bild(0, 0, defaultPath + "DialogFensterLeft.png");
             displayDialogBackgroundRight = new Bild(0, 0, defaultPath + "DialogFensterRight.png");
+            displayDialogBackgroundLeft.sichtbarSetzen(false);
+            displayDialogBackgroundRight.sichtbarSetzen(false);
             this.add(displayDialogBackgroundLeft, displayDialogBackgroundRight);
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,7 +100,9 @@ public class DialogController5 extends Knoten {
 
         //NPC Faces
         HashMap<String, NPC2> NpcMap = NPC_Controller2.getNPCs();
-        npcFaces.put("self", new Bild(selfFaceLocationX, faceLocationY, MAIN.playerStillImgPath));
+        Bild selfFace = new Bild(selfFaceLocationX, faceLocationY, MAIN.playerStillImgPath);
+        npcFaces.put("self", selfFace);
+        this.add(selfFace);
         for (String name : NpcMap.keySet()) {
             try {
                 Bild tempImg = new Bild(faceLocationX, faceLocationY, MAIN.npcFacesPath + name + ".png");
@@ -111,8 +117,7 @@ public class DialogController5 extends Knoten {
         }
 
         displayTextObject = new Text(MAIN.x / 2, textPosY, "DEFAULT TEXT");
-        displayDialogBackgroundLeft.positionSetzen(MAIN.x / 2 - displayDialogBackgroundLeft.getBreite(), textPosY); //zentriert Default Text
-        displayDialogBackgroundRight.positionSetzen(MAIN.x / 2 - displayDialogBackgroundRight.getBreite(), textPosY); //zentriert Default Text
+        displayTextObject.positionSetzen(MAIN.x / 2 - displayTextObject.getBreite(), textPosY); //zentriert Default Text
         displayTextObject.farbeSetzen(new Farbe(0, 0, 0));
         displayTextObject.groesseSetzen(defaultTextSize);
         this.add(displayTextObject);
@@ -139,9 +144,60 @@ public class DialogController5 extends Knoten {
         }
     }
 
+    public void highLightReadyNpcs() {
+        NPC_Controller2.disguiseAllNPCs();
+        if (dialogPackets.containsKey(globalTemporalPosition)) {
+            Map<String, List<DialogController5.DialogPacket>> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
+            Set keys = innnerPacketMap.keySet();
+            for (String npcName : innnerPacketMap.keySet()) { //get die NPC durch
+                List<DialogController5.DialogPacket> npcOccs = innnerPacketMap.get(npcName); //gibt mir alle Occs zu einem NPC
+                List<String> foundItems = gameSaver.getItems(); //holt sich aus dem Savefile die momentanen Items
+                List<String> readLines = gameSaver.getLines(); //holt sich aus dem Savefile die momentanen gelesenen Lines;
+
+                for (DialogController5.DialogPacket packet : npcOccs) { //get also alle Packete einer Occ durch
+                    if (foundItems.containsAll(packet.requiredItems)) {
+                        if (readLines.containsAll(packet.requiredLines)) {
+                            //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
+                            if (packet.forbiddenLines == null) {
+                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten für den NPC: " + npcName);
+                                //System.out.println(;
+                                NPC_Controller2.highLightNpcsByName(npcName);
+                            } else if (inverseContains(packet.forbiddenLines, readLines)) {
+                                //es gibt forbiddenLines, meine sind aber nicht dabei
+                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei für den NPC: " + npcName);
+                                NPC_Controller2.highLightNpcsByName(npcName);
+                            } else {
+                                System.out.println("DialogController4: Das Dialogpacket ist verboten!");
+                                //nix machen
+
+                            }
+                        } else {
+                            System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen für den NPC: " + npcName);
+                            //return false;
+                        }
+                    } else {
+                        System.out.println("DialogController4: highLightReadyNpcs(): Es sind nicht alle nötigen Items gefunden worden");
+                        //return false;
+
+                    }
+
+                }
+
+            }
+        } else {
+            System.out.println("DialogController4: FEHLER BEIM HIGHLIGHTEN, DIE NÄCHSTE ZEIT GIBT ES GAR NICHT");
+            System.out.println("DialogController4: Die Zeit POS ist:" + globalTemporalPosition);
+            NPC_Controller2.highLightNpcs(null);
+        }
+
+    }
+
 
     public void setNpcFace(String npcName) {
         hideAllFaces();
+        if(npcName.equals("self")){
+            System.out.println("SELF SPRICHT");
+        }
         System.out.println("Der NPC mit dem Namen = " + npcName + " wird neben dem Fenster als FACE abgebildet");
         npcFaces.get(npcName).sichtbarSetzen(true);
     }
@@ -163,6 +219,11 @@ public class DialogController5 extends Knoten {
 
 
     private void endDialog() {
+        NPC_Controller2.resetToLastQuietPos();
+        System.out.println("END DIALOG");
+        currentDialogCode = null;
+        hideWindow();
+        active = false;
     }
 
 //    private void playLastLine(String npcID) {
@@ -197,13 +258,13 @@ public class DialogController5 extends Knoten {
                 .filter(
                         packet ->
                                 gameSaver.getItems().containsAll(packet.requiredItems) &&
-                                gameSaver.getLines().containsAll(packet.requiredLines) &&
-                                inverseContains(gameSaver.getLines(),  packet.forbiddenLines)
+                                        gameSaver.getLines().containsAll(packet.requiredLines) &&
+                                        inverseContains(gameSaver.getLines(), packet.forbiddenLines)
 
                 );
     }
 
-    private DialogController5.DialogPacket getPlayableDialogPacket(String npcID){
+    private DialogController5.DialogPacket getPlayableDialogPacket(String npcID) {
         return getPlayableDialogs(npcID)
                 .findFirst()
                 .orElse(null);
@@ -215,12 +276,13 @@ public class DialogController5 extends Knoten {
                 .isPresent();
     }
 
-    public void showWindow(){
+    public void showWindow() {
         displayTextObject.sichtbarSetzen(true);
         displayDialogBackgroundLeft.sichtbarSetzen(true);
         displayDialogBackgroundRight.sichtbarSetzen(true);
     }
-    public void hideWindow(){
+
+    public void hideWindow() {
         hideAllFaces();
         displayTextObject.sichtbarSetzen(false);
         displayDialogBackgroundLeft.sichtbarSetzen(false);
@@ -228,25 +290,23 @@ public class DialogController5 extends Knoten {
     }
 
 
-
-    public void nextLine(){
-        int wahl = selection +1;//index 0 fix zu index 1
+    public void nextLine() {
+        int wahl = selection + 1;//index 0 fix zu index 1
         DialogLine currentLine = dialogLines.get(currentDialogCode);
-        if(currentLine.hasNextTime()){
+        if (currentLine.hasNextTime()) {
             endDialog();
-        } else {
-            if(currentLine.hasNoChoice() || wahl == 1){
+        }
+        else {
+            if (currentLine.hasNoChoice() || wahl == 1) {
                 //hat nic bei wahl2 dirnstehen
                 currentDialogCode = currentLine.wahl1;
-            }
-            else{
+            } else {
                 //wenn es eine 2.Wahl gibt und wahl != 1
                 currentDialogCode = currentLine.wahl2;
             }
             updateTextContent(dialogLines.get(currentDialogCode));
         }
     }
-
 
 
     public void updateTextContent(DialogLine dL) {
@@ -262,15 +322,17 @@ public class DialogController5 extends Knoten {
         displayTextObject.positionSetzen(textPosX, textPosY);
     }
 
-    public void setDialogWindowDir(boolean isSelf){
+    public void setDialogWindowDir(boolean isSelf) {
         displayDialogBackgroundLeft.sichtbarSetzen(false);
         displayDialogBackgroundRight.sichtbarSetzen(false);
-        if(!isSelf){
+        if (!isSelf) {
             //links wenn nicht selber
             displayDialogBackgroundLeft.sichtbarSetzen(true);
-        } else{
+            System.out.println("DialogController: DISPLAY: es wird das nach Links angezeigt");
+        } else {
             //rechts wenn selber
             displayDialogBackgroundRight.sichtbarSetzen(true);
+            System.out.println("DialogController: DISPLAY: es wird das nach Rechts angezeigt");
         }
 
 
@@ -320,9 +382,20 @@ public class DialogController5 extends Knoten {
     }
 
     public static <T> boolean inverseContains(List<T> a, List<T> b) {
-        return a.stream().noneMatch(b::contains);
+        if (b == null) {
+            //nur ForbiddenItems leer
+            return true;
+        } else if (a == null) {
+            return false;
+        } else {
+            return a.stream().noneMatch(b::contains);
+        }
+
     }
 
+    public boolean isActive() {
+        return active;
+    }
 
     //JSON SACHEN UND DEREN KLASSEN
     private void readJSON_DialogLines() {
@@ -343,6 +416,7 @@ public class DialogController5 extends Knoten {
         }
 
     }
+
     private void readJSON_DialogPackets() {
         Gson gson = new Gson();
         try {
@@ -386,13 +460,16 @@ public class DialogController5 extends Knoten {
                     '}';
         }
 
-        public boolean isSelf(){
+        public boolean isSelf() {
             return (name.equals("self"));
         }
-        public boolean hasNextTime(){
+
+        public boolean hasNextTime() {
+            System.out.println("HAS NEXT TIME AUFGERUFEN: ANTWORT: " + !nextTime.equals(""));
             return (!nextTime.equals(""));
         }
-        public boolean hasNoChoice(){
+
+        public boolean hasNoChoice() {
             return (wahl2.equals(""));
         }
 

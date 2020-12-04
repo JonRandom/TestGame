@@ -8,8 +8,15 @@
     "nextTime": ""
   },
   "D1.0_00_02": {
-    "inhalt": "Du musst zur Schule!",
+    "inhalt": "Du musst zur Schule!llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll",
     "name": "mutter",
+    "wahl1": "D1.0_00_03",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D1.0_00_03": {
+    "inhalt": "JAJAJAJA",
+    "name": "self",
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 1 Abschnitt 2"

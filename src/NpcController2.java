@@ -23,7 +23,7 @@ public class NpcController2 extends Knoten {
 
     //JSON GSON
     private HashMap<String, NPC2> NPCs; //für die Json
-    private Map<String, Map<String, DialogController4.NpcPosition>> npcPositions; //für die Json mit den NPC Daten
+    private Map<String, Map<String, DialogController5.NpcPosition>> npcPositions; //für die Json mit den NPC Daten
 
     //for Position Reset
     private float lastQuietX = 0; //letzte Pos an der kein Dialog abgespielt wurde
@@ -252,11 +252,11 @@ public class NpcController2 extends Knoten {
 
     public void updateNpcPositions(String timePos) {
         System.out.println("NpcController2: updateNpcPositions aufgerufen");
-        Map<String, DialogController4.NpcPosition> positionsAtTime = npcPositions.get(timePos);
+        Map<String, DialogController5.NpcPosition> positionsAtTime = npcPositions.get(timePos);
         if (!(positionsAtTime == null)) {
             for (String key : positionsAtTime.keySet()) {  //geht die JSON durch
                 try {
-                    DialogController4.NpcPosition posObject = positionsAtTime.get(key);
+                    DialogController5.NpcPosition posObject = positionsAtTime.get(key);
                     String name = key;
 
                     NPC2 npc = NPCs.get(name);
@@ -321,7 +321,7 @@ public class NpcController2 extends Knoten {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(npcPositionPath));
 
-            Type MapType = new TypeToken<Map<String, Map<String, DialogController4.NpcPosition>>>() {
+            Type MapType = new TypeToken<Map<String, Map<String, DialogController5.NpcPosition>>>() {
             }.getType();
             npcPositions = gson.fromJson(bufferedReader, MapType);
             System.out.println(ANSI_GREEN + "NpcController2: JSON(" + npcPositionPath + ")  erfolgreich gelesen" + ANSI_RESET);

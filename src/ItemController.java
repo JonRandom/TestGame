@@ -25,10 +25,10 @@ public class ItemController extends Knoten {
     //für Kollision und Items sammeln
     private Player activPlayer;
     private GameSaver gamesaver;
-    private DialogController4 diaController;
+    private DialogController5 diaController;
     private ItemAnimation itemAnimator;
 
-    public ItemController(Player ap, GameSaver gs, DialogController4 diaC, ItemAnimation iA) {
+    public ItemController(Player ap, GameSaver gs, DialogController5 diaC, ItemAnimation iA) {
         this.activPlayer = ap;
         this.gamesaver = gs;
         this.diaController = diaC;

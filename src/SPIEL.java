@@ -4,7 +4,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
     private int zaehler;
     private Player ActivePlayer;
-    private DialogController4 DialogController4;
+    private DialogController5 DialogController;
     private Map3 map;
 
     private DebugAnzeige debugAnzeige1;
@@ -78,7 +78,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
 
 
-        DialogController4 = new DialogController4(NpcController2, gamesaver);
+        DialogController = new DialogController5(NpcController2, gamesaver);
         debugAnzeige1 = new DebugAnzeige(0, 0);
         debugAnzeige2 = new DebugAnzeige(200, 0);
         debugAnzeige3 = new DebugAnzeige(350, 0);
@@ -91,7 +91,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemAnimator = new ItemAnimation();
-        itemController = new ItemController(ActivePlayer, gamesaver, DialogController4, itemAnimator);
+        itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator);
         computer = new ComputerScreen();
 
         fadeScreen = new FadeScreen();
@@ -124,7 +124,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
         //statischeWurzel.add(HouseLoader1);
-        statischeWurzel.add(DialogController4);
+        statischeWurzel.add(DialogController);
 
         statischeWurzel.add(Minigame2);
 
@@ -150,7 +150,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         tastenLosgelassenReagierbarAnmelden(this);
 
 
-        DialogController4.highLightReadyNpcs(); //einmal alle highlighten die können
+        DialogController.highLightReadyNpcs(); //einmal alle highlighten die können
 
         fokusSetzten();
         StartSc.hideLoadingScreen();
@@ -181,18 +181,18 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
             debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
             debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-            debugAnzeige4.SetContent("Dialog2Activ:" + DialogController4.isActive());
-            debugAnzeige5.SetContent("ZeitPosition: " + DialogController4.getGlobalTemporalPosition());
-            debugAnzeige6.SetContent("PlayingLastLine: " + DialogController4.isPlayingLastLine());
-            debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController4.getCurrentDialogCode());
-            debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController4.getButtonCursor());
-            debugAnzeige9.SetContent("OneButtonMode?: " + DialogController4.isOneButtonMode());
-            debugAnzeige10.SetContent("LastSelf: " + DialogController4.isPlayingLastLine());
+            //debugAnzeige4.SetContent("Dialog2Activ:" + DialogController.isActive());
+            debugAnzeige5.SetContent("ZeitPosition: " + DialogController.getGlobalTemporalPosition());
+            //debugAnzeige6.SetContent("PlayingLastLine: " + DialogController.isPlayingLastLine());
+            debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController.getCurrentDialogCode());
+            //debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController.getButtonCursor());
+            //debugAnzeige9.SetContent("OneButtonMode?: " + DialogController.isOneButtonMode());
+            //debugAnzeige10.SetContent("LastSelf: " + DialogController.isPlayingLastLine());
 
             DP.positionSetzen(playerX, playerY);
 
 
-            if (!DialogController4.isActive() && !StartSc.isActive() && !itemAnimator.isActiv()) {
+            if (!DialogController.isActive() && !StartSc.isActive() && !itemAnimator.isActiv()) {
                 int walkspeed = ActivePlayer.getWalkspeed();
 
                 if (tasteGedrueckt(Taste.W)) {
@@ -226,10 +226,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                     ActivePlayer.standStill();
                 }
             }
-            if (NpcController2.checkForCollision(ActivePlayer) && !DialogController4.isActive()) {
+            if (NpcController2.checkForCollision(ActivePlayer) && !DialogController.isActive()) {
                 String npcID = NpcController2.getCollidingNPC(ActivePlayer);
                 System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID);
-                DialogController4.startDialog(npcID);
+                DialogController.startDialog(npcID);
 
             }
 
@@ -289,15 +289,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
 
 
-            if (DialogController4.isWaitingForInput()) {
+            if (DialogController.isWaitingForInput()) {
                 if (tastenkuerzel == 0) {
                     //System.out.println("Taste ist gedrückt und isWaitingForInputs = true");
-                    DialogController4.input("links");
+                    DialogController.input("links");
                 } else if (tastenkuerzel == 3) {
-                    DialogController4.input("rechts");
+                    DialogController.input("rechts");
                 } else if (tastenkuerzel == 31) {
                     System.out.println("SPIEL: ENTER GEDRÜCKt");
-                    DialogController4.input("enter");
+                    DialogController.input("enter");
                 }
             }
             if (itemAnimator.isActiv()) {

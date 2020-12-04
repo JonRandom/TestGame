@@ -58,6 +58,8 @@ public class DialogController5 extends Knoten {
     //playingLastLine
     private boolean playingLastLine = false;
 
+    private boolean playingFirstLine = false;
+
 
     //lastLine
     private Map<String, String> lastLines = new HashMap<String, String>() {
@@ -134,7 +136,8 @@ public class DialogController5 extends Knoten {
      * @param npcID String ID des NPCs
      */
     public void startDialog(String npcID) { //Voraussetztung Kollision mit NPC und activ=false;
-
+        selection = 0;
+        playingFirstLine = true;
         playingLastLine = false;
         waitingForInput = true;
         active = true;
@@ -145,7 +148,7 @@ public class DialogController5 extends Knoten {
             lastDialogCode = currentDialogCode;
 
             showWindow();
-            displayDialogLine(currentDialogCode);
+            displayNextDialogLine();
         } else { //Es wird kein Dialogpacket für diesen NPC gefunden worden
             System.out.println("DialogController4: WÜRDE JZ LASTLINE SPIELEN MACHT ES ABER AUS TESTGRÜNDEN NOCH NICHT");
             playLastLine(npcID);
@@ -180,9 +183,9 @@ public class DialogController5 extends Knoten {
     private void saveLastLines() {
         //System.out.println("DialogController5: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
         for (String npcName : lastLines.keySet()) {
-            if(npcName.equals("self")){
+            if (npcName.equals("self")) {
                 //überspringe diese Line
-            }else{
+            } else {
                 String code = lastLines.get(npcName);
                 NPC_Controller2.setNpcLastLine(npcName, code);
             }
@@ -217,30 +220,29 @@ public class DialogController5 extends Knoten {
 
     public void nextLine() {
         if (!playingLastLine) {
+            playingFirstLine = false;
             System.out.println("DialogController5: Es wird die Zeile mit den Code: " + currentDialogCode + " abgespeichert!");
             gameSaver.addLine(currentDialogCode); //speicher alle Abgespielen Lines in der JSON
             lastDialogCode = currentDialogCode;
-            int wahl = selection + 1;//index 0 fix zu index 1
             DialogLine currentLine = dialogLines.get(currentDialogCode);
             if (currentLine.hasNextTime()) {
                 globalTemporalPosition = currentLine.nextTime;
                 System.out.println("Der Dialog wird jz beendet mit und es wird zur Zeit: " + currentDialogCode + " gewechselt!");
                 endDialog();
             } else {
-                if(currentLine.hasNoChoice()){
+                if (currentLine.hasNoChoice()) {
                     System.out.println("Bei dem Dialog wird mit der 1.Wahl weitergemacht weile er keine Wahl hat");
                     currentDialogCode = currentLine.wahl1;
-                }
-                else if (wahl == 1) {
+                } else if (selection == 0) {
                     //hat nic bei wahl2 dirnstehen
                     System.out.println("Bei dem Dialog wird mit der 1.Wahl weitergemacht bei slection: " + selection);
                     currentDialogCode = currentLine.wahl1;
-                } else if(wahl == 2){
+                } else if (selection == 1) {
                     System.out.println("Bei dem Dialog wird mit der 2.Wahl weitergemacht bei slection: " + selection);
                     //wenn es eine 2.Wahl gibt und wahl != 1
                     currentDialogCode = currentLine.wahl2;
                 }
-                displayDialogLine(currentDialogCode);
+                displayNextDialogLine();
             }
         } else { //isPlayingLastLine
             endDialog();
@@ -297,6 +299,26 @@ public class DialogController5 extends Knoten {
         lastLines.put(dL.name, lineCode); //self wird auch mitgespeicher und später rausgenommen
     }
 
+    public void displayNextDialogLine() {
+        if (playingFirstLine) {
+            displayDialogLine(currentDialogCode);
+        } else {
+            DialogLine dL = dialogLines.get(currentDialogCode);
+            if (!dL.hasNextTime()) {
+                if (dL.hasNoChoice()) {
+                    displayDialogLine(dL.wahl1);
+                } else if (selection == 0) {
+                    displayDialogLine(dL.wahl1);
+                } else if (selection == 1) {
+                    displayDialogLine(dL.wahl2);
+                } else {
+                    System.out.println("GANZ KOMISCH!");
+                }
+            }
+        }
+
+    }
+
     public void updateTextContent(String inhalt) {
         displayTextObject.sichtbarSetzen(true);
         displayTextObject.inhaltSetzen(inhalt);
@@ -333,11 +355,7 @@ public class DialogController5 extends Knoten {
                     if (selection < 0) {
                         selection = 0;
                     }
-                    if(!dialogLines.get(lastDialogCode).hasNoChoice()){
-                        //bei dem Dialog gibt es nicht keine Wahl, es gibt also eine!
-                        String thisCode = dialogLines.get(lastDialogCode).wahl1;
-                        displayDialogLine(thisCode);
-                    }
+                    displayNextDialogLine();
 
                     break;
 
@@ -346,11 +364,7 @@ public class DialogController5 extends Knoten {
                     if (selection > 1) {
                         selection = 1;
                     }
-                    if(!dialogLines.get(lastDialogCode).hasNoChoice()){
-                        //bei dem Dialog gibt es nicht keine Wahl, es gibt also eine!
-                        String thisCode = dialogLines.get(lastDialogCode).wahl2;
-                        displayDialogLine(thisCode);
-                    }
+                    displayNextDialogLine();
 
                     break;
 

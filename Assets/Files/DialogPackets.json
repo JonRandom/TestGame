@@ -152,8 +152,7 @@
       }
     ]
   },
-  //Tag 4 (Hier wird´s n bissl kompliziert ^^)
-  //Tag 4 Erster Hauptdialog
+  //Tag 4 (Hier wird´s n bissl kompliziert ^^) Tag 4 Erster Hauptdialog
   "Tag 4 Abschnitt 1": {
     "hacker": [
       {
@@ -165,6 +164,15 @@
   },
   "Tag 4 Hacker Quest": {
     "hacker": [
+      {
+        "requiredItems": [
+          "stick"
+        ],
+        "requiredLines": [],
+        "code": "D4.1.2.2_00_01"
+      }
+    ],
+    "FEHLER EXTRA EINGEBAUT": [
       {
         "requiredItems": [
           "stick"

@@ -1,7 +1,8 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
+import com.google.gson.annotations.Expose;
 import com.google.gson.reflect.TypeToken;
 import ea.Bild;
+import ea.Knoten;
 import ea.Text;
 
 import java.io.BufferedReader;
@@ -20,6 +21,7 @@ public class DialogChecker {
 
     private final String dialogLinesPath = "./Assets/Files/Dialoge.json";
     private final String dialogPacketsPath = "./Assets/Files/DialogPackets.json";
+    private final String itemInitFilePath = MAIN.itemInitFilePath;
 
     private final String npcFilePath = MAIN.npcTemplatePath;
 
@@ -27,6 +29,7 @@ public class DialogChecker {
     private Map<String, DialogChecker.DialogLine> dialogLines; //für die Json mit den DialogZeilen
     private Map<String, Map<String, List<DialogChecker.DialogPacket>>> dialogPackets; //für die Json mit den DialogPackets
     private HashMap<String, NPC2> NPCs; //für die Json
+    private List<DialogChecker.Item> items = new ArrayList<>();
 
 
     public DialogChecker() {
@@ -35,6 +38,9 @@ public class DialogChecker {
         readJSON_DialogLines();
         readJSON_DialogPackets();
         readJSON_NPCs();
+        readJSON_Item();
+        System.out.println("ITEMS:" + items);
+
         checkEveryLine();
         checkEveryPacket();
 
@@ -82,8 +88,8 @@ public class DialogChecker {
                         // alles passt
                     } else{
                         System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In der DialogLine (" + timeStamp + ") zwar eine NextTime, aber diese ist nicht ein valider Code");
-                        System.out.println("NextTime = " + dialogLine.nextTime);
-                        System.out.println("getDialogPakcet = " + dialogPackets.get(dialogLine.nextTime));
+                        //System.out.println("NextTime = " + dialogLine.nextTime);
+                        //System.out.println("getDialogPakcet = " + dialogPackets.get(dialogLine.nextTime));
                     }
 
 
@@ -101,16 +107,54 @@ public class DialogChecker {
         System.out.println(ANSI_GREEN + "DialogChecker: checkEveryPacket() aufgerufen" + ANSI_RESET);
         //private Map<String, Map<String, List<DialogChecker.DialogPacket>>> dialogPackets; //für die Json mit den DialogPackets
         //Map<String, List<DialogChecker.DialogPacket>> packetOccs; // = new HashMap<String, List<DialogChecker.DialogPacket>>();
+        List<String> itemStringList = new ArrayList<String>();
+        for(DialogChecker.Item s: items){
+            itemStringList.add(s.name);
+        }
         for(String timeCode : dialogPackets.keySet()){
             Map<String, List<DialogChecker.DialogPacket>> packetOccs = dialogPackets.get(timeCode);
             for(String npcName : packetOccs.keySet()){
+                List<DialogChecker.DialogPacket> packets = packetOccs.get(npcName);
                 if(NPCs.containsKey(npcName)){
                     //Name ist richtig
+                    for(DialogChecker.DialogPacket packet : packets){
+                        if(dialogLines.containsKey(packet.code)){
+                            //Der Code ist vorhanden
+//                            if(packet.requiredItems.stream().allMatch( -> items.contains(Item)))
+                            if(itemStringList.containsAll(packet.requiredItems)){
+                                //Alle Items sind für in der JSON gefunden
+                                if(packet.forbiddenLines == null){
+                                    //forbiddenLine false
+                                }
+                                else{
+                                    for(String s: packet.forbiddenLines){
+                                        //geht die forbiddenLines durch
+                                        if(dialogLines.containsKey(s)){
+                                            //Der Code ist vorhanden
+                                            //return true;
+                                        }
+                                        else{
+                                            System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In dem DialogPacket (" + timeCode + ") ist der NPC names: " + npcName  + " vorhanden, aber eine forbiddenLine ist nicht in " + npcFilePath + " nicht vorhanden.");
+                                        }
+
+                                    }
+                                }
+
+                            }
+                            else{
+                                System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In dem DialogPacket (" + timeCode + ") ist der NPC names: " + npcName  + " vorhanden, aber ein requiredItem in einem Packet ist nicht in " + itemInitFilePath + " nicht vorhanden.");
+                            }
+                        }
+                        else{
+                            System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In dem DialogPacket (" + timeCode + ") ist der NPC names: " + npcName  + " vorhanden, aber ein Code in einem Packet ist nicht in " + npcFilePath + " nicht vorhanden.");
+                        }
+                    }
+
                     //jetzt muss nach Occs gefiltert werden
                     //in den Occs muss nach Item und Line validität getestet werden
                 }
                 else{
-                    System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In dem DialogPacket (" + timeCode + ") ist der NPC names: " + npcName  + "vorhanden, dieser ist jedoch nicht in NPCs-NEW dabei");
+                    System.out.println(ANSI_PURPLE + "DialogChecker: FEHLER: In dem DialogPacket (" + timeCode + ") ist der NPC names: " + npcName  + " vorhanden, dieser ist jedoch nicht in NPCs-NEW dabei");
                 }
 
             }
@@ -119,6 +163,26 @@ public class DialogChecker {
     }
 
 
+    private void readJSON_Item() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(DialogChecker.Item.class, new DialogChecker.Deserializer())
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(itemInitFilePath));
+            Type ListType = new TypeToken<List<DialogChecker.Item>>() {
+            }.getType();
+
+
+            items = gson.fromJson(bufferedReader, ListType);
+            System.out.println(ANSI_GREEN + "ItemController: JSON(" + itemInitFilePath + ") erfolgreich gelesen" + ANSI_RESET);
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.out.println(ANSI_PURPLE + "ItemController: Ein Fehler beim Lesen der JSON(" + itemInitFilePath + ") Datei. Entweder Pfad flasch, oder JSON Struktur." + ANSI_RESET);
+
+        }
+    }
 
     private void readJSON_DialogLines() {
         Gson gson = new Gson();
@@ -262,6 +326,89 @@ public class DialogChecker {
                 //hier landet man auch mit falschen Eingaben!!
                 return false;
             }
+        }
+    }
+
+    public static class Item extends Knoten {
+
+        private String mainPath = MAIN.itemsFilePath;
+
+        private Bild img;
+
+        @Expose
+        private String name;
+        @Expose
+        private float posX;
+        @Expose
+        private float posY;
+        @Expose
+        private float relativePosX;
+        @Expose
+        private float relativePosY;
+        @Expose
+        private int houseN;
+        @Expose
+        private boolean visible;
+
+        private Item(String n, float x, float y, float rX, float rY, int hn, boolean vb) {
+            this.name = n;
+            this.posX = x;
+            this.posY = y;
+
+            this.relativePosX = rX;
+            this.relativePosY = rY;
+
+            this.houseN = hn;
+            this.visible = vb;
+
+            try {
+                String path = mainPath + name + ".png";
+                img = new Bild(posX, posY, path);
+                this.add(img);
+                this.sichtbarSetzen(visible);
+            } catch (Exception e) {
+                System.out.println("Item: Fehler beim importieren der Datei");
+                System.out.println("Item: " + e);
+            }
+
+        }
+
+        private void showItem() {
+            visible = true;
+            this.sichtbarSetzen(true);
+        }
+
+        private void hideItem() {
+            visible = false;
+            this.sichtbarSetzen(false);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "mainPath='" + mainPath + '\'' +
+                    ", img=" + img +
+                    ", name='" + name + '\'' +
+                    ", posX=" + posX +
+                    ", posY=" + posY +
+                    ", relativePosX=" + relativePosX +
+                    ", relativePosY=" + relativePosY +
+                    ", houseN=" + houseN +
+                    ", visible=" + visible +
+                    '}';
+        }
+    }
+
+    public static class Deserializer implements JsonDeserializer<DialogChecker.Item> {
+
+        public DialogChecker.Item deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+
+            JsonObject jsonObject = (JsonObject) jsonElement;
+            return new DialogChecker.Item(jsonObject.get("name").getAsString(), jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(), jsonObject.get("houseN").getAsInt(), jsonObject.get("visible").getAsBoolean());
         }
     }
 }

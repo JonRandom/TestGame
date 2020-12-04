@@ -147,7 +147,7 @@ public class NpcController2 extends Knoten {
     }
 
     public void setNpcLastLine(String name, String lineCode) {
-        //System.out.println("NpcController2: für den NPC:" + name + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
+        System.out.println("NpcController2: für den NPC:" + name + "wird der Dialog mit dem Code: " + lineCode + " gespeichert");
         NPC2 npc = NPCs.get(name);
         npc.setLastLine(lineCode);
         saveJSON();

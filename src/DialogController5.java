@@ -54,6 +54,9 @@ public class DialogController5 extends Knoten {
     //Dialog Weg selection
     private int selection = 0;
 
+    //playingLastLine
+    private boolean playingLastLine = false;
+
 
     //lastLine
     private Map<String, String> lastLines = new HashMap<String, String>() {
@@ -130,6 +133,7 @@ public class DialogController5 extends Knoten {
      * @param npcID String ID des NPCs
      */
     public void startDialog(String npcID) { //Voraussetztung Kollision mit NPC und activ=false;
+        playingLastLine = false;
         waitingForInput = true;
         active = true;
         if (isDialogPacketPlayable(npcID)) {
@@ -137,68 +141,29 @@ public class DialogController5 extends Knoten {
             DialogController5.DialogPacket element = getPlayableDialogPacket(npcID);
             currentDialogCode = element.code;
             showWindow();
-            updateTextContent(dialogLines.get(currentDialogCode));
+            displayDialogLine(currentDialogCode);
         } else { //Es wird kein Dialogpacket für diesen NPC gefunden worden
             System.out.println("DialogController4: WÜRDE JZ LASTLINE SPIELEN MACHT ES ABER AUS TESTGRÜNDEN NOCH NICHT");
-            //playLastLine(npcID);
+            playLastLine(npcID);
         }
     }
 
     public void highLightReadyNpcs() {
         NPC_Controller2.disguiseAllNPCs();
-        if (dialogPackets.containsKey(globalTemporalPosition)) {
-            Map<String, List<DialogController5.DialogPacket>> innnerPacketMap = dialogPackets.get(globalTemporalPosition);
-            Set keys = innnerPacketMap.keySet();
-            for (String npcName : innnerPacketMap.keySet()) { //get die NPC durch
-                List<DialogController5.DialogPacket> npcOccs = innnerPacketMap.get(npcName); //gibt mir alle Occs zu einem NPC
-                List<String> foundItems = gameSaver.getItems(); //holt sich aus dem Savefile die momentanen Items
-                List<String> readLines = gameSaver.getLines(); //holt sich aus dem Savefile die momentanen gelesenen Lines;
-
-                for (DialogController5.DialogPacket packet : npcOccs) { //get also alle Packete einer Occ durch
-                    if (foundItems.containsAll(packet.requiredItems)) {
-                        if (readLines.containsAll(packet.requiredLines)) {
-                            //System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden");
-                            if (packet.forbiddenLines == null) {
-                                System.out.println("DialogController4: Es sind alle nötigen Items und Zeilen vorhanden und keine Lines verboten für den NPC: " + npcName);
-                                //System.out.println(;
-                                NPC_Controller2.highLightNpcsByName(npcName);
-                            } else if (inverseContains(packet.forbiddenLines, readLines)) {
-                                //es gibt forbiddenLines, meine sind aber nicht dabei
-                                System.out.println("DialogController4: Das Dialogpacket hat zwar verbotene Lines, unsere sind aber nicht dabei für den NPC: " + npcName);
-                                NPC_Controller2.highLightNpcsByName(npcName);
-                            } else {
-                                System.out.println("DialogController4: Das Dialogpacket ist verboten!");
-                                //nix machen
-
-                            }
-                        } else {
-                            System.out.println("DialogController4: highLightReadyNpcs: Es sind alle nötigen Items vorhanden, aber nicht alle Zeilen für den NPC: " + npcName);
-                            //return false;
-                        }
-                    } else {
-                        System.out.println("DialogController4: highLightReadyNpcs(): Es sind nicht alle nötigen Items gefunden worden");
-                        //return false;
-
-                    }
-
-                }
-
+        for (String name : NPC_Controller2.getNPCs().keySet()) {
+            if (isDialogPacketPlayable(name)) {
+                NPC_Controller2.highLightNpcsByName(name);
             }
-        } else {
-            System.out.println("DialogController4: FEHLER BEIM HIGHLIGHTEN, DIE NÄCHSTE ZEIT GIBT ES GAR NICHT");
-            System.out.println("DialogController4: Die Zeit POS ist:" + globalTemporalPosition);
-            NPC_Controller2.highLightNpcs(null);
         }
-
     }
 
 
     public void setNpcFace(String npcName) {
         hideAllFaces();
-        if(npcName.equals("self")){
-            System.out.println("SELF SPRICHT");
+        if (npcName.equals("self")) {
+            //System.out.println("SELF SPRICHT");
         }
-        System.out.println("Der NPC mit dem Namen = " + npcName + " wird neben dem Fenster als FACE abgebildet");
+        //System.out.println("Der NPC mit dem Namen = " + npcName + " wird neben dem Fenster als FACE abgebildet");
         npcFaces.get(npcName).sichtbarSetzen(true);
     }
 
@@ -211,44 +176,65 @@ public class DialogController5 extends Knoten {
     private void saveLastLines() {
         //System.out.println("DialogController5: Die LastLines der NPCs werden im NPC_Controller gespeichert(NPCs-NEW.json)");
         for (String npcName : lastLines.keySet()) {
-            String code = lastLines.get(npcName);
-            NPC_Controller2.setNpcLastLine(npcName, code);
+            if(npcName.equals("self")){
+                //überspringe diese Line
+            }else{
+                String code = lastLines.get(npcName);
+                NPC_Controller2.setNpcLastLine(npcName, code);
+            }
+
         }
         lastLines.clear();
     }
 
 
     private void endDialog() {
+        active = false;
+        waitingForInput = false;
+
         NPC_Controller2.resetToLastQuietPos();
         System.out.println("END DIALOG");
         currentDialogCode = null;
         hideWindow();
-        active = false;
+        saveLastLines();
+
     }
 
-//    private void playLastLine(String npcID) {
-//        System.out.println("DialogController5: playLastLine() aufgerufen");
-//        oneButtonMode = true;
-//        waitingForInput = true;
-//        playingLastLine = true; //für die input klasse
-//        String lastLineID = NPC_Controller2.getNpcLastLine(npcID);
-//        //System.out.println("LastLineID: " + lastLineID);
-//        DialogController5.DialogLine lastLine = dialogLines.get(lastLineID);
-//
-//
-//        displayTextObject.sichtbarSetzen(true);
-//        displayDialogBackground.sichtbarSetzen(true);
-//
-//        String inhalt;
-//        try {
-//            inhalt = lastLine.inhalt;
-//            setConvText(inhalt);
-//            setNpcFace(lastLine.name);
-//        } catch (Exception e) {
-//            System.out.println(ANSI_PURPLE + "DialogController5: FEHLER: Für diesem NPC gibt es scheinbar kein lastLine Eintrag" + ANSI_RESET);
-//            displayTextObject.inhaltSetzen("FEHLER! Für diesem NPC gibt es scheinbar kein lastLine Eintrag!");
-//        }
-//    }
+    private void playLastLine(String npcID) {
+        playingLastLine = true;
+        System.out.println("DialogController5: playLastLine() aufgerufen");
+        DialogLine lastLine = dialogLines.get(NPC_Controller2.getNpcLastLine(npcID));
+        if (lastLine == null) {
+            updateTextContent("FEHLER DER NPC HAT KEINE LASTLINE");
+        } else {
+            displayDialogLine(NPC_Controller2.getNpcLastLine(npcID));
+        }
+    }
+
+    public void nextLine() {
+        if (!playingLastLine) {
+            gameSaver.addLine(currentDialogCode); //speicher alle Abgespielen Lines in der JSON
+            int wahl = selection + 1;//index 0 fix zu index 1
+            DialogLine currentLine = dialogLines.get(currentDialogCode);
+            if (currentLine.hasNextTime()) {
+                globalTemporalPosition = currentLine.nextTime;
+                System.out.println("Der Dialog wird jz beendet mit und es wird zur Zeit: " + currentDialogCode + " gewechselt!");
+                endDialog();
+            } else {
+                if (currentLine.hasNoChoice() || wahl == 1) {
+                    //hat nic bei wahl2 dirnstehen
+                    currentDialogCode = currentLine.wahl1;
+                } else {
+                    //wenn es eine 2.Wahl gibt und wahl != 1
+                    currentDialogCode = currentLine.wahl2;
+                }
+                displayDialogLine(currentDialogCode);
+            }
+        } else { //isPlayingLastLine
+            endDialog();
+        }
+
+    }
 
     private Stream<DialogPacket> getPlayableDialogs(String npcID) {
         return dialogPackets
@@ -290,30 +276,18 @@ public class DialogController5 extends Knoten {
     }
 
 
-    public void nextLine() {
-        int wahl = selection + 1;//index 0 fix zu index 1
-        DialogLine currentLine = dialogLines.get(currentDialogCode);
-        if (currentLine.hasNextTime()) {
-            endDialog();
-        }
-        else {
-            if (currentLine.hasNoChoice() || wahl == 1) {
-                //hat nic bei wahl2 dirnstehen
-                currentDialogCode = currentLine.wahl1;
-            } else {
-                //wenn es eine 2.Wahl gibt und wahl != 1
-                currentDialogCode = currentLine.wahl2;
-            }
-            updateTextContent(dialogLines.get(currentDialogCode));
-        }
-    }
-
-
-    public void updateTextContent(DialogLine dL) {
+    public void displayDialogLine(String lineCode) {
+        DialogLine dL = dialogLines.get(lineCode);
         setNpcFace(dL.name);
         setDialogWindowDir(dL.isSelf());
+        updateTextContent(dL.inhalt);
+        System.out.println("DialogController5: Zeigt jetzt die Zeile: " + lineCode + " an!");
+        lastLines.put(dL.name, lineCode); //self wird auch mitgespeicher und später rausgenommen
+    }
+
+    public void updateTextContent(String inhalt) {
         displayTextObject.sichtbarSetzen(true);
-        displayTextObject.inhaltSetzen(dL.inhalt);
+        displayTextObject.inhaltSetzen(inhalt);
         displayTextObject.groesseSetzen(defaultTextSize);
         while (displayTextObject.getBreite() > maxTextWidth) {
             displayTextObject.groesseSetzen(displayTextObject.groesse() - 1);
@@ -322,17 +296,18 @@ public class DialogController5 extends Knoten {
         displayTextObject.positionSetzen(textPosX, textPosY);
     }
 
+
     public void setDialogWindowDir(boolean isSelf) {
         displayDialogBackgroundLeft.sichtbarSetzen(false);
         displayDialogBackgroundRight.sichtbarSetzen(false);
         if (!isSelf) {
             //links wenn nicht selber
             displayDialogBackgroundLeft.sichtbarSetzen(true);
-            System.out.println("DialogController: DISPLAY: es wird das nach Links angezeigt");
+            //System.out.println("DialogController: DISPLAY: es wird das nach Links angezeigt");
         } else {
             //rechts wenn selber
             displayDialogBackgroundRight.sichtbarSetzen(true);
-            System.out.println("DialogController: DISPLAY: es wird das nach Rechts angezeigt");
+            //System.out.println("DialogController: DISPLAY: es wird das nach Rechts angezeigt");
         }
 
 
@@ -346,6 +321,7 @@ public class DialogController5 extends Knoten {
                     if (selection < 0) {
                         selection = 0;
                     }
+                    displayDialogLine(currentDialogCode);
                     break;
 
                 case "rechts":
@@ -353,6 +329,7 @@ public class DialogController5 extends Knoten {
                     if (selection > 1) {
                         selection = 1;
                     }
+                    displayDialogLine(currentDialogCode);
                     break;
 
                 case "enter":
@@ -465,7 +442,7 @@ public class DialogController5 extends Knoten {
         }
 
         public boolean hasNextTime() {
-            System.out.println("HAS NEXT TIME AUFGERUFEN: ANTWORT: " + !nextTime.equals(""));
+            //System.out.println("HAS NEXT TIME AUFGERUFEN: ANTWORT: " + !nextTime.equals(""));
             return (!nextTime.equals(""));
         }
 

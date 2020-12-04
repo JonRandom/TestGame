@@ -50,6 +50,7 @@ public class DialogController5 extends Knoten {
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
+    private String lastDialogCode;
 
     //Dialog Weg selection
     private int selection = 0;
@@ -133,6 +134,7 @@ public class DialogController5 extends Knoten {
      * @param npcID String ID des NPCs
      */
     public void startDialog(String npcID) { //Voraussetztung Kollision mit NPC und activ=false;
+
         playingLastLine = false;
         waitingForInput = true;
         active = true;
@@ -140,6 +142,8 @@ public class DialogController5 extends Knoten {
             //start eines neuen Dialogpacketes
             DialogController5.DialogPacket element = getPlayableDialogPacket(npcID);
             currentDialogCode = element.code;
+            lastDialogCode = currentDialogCode;
+
             showWindow();
             displayDialogLine(currentDialogCode);
         } else { //Es wird kein Dialogpacket für diesen NPC gefunden worden
@@ -213,7 +217,9 @@ public class DialogController5 extends Knoten {
 
     public void nextLine() {
         if (!playingLastLine) {
+            System.out.println("DialogController5: Es wird die Zeile mit den Code: " + currentDialogCode + " abgespeichert!");
             gameSaver.addLine(currentDialogCode); //speicher alle Abgespielen Lines in der JSON
+            lastDialogCode = currentDialogCode;
             int wahl = selection + 1;//index 0 fix zu index 1
             DialogLine currentLine = dialogLines.get(currentDialogCode);
             if (currentLine.hasNextTime()) {
@@ -221,10 +227,16 @@ public class DialogController5 extends Knoten {
                 System.out.println("Der Dialog wird jz beendet mit und es wird zur Zeit: " + currentDialogCode + " gewechselt!");
                 endDialog();
             } else {
-                if (currentLine.hasNoChoice() || wahl == 1) {
-                    //hat nic bei wahl2 dirnstehen
+                if(currentLine.hasNoChoice()){
+                    System.out.println("Bei dem Dialog wird mit der 1.Wahl weitergemacht weile er keine Wahl hat");
                     currentDialogCode = currentLine.wahl1;
-                } else {
+                }
+                else if (wahl == 1) {
+                    //hat nic bei wahl2 dirnstehen
+                    System.out.println("Bei dem Dialog wird mit der 1.Wahl weitergemacht bei slection: " + selection);
+                    currentDialogCode = currentLine.wahl1;
+                } else if(wahl == 2){
+                    System.out.println("Bei dem Dialog wird mit der 2.Wahl weitergemacht bei slection: " + selection);
                     //wenn es eine 2.Wahl gibt und wahl != 1
                     currentDialogCode = currentLine.wahl2;
                 }
@@ -321,7 +333,12 @@ public class DialogController5 extends Knoten {
                     if (selection < 0) {
                         selection = 0;
                     }
-                    displayDialogLine(currentDialogCode);
+                    if(!dialogLines.get(lastDialogCode).hasNoChoice()){
+                        //bei dem Dialog gibt es nicht keine Wahl, es gibt also eine!
+                        String thisCode = dialogLines.get(lastDialogCode).wahl1;
+                        displayDialogLine(thisCode);
+                    }
+
                     break;
 
                 case "rechts":
@@ -329,7 +346,12 @@ public class DialogController5 extends Knoten {
                     if (selection > 1) {
                         selection = 1;
                     }
-                    displayDialogLine(currentDialogCode);
+                    if(!dialogLines.get(lastDialogCode).hasNoChoice()){
+                        //bei dem Dialog gibt es nicht keine Wahl, es gibt also eine!
+                        String thisCode = dialogLines.get(lastDialogCode).wahl2;
+                        displayDialogLine(thisCode);
+                    }
+
                     break;
 
                 case "enter":
@@ -372,6 +394,10 @@ public class DialogController5 extends Knoten {
 
     public boolean isActive() {
         return active;
+    }
+
+    public int getSelection() {
+        return selection;
     }
 
     //JSON SACHEN UND DEREN KLASSEN

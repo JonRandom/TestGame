@@ -185,7 +185,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             debugAnzeige5.SetContent("ZeitPosition: " + DialogController.getGlobalTemporalPosition());
             //debugAnzeige6.SetContent("PlayingLastLine: " + DialogController.isPlayingLastLine());
             debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController.getCurrentDialogCode());
-            //debugAnzeige8.SetContent("ButtonAuswahl: " + DialogController.getButtonCursor());
+            debugAnzeige8.SetContent("SELECTION: " + DialogController.getSelection());
             //debugAnzeige9.SetContent("OneButtonMode?: " + DialogController.isOneButtonMode());
             //debugAnzeige10.SetContent("LastSelf: " + DialogController.isPlayingLastLine());
 

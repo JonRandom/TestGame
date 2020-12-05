@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import ea.Bild;
 import ea.Game;
 import ea.Knoten;
+import ea.Sound;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -27,12 +28,14 @@ public class ItemController extends Knoten {
     private GameSaver gamesaver;
     private DialogController5 diaController;
     private ItemAnimation itemAnimator;
+    private SoundController soundC;
 
-    public ItemController(Player ap, GameSaver gs, DialogController5 diaC, ItemAnimation iA) {
+    public ItemController(Player ap, GameSaver gs, DialogController5 diaC, ItemAnimation iA, SoundController sc) {
         this.activPlayer = ap;
         this.gamesaver = gs;
         this.diaController = diaC;
         this.itemAnimator = iA;
+        this.soundC = sc;
 
         readJSON();
         addAllItems();
@@ -47,11 +50,11 @@ public class ItemController extends Knoten {
                 if (i.requiredLineCode.equals("")) {
                     i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
                 } else if (lines.contains(i.requiredLineCode)) {
-                    System.out.println("ItemController: Das Item namnes:" + i.name + " wird jz aufgedeckt und angezeigt");
+                    //System.out.println("ItemController: Das Item namnes:" + i.name + " wird jz aufgedeckt und angezeigt");
                     //Es wurden die nötige Zeile vorgelesen und jz wird das item angezeigt
                     i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
                 } else {
-                    System.out.println("ItemController: Das Item namnes:" + i.name + " wird noch nicht aufgedeckt");
+                    //System.out.println("ItemController: Das Item namnes:" + i.name + " wird noch nicht aufgedeckt");
                     i.hideItem();
                 }
             }
@@ -118,7 +121,9 @@ public class ItemController extends Knoten {
         if (collItem == null) {
             System.out.println("ItemController: FEHLER: Er schneidet KEIN Item");
         } else {
+            // Item gefunden
             System.out.println("ItemController: Der Spieler schneidet echt ein Item und es wird jz ausgeblendet, Itemname=(" + collItem.name + ").");
+            soundC.playItemFoundSound();
             collItem.hideItem();
             collItem.found = true;
             itemAnimator.openAnimation(collItem.name); //öffnet die Große animation zu dem Item

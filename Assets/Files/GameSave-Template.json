@@ -1,7 +1,7 @@
 {
   "posX": 1023,
   "posY": 1023,
-  "walkspeed": 8,
+  "walkspeed": 3,
   "houseNumber": 0,
   "lastOutsidePosX": 700,
   "lastOutsidePosY": 2500,

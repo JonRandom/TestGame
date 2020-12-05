@@ -12,6 +12,10 @@ public class SoundController {
     private Sound title2;
     private Sound lysander;
 
+
+    //https://freesound.org/people/balloonhead/sounds/444986/
+    private Sound itemFound;
+
     //https://freesound.org/people/Tabook/sounds/400329/
     private Sound doorSound;
 
@@ -29,6 +33,7 @@ public class SoundController {
         title2 = new Sound(mainPath + "title2.mp3");
 
         doorSound = new Sound(mainPath + "door.wav");
+        itemFound = new Sound(mainPath + "itemFound.wav");
     }
 
 
@@ -91,6 +96,12 @@ public class SoundController {
     public void playHappyMusic() {
         if (!mute) {
             happyMusic.play();
+        }
+
+    }
+    public void playItemFoundSound() {
+        if (!mute) {
+            itemFound.play();
         }
 
     }

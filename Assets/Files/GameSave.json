@@ -1,12 +1,13 @@
 {
-  "posX": 792,
-  "posY": 2324,
-  "walkspeed": 8,
-  "houseNumber": 3,
+  "posX": 955,
+  "posY": 2440,
+  "walkspeed": 3,
+  "houseNumber": -1,
   "lastOutsidePosX": 844,
-  "lastOutsidePosY": 2252,
+  "lastOutsidePosY": 2248,
   "temporalPosition": "Tag 1 Abschnitt 1 (Start Zeit)",
   "items": [
+    "paper",
     "money"
   ],
   "lines": [

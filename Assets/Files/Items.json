@@ -20,5 +20,16 @@
     "visible": true,
     "found": false,
     "requiredLineCode" : "D1.0_00_01"
+  },
+  {
+    "name": "paper",
+    "posX": 1000,
+    "posY": 2600,
+    "relativePosX": 1000,
+    "relativePosY": 2600,
+    "houseN": -1,
+    "visible": true,
+    "found": false,
+    "requiredLineCode" : ""
   }
 ]

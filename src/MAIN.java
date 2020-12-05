@@ -53,6 +53,11 @@ public class MAIN {
     //Computer Screen
     public static final String computerPicsJSON = "./Assets/Computer/computerImgs.json";
 
+    //Settingsscreen
+    public static  final String settingsScreenImg = "./Assets/SettingsAndAbout/settingImg.png";
+    public static  final String aboutScreenImg = "./Assets/SettingsAndAbout/aboutImg.png";
+
+
     public static void main(String[] args){
         DialogChecker dc = new DialogChecker();
 

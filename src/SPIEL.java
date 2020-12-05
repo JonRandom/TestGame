@@ -31,6 +31,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     //sound
     private SoundController soundController;
 
+    //SettingScreen
+    private WindowScreen settingScreen;
+    private WindowScreen aboutScreen;
+
+
     //MAIN LOADING
     private boolean initDone = false;
 
@@ -58,7 +63,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         soundController = new SoundController();
         soundController.startTitleMusic();
         StartSc = new StartingScreen();
+
+        settingScreen = new WindowScreen(MAIN.settingsScreenImg);
+        aboutScreen = new WindowScreen(MAIN.aboutScreenImg);
         statischeWurzel.add(StartSc);
+        statischeWurzel.add(settingScreen, aboutScreen);
         StartSc.setActive(true);
 
 
@@ -93,6 +102,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         itemAnimator = new ItemAnimation();
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator, soundController);
         computer = new ComputerScreen();
+
 
         fadeScreen = new FadeScreen();
 
@@ -154,6 +164,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         fokusSetzten();
         StartSc.hideLoadingScreen();
+        aboutScreen.hide();
         initDone = true;
 
         soundController.stopAllMusic();
@@ -192,7 +203,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             DP.positionSetzen(playerX, playerY);
 
 
-            if (!DialogController.isActive() && !StartSc.isActive() && !itemAnimator.isActiv()) {
+            if (!DialogController.isActive() && !StartSc.isActive() && !itemAnimator.isActiv() && !settingScreen.isActive()) {
                 int walkspeed = ActivePlayer.getWalkspeed();
 
                 if (tasteGedrueckt(Taste.W)) {
@@ -276,6 +287,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 soundController.toggleMute();
             }
 
+            if (tastenkuerzel == 15) {//P FÜR SETTINGS
+                settingScreen.toggleWindow();
+            }
+
             if (tastenkuerzel == 12) {//M für minigame
                 Minigame2.startGame();
             }
@@ -336,9 +351,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         }
 
         if (StartSc.isActive()) {
-            if (tastenkuerzel == 0) {
+            if (tastenkuerzel == 0  && !aboutScreen.isActive() && !settingScreen.isActive()) {
                 StartSc.ShiftLeft();
-            } else if (tastenkuerzel == 3) {
+            } else if (tastenkuerzel == 3  && !aboutScreen.isActive() && !settingScreen.isActive()) {
                 StartSc.ShiftRight();
             } else if (tastenkuerzel == 31) { //enter
                 int sel = StartSc.getSelection();
@@ -363,11 +378,15 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                         break;
 
                     case (3):
-                        System.out.println("ABOUT GEDRÜCKT: ------");
+                        System.out.println("ABOUT GEDRÜCKT:AboutScreenWir gestartet");
+                        settingScreen.hide();
+                        aboutScreen.toggleWindow();
                         break;
 
                     case (4):
-                        System.out.println("SETTINGS GEDRÜCKT: ------");
+                        System.out.println("SETTINGS GEDRÜCKT:SettingScreen wird gestartet");
+                        aboutScreen.hide();
+                        settingScreen.toggleWindow();
                         break;
                 }
 

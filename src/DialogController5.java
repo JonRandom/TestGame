@@ -216,8 +216,6 @@ public class DialogController5 extends Knoten {
         }
         lastLines.clear();
     }
-
-
     private void endDialog() {
         active = false;
         waitingForInput = false;
@@ -230,7 +228,6 @@ public class DialogController5 extends Knoten {
         highLightReadyNpcs();
 
     }
-
     private void playLastLine(String npcID) {
         playingLastLine = true;
         System.out.println("DialogController5: playLastLine() aufgerufen");
@@ -241,7 +238,6 @@ public class DialogController5 extends Knoten {
             displayDialogLine(NPC_Controller2.getNpcLastLine(npcID));
         }
     }
-
     public void nextLine() {
         if (!playingLastLine) {
             System.out.println("DialogController5: Es wird die Zeile mit den Code: " + currentDialogCode + " abgespeichert!");
@@ -320,8 +316,24 @@ public class DialogController5 extends Knoten {
         hideAllArrows();
     }
 
+    public void lineSpecialAction(String l){
+        switch(l){
+            case(""):
+                //e.g. show PC screen
+                break;
+
+            case("we"):
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
 
     public void displayDialogLine(String lineCode) {
+        lineSpecialAction(lineCode);
         DialogLine dL = dialogLines.get(lineCode);
         setNpcFace(dL.name);
         setDialogWindowDir(dL.isSelf());
@@ -330,27 +342,6 @@ public class DialogController5 extends Knoten {
         lastLines.put(dL.name, lineCode); //self wird auch mitgespeicher und später rausgenommen
     }
 
-    /* alter Ansatz
-    public void displayNextDialogLine() {
-        if (playingFirstLine) {
-            displayDialogLine(currentDialogCode);
-        } else {
-            DialogLine dL = dialogLines.get(currentDialogCode);
-            if (!dL.hasNextTime()) {
-                if (dL.hasNoChoice()) {
-                    displayDialogLine(dL.wahl1);
-                } else if (selection == 0) {
-                    displayDialogLine(dL.wahl1);
-                } else if (selection == 1) {
-                    displayDialogLine(dL.wahl2);
-                } else {
-                    System.out.println("GANZ KOMISCH!");
-                }
-            }
-        }
-
-    }
-     */
 
     public void updateTextContent(String inhalt) {
         displayTextObject.sichtbarSetzen(true);

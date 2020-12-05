@@ -35,6 +35,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     private WindowScreen settingScreen;
     private WindowScreen aboutScreen;
 
+    //END SCREEN
+    private EndScreen endScreen;
 
     //MAIN LOADING
     private boolean initDone = false;
@@ -102,6 +104,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         itemAnimator = new ItemAnimation();
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator, soundController);
         computer = new ComputerScreen();
+        endScreen = new EndScreen(soundController);
 
 
         fadeScreen = new FadeScreen();
@@ -152,6 +155,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         statischeWurzel.add(computer);
         statischeWurzel.add(itemAnimator);
+        statischeWurzel.add(endScreen);
 
         statischeWurzel.add(fadeScreen);
 
@@ -168,6 +172,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         initDone = true;
 
         soundController.stopAllMusic();
+
+        // TEST: endScreen.playEnding(true);
 
     }
 
@@ -252,6 +258,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             fadeScreen.tick();
             soundController.tickMusic();
             itemController.updateItemVisibility();
+            endScreen.tick();
 
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden

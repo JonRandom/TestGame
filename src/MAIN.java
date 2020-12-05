@@ -57,6 +57,8 @@ public class MAIN {
     public static  final String settingsScreenImg = "./Assets/SettingsAndAbout/settingImg.png";
     public static  final String aboutScreenImg = "./Assets/SettingsAndAbout/aboutImg.png";
 
+    //Ending Screen
+    public static  final String endScreenImgPath = "./Assets/EndScreen/endImg.png";
 
     public static void main(String[] args){
         DialogChecker dc = new DialogChecker();

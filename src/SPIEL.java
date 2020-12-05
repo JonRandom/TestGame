@@ -240,6 +240,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             itemAnimator.tick();
             fadeScreen.tick();
             soundController.tickMusic();
+            itemController.updateItemVisibility();
 
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden
@@ -247,6 +248,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 slowTick();
             }
         }
+
         StartSc.tickLoadingAnimation();
 
     }

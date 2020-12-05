@@ -39,6 +39,27 @@ public class ItemController extends Knoten {
         System.out.println(items.toString());
     }
 
+    public void updateItemVisibility(){
+        List<String>  lines = gamesaver.getLines();
+        for(Item i : items){
+            if(!i.found) {
+                //alles nur falls das Item noch nicht gefunden wurde
+                if (i.requiredLineCode.equals("")) {
+                    i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
+                } else if (lines.contains(i.requiredLineCode)) {
+                    System.out.println("ItemController: Das Item namnes:" + i.name + " wird jz aufgedeckt und angezeigt");
+                    //Es wurden die nötige Zeile vorgelesen und jz wird das item angezeigt
+                    i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
+                } else {
+                    System.out.println("ItemController: Das Item namnes:" + i.name + " wird noch nicht aufgedeckt");
+                    i.hideItem();
+                }
+            }
+        }
+
+
+    }
+
     public void enterHouse(int hN, int offsetX, int offsetY) {
         hideAllItems();
         for (Item item : items) {  //geht die JSON durch und
@@ -99,6 +120,7 @@ public class ItemController extends Knoten {
         } else {
             System.out.println("ItemController: Der Spieler schneidet echt ein Item und es wird jz ausgeblendet, Itemname=(" + collItem.name + ").");
             collItem.hideItem();
+            collItem.found = true;
             itemAnimator.openAnimation(collItem.name); //öffnet die Große animation zu dem Item
         }
 
@@ -107,7 +129,6 @@ public class ItemController extends Knoten {
 
     private void hideAllItems() {
         for (Item item : items) {  //geht die JSON durch und
-
             item.sichtbarSetzen(false);
         }
     }
@@ -163,8 +184,12 @@ public class ItemController extends Knoten {
         private int houseN;
         @Expose
         private boolean visible;
+        @Expose
+        private boolean found;
+        @Expose
+        private String requiredLineCode;
 
-        private Item(String n, float x, float y, float rX, float rY, int hn, boolean vb) {
+        private Item(String n, float x, float y, float rX, float rY, int hn, boolean vb,boolean f,  String rLC) {
             this.name = n;
             this.posX = x;
             this.posY = y;
@@ -174,6 +199,9 @@ public class ItemController extends Knoten {
 
             this.houseN = hn;
             this.visible = vb;
+            this.found = f;
+
+            this.requiredLineCode = rLC;
 
             try {
                 String path = mainPath + name + ".png";
@@ -213,6 +241,8 @@ public class ItemController extends Knoten {
                     ", relativePosY=" + relativePosY +
                     ", houseN=" + houseN +
                     ", visible=" + visible +
+                    ", found=" + found +
+                    ", requiredLineCode='" + requiredLineCode + '\'' +
                     '}';
         }
     }
@@ -222,7 +252,7 @@ public class ItemController extends Knoten {
         public Item deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new Item(jsonObject.get("name").getAsString(), jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(), jsonObject.get("houseN").getAsInt(), jsonObject.get("visible").getAsBoolean());
+            return new Item(jsonObject.get("name").getAsString(), jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(), jsonObject.get("houseN").getAsInt(), jsonObject.get("visible").getAsBoolean(), jsonObject.get("found").getAsBoolean(), jsonObject.get("requiredLineCode").getAsString());
         }
     }
 }

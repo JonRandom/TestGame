@@ -16,9 +16,9 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   "mutter": {
     "name": "mutter",
     "posX": 1230,
-    "posY": 1000,
+    "posY": 2500,
     "relativePosX": 1300,
-    "relativePosY": 1000,
+    "relativePosY": 2500,
     "houseNumber": -1,
     "lastLine": "0"
   },

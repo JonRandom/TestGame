@@ -27,6 +27,7 @@ public class MAIN {
     public static final String npcTemplatePath = "./Assets/Files/NPCs-Template.json";
     public static final String npcFilePath = "./Assets/Files/NPCs_NEW.json";
     public static final String npcPositionPath = "./Assets/Files/NPCs_Positions.json";
+
     //gesichter
     public static final String npcFacesPath = "./Assets/NPCs/Faces/";
 
@@ -46,9 +47,11 @@ public class MAIN {
     //Player
     public static final String playerStillImgPath = "./Assets/SpielerTest/still.png";
 
-
     //MAP COLLIDER VISBILE?
     public static final boolean colliderImgsVisible = false;
+
+    //Computer Screen
+    public static final String computerPicsJSON = "./Assets/Computer/computerImgs.json";
 
     public static void main(String[] args){
         DialogChecker dc = new DialogChecker();

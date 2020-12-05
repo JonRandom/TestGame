@@ -1,13 +1,28 @@
+import com.google.gson.*;
+import com.google.gson.annotations.Expose;
+import com.google.gson.reflect.TypeToken;
 import ea.Bild;
 import ea.Knoten;
+import ea.Raum;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ComputerScreen extends Knoten {
 
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+
     private Bild mainOverlayImg;
-
     private FadeScreen fadeScreen;
-
     private boolean activ = false;
+
 
     public ComputerScreen(){
 
@@ -44,4 +59,5 @@ public class ComputerScreen extends Knoten {
     public boolean isActiv() {
         return activ;
     }
+
 }

@@ -46,9 +46,9 @@ public class DialogController5 extends Knoten {
     private Bild displayArrowRight;
 
     //Text Stuff
-    private final int textPosY = 630;
+    private final int textPosY = 680;
     private final int defaultTextSize = 28;
-    private final int maxTextWidth = 800;
+    private final int maxTextWidth = 900;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;

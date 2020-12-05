@@ -91,7 +91,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemAnimator = new ItemAnimation();
-        itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator);
+        itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator, soundController);
         computer = new ComputerScreen();
 
         fadeScreen = new FadeScreen();
@@ -240,6 +240,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             itemAnimator.tick();
             fadeScreen.tick();
             soundController.tickMusic();
+            itemController.updateItemVisibility();
 
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden
@@ -247,6 +248,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 slowTick();
             }
         }
+
         StartSc.tickLoadingAnimation();
 
     }

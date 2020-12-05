@@ -1,20 +1,35 @@
 [
   {
     "name": "stick",
-    "posX": 400,
-    "posY": 400,
-    "relativePosX": 400,
-    "relativePosY": 400,
-    "houseN": 0,
-    "visible": true
+    "posX": 40,
+    "posY": 40,
+    "relativePosX": 40,
+    "relativePosY": 40,
+    "houseN": 3,
+    "visible": true,
+    "found": false,
+    "requiredLineCode" : "D1.0_00_01"
   },
   {
     "name": "money",
-    "posX": 200,
-    "posY": 700,
-    "relativePosX": 200,
-    "relativePosY": 700,
+    "posX": 1000,
+    "posY": 2500,
+    "relativePosX": 1000,
+    "relativePosY": 2500,
     "houseN": -1,
-    "visible": true
+    "visible": true,
+    "found": false,
+    "requiredLineCode" : "D1.0_00_01"
+  },
+  {
+    "name": "paper",
+    "posX": 1000,
+    "posY": 2600,
+    "relativePosX": 1000,
+    "relativePosY": 2600,
+    "houseN": -1,
+    "visible": true,
+    "found": false,
+    "requiredLineCode" : ""
   }
 ]

@@ -197,6 +197,7 @@ public class Map3 extends Knoten {
 
     }
     public void enterHouse(int HouseN){
+
         if(lastWhiteX == -1){
             //soll die InitDaten aus der Gamesave Json nicht überschreiben
         } else{
@@ -207,13 +208,19 @@ public class Map3 extends Knoten {
         System.out.println("Map3: Spieler betritt Haus Nummer: " + HouseN);
         sound_c.playDoorSound();
         hideAllHouses();
+        //blur background Image Pos
+        int x = player.positionX();
+        int y = player.positionY();
+        backgroundImg.mittelpunktSetzen(x,y);
+
+        //rest
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
         FixInteriorPos(player, HouseN);
         houseNumber = HouseN; //set global HouseNumber for collision
         visiting = true;
         backgroundImg.sichtbarSetzen(true);
-        backgroundImg.positionSetzen(player.getPosX() - MAIN.x/2, player.getPosY()-MAIN.y/2);
+        //backgroundImg.positionSetzen(player.getPosX() - MAIN.x/2, player.getPosY()-MAIN.y/2);
     }
     public void leaveHouse(){
         gamesaver.setHouseNumber(-1);

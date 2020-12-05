@@ -1,10 +1,10 @@
 {
   "posX": 1023,
   "posY": 1023,
-  "walkspeed": 3,
+  "walkspeed": 8,
   "houseNumber": 0,
-  "lastOutsidePosX": 1100,
-  "lastOutsidePosY": 1100,
+  "lastOutsidePosX": 700,
+  "lastOutsidePosY": 2500,
   "temporalPosition": "Tag 1 Abschnitt 1 (Start Zeit)",
   "items": [],
   "lines": []

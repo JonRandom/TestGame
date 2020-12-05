@@ -60,7 +60,12 @@ class ImageCollider extends Knoten {
             System.out.println("Fehler in der ImageCollider Klasse: Bild bei " + ImgPath + " kann nicht gefunden werden!");
             System.out.println(e);
         } //import Image for display;
-        displayImg.setOpacity(0.05f);
+        if(MAIN.colliderImgsVisible){
+            displayImg.setOpacity(0.3f);
+        } else{
+            displayImg.sichtbarSetzen(false);
+        }
+
         this.add(displayImg);
     }
     private void setDisplayImageVisibility(boolean v){

@@ -47,6 +47,9 @@ public class MAIN {
     public static final String playerStillImgPath = "./Assets/SpielerTest/still.png";
 
 
+    //MAP COLLIDER VISBILE?
+    public static final boolean colliderImgsVisible = false;
+
     public static void main(String[] args){
         DialogChecker dc = new DialogChecker();
 

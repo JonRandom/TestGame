@@ -1,7 +1,7 @@
 {
   "1": {
     "name": "Schule",
-    "RedColorCode": 120,
+    "RedColorCode": 183,
     "intSpawnX": 412,
     "intSpawnY": 865,
     "defaultLock": "false"
@@ -9,28 +9,28 @@
   },
   "2": {
     "name": "Kiosk",
-    "RedColorCode": 50,
+    "RedColorCode": 202,
     "intSpawnX": 317,
     "intSpawnY": 435,
     "defaultLock": "false"
   },
   "3": {
     "name": "Polizei",
-    "RedColorCode": 200,
+    "RedColorCode": 128,
     "intSpawnX": 248,
     "intSpawnY": 645,
     "defaultLock": "false"
   },
   "4": {
     "name": "Zuhause",
-    "RedColorCode": 200,
+    "RedColorCode": 100,
     "intSpawnX": 239,
     "intSpawnY": 480,
     "defaultLock": "false"
   },
   "5": {
     "name": "Sportverein",
-    "RedColorCode": 200,
+    "RedColorCode": 244,
     "intSpawnX": 350,
     "intSpawnY": 385,
     "defaultLock": "false"

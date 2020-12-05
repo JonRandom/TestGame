@@ -181,7 +181,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
             debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
             debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-            //debugAnzeige4.SetContent("Dialog2Activ:" + DialogController.isActive());
+            debugAnzeige4.SetContent("LastLineHadChoice?:" + DialogController.isLastLineHadChoice());
             debugAnzeige5.SetContent("ZeitPosition: " + DialogController.getGlobalTemporalPosition());
             //debugAnzeige6.SetContent("PlayingLastLine: " + DialogController.isPlayingLastLine());
             debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController.getCurrentDialogCode());
@@ -260,7 +260,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     public void tasteReagieren(int tastenkuerzel) {
         if (!StartSc.isActive()) {
             if (tastenkuerzel == 8) {//I als in
-
                 if (computer.isActiv()) {
                     computer.closePC();
                 } else {
@@ -285,6 +284,32 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             }
             if (tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
                 ActivePlayer.positionSetzen(ActivePlayer.positionX() + 10, ActivePlayer.positionY());
+
+            }
+            if(true){ //test
+                switch (tastenkuerzel){
+                    case(6): // "G"
+                        System.out.println("G");
+                        map.enterHouse(0); //SCHULE eig.
+                        break;
+                    case(7): // "H"
+                        System.out.println("H");
+                        map.enterHouse(1); //KIOSIK eig.
+                        break;
+                    case(9): // "J"
+                        System.out.println("J");
+                        map.enterHouse(2); //POLIZEI eig.
+                        break;
+                    case(10): // "K"
+                        System.out.println("K");
+                        map.enterHouse(3); //ZuHause eig.
+                        break;
+                    case(11): // "L"
+                        System.out.println("L");
+                        map.enterHouse(4); //Sportverein eig.
+                        break;
+
+                }
 
             }
 

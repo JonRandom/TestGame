@@ -174,7 +174,7 @@ public class Map3 extends Knoten {
         player.positionSetzen(gamesaver.getPosX(), gamesaver.getPosY());
         if(houseN != -1){
             System.out.println("Aus loadStartPos mit Hausnummer -> betreten:"  + houseN);
-            enterHouse(player, houseN);
+            enterHouse(houseN);
             // redundant wird schon in FoxPos aufgerufen npc_C.enterHouse(houseN, (int)lastFinalPosX, (int)lastFinalPosY);
         }
 
@@ -196,7 +196,7 @@ public class Map3 extends Knoten {
         AP.positionSetzen(intSpawnPos[HouseN][0] + finalPosX,intSpawnPos[HouseN][1] + finalPosY);//setzt den Spieler an die Pos wo er spawnen soll
 
     }
-    public void enterHouse(Player AP, int HouseN){
+    public void enterHouse(int HouseN){
         if(lastWhiteX == -1){
             //soll die InitDaten aus der Gamesave Json nicht überschreiben
         } else{
@@ -209,11 +209,11 @@ public class Map3 extends Knoten {
         hideAllHouses();
         houseImgs[HouseN].sichtbarSetzen(true);
         houseHitbox[HouseN].sichtbarSetzen(true);
-        FixInteriorPos(AP, HouseN);
+        FixInteriorPos(player, HouseN);
         houseNumber = HouseN; //set global HouseNumber for collision
         visiting = true;
         backgroundImg.sichtbarSetzen(true);
-        backgroundImg.positionSetzen(AP.getPosX() - MAIN.x/2, AP.getPosY()-MAIN.y/2);
+        backgroundImg.positionSetzen(player.getPosX() - MAIN.x/2, player.getPosY()-MAIN.y/2);
     }
     public void leaveHouse(){
         gamesaver.setHouseNumber(-1);
@@ -291,7 +291,7 @@ public class Map3 extends Knoten {
                     return false;
                 }
                 else{
-                    enterHouse(ap,match);
+                    enterHouse(match);
                     return true;
                 }
 

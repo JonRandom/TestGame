@@ -398,189 +398,189 @@
   "D2.2.1_00_01": {
     "inhalt": "Guten Tag Frau Enland, könnte ich sie kurz etwas fragen? Es ist wirklich wichtig.",
     "name": "self",
-    "wahl1": "D2.1.1_00_02",
+    "wahl1": "D2.2.1_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_02": {
     "inhalt": "Natürlich!",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_03",
+    "wahl1": "D2.2.1_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_03": {
     "inhalt": "Gestern ist auf meinem Ynstagramprofil ein unangenehmes Bild von mir hochgeladen worden.",
     "name": "self",
-    "wahl1": "D2.1.1_00_04",
+    "wahl1": "D2.2.1_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_04": {
     "inhalt": "Ich war das aber nicht!",
     "name": "self",
-    "wahl1": "D2.1.1_00_05",
+    "wahl1": "D2.2.1_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_05": {
     "inhalt": "Können sie mir vielleicht irgendwie helfen, dieses Bild zu löschen und meinen Account wiederzubekommen?",
     "name": "self",
-    "wahl1": "D2.1.1_00_06",
+    "wahl1": "D2.2.1_00_06",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_06": {
     "inhalt": "So wie mich Kay gerade ausgelacht hat, muss es wohl ziemlich übel sein….",
     "name": "self",
-    "wahl1": "D2.1.1_00_07",
+    "wahl1": "D2.2.1_00_07",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_07": {
     "inhalt": "Puh… mal sehen. Hast du denn noch Zugriff auf deinen Account?",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_08",
+    "wahl1": "D2.2.1_00_08",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_08": {
     "inhalt": "Nein…",
     "name": "self",
-    "wahl1": "D2.1.1_00_09",
+    "wahl1": "D2.2.1_00_09",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_09": {
     "inhalt": "Alles klar, also: Es ist wichtig, dass du die Sicherheit deiner Daten nicht vernachlässigst!",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_10",
+    "wahl1": "D2.2.1_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_10": {
     "inhalt": "Willst du wissen wie du das machen kannst?",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_11",
+    "wahl1": "D2.2.1_00_11",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_11": {
     "inhalt": "Gerne, ja.",
     "name": "self",
-    "wahl1": "D2.1.1_00_12",
+    "wahl1": "D2.2.1_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_12": {
     "inhalt": "Zuerst sollte dir klar sein, dass das Internet nichts vergisst, überleg‘ dir also zweimal, was du auf Social-Media Plattformen postest und wie viel Persönliches du preisgibst.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_13",
+    "wahl1": "D2.2.1_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_13": {
     "inhalt": "Es gibt einige Dinge die du beachten solltest, wenn du im Internet surfst. Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertraust oder die dir seltsam vorkommen.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_14",
+    "wahl1": "D2.2.1_00_14",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_14": {
     "inhalt": "Dasselbe gilt für Emails mit fragwürdigen Anhängen oder Ähnlichem.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_15",
+    "wahl1": "D2.2.1_00_15",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_15": {
     "inhalt": "Ich will dir hiermit natürlich keine Angst machen, ich wollte es nur erwähnen.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_16",
+    "wahl1": "D2.2.1_00_16",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_16": {
     "inhalt": "Zurück zu deinem Problem! Warum hast du keinen Zugriff mehr?",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_17",
+    "wahl1": "D2.2.1_00_17",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_17": {
     "inhalt": "Das Passwort wurde geändert…",
     "name": "self",
-    "wahl1": "D2.1.1_00_18",
+    "wahl1": "D2.2.1_00_18",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_18": {
     "inhalt": "Alles klar. Du hast nun mehrere Möglichkeiten.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_19",
+    "wahl1": "D2.2.1_00_19",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_19": {
     "inhalt": "Als erstes würde ich dir empfehlen, dein Passwort über die Email-Adresse zurückzusetzen.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_20",
+    "wahl1": "D2.2.1_00_20",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_20": {
     "inhalt": "Hab ich schon probiert, aber die Email ist älter und ich hab das Passwort vergessen",
     "name": "self",
-    "wahl1": "D2.1.1_00_21",
+    "wahl1": "D2.2.1_00_21",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_21": {
     "inhalt": "Ok, nun dann kannst du den Ynstagram-Support anschreiben und dein Problem schildern, die werden sicherlich eine Lösung finden!",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_22",
+    "wahl1": "D2.2.1_00_22",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_22": {
     "inhalt": "Nur für die Zukunft: Deine Passwörter sollten am besten Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten, dann sind sie am sichersten.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_23",
+    "wahl1": "D2.2.1_00_23",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_23": {
     "inhalt": "Außerdem ist es sinnvoll, dass den Inhalt deines Passwortes nur du kennst, ansonsten kann man es möglicherweise erraten.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_24",
+    "wahl1": "D2.2.1_00_24",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_24": {
     "inhalt": "Ok, vielen Dank für ihre Hilfe!",
     "name": "self",
-    "wahl1": "D2.1.1_00_25",
+    "wahl1": "D2.2.1_00_25",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_25": {
     "inhalt": "Gerne….",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_26",
+    "wahl1": "D2.2.1_00_26",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_26": {
     "inhalt": "Ach und….",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_27",
+    "wahl1": "D2.2.1_00_27",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.1_00_27": {
     "inhalt": "Wenn alles schief läuft kannst du auch immer nochmal auf mich zugehen oder dich an die Polizei wenden, es ist immerhin eine Straftat.",
     "name": "frauenland",
-    "wahl1": "D2.1.1_00_28",
+    "wahl1": "D2.2.1_00_28",
     "wahl2": "",
     "nextTime": "Tag 3 Abschnitt 1"
   },

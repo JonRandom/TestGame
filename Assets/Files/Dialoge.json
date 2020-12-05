@@ -290,98 +290,98 @@
   "D2.1.2_00_01": {
     "inhalt": "hahaha! Wie ist es eigentlich so ein hässliches Bild von sich hochzuladen?",
     "name": "kay",
-    "wahl1": "D2.1.1_00_02",
+    "wahl1": "D2.1.2_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_02": {
     "inhalt": "Ich freue mich schon wenn wieder das nächste kommt!",
     "name": "kay",
-    "wahl1": "D2.1.1_00_03",
+    "wahl1": "D2.1.2_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_03": {
     "inhalt": "Du warst und bist schon immer einfach nur komisch!",
     "name": "self",
-    "wahl1": "D2.1.1_00_04",
+    "wahl1": "D2.1.2_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_04": {
     "inhalt": "Hey hey hey, stop mal!",
     "name": "tim",
-    "wahl1": "D2.1.1_00_05",
+    "wahl1": "D2.1.2_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_05": {
     "inhalt": "Du weißt genau, dass er das nicht selbst gepostet hat!",
     "name": "tim",
-    "wahl1": "D2.1.1_00_06",
+    "wahl1": "D2.1.2_00_06",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_06": {
     "inhalt": "Das glaubst du doch nicht ernsthaft, oder?",
     "name": "kay",
-    "wahl1": "D2.1.1_00_07",
+    "wahl1": "D2.1.2_00_07",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_07": {
     "inhalt": "Schau ihn dir doch mal an!",
     "name": "kay",
-    "wahl1": "D2.1.1_00_08",
+    "wahl1": "D2.1.2_00_08",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_08": {
     "inhalt": "Dem traue ich alles zu!",
     "name": "kay",
-    "wahl1": "D2.1.1_00_09",
+    "wahl1": "D2.1.2_00_09",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_09": {
     "inhalt": "Alter , dein dummes Gelaber kann hier jetzt niemand gebrauchen.",
     "name": "felix",
-    "wahl1": "D2.1.1_00_10",
+    "wahl1": "D2.1.2_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_10": {
     "inhalt": "Verschwinde einfach!",
     "name": "felix",
-    "wahl1": "D2.1.1_00_11",
+    "wahl1": "D2.1.2_00_11",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_11": {
     "inhalt": "Alles klar Mr. Babysitter.",
     "name": "kay",
-    "wahl1": "D2.1.1_00_12",
+    "wahl1": "D2.1.2_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_12": {
     "inhalt": "Pass auf, dass dein Junge nicht noch mehr Unsinn anstellt.",
     "name": "kay",
-    "wahl1": "D2.1.1_00_13",
+    "wahl1": "D2.1.2_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_13": {
     "inhalt": "Danke Jungs!",
     "name": "kay",
-    "wahl1": "D2.1.1_00_14",
+    "wahl1": "D2.1.2_00_14",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.1.2_00_14": {
     "inhalt": "Auf euch ist Verlass!",
     "name": "kay",
-    "wahl1": "D2.1.1_00_15",
+    "wahl1": "D2.1.2_00_15",
     "wahl2": "",
     "nextTime": ""
   },
@@ -410,7 +410,7 @@
     "nextTime": ""
   },
   "D2.2.1_00_03": {
-    "inhalt": "Gestern ist auf meinem Ynstagramprofil ein unangenehmes Bild von mir hochgeladen worden.",
+    "inhalt": "Gestern ist auf meinem Fynstagramprofil ein unangenehmes Bild von mir hochgeladen worden.",
     "name": "self",
     "wahl1": "D2.2.1_00_04",
     "wahl2": "",
@@ -480,7 +480,7 @@
     "nextTime": ""
   },
   "D2.2.1_00_13": {
-    "inhalt": "Es gibt einige Dinge die du beachten solltest, wenn du im Internet surfst. Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertraust oder die dir seltsam vorkommen.",
+    "inhalt": "Es gibt einige Dinge, die du beachten solltest, wenn du im Internet surfst. Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertrauen kannst oder die dir seltsam vorkommen.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_14",
     "wahl2": "",
@@ -536,7 +536,7 @@
     "nextTime": ""
   },
   "D2.2.1_00_21": {
-    "inhalt": "Ok, nun dann kannst du den Ynstagram-Support anschreiben und dein Problem schildern, die werden sicherlich eine Lösung finden!",
+    "inhalt": "Ok, nun dann kannst du den Fynstagram-Support anschreiben und dein Problem schildern, die werden sicherlich eine Lösung finden!",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_22",
     "wahl2": "",
@@ -591,43 +591,43 @@
   "D2.2.2_00_01": {
     "inhalt": "OH....",
     "name": "self",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.2_00_02": {
     "inhalt": "Ihr seid ja schon da",
     "name": "self",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.2_00_03": {
     "inhalt": "Ja, wir haben uns auch schon besprochen",
     "name": "tim",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.2_00_04": {
     "inhalt": "Gut, dann können wir ja gleich anfangen herauszufinden wie du diese Fynsta-Posts los wirst",
     "name": "felix",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D2.2.2_00_05": {
-    "inhalt": "Ich will auf jeden Fall wissen wer dir das angetan hat",
+    "inhalt": "Ich will auf jeden Fall wissen, wer dir das angetan hat",
     "name": "tim",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_06",
     "wahl2": "",
     "nextTime": ""
   },
 
   "D2.2.2_00_06": {
-    "inhalt": "Und ich glaube es ist besser zuerst dem auf die Schliche zu kommen",
+    "inhalt": "Und ich glaube es ist besser, zuerst dem auf die Schliche zu kommen",
     "name": "tim",
-    "wahl1": "",
+    "wahl1": "D2.2.2_00_07",
     "wahl2": "",
     "nextTime": ""
   },
@@ -1026,21 +1026,21 @@
     "nextTime": ""
   },
   "D3.3.2_00_03": {
-    "inhalt": "Auch, hör mal, ich hab es satt nur zuzusehen wie sich jemand über mich lustig macht!",
+    "inhalt": "Auch, hör mal, ich hab es satt nur zuzusehen, wie sich jemand über mich lustig macht!",
     "name": "self",
     "wahl1": "D3.3.2_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D3.3.2_00_04": {
-    "inhalt": "Was hälst du davon wenn wir dem ganzen auf den Grund gehen?",
+    "inhalt": "Was hälst du davon, wenn wir dem ganzen auf den Grund gehen?",
     "name": "self",
     "wahl1": "D3.3.2_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D3.3.2_00_05": {
-    "inhalt": "Lass uns rausfinden wer der Fiesling ist, dann können wir ihn zur Rechenschaft ziehen.",
+    "inhalt": "Lass uns rausfinden, wer der Fiesling ist, dann können wir ihn zur Rechenschaft ziehen.",
     "name": "self",
     "wahl1": "D3.3.2_00_06",
     "wahl2": "",
@@ -1100,175 +1100,175 @@
   "D4.1.2.1_00_01": {
     "inhalt": "Hi",
     "name": "self",
-    "wahl1": "D4.1.1_00_02",
+    "wahl1": "D4.1.2.1_00_02",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_02": {
     "inhalt": "Was willst du?",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_03",
+    "wahl1": "D4.1.2.1_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_03": {
     "inhalt": "Ich hab gehört du kannst Fynsta-Accounts hacken.",
     "name": "self",
-    "wahl1": "D4.1.1_00_04",
+    "wahl1": "D4.1.2.1_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_04": {
     "inhalt": "Wer sagt sowas?",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_05",
+    "wahl1": "D4.1.2.1_00_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_05": {
     "inhalt": "Das ist nicht so wichtig.",
     "name": "self",
-    "wahl1": "D4.1.1_00_06",
+    "wahl1": "D4.1.2.1_00_06",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_06": {
     "inhalt": "hmm...",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_07",
+    "wahl1": "D4.1.2.1_00_07",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_07": {
     "inhalt": "Ok, sagen wir mal Ich kenn kenn mich mit Computern aus.",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_08",
+    "wahl1": "D4.1.2.1_00_08",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_08": {
     "inhalt": "Und DU willst dass ich DIR helfe?!?",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_09",
+    "wahl1": "D4.1.2.1_00_09",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_09": {
     "inhalt": "Ja!",
     "name": "self",
-    "wahl1": "D4.1.1_00_10",
+    "wahl1": "D4.1.2.1_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_10": {
     "inhalt": "Das ist mir sehr wichtig!",
     "name": "self",
-    "wahl1": "D4.1.1_00_11",
+    "wahl1": "D4.1.2.1_00_11",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_11": {
     "inhalt": "Naja, wenn du etwas für mich erledigst, kann ich dir vielleicht bei den Bildern weiterhelfen, die sich auf dein Fynstagram-Profil verirrt haben.",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_12",
+    "wahl1": "D4.1.2.1_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_12": {
     "inhalt": "Woher weißt du…",
     "name": "self",
-    "wahl1": "D4.1.1_00_13",
+    "wahl1": "D4.1.2.1_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_13": {
-    "inhalt": "Wie ich gesagt habe ich kenn mich in dem Bereich aus…",
+    "inhalt": "Wie ich gesagt habe, ich kenn mich in dem Bereich aus…",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_14",
+    "wahl1": "D4.1.2.1_00_14",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_14": {
     "inhalt": "Ok…",
     "name": "self",
-    "wahl1": "D4.1.1_00_15",
+    "wahl1": "D4.1.2.1_00_15",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_15": {
     "inhalt": "Was soll ich denn für dich erledigen?",
     "name": "self",
-    "wahl1": "D4.1.1_00_16",
+    "wahl1": "D4.1.2.1_00_16",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_16": {
     "inhalt": "Hinter Alis Döner hat ein ´Kumpel´ von mir einen USB-Stick versteckt.",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_17",
+    "wahl1": "D4.1.2.1_00_17",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_17": {
     "inhalt": "Wenn du nachschaust was auf dem drauf ist, kriegst du größere Probleme als deinen Fynsta-Account!",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_18",
+    "wahl1": "D4.1.2.1_00_18",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_18": {
     "inhalt": "Wofür brauchst du den USB-Stick?",
     "name": "self",
-    "wahl1": "D4.1.1_00_19",
+    "wahl1": "D4.1.2.1_00_19",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_19": {
     "inhalt": "Die wichtigste Regel wenn ich dir Helfen soll:",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_20",
+    "wahl1": "D4.1.2.1_00_20",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_20": {
     "inhalt": "Stell mir keine Fragen!!!",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_21",
+    "wahl1": "D4.1.2.1_00_21",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_21": {
     "inhalt": "Und jetzt mach dich vom Acker!",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_22",
+    "wahl1": "D4.1.2.1_00_22",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_22": {
     "inhalt": "Ich muss gleich noch ein Deal mit jemandem abschließen, mit dem du nicht auf einer Wellenlänge bist…",
     "name": "hacker",
-    "wahl1": "D4.1.1_00_23",
+    "wahl1": "D4.1.2.1_00_23",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_23": {
     "inhalt": "Oh...",
     "name": "self",
-    "wahl1": "D4.1.1_00_24",
+    "wahl1": "D4.1.2.1_00_24",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_24": {
     "inhalt": "Ok...",
     "name": "self",
-    "wahl1": "D4.1.1_00_25",
+    "wahl1": "D4.1.2.1_00_25",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.2.1_00_25": {
     "inhalt": "Ciao...",
     "name": "self",
-    "wahl1": "D4.1.1_00_26",
+    "wahl1": "D4.1.2.1_00_26",
     "wahl2": "",
     "nextTime": ""
   },
@@ -1377,7 +1377,7 @@
     "nextTime": ""
   },
   "D4.1.2.2_00_14": {
-    "inhalt": "So… Das Bild, das gestern auf deinem Account gepostet wurde, ist jetzt Weg.",
+    "inhalt": "So… Das Bild, das gestern auf deinem Account gepostet wurde, ist jetzt weg.",
     "name": "hacker",
     "wahl1": "D4.1.2.2_00_15",
     "wahl2": "",

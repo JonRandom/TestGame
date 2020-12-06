@@ -57,6 +57,59 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "relativePosY": 1220,
     "houseNumber": -1,
     "lastLine": ""
+  },
+  "officer": {
+    "name": "officer",
+    "posX": 1900,
+    "posY": 1220,
+    "relativePosX": 1900,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "bob": {
+    "name": "bob",
+    "posX": 2100,
+    "posY": 1220,
+    "relativePosX": 2100,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "cousine": {
+    "name": "cousine",
+    "posX": 2100,
+    "posY": 1220,
+    "relativePosX": 2100,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "Kata": {
+    "name": "Kata",
+    "posX": 2300,
+    "posY": 1220,
+    "relativePosX": 2300,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "max": {
+    "name": "max",
+    "posX": 2500,
+    "posY": 1220,
+    "relativePosX": 2500,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "Florian Eckl": {
+    "name": "Florian Eckl",
+    "posX": 2500,
+    "posY": 1220,
+    "relativePosX": 2500,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
   }
-
 }

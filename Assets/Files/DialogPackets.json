@@ -325,16 +325,6 @@
           "D5.4.1_00_00"
         ],
         "code": "D5.4.1_00_00"
-      },
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D5.4.1_00_00"
-        ],
-        "forbiddenLines": [
-          "Hacker_namen_aufdecken_01"
-        ],
-        "code": "Hacker_namen_aufdecken_00"
       }
     ],
     "kay": [
@@ -441,16 +431,6 @@
           "D5.4.1_00_00"
         ],
         "code": "D5-1.4.1_00_00"
-      },
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D5.4.1_00_00"
-        ],
-        "forbiddenLines": [
-          "Hacker_namen_aufdecken_01"
-        ],
-        "code": "Hacker_namen_aufdecken_00"
       }
     ],
     "kay": [
@@ -555,7 +535,7 @@
       {
         "requiredItems": [],
         "requiredLines": [],
-        "code": "Tag 5 Hacker Quest (Macke)00"
+        "code": "Tag 5 Hacker Quest (Macke)0_00"
       }
     ]
   },

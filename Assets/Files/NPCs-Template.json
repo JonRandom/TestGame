@@ -103,6 +103,35 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
     "houseNumber": -1,
     "lastLine": ""
   },
+  "macke": {
+    "name": "macke",
+    "posX": 2500,
+    "posY": 1220,
+    "relativePosX": 2500,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "becker": {
+    "name": "becker",
+    "posX": 2500,
+    "posY": 1220,
+    "relativePosX": 2500,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "elbert": {
+    "name": "elbert",
+    "posX": 2500,
+    "posY": 1220,
+    "relativePosX": 2500,
+    "relativePosY": 1220,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+
+
   "florian": {
     "name": "florian",
     "posX": 2500,

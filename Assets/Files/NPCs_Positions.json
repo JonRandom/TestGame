@@ -13,17 +13,17 @@
     {
       "posX": 382,
       "posY": 750,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "tim": {
       "posX": 520,
       "posY": 750,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "kay": {
       "posX": 426,
       "posY": 834,
-      "houseN": schule
+      "houseN": 0 //schule
     }
   },
 
@@ -31,22 +31,22 @@
     "tim": {
       "posX": 560,
       "posY": 670,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "kay": {
       "posX": 620,
       "posY": 670,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "felix": {
       "posX": 468,
       "posY": 42,
-      "houseN": verein
+      "houseN": 3 //verein
     },
     "mutter": {
       "posX": 108,
       "posY": 144,
-      "houseN": zuhause
+      "houseN": 3 //zuhause
     }
   },
 
@@ -64,7 +64,7 @@
     {
       "posX": 552,
       "posY": 738,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     }
   },
   "Tag 2 Abschnitt 2": {
@@ -82,7 +82,7 @@
 	"frauenland": {
       "posX": 228,
       "posY": 450,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     }
   },
    "Tag 2 Abschnitt 3": {
@@ -201,31 +201,31 @@
     {
       "posX": 1150,
       "posY": 960,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"felix":
     {
       "posX": 620,
       "posY": 160,
-      "houseN":0 //schule
+      "houseN":0 //0 //schule
     },
 	"max":
     {
       "posX": 600,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"florian":
     {
       "posX": 950,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"frauenland":
     {
       "posX": 228,
       "posY": 450,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"kay":
     {
@@ -258,31 +258,31 @@
     {
       "posX": 1150,
       "posY": 960,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"felix":
     {
       "posX": 620,
       "posY": 160,
-      "houseN":0 //schule
+      "houseN":0 //0 //schule
     },
 	"max":
     {
       "posX": 600,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"florian":
     {
       "posX": 950,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"frauenland":
     {
       "posX": 228,
       "posY": 450,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"kay":
     {
@@ -325,31 +325,31 @@
     {
       "posX": 1150,
       "posY": 960,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"felix":
     {
       "posX": 620,
       "posY": 160,
-      "houseN":0 //schule
+      "houseN":0 //0 //schule
     },
 	"max":
     {
       "posX": 600,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"florian":
     {
       "posX": 950,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"frauenland":
     {
       "posX": 228,
       "posY": 450,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"kay":
     {
@@ -381,31 +381,31 @@
     {
       "posX": 1150,
       "posY": 960,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"felix":
     {
       "posX": 620,
       "posY": 160,
-      "houseN":0 //schule
+      "houseN":0 //0 //schule
     },
 	"max":
     {
       "posX": 600,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"florian":
     {
       "posX": 950,
       "posY": 480,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"frauenland":
     {
       "posX": 228,
       "posY": 450,
-      "houseN": 0 //schule
+      "houseN": 0 //0 //schule
     },
 	"kay":
     {
@@ -497,37 +497,37 @@
     {
       "posX": 1150,
       "posY": 960,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "felix":
     {
       "posX": 620,
       "posY": 160,
-      "houseN":schule
+      "houseN":0 //schule
     },
     "max":
     {
       "posX": 600,
       "posY": 480,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "florian":
     {
       "posX": 950,
       "posY": 480,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "frauenland":
     {
       "posX": 228,
       "posY": 450,
-      "houseN": schule
+      "houseN": 0 //schule
     },
     "kay":
     {
       "posX": 6111,
       "posY": 4360,
-      "houseN":map
+      "houseN":-1 //map
     }
   ,
 
@@ -537,13 +537,13 @@
       "posX": 6900,
       "posY": 4480,
 
-      "houseN":map
+      "houseN":-1 //map
     },
     "hacker":
     {
       "posX": 6840,
       "posY": 2820,
-      "houseN": map
+      "houseN": -1 //map
     }
 
   },

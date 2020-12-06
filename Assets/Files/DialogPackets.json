@@ -1,185 +1,486 @@
 {
   "Tag 1 Abschnitt 1 (Start Zeit)": {
-    "mutter": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D1.0_00_01"
-      }
-    ]
+    "mutter": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.0_00_01"
+    }]
+
   },
   "Tag 1 Abschnitt 2": {
-    "kay": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D1.1_00_01"
-      }
-    ]
+    "kay": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.1_00_01"
+    }]
   },
+
   "Tag 1 Abschnitt 3": {
-    "felix": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D1.3_00_01"
-      }
-    ],
-    "mutter": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D1.2_00_01"
-      }
-    ]
+    "felix": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.3_00_01"
+    }],
+    "mutter": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D1.2_00_01"
+    }]
+  },
+
+"Tag 1 Abschnitt 4": {
+    "zzz": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 1 schlafen"
+    }]
+
   },
   "Tag 2 Abschnitt 1": {
-    "kay": [
+    "kay":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D1.3_11_02"],
+      "code": "D2.1.1_00_01"
+    },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D1.3_11_02"
-        ],
+        "requiredLines": ["D1.2_00_02"],
         "code": "D2.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D1.2_00_02"
-        ],
-        "code": "D2.1.1_00_01"
-      },
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D1.3_12_02"
-        ],
+        "requiredLines": ["D1.3_12_02"],
         "code": "D2.1.2_00_01"
-      }
-    ]
+      }]
   },
+  
   "Tag 2 Abschnitt 2": {
-    "felix": [
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D1.3_11_02"
-        ],
-        "code": "D2.2.2_00_01"
-      }
-    ],
-    "tim": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D2.2.2_00_01"
-      }
-    ],
-    "frauenland": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D2.2.1_00_01"
-      }
-    ]
+    "felix":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D1.3_11_02"],
+      "code": "D2.2.2_00_01"
+    }],
+	"tim": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D2.2.2_00_01"
+    }],
+	"frauenland": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D2.2.1_00_01"
+    }]
+  },
+  "Tag 2 Abschnitt 3": {
+    "zzz": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 2 schlafen"
+    }]
+
   },
   //Required lines anpassen
   "Tag 3 Abschnitt 1": {
-    "tim": [
+    "tim":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D2.2.1_00_27"],
+      "code": "D3.1.1_00_01"
+    },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D2.2.1_00_27"
-        ],
+        "requiredLines": ["D2.2.2_01_05"],
         "code": "D3.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D2.2.2_01_05"
-        ],
-        "code": "D3.1.1_00_01"
-      },
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D2.2.2_02_06"
-        ],
+        "requiredLines": ["D2.2.2_02_06"],
         "code": "D3.1.2_00_01"
-      }
-    ],
-    "felix": [
+      }],
+	  "felix":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D2.2.1_00_27"],
+      "code": "D3.1.1_00_01"
+    },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D2.2.1_00_27"
-        ],
+        "requiredLines": ["D2.2.2_01_05"],
         "code": "D3.1.1_00_01"
       },
       {
         "requiredItems": [],
-        "requiredLines": [
-          "D2.2.2_01_05"
-        ],
-        "code": "D3.1.1_00_01"
-      },
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D2.2.2_02_06"
-        ],
+        "requiredLines": ["D2.2.2_02_06"],
         "code": "D3.1.2_00_01"
-      }
-    ]
+      }]
   },
+  
+  
+  
+  
   "Tag 3 Abschnitt 2": {
-    "tim": [
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D3.1.2_00_03"
-        ],
-        "code": "D3.3.2_00_01"
-      }
-    ],
-    "felix": [
-      {
-        "requiredItems": [],
-        "requiredLines": [
-          "D3.1.1_00_04"
-        ],
-        "code": "D3.3.1_00_01"
-      }
-    ]
+    "tim":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D3.1.2_00_03"],
+      "code": "D3.3.2_00_01"
+    }],
+	"felix":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D3.1.1_00_04"],
+      "code": "D3.3.1_00_01"
+    }]
   },
-  //Tag 4 (Hier wird´s n bissl kompliziert ^^) Tag 4 Erster Hauptdialog
+  "Tag 3 Abschnitt 3": {
+    "zzz": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 3 schlafen"
+    }]
+
+  },
+  
+  
+  
+  
+  //Tag 4 (Hier wird´s n bissl kompliziert ^^)
+  //Tag 4 Erster Hauptdialog
   "Tag 4 Abschnitt 1": {
-    "hacker": [
-      {
-        "requiredItems": [],
-        "requiredLines": [],
-        "code": "D4.1.2.1_00_01"
-      }
-    ]
+    
+	"officer":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.1_00_01"],
+      "code": "D4.1.1_00_01"
+    }],
+	"cousine":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.5_00_01"],
+      "code": "D4.1.5_00_01"
+    }],
+	"bob":
+    [{
+      "requiredItems": [],
+      "requiredLines": ["D4.1.3_00_01"],
+	  "forbiddenLines": ["Kiosk quest5"],
+      "code": "Kiosk quest1"
+    }],
+	"kay":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.3_00_01"],
+      "code": "D4.1.3_00_01"
+    }
+	,
+	{
+      "requiredItems": [],
+      "requiredLines": ["D4.1.3_00_01","Kiosk quest5"],
+	  "forbiddenLines": ["D4.1.3.2_00_01"],
+      "code": "D4.1.3.2_00_01"
+    }],
+	"mutter":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.4_00_01"],
+      "code": "D4.1.4_00_01"
+    }],
+	"kata":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.6_00_01"],
+      "code": "D4.1.6_00_01"
+    }]
+	"hacker":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.2.1_00_01"],
+      "code": "D4.1.2.1_00_01"
+    },
+	{
+      "requiredItems": ["stick"],
+      "requiredLines": ["D4.1.2.1_00_01"],
+	  "forbiddenLines": ["D4.1.2.2_00_01"],
+      "code": "D4.1.2.2_00_01"
+    }],
+	"zzz": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 4 schlafen"
+    }]
+	
   },
-  "Tag 4 Hacker Quest": {
-    "hacker": [
-      {
-        "requiredItems": [
-          "stick"
-        ],
-        "requiredLines": [],
-        "code": "D4.1.2.2_00_01"
-      }
-    ],
-    "FEHLER EXTRA EINGEBAUT": [
-      {
-        "requiredItems": [
-          "stick"
-        ],
-        "requiredLines": [],
-        "code": "D4.1.2.2_00_01"
-      }
-    ]
+  
+  
+  
+  //Tag 5 erster Dialog
+  "Tag 5 Abschnitt 1": {
+    "tim":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.1.1_00_02"],
+      "code": "D5.1.1_00_01"
+    }],
+	"felix":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.2.1_00_01"],
+      "code": "D5.2.1_00_01"
+    }],
+	"kata":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.3_00_01"],
+      "code": "D5.3_00_01"
+    }],
+	"hacker":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.4.1_00_00"],
+      "code": "D5.4.1_00_00"
+    }
+	,
+	{
+      "requiredItems": [],
+      "requiredLines": ["D5.4.1_00_00"],
+	  "forbiddenLines": ["Hacker_namen_aufdecken_01"],
+      "code": "Hacker_namen_aufdecken_00"
+    }],
+	"kay":
+    [,
+	{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.5_00_01"],
+      "code": "D5.5_00_01"
+    }
+	{
+      "requiredItems": ["paper"],
+      "requiredLines": ["D5.5_00_01","D5.5_02_06"],
+	  "forbiddenLines": ["D5.5_00_01"],
+      "code": "D5.5.1_00_01"
+    }],
+	"cousine":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.6_00_01"],
+      "code": "D4.1.6_00_01"
+    }]
+	"max":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.7_00_01"],
+      "code": "D5.7_00_01"
+    }]
+	"florian":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.8_00_01"],
+      "code": "D5.8_00_01"
+    }],
+	"frauenland":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.9_00_01"],
+      "code": "D5.9_00_01"
+    }],
+	
+  },
+  
+  //Tag 5 zweiter Dialog
+  "Tag 5 Abschnitt 2": {
+    "tim":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.1.1_00_02"],
+      "code": "D5-1.1.1_00_01"
+    }],
+	"felix":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.2.1_00_01"],
+      "code": "D5-1.2.1_00_01"
+    }],
+	"kata":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.3_00_01"],
+      "code": "D5-1.3_00_01"
+    }],
+	"hacker":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.4.1_00_00"],
+      "code": "D5-1.4.1_00_00"
+    }
+	,
+	{
+      "requiredItems": [],
+      "requiredLines": ["D5.4.1_00_00"],
+	  "forbiddenLines": ["Hacker_namen_aufdecken_01"],
+      "code": "Hacker_namen_aufdecken_00"
+    }],
+	"kay":
+    [,
+	{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.5_00_01"],
+      "code": "D5-1.5_00_01"
+    }
+	{
+      "requiredItems": ["paper"],
+      "requiredLines": ["D5.5_00_01","D5.5_02_06"],
+	  "forbiddenLines": ["D5.5_00_01"],
+      "code": "D5-1.5.1_00_01"
+    }],
+	"cousine":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D4.1.6_00_01"],
+      "code": "D4.1.6_00_01"
+    }]
+	"max":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.7_00_01"],
+      "code": "D5-1.7_00_01"
+    }]
+	"florian":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.8_00_01"],
+      "code": "D5-1.8_00_01"
+    }],
+	"frauenland":
+    [{
+      "requiredItems": [],
+      "requiredLines": [],
+	  "forbiddenLines": ["D5.9_00_01"],
+      "code": "D5-1.9_00_01"
+    }],
+	
+  },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "frauenland Enddialog": {
+    "frauenland": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D7_00_01"
+    }],
+	"kay":[{
+	"requiredItems": ["paper"],
+      "requiredLines": ["D5-1.5_00_01","D5-1.5_02_06"],
+	  "forbiddenLines": ["D5.5_00_01"],
+      "code": "D5-1.5.1_00_01"
+    }]
+	},
+	"felix Enddialog": {
+    "felix": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "D5.2.1_00_01"
+    }]
+	},
+  
+  
+  
+  
+ "Tag 5 Hacker Quest (Macke)": {
+    "macke": [{
+     "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 5 Hacker Quest (Macke)00"
+    }]
+  },
+  
+  "Tag 5 Hacker Quest (Becker)": {
+    "becker": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 5 Hacker Quest (Becker)00"
+    }]
+  },
+  "Tag 5 Hacker Quest (Elbert)": {
+    "elbert": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 5 Hacker Quest (Abbruch)00"
+    }]
+
+  },
+  "Tag 5 Hacker Quest (hacker)": {
+    "hacker": [{
+      "requiredItems": [],
+      "requiredLines": [],
+      "code": "Tag 5 Hacker Quest (hacker)00"
+    }]
+  },
+  
+  
+  "Ende(felix)": {
+    
+  },
+  "Tag 5 Ende(Acc gelöscht)": {
+    
+  },
+  "Ende (Posts gelöscht)": {
+    
+  },
+  "Ende(Tim)": {
+    
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	
+ 
+
+
+
+ 
+  
 }

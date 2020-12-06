@@ -1900,105 +1900,120 @@
   
   
   
-  {
+
   "D4.1.5_00_01": {
     "inhalt": "Hey, du weißt doch sicher, dass so blöde Bilder von mir gepostet werden?",
     "name": "self",
-    "wahl1": "D4.1.6_00_02",
+    "wahl1": "D4.1.5_00_02",
     "wahl2": "",
     "nextTime": ""
   },
-     "D4.1.5_00_02": {
+  "D4.1.5_00_02": {
     "inhalt": "Ja... Hast du vor, was dagegen zu unternehmen?",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_03",
+    "wahl1": "D4.1.5_00_03",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_03": {
+  },
+  "D4.1.5_00_03": {
     "inhalt": "Ja, schon. Eigentlich würd ich gerne rausfinden, wer dahinter steckt... ",
     "name": "self",
-    "wahl1": "D4.1.6_00_04",
+    "wahl1": "D4.1.5_00_04",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_04": {
-    "inhalt": "ast du vielleicht irgendwelche Ideen, wie ich das machen soll?",
+  },
+  "D4.1.5_00_04": {
+    "inhalt": "Hast du vielleicht irgendwelche Ideen, wie ich das machen soll?",
     "name": "self",
-    "wahl1": "D4.1.6_00_05",
+    "wahl1": "D4.1.5_00_05",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_05": {
+  },
+  "D4.1.5_00_05": {
     "inhalt": "Also, für mich stellt sich die Frage, wie der Typ überhaupt an dein Passwort rangekommen ist.",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_06",
+    "wahl1": "D4.1.5_00_06",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_06": {
+  },
+  "D4.1.5_00_06": {
     "inhalt": "Benutzt du für alles das gleiche Passwort?",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_07",
+    "wahl1": "D4.1.5_00_07",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_07": {
+  },
+  "D4.1.5_00_07": {
     "inhalt": "Nein, natürlich nicht.",
     "name": "self",
-    "wahl1": "D4.1.6_00_08",
+    "wahl1": "D4.1.5_00_08",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_08": {
+  },
+  "D4.1.5_00_08": {
     "inhalt": "Gut, verschiedene Passwörter gleich mehr Sicherheit."
     "name": "cousine",
-    "wahl1": "D4.1.6_00_09",
+    "wahl1": "D4.1.5_00_09",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_09": {
+  },
+  "D4.1.5_00_09": {
     "inhalt": "Und wie merkst du dir die alle dann?",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_10",
+    "wahl1": "D4.1.5_00_10",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_10": {
-    "inhalt": "Ich hab so einen Zettel, auf den ich alle schreib der liegt hier auf meinem Schreib... ",
+  },
+  "D4.1.5_00_10": {
+    "inhalt": "Ich hab so einen Zettel, auf den ich alle schreib; der liegt hier auf meinem Schreib... ",
     "name": "self",
-    "wahl1": "D4.1.6_00_11",
+    "wahl1": "D4.1.5_00_11",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_11": {
+  },
+  "D4.1.5_00_11": {
     "inhalt": "Tisch... Warte? Wo ist er?? ",
     "name": "self",
-    "wahl1": "D4.1.6_00_12",
+    "wahl1": "D4.1.5_00_12",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_12": {
+  },
+  "D4.1.5_00_12": {
     "inhalt": "Da haben wir's doch: dein Passwortzettel.",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_13",
+    "wahl1": "D4.1.5_00_13",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_13": {
+  },
+  "D4.1.5_00_13": {
     "inhalt": "Der Täter muss den sich also geschnappt haben.",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_14",
+    "wahl1": "D4.1.5_00_14",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_14": {
+  },
+  "D4.1.5_00_14": {
     "inhalt": "Hilft dir das weiter?",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_15",
+    "wahl1": "D4.1.5_00_15",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_15": {
+  },
+  "D4.1.5_00_15": {
     "inhalt": "Hoffentlich... Erstmal danke für die Hilfe. ",
     "name": "self",
-    "wahl1": "D4.1.6_00_16",
+    "wahl1": "D4.1.5_00_16",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_16": {
+  },
+  "D4.1.5_00_16": {
     "inhalt": " Immer gerne kleiner Cousin.",
     "name": "cousine",
-    "wahl1": "D4.1.6_00_17",
+    "wahl1": "D4.1.5_00_17",
     "wahl2": "",
     "nextTime": ""
-  },  "D4.1.5_00_017": {
+  },
+  "D4.1.5_00_017": {
     "inhalt": "Viel Glück beim Aufspüren.",
     "name": "cousine",
     "wahl1": "",
@@ -2026,9 +2041,9 @@
   
   
   
-  {
+
   "D4.1.6_00_01": {
-    "inhalt": "Hey, ich weiß wir reden nicht viel miteinander",
+    "inhalt": "Hey, ich weiß wir reden nicht viel miteinander,",
     "name": "self",
     "wahl1": "D4.1.6_00_02",
     "wahl2": "",
@@ -2042,7 +2057,7 @@
     "nextTime": ""
   },
   "D4.1.6_00_03": {
-    "inhalt": "Ne man, wenn es um die Sache mit deinen Fotos geht",
+    "inhalt": "Ne man, wenn es um die Sache mit deinen Fotos geht,",
     "name": "Kata",
     "wahl1": "D4.1.6_00_04",
     "wahl2": "",
@@ -2072,7 +2087,7 @@
     "nextTime": ""
   },
    "D4.1.6_01_03": {
-    "inhalt": "Ok Kleiner, Ich glaub du checkst noch net ganz was abgeht.",
+    "inhalt": "Ok Kleiner, Ich glaub du checkst noch net ganz, was abgeht.",
     "name": "Kata",
     "wahl1": "D4.1.6_01_04",
     "wahl2": "",
@@ -2127,7 +2142,7 @@
   
   
   "D4.1.6_02_01": {
-    "inhalt": "Naja….nach meinem Wissen kann man dir das zutrauen sowas zu machen.",
+    "inhalt": "Naja….nach meinem Wissen kann man dir das zutrauen, sowas zu machen.",
     "name": "self",
     "wahl1": "D4.1.6_02_02",
     "wahl2": "",
@@ -2400,7 +2415,7 @@
 //Tag 5 Kata 
 
 
-{
+
   "D5.3_00_01": {
     "inhalt": "Hey. Ich hätte da nochmal eine Frage.",
     "name": "self",
@@ -2423,7 +2438,7 @@
     "nextTime": ""
   },
   "D5.3_00_04": {
-    "inhalt": "Ich brauche auch deine Hilfe nicht. Vor allem nicht von demjenigen, der das gemacht.",
+    "inhalt": "Ich brauche auch deine Hilfe nicht. Vor allem nicht von demjenigen, der das gemacht hat.",
     "name": "self",
     "wahl1": "D5.3_00_05",
     "wahl2": "",
@@ -2437,7 +2452,7 @@
     "nextTime": ""
   },
   "D5.3_00_06": {
-    "inhalt": "Ja ! Wer soll es denn sonst gewesen sein außer du? ",
+    "inhalt": "Ja ! Wer soll es denn sonst gewesen sein - außer dir? ",
     "name": "self",
     "wahl1": "D5.3_00_07",
     "wahl2": "",
@@ -2458,14 +2473,14 @@
     "nextTime": ""
   },
   "D5.3_00_09": {
-    "inhalt": "Der verbreitet öfters solche Gerüchte seitdem ich ihn einmal gekorbt habe.",
+    "inhalt": "Der verbreitet öfters solche Gerüchte, seitdem ich ihn einmal gekorbt habe.",
     "name": "Kata",
     "wahl1": "D5.3_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_10": {
-    "inhalt": " Nur weil der noch sauer ist….",
+    "inhalt": " Nur, weil der noch sauer ist….",
     "name": "Kata",
     "wahl1": "D5.3_00_11",
     "wahl2": "",
@@ -2479,7 +2494,7 @@
     "nextTime": ""
   },
   "D5.3_00_12": {
-    "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht wer es gewesen sein könnte. ",
+    "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht, wer es gewesen sein könnte. ",
     "name": "Kata",
     "wahl1": "D5.3_00_13",
     "wahl2": "",
@@ -2571,7 +2586,7 @@
     "wahl2": "",
     "nextTime": ""
   },
-  D5.4.1_01_05: {
+  "D5.4.1_01_05": {
     "inhalt": "Sorry…",
     "name": "self",
     "wahl1": "D5.4.1_01_06",
@@ -2579,7 +2594,7 @@
     "nextTime": ""
   },
   "D5.4.1_01_06": {
-    "inhalt": "Gut, aber gehe jetzt und lass dich hier nie wieder Blicken!",
+    "inhalt": "Gut, aber gehe jetzt und lass dich hier nie wieder blicken!",
     "name": "hacker",
     "wahl1": "D5.4.1_01_07",
     "wahl2": "",
@@ -2609,7 +2624,7 @@
     "nextTime": ""
   },
   "Hacker_namen_aufdecken_03": {
-    "inhalt": "Kay hat gesagt dass du es warst!",
+    "inhalt": "Kay hat gesagt, dass du es warst!",
     "name": "self",
     "wahl1": "Hacker_namen_aufdecken_04",
     "wahl2": "",
@@ -2696,7 +2711,7 @@
     "nextTime": ""
   },
   "D5.4.1_02_06": {
-    "inhalt": "Wenn du mir hilfst helfe ich dir.",
+    "inhalt": "Wenn du mir hilfst, helfe ich dir.",
     "name": "hacker",
     "wahl1": "D5.4.1_02_07",
     "wahl2": "",
@@ -2749,7 +2764,7 @@
   
   
   //Kay tag 5
-  {
+
   "D5.5_00_01": {
     "inhalt": "Was willst du schon wieder?",
     "name": "kay",
@@ -2787,21 +2802,21 @@
     "nextTime": ""
   },
 "D5.5_02_03": {
-    "inhalt": "Woher weißt du dann wovon ich spreche?",
+    "inhalt": "Woher weißt du dann, wovon ich spreche?",
     "name": "self",
     "wahl1": "D5.5_02_04",
     "wahl2": "",
     "nextTime": ""
   },
 "D5.5_02_04": {
-    "inhalt": "Woher weißt du dann wovon ich spreche?",
+    "inhalt": "Woher weißt du dann, wovon ich spreche?",
     "name": "self",
     "wahl1": "D5.5_02_05",
     "wahl2": "",
     "nextTime": ""
   },
 "D5.5_02_05": {
-    "inhalt": "jeder weiß, dass du nach dem suchst der das gepostet hat.",
+    "inhalt": "jeder weiß, dass du nach dem suchst, der das gepostet hat.",
     "name": "kay",
     "wahl1": "D5.5_02_06",
     "wahl2": "",
@@ -2823,7 +2838,7 @@
   
   
   
- {
+
   "D5.5.1_00_01": {
     "inhalt": ".........",
     "name": "kay",
@@ -2832,7 +2847,7 @@
     "nextTime": ""
   },
    "D5.5.1_00_02": {
-    "inhalt": "Ich hab den Zettel gefunden, den du geschrieben hast nachdem du eines der Bilder gepostet hast!",
+    "inhalt": "Ich hab den Zettel gefunden, den du geschrieben hast, nachdem du eines der Bilder gepostet hast!",
     "name": "self",
     "wahl1": "D5.5.1_00_03",
     "wahl2": "",
@@ -2957,7 +2972,7 @@
   
   
   "D5.7_00_01": {
-    "inhalt": "Ah Max hier bist also. Hey ich muss dich Mal was fragen.",
+    "inhalt": "Ah Max, hier bist also. Hey, ich muss dich Mal was fragen.",
     "name": "self",
     "wahl1": "D5.7_00_02",
     "wahl2": "",
@@ -2999,14 +3014,14 @@
     "nextTime": ""
  },
  "D5.7_00_07": {
-    "inhalt": "Nein man natürlich nicht!! Ich hätte nichtmal einen Grund dafür!",
+    "inhalt": "Nein man, natürlich nicht!! Ich hätte nichtmal einen Grund dafür!",
     "name": "max",
     "wahl1": "D5.7_00_08",
     "wahl2": "",
     "nextTime": ""
  },
  "D5.7_00_08": {
-    "inhalt": "Na gut aber wenn du es nicht warst, wer war es dann...?",
+    "inhalt": "Na gut, aber wenn du es nicht warst, wer war es dann...?",
     "name": "self",
     "wahl1": "",
     "wahl2": "",
@@ -3024,7 +3039,7 @@
  
  
  
- {
+
   "D5.8_00_01": {
     "inhalt": "Hey man, ich wollte dich kurz was fragen.",
     "name": "self",
@@ -3061,14 +3076,14 @@
     "nextTime": ""
   },
   "D5.8_00_06": {
-    "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde aber sowas ? ",
+    "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde, aber sowas ? ",
     "name": "Florian Eckl",
     "wahl1": "D5.8_00_07",
     "wahl2": "",
     "nextTime": ""
   },
    "D5.8_00_07": {
-    "inhalt": "Ich denke nicht dass wir so schlecht befreundet sind um so etwas zu tun.",
+    "inhalt": "Ich denke nicht, dass wir so schlecht befreundet sind, um so etwas zu tun.",
     "name": "Florian Eckl",
     "wahl1": "D5.8_00_08",
     "wahl2": "",
@@ -3117,7 +3132,7 @@
     "nextTime": ""
   },
    "D5.8_00_14": {
-    "inhalt": "Ja….Das habe ich mir auch schon fast Gedacht. ",
+    "inhalt": "Ja….Das habe ich mir auch schon fast gedacht. ",
     "name": "self",
     "wahl1": "D5.8_00_15",
     "wahl2": "",
@@ -3131,21 +3146,21 @@
     "nextTime": ""
   },
    "D5.8_00_16": {
-    "inhalt": " Hast du sonst noch einen Plan wer es sein könnte ?",
+    "inhalt": " Hast du sonst noch einen Plan, wer es sein könnte ?",
     "name": "self",
     "wahl1": "D5.8_00_17",
     "wahl2": "",
     "nextTime": ""
   },
    "D5.8_00_17": {
-    "inhalt": "Ich gehe mal nicht davon aus ,dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
+    "inhalt": "Ich gehe mal nicht davon aus, dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
     "name": "Florian Eckl",
     "wahl1": "D5.8_00_18",
     "wahl2": "",
     "nextTime": ""
   },
     "D5.8_00_18": {
-    "inhalt": "Aber an sich habe ich leider keine Ahnung wer es sein könnte. Sorry.",
+    "inhalt": "Aber an sich habe ich leider keine Ahnung, wer es sein könnte. Sorry.",
     "name": "Florian Eckl",
     "wahl1": "D5.8_00_19",
     "wahl2": "",
@@ -3172,7 +3187,7 @@
   
   
   "D5.9_00_01": {
-    "inhalt": "frauenland?",
+    "inhalt": "Frau Enland?",
     "name": "self",
     "wahl1": "D5.9_00_02",
     "wahl2": "",
@@ -3182,14 +3197,14 @@
     "inhalt": "Ja, was ist denn?",
     "name": "frauenland",
     "wahl1": "D5.9_00_03",
-    "wahl2": "",
+    "wahl2": "D5.10_00_03",
     "nextTime": ""
  },
  "D5.9_00_03": {
     "inhalt": "Kann es sein, dass sie die Bilder von mir veröffentlicht haben?",
     "name": "self",
     "wahl1": "D5.9_00_04",
-    "wahl2": "D5.10_00_03",
+    "wahl2": "",
     "nextTime": ""
  },
  "D5.9_00_04": {
@@ -3498,7 +3513,7 @@
 //Tag 5 Kata 
 
 
-{
+
   "D5-1.3_00_01": {
     "inhalt": "Hey. Ich hätte da nochmal eine Frage.",
     "name": "self",
@@ -3656,7 +3671,7 @@
     "nextTime": ""
   },
   "D5-1.4.1_01_03": {
-    "inhalt": "Du weißt ja noch nicht einmal wer ich bin…",
+    "inhalt": "Du weißt ja noch nicht einmal, wer ich bin…",
     "name": "hacker",
     "wahl1": "D5-1.4.1_01_04",
     "wahl2": "",
@@ -3677,7 +3692,7 @@
     "nextTime": ""
   },
   "D5-1.4.1_01_06": {
-    "inhalt": "Gut, aber gehe jetzt und lass dich hier nie wieder Blicken!",
+    "inhalt": "Gut, aber gehe jetzt und lass dich hier nie wieder blicken!",
     "name": "hacker",
     "wahl1": "D5-1.4.1_01_07",
     "wahl2": "",
@@ -3707,7 +3722,7 @@
     "nextTime": ""
   },
   "Hacker_namen_aufdecken_03": {
-    "inhalt": "Kay hat gesagt dass du es warst!",
+    "inhalt": "Kay hat gesagt, dass du es warst!",
     "name": "self",
     "wahl1": "Hacker_namen_aufdecken_04",
     "wahl2": "",
@@ -3780,7 +3795,7 @@
     "nextTime": ""
   },
   "D5-1.4.1_02_04": {
-    "inhalt": "Das war ne Fangfrage ich weiß schon wieso du da bist.",
+    "inhalt": "Das war ne Fangfrage; ich weiß schon wieso du da bist.",
     "name": "hacker",
     "wahl1": "D5-1.4.1_02_05",
     "wahl2": "",
@@ -3794,7 +3809,7 @@
     "nextTime": ""
   },
   "D5-1.4.1_02_06": {
-    "inhalt": "Wenn du mir hilfst helfe ich dir.",
+    "inhalt": "Wenn du mir hilfst, helfe ich dir.",
     "name": "hacker",
     "wahl1": "D5-1.4.1_02_07",
     "wahl2": "",
@@ -3847,7 +3862,7 @@
   
   
   //Kay tag 5
-  {
+
   "D5-1.5_00_01": {
     "inhalt": "Was willst du schon wieder?",
     "name": "kay",
@@ -3885,21 +3900,21 @@
     "nextTime": ""
   },
 "D5-1.5_02_03": {
-    "inhalt": "Woher weißt du dann wovon ich spreche?",
+    "inhalt": "Woher weißt du dann, wovon ich spreche?",
     "name": "self",
     "wahl1": "D5-1.5_02_04",
     "wahl2": "",
     "nextTime": ""
   },
 "D5-1.5_02_04": {
-    "inhalt": "Woher weißt du dann wovon ich spreche?",
+    "inhalt": "Woher weißt du dann, wovon ich spreche?",
     "name": "self",
     "wahl1": "D5-1.5_02_05",
     "wahl2": "",
     "nextTime": ""
   },
 "D5-1.5_02_05": {
-    "inhalt": "jeder weiß, dass du nach dem suchst der das gepostet hat.",
+    "inhalt": "jeder weiß, dass du nach dem suchst, der das gepostet hat.",
     "name": "kay",
     "wahl1": "D5-1.5_02_06",
     "wahl2": "",
@@ -3921,7 +3936,7 @@
   
   
   
- {
+
   "D5-1.5.1_00_01": {
     "inhalt": ".........",
     "name": "kay",
@@ -3930,7 +3945,7 @@
     "nextTime": ""
   },
    "D5-1.5.1_00_02": {
-    "inhalt": "Ich hab den Zettel gefunden, den du geschrieben hast nachdem du eines der Bilder gepostet hast!",
+    "inhalt": "Ich hab den Zettel gefunden, den du geschrieben hast, nachdem du eines der Bilder gepostet hast!",
     "name": "self",
     "wahl1": "D5-1.5.1_00_03",
     "wahl2": "",
@@ -3944,7 +3959,7 @@
     "nextTime": ""
   },
     "D5-1.5.1_00_04": {
-    "inhalt": "Ich weiß nicht was du meinst…",
+    "inhalt": "Ich weiß nicht, was du meinst…",
     "name": "kay",
     "wahl1": "D5-1.5.1_00_05",
     "wahl2": "",
@@ -3993,7 +4008,7 @@
     "nextTime": ""
   },
     "D5-1.5.1_00_11": {
-    "inhalt": " Niemals!",
+    "inhalt": "Niemals!",
     "name": "self",
     "wahl1": "D5-1.5.1_00_12",
     "wahl2": "",
@@ -4028,7 +4043,7 @@
     "nextTime": ""
   },
 "D5-1.5.1_00_16": {
-    "inhalt": "Wundert mich dass du nicht selbst drauf gekommen bist.",
+    "inhalt": "Wundert mich, dass du nicht selbst drauf gekommen bist.",
     "name": "kay",
     "wahl1": "",
     "wahl2": "",
@@ -4055,7 +4070,7 @@
   
   
   "D5-1.7_00_01": {
-    "inhalt": "Ah Max hier bist also. Hey ich muss dich Mal was fragen.",
+    "inhalt": "Ah Max, hier bist also. Hey, ich muss dich Mal was fragen.",
     "name": "self",
     "wahl1": "D5-1.7_00_02",
     "wahl2": "",
@@ -4097,14 +4112,14 @@
     "nextTime": ""
  },
  "D5-1.7_00_07": {
-    "inhalt": "Nein man natürlich nicht!! Ich hätte nichtmal einen Grund dafür!",
+    "inhalt": "Nein man, natürlich nicht!! Ich hätte nichtmal einen Grund dafür!",
     "name": "max",
     "wahl1": "D5-1.7_00_08",
     "wahl2": "",
     "nextTime": ""
  },
  "D5-1.7_00_08": {
-    "inhalt": "Na gut aber wenn du es nicht warst, wer war es dann...?",
+    "inhalt": "Na gut, aber wenn du es nicht warst, wer war es dann...?",
     "name": "self",
     "wahl1": "",
     "wahl2": "",
@@ -4122,7 +4137,7 @@
  
  
  
- {
+
   "D5-1.8_00_01": {
     "inhalt": "Hey man, ich wollte dich kurz was fragen.",
     "name": "self",
@@ -4159,14 +4174,14 @@
     "nextTime": ""
   },
   "D5-1.8_00_06": {
-    "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde aber sowas ? ",
+    "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde, aber sowas ? ",
     "name": "Florian Eckl",
     "wahl1": "D5-1.8_00_07",
     "wahl2": "",
     "nextTime": ""
   },
    "D5-1.8_00_07": {
-    "inhalt": "Ich denke nicht dass wir so schlecht befreundet sind um so etwas zu tun.",
+    "inhalt": "Ich denke nicht, dass wir so schlecht befreundet sind, um so etwas zu tun.",
     "name": "Florian Eckl",
     "wahl1": "D5-1.8_00_08",
     "wahl2": "",
@@ -4229,21 +4244,21 @@
     "nextTime": ""
   },
    "D5-1.8_00_16": {
-    "inhalt": " Hast du sonst noch einen Plan wer es sein könnte ?",
+    "inhalt": "Hast du sonst noch einen Plan, wer es sein könnte ?",
     "name": "self",
     "wahl1": "D5-1.8_00_17",
     "wahl2": "",
     "nextTime": ""
   },
    "D5-1.8_00_17": {
-    "inhalt": "Ich gehe mal nicht davon aus ,dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
+    "inhalt": "Ich gehe mal nicht davon aus, dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
     "name": "Florian Eckl",
     "wahl1": "D5-1.8_00_18",
     "wahl2": "",
     "nextTime": ""
   },
     "D5-1.8_00_18": {
-    "inhalt": "Aber an sich habe ich leider keine Ahnung wer es sein könnte. Sorry.",
+    "inhalt": "Aber an sich habe ich leider keine Ahnung, wer es sein könnte. Sorry.",
     "name": "Florian Eckl",
     "wahl1": "D5-1.8_00_19",
     "wahl2": "",
@@ -4270,7 +4285,7 @@
   
   
   "D5-1.9_00_01": {
-    "inhalt": "frauenland?",
+    "inhalt": "Frau Enland?",
     "name": "self",
     "wahl1": "D5-1.9_00_02",
     "wahl2": "",
@@ -4280,14 +4295,14 @@
     "inhalt": "Ja, was ist denn?",
     "name": "frauenland",
     "wahl1": "D5-1.9_00_03",
-    "wahl2": "",
+    "wahl2": "D5-1.10_00_03",
     "nextTime": ""
  },
  "D5-1.9_00_03": {
     "inhalt": "Kann es sein, dass sie die Bilder von mir veröffentlicht haben?",
     "name": "self",
     "wahl1": "D5-1.9_00_04",
-    "wahl2": "D5-1.10_00_03",
+    "wahl2": "",
     "nextTime": ""
  },
  "D5-1.9_00_04": {
@@ -4440,21 +4455,21 @@
   },
   "Tag 5 Hacker Quest (Macke)1_07": {
     "inhalt": "…",
-    "name": "macke",
+    "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Macke)1_08",
     "wahl2": "",
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Macke)1_08": {
     "inhalt": "Holz?",
-    "name": "macke",
+    "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Macke)1_09",
     "wahl2": "",
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Macke)1_08": {
     "inhalt": "Holz?",
-    "name": "macke",
+    "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Macke)1_09",
     "wahl2": "",
     "nextTime": ""
@@ -4515,7 +4530,7 @@
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Becker)02": {
-    "inhalt": "Ich hab dich ewig gesucht da die einzige Information dazu wo du bist Holz war!!!",
+    "inhalt": "Ich hab dich ewig gesucht, da die einzige Information dazu, wo du bist 'Holz' war!!!",
     "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Becker)03",
     "wahl2": "",
@@ -4582,7 +4597,7 @@
   
   
   "Tag 5 Hacker Quest (Elbert)00": {
-    "inhalt": "Was gibts?",
+    "inhalt": "Was gibt's?",
     "name": "elbert",
     "wahl1": "Tag 5 Hacker Quest (Elbert)01",
     "wahl2": "",
@@ -4597,21 +4612,21 @@
   },
   "Tag 5 Hacker Quest (Elbert)02": {
     "inhalt": "Hier…",
-    "name": "self",
+    "name": "elbert",
     "wahl1": "Tag 5 Hacker Quest (Elbert)03",
     "wahl2": "",
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Elbert)03": {
     "inhalt": "Nimm das Paket...",
-    "name": "self",
+    "name": "elbert",
     "wahl1": "Tag 5 Hacker Quest (Elbert)04",
     "wahl2": "",
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Elbert)04": {
-    "inhalt": "Bring es zu dem der dich geschickt hat und öffne es nicht!",
-    "name": "self",
+    "inhalt": "Bring es zu dem, der dich geschickt hat und öffne es nicht!",
+    "name": "elbert",
     "wahl1": "Tag 5 Hacker Quest (Elbert)02",
     "wahl2": "",
     "nextTime": "Tag 5 Hacker Quest (hacker)"
@@ -4877,14 +4892,14 @@
     "nextTime": ""
   },
    "D7_00_02": {
-    "inhalt": "Oh, das ist natürlich sehr lieb von ihnen.",
+    "inhalt": "Oh, das ist natürlich sehr lieb von Ihnen.",
     "name": "self",
     "wahl1": "D7_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D7_00_03": {
-    "inhalt": "Aber wie haben sie vor mir zu helfen ?",
+    "inhalt": "Aber wie haben sie vor, mir zu helfen ?",
     "name": "self",
     "wahl1": "D7_00_04",
     "wahl2": "",
@@ -4905,7 +4920,7 @@
     "nextTime": ""
   },
   "D7_00_06": {
-    "inhalt": "Ich werde dir jetzt helfen deinen Account komplett zu löschen.",
+    "inhalt": "Ich werde dir jetzt helfen, deinen Account komplett zu löschen.",
     "name": "frauenland",
     "wahl1": "D7_00_07",
     "wahl2": "",

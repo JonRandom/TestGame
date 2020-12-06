@@ -586,6 +586,20 @@
       }
     ]
   },
+  "Felix": {
+    "felix": [
+      {
+        "requiredItems": [],
+        "requiredLines": [],
+        "forbiddenLines": [
+          "D5.2.1_00_01"
+        ],
+        "code": "D5.2.1_00_01"
+      }
+    ]
+
+  },
+
   "Ende(felix)": {
     //happy
   },

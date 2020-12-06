@@ -468,6 +468,62 @@
       "houseN": -1
     }
   },
+  "Felix": {
+
+    "tim":
+    {
+      "posX": 1150,
+      "posY": 960,
+      "houseN": schule
+    },
+    "felix":
+    {
+      "posX": 620,
+      "posY": 160,
+      "houseN":schule
+    },
+    "max":
+    {
+      "posX": 600,
+      "posY": 480,
+      "houseN": schule
+    },
+    "florian":
+    {
+      "posX": 950,
+      "posY": 480,
+      "houseN": schule
+    },
+    "frauenland":
+    {
+      "posX": 228,
+      "posY": 450,
+      "houseN": schule
+    },
+    "kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":map
+    }
+  ,
+
+
+    "kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+
+      "houseN":map
+    },
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": map
+    }
+
+  },
   "Tag 5 Hacker Quest (hacker)": {
     
     "hacker":

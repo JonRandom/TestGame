@@ -99,6 +99,7 @@ public class NPC2 extends Knoten {
 
 
     public void setRelativPos(int x, int y){
+        System.out.println("DIE RELITVE POS WIRD GESETZTT AUF : " + y + "| y:" + y);
         relativePosX = x;
         relativePosY = y;
     }

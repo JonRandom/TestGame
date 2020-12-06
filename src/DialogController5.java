@@ -224,16 +224,17 @@ public class DialogController5 extends Knoten {
     }
 
     private void endDialog() {
+        System.out.println("DER DIALOG WIRD BEENDET");
         active = false;
         waitingForInput = false;
 
         NPC_Controller2.resetToLastQuietPos();
-        System.out.println("END DIALOG");
+
+        NPC_Controller2.updateNpcPositions(globalTemporalPosition);
         currentDialogCode = null;
         hideWindow();
         saveLastLines();
         highLightReadyNpcs();
-        NPC_Controller2.updateNpcPositions(globalTemporalPosition);
         lineSpecialAction(globalTemporalPosition);
 
     }

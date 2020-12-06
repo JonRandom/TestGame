@@ -140,7 +140,8 @@ public class NpcController2 extends Knoten {
                 this.add(element);
                 element.sichtbarSetzen(true);
                 element.positionSetzen(offsetX + (int) element.getRelativPosX(), offsetY + (int) element.getRelativPosY());
-                System.out.println("Er ist an der absoluten Posiiton x:" + element.getPosX() + " und y:" + element.getPosY());
+                System.out.println("Er ist an der relativen Posititon x:" + element.getRelativPosX() + " und y:" + element.getRelativPosY());
+                System.out.println("Er ist an der absoluten Posititon x:" + element.getPosX() + " und y:" + element.getPosY());
                 System.out.println(element);
             }
         }
@@ -251,7 +252,7 @@ public class NpcController2 extends Knoten {
     }
 
     public void updateNpcPositions(String timePos) {
-        System.out.println("NpcController2: updateNpcPositions aufgerufen");
+        System.out.println("NpcController2: updateNpcPositions aufgerufen---------------------------------");
         Map<String, DialogController5.NpcPosition> positionsAtTime = npcPositions.get(timePos);
         if (!(positionsAtTime == null)) {
             for (String key : positionsAtTime.keySet()) {  //geht die JSON durch
@@ -263,9 +264,8 @@ public class NpcController2 extends Knoten {
                     if (!(npc == null)) {
                         System.out.println("NpcController2: Die Position des NPCs mir dem Name (" + name + ") wird geupdatet");
                         //setzte Position und Hausnummer des NPCs mit dem entsprechenden Namen.
-                        if (npc.getHouseNumber() == -1) { //er ist in keinem Haus
-                            npc.setRelativPos((int) posObject.getPosX(), (int) posObject.getPosY()); //dann sind die relativen Pos = die absoluten
-                        }
+                            npc.setRelativPos((int)posObject.getPosX(), (int) posObject.getPosY()); //dann sind die relativen Pos = die absoluten
+
                         npc.positionSetzen(posObject.getPosX(), posObject.getPosY());
                         npc.setHouseNumber(posObject.getHouseN());
 

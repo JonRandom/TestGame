@@ -62,7 +62,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
 
     public SPIEL() {
-        super(MAIN.x, MAIN.y, "P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
+        super(MAIN.x, MAIN.y, "Fynstagram 2020");//windowsize kann nicht mit variable gemacht werden.
 
         Tracker.sendEventAsync(Collections.singletonMap("type", "starteSpiel"));
         soundController = new SoundController();
@@ -293,7 +293,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 //HouseLoader1.HideView();
                 map.leaveHouse();
             }
-            if (tastenkuerzel == 21) { //Wenn M gedrückt muten
+            if (tastenkuerzel == 12) { //Wenn M gedrückt muten
                 soundController.toggleMute();
             }
 
@@ -301,9 +301,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 settingScreen.toggleWindow();
             }
 
-            if (tastenkuerzel == 12) {//M für minigame
-                Minigame2.startGame();
-            }
+//            if (tastenkuerzel == 12) {//M für minigame
+//                Minigame2.startGame();
+//            }
 
             if (tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
                 ActivePlayer.positionSetzen(ActivePlayer.positionX() + 10, ActivePlayer.positionY());

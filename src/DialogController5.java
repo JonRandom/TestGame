@@ -100,16 +100,7 @@ public class DialogController5 extends Knoten {
     private void addDisplayObjects() {
 
         //beide Pfeile
-        try { //Bilder mit try catch
-            displayArrowLeft = new Bild(0, 0, defaultPath + "arrowLeft.png");
-            displayArrowRight = new Bild(0, 100, defaultPath + "arrowRight.png"); //eigentlich beide bei 0,0
-            displayArrowLeft.sichtbarSetzen(false);
-            displayArrowRight.sichtbarSetzen(false);
-            this.add(displayArrowLeft, displayArrowRight);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(ANSI_PURPLE + "DialogController5: FEHLER beim Importieren der Bilder" + ANSI_RESET);
-        }
+
 
         //beide Dialog blasen
         try { //Bilder mit try catch
@@ -118,6 +109,16 @@ public class DialogController5 extends Knoten {
             displayDialogBackgroundLeft.sichtbarSetzen(false);
             displayDialogBackgroundRight.sichtbarSetzen(false);
             this.add(displayDialogBackgroundLeft, displayDialogBackgroundRight);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(ANSI_PURPLE + "DialogController5: FEHLER beim Importieren der Bilder" + ANSI_RESET);
+        }
+        try { //Bilder mit try catch
+            displayArrowLeft = new Bild(0, 0, defaultPath + "arrowLeft.png");
+            displayArrowRight = new Bild(0, 0, defaultPath + "arrowRight.png"); //eigentlich beide bei 0,0
+            displayArrowLeft.sichtbarSetzen(false);
+            displayArrowRight.sichtbarSetzen(false);
+            this.add(displayArrowLeft, displayArrowRight);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(ANSI_PURPLE + "DialogController5: FEHLER beim Importieren der Bilder" + ANSI_RESET);

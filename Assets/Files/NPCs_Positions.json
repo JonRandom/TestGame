@@ -11,13 +11,13 @@
   "Tag 1 Abschnitt 2": {
     "felix":
     {
-      "posX": 382,
-      "posY": 700,
+      "posX": 426,
+      "posY": 550,
       "houseN": 0 //schule
     },
     "tim": {
-      "posX": 520,
-      "posY": 700,
+      "posX": 550,
+      "posY": 550,
       "houseN": 0 //schule
     },
     "kay": {

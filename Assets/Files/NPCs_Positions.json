@@ -1,35 +1,529 @@
-
 {
-//  "Tag 1 Abschnitt 1 (Start Zeit)": {
-//    "mutter": {
-//      "posX" : 100,
-//      "posY" : 100,
-//      "houseN" : 0
-//    }
-//  },
-//  "Tag 1 Abschnitt 2": {
-//    "mutter": {
-//      "posX" : 1050.0,
-//      "posY" : 1200,
-//      "houseN" : -1
-//    },
-//    "kay": {
-//      "posX" : 100,
-//      "posY" : 100,
-//      "houseN" : 0
-//    }
-//  },
-//  "Tag 1 Abschnitt 3": {
-//    "mutter": {
-//      "posX" : 300,
-//      "posY" : 300,
-//      "houseN" : 0
-//    },
-//    "kay": {
-//      "posX" : 1000,
-//      "posY" : 1200,
-//      "houseN" : -1
-//    }
-//
-//  }
+  "Tag 1 Abschnitt 1 (Start Zeit)": {
+    "mutter": {
+      "posX": 444,
+      "posY": 246,
+      "houseN": 3 //zuhause
+    }
+
+  },
+  "Tag 1 Abschnitt 2": {
+    "kay": {
+      "posX": 426,
+      "posY": 834,
+      "houseN": 0 //schule
+    }
+  },
+
+  "Tag 1 Abschnitt 3": {
+    "felix": {
+      "posX": 468,
+      "posY": 42,
+      "houseN": 4 //verein
+    },
+    "mutter": {
+      "posX": 108,
+      "posY": 144,
+      "houseN": 3 //zuhause
+    }
+  },
+   "Tag 1 Abschnitt 4": {
+    "zzz":
+    {
+      "posX": 522,
+      "posY": 384,
+      "houseN": 3 //zuhause
+    }
+  },
+
+  "Tag 2 Abschnitt 1": {
+    "kay":
+    {
+      "posX": 552,
+      "posY": 738,
+      "houseN": 0 //schule
+    }
+  },
+  "Tag 2 Abschnitt 2": {
+    "felix":
+    {
+      "posX": 444,
+      "posY": 246,
+      "houseN": 3 //zuhause
+    },
+	"tim": {
+      "posX": 630,
+      "posY": 876,
+      "houseN": 3 //zuhause
+    },
+	"frauenland": {
+      "posX": 228,
+      "posY": 450,
+      "houseN": 0 //schule
+    }
+  },
+   "Tag 2 Abschnitt 3": {
+    "zzz":
+    {
+      "posX": 522,
+      "posY": 384,
+      "houseN": 3 //zuhause
+    }
+  },
+
+  //Required lines anpassen
+  "Tag 3 Abschnitt 1": {
+    "felix":
+    {
+      "posX": 444,
+      "posY": 246,
+      "houseN": 3 //zuhause
+    },
+	"tim": {
+      "posX": 630,
+      "posY": 876,
+      "houseN": 3 //zuhause
+    }
+    
+  },
+  
+  
+  
+  
+  "Tag 3 Abschnitt 2": {
+    "tim":
+    {
+      "posX": 768,
+      "posY": 42,
+      "houseN": 4 //verein
+    },
+	"felix": {
+      "posX": 468,
+      "posY": 42,
+      "houseN": 4 //verein
+    }
+  },
+  "Tag 3 Abschnitt 3": {
+    "zzz":
+    {
+      "posX": 522,
+      "posY": 384,
+      "houseN": 3 //zuhause
+    }
+  },
+  
+  
+  
+  
+  //Tag 4 (Hier wird´s n bissl kompliziert ^^)
+  "Tag 4 Abschnitt 1": {
+    
+	"officer":
+    {
+      "posX": 420,
+      "posY": 142,
+      "houseN": 2 //polizei
+    },
+	"cousine":
+    {
+      "posX": 444,
+      "posY": 246,
+      "houseN":3 //zuhause
+    },
+	"bob":
+    {
+      "posX": 70,
+      "posY": 70,
+      "houseN": 1 //kiosk
+    },
+	"kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":-1
+    },
+	"mutter": {
+      "posX": 108,
+      "posY": 144,
+      "houseN": 3 //zuhause
+    },
+	"kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+	 
+      "houseN":-1
+    },
+	"hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    },
+	"zzz":
+    {
+      "posX": 522,
+      "posY": 384,
+      "houseN": 3 //zuhause
+    }
+	
+	
+  },
+  
+  
+  
+  "Tag 5 Abschnitt 1": {
+    
+	"tim":
+    {
+      "posX": 1150,
+      "posY": 960,
+      "houseN": 0 //schule
+    },
+	"felix":
+    {
+      "posX": 620,
+      "posY": 160,
+      "houseN":0 //schule
+    },
+	"max":
+    {
+      "posX": 600,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"florian":
+    {
+      "posX": 950,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"frauenland":
+    {
+      "posX": 228,
+      "posY": 450,
+      "houseN": 0 //schule
+    },
+	"kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":-1
+    }
+	,
+	
+	
+	"kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+	 
+      "houseN":-1
+    },
+	"hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    }
+	
+	
+  },
+   "Tag 5 Abschnitt 2": {
+    
+	"tim":
+    {
+      "posX": 1150,
+      "posY": 960,
+      "houseN": 0 //schule
+    },
+	"felix":
+    {
+      "posX": 620,
+      "posY": 160,
+      "houseN":0 //schule
+    },
+	"max":
+    {
+      "posX": 600,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"florian":
+    {
+      "posX": 950,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"frauenland":
+    {
+      "posX": 228,
+      "posY": 450,
+      "houseN": 0 //schule
+    },
+	"kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":-1
+    }
+	,
+	
+	
+	"kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+	 
+      "houseN":-1
+    },
+	"hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    }
+	
+	
+  },
+  
+  "Tag 4 Hacker Quest 1": {
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    }
+  },
+  
+   "frauenland Enddialog": {
+    
+	"tim":
+    {
+      "posX": 1150,
+      "posY": 960,
+      "houseN": 0 //schule
+    },
+	"felix":
+    {
+      "posX": 620,
+      "posY": 160,
+      "houseN":0 //schule
+    },
+	"max":
+    {
+      "posX": 600,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"florian":
+    {
+      "posX": 950,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"frauenland":
+    {
+      "posX": 228,
+      "posY": 450,
+      "houseN": 0 //schule
+    },
+	"kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":-1
+    }
+	,
+	
+	
+	"kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+	 
+      "houseN":-1
+    },
+	"hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    }
+	
+  },
+  "felix Enddialog": {
+    
+	"tim":
+    {
+      "posX": 1150,
+      "posY": 960,
+      "houseN": 0 //schule
+    },
+	"felix":
+    {
+      "posX": 620,
+      "posY": 160,
+      "houseN":0 //schule
+    },
+	"max":
+    {
+      "posX": 600,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"florian":
+    {
+      "posX": 950,
+      "posY": 480,
+      "houseN": 0 //schule
+    },
+	"frauenland":
+    {
+      "posX": 228,
+      "posY": 450,
+      "houseN": 0 //schule
+    },
+	"kay":
+    {
+      "posX": 6111,
+      "posY": 4360,
+      "houseN":-1
+    }
+	,
+	
+	
+	"kata":
+    {
+      "posX": 6900,
+      "posY": 4480,
+	 
+      "houseN":-1
+    },
+	"hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    }
+	
+  },
+  "Tag 5 Hacker Quest (Macke)": {
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    },
+	"macke":
+    {
+      "posX": 500,
+      "posY": 1000,
+      "houseN": -1
+    }
+  },
+  "Tag 5 Hacker Quest (Becker)": {
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    },
+	"becker":
+    {
+      "posX": 8625,
+      "posY": 3760,
+      "houseN": -1
+    },
+	"macke":
+    {
+      "posX": 500,
+      "posY": 1000,
+      "houseN": -1
+    }
+  },
+  "Tag 5 Hacker Quest (Elbert)": {
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    },
+	"elbert":
+    {
+      "posX": 6900,
+      "posY": 1600,
+      "houseN": -1
+    },
+	"becker":
+    {
+      "posX": 8625,
+      "posY": 3760,
+      "houseN": -1
+    },
+	"macke":
+    {
+      "posX": 500,
+      "posY": 1000,
+      "houseN": -1
+    }
+  },
+  "Tag 5 Hacker Quest (hacker)": {
+    
+    "hacker":
+    {
+      "posX": 6840,
+      "posY": 2820,
+      "houseN": -1
+    },
+	"elbert":
+    {
+      "posX": 6900,
+      "posY": 1600,
+      "houseN": -1
+    },
+	"becker":
+    {
+      "posX": 8625,
+      "posY": 3760,
+      "houseN": -1
+    },
+	"macke":
+    {
+      "posX": 500,
+      "posY": 1000,
+      "houseN": -1
+    }
+  }
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 }
+
+
+
+
+
+

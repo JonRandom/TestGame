@@ -198,7 +198,7 @@
       "requiredLines": [],
 	  "forbiddenLines": ["D4.1.6_00_01"],
       "code": "D4.1.6_00_01"
-    }]
+    }],
 	"hacker":
     [{
       "requiredItems": [],
@@ -456,15 +456,19 @@
   
   
   "Ende(felix)": {
+          //happy
     
   },
   "Tag 5 Ende(Acc gelöscht)": {
+//sad
     
   },
   "Ende (Posts gelöscht)": {
+        //happy
     
   },
   "Ende(Tim)": {
+//sad
     
   }
   

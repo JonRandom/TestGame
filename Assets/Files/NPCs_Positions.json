@@ -62,8 +62,8 @@
   "Tag 2 Abschnitt 1": {
     "kay":
     {
-      "posX": 552,
-      "posY": 738,
+      "posX": 450,
+      "posY": 600,
       "houseN": 0 //0 //schule
     }
   },
@@ -116,8 +116,8 @@
   "Tag 3 Abschnitt 2": {
     "tim":
     {
-      "posX": 768,
-      "posY": 42,
+      "posX": 150,
+      "posY": 80,
       "houseN": 4 //verein
     },
 	"felix": {

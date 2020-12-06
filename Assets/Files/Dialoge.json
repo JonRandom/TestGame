@@ -163,7 +163,7 @@
     "name": "felix",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "Tag 1 Abschnitt 3"
+    "nextTime": "Tag 1 Abschnitt 4"
   },
   "D1.3_12_01": {
     "inhalt": "Hörst du mir überhaupt zu?",
@@ -4386,7 +4386,7 @@
     "name": "self",
     "wahl1": "",
     "wahl2": "",
-    "nextTime": "Tag 2 Abschnitt 1"
+    "nextTime": "Tag 1 Abschnitt 4"
   },
   // Antwort 2
   "Tag 1 ja": {

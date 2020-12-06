@@ -44,8 +44,8 @@
       "houseN": 4 //verein
     },
     "mutter": {
-      "posX": 108,
-      "posY": 144,
+      "posX": 240,
+      "posY": 20,
       "houseN": 3 //zuhause
     }
   },

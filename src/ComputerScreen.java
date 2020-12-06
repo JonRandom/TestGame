@@ -20,40 +20,60 @@ public class ComputerScreen extends Knoten {
     public static final String ANSI_PURPLE = "\u001B[35m";
 
     private Bild mainOverlayImg;
-    private FadeScreen fadeScreen;
+    private Bild post1;
+    private Bild post2;
+
     private boolean activ = false;
 
 
-    public ComputerScreen(){
+    public ComputerScreen() {
 
         //Bilder
-        mainOverlayImg = new Bild(0,0, "./Assets/Computer/overlay.png");
+        mainOverlayImg = new Bild(0, 0, "./Assets/Computer/overlay.png");
         mainOverlayImg.sichtbarSetzen(false);
         this.add(mainOverlayImg);
+        post1 = new Bild(0, 0, "./Assets/Computer/post1.png");
+        post2 = new Bild(0, 0, "./Assets/Computer/post2.png");
+        this.add(post1, post2);
+        post1.sichtbarSetzen(false);
+        post2.sichtbarSetzen(false);
 
-        //FADESCRENN -> Ganz oben drauf
-        fadeScreen = new FadeScreen();
-        this.add(fadeScreen);
     }
-    public void openPC(){
+
+    public void openPC() {
         this.activ = true;
-        //fadeScreen.startBlackFade(); //das läuft dann durch
         showWindow();
     }
+    public void viewPost1(){
+        System.out.println("ComputerScreen: viewPost1() aufgerufen" );
+        hideWindow();
+        this.activ = true;
+        showWindow();
+        post1.sichtbarSetzen(true);
+    }
+    public void viewPost2(){
+        System.out.println("ComputerScreen: viewPost1() aufgerufen" );
+        hideWindow();
+        this.activ = true;
+        showWindow();
+        post2.sichtbarSetzen(true);
+    }
 
-    public void closePC(){
+    public void closePC() {
         this.activ = false;
         hideWindow();
     }
 
-    public void showWindow(){
+    public void showWindow() {
         mainOverlayImg.sichtbarSetzen(true);
-        //...
+
     }
 
-    public void hideWindow(){
+    public void hideWindow() {
         mainOverlayImg.sichtbarSetzen(false);
-        //...
+        post1.sichtbarSetzen(false);
+        post2.sichtbarSetzen(false);
+
     }
 
     public boolean isActiv() {

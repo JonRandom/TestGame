@@ -17,6 +17,8 @@ public class NPC2 extends Knoten {
 
 
     private final String highlighterPath = "./Assets/NPCs/highLight.png";
+    private final String specialBedHighlighterPath = "./Assets/NPCs/highLightBed.png";
+
     private final Bild highLightImg;
     private boolean highlightState = true;
 
@@ -55,7 +57,11 @@ public class NPC2 extends Knoten {
             System.out.println("NPC2: " + e);
             e.printStackTrace();
         }
-        highLightImg = new Bild(posX+2, posY-50, highlighterPath);
+        if(name.equals("zzz")){
+            highLightImg = new Bild(posX, posY, specialBedHighlighterPath);
+        } else{
+            highLightImg = new Bild(posX+2, posY-50, highlighterPath);
+        }
         this.add(highLightImg); //wird beim highLighten gemacht
         this.add(img);
 

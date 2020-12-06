@@ -64,6 +64,7 @@ public class GameSaver {
         saveJSON();
     }
     public void addLine(String code){
+        System.out.println("GameSaver: Die Line mir dem Code: " + code + " wurde gespeichert");
         saveState.lines.add(code);
         saveJSON();
     }

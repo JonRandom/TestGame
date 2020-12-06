@@ -78,6 +78,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     public void Konstruktor() {
         tickerAnmelden(this, 16);
 
+        endScreen = new EndScreen(soundController);
+        computer = new ComputerScreen();
+
         zaehler = 0;
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
 
@@ -88,8 +91,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
 
-
-        DialogController = new DialogController5(NpcController2, gamesaver);
+        DialogController = new DialogController5(NpcController2, gamesaver, endScreen, computer);
         debugAnzeige1 = new DebugAnzeige(0, 0);
         debugAnzeige2 = new DebugAnzeige(200, 0);
         debugAnzeige3 = new DebugAnzeige(350, 0);
@@ -103,8 +105,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         Minigame2 = new Minigame2(ActivePlayer);
         itemAnimator = new ItemAnimation();
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator, soundController);
-        computer = new ComputerScreen();
-        endScreen = new EndScreen(soundController);
+
 
 
         fadeScreen = new FadeScreen();
@@ -173,7 +174,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         soundController.stopAllMusic();
 
-        // TEST: endScreen.playEnding(true);
+        //endScreen.playEnding(true);
 
     }
 
@@ -337,6 +338,12 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
             }
 
+            if(computer.isActiv()){
+                if (tastenkuerzel == 31) {
+                    System.out.println("SPIEL: ENTER GEDRÜCKT");
+                    computer.closePC();
+                }
+            }
 
             if (DialogController.isWaitingForInput()) {
                 if (tastenkuerzel == 0) {

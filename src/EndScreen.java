@@ -10,12 +10,15 @@ public class EndScreen extends Knoten {
     private SoundController soundC;
     private boolean active = false;
     private Bild endingImg;
+    private Bild backgroundImg;
 
     public EndScreen(SoundController sc){
         this.soundC = sc;
         endingImg = new Bild(0,0,MAIN.endScreenImgPath);
-        this.add(endingImg);
+        backgroundImg = new Bild(0,0,MAIN.endScreenBackgroundImgPath);
+        this.add(backgroundImg, endingImg);
         endingImg.sichtbarSetzen(false);
+        backgroundImg.sichtbarSetzen(false);
     }
 
     public void playEnding(boolean isSad){
@@ -27,6 +30,7 @@ public class EndScreen extends Knoten {
             playGoodEnding();
         }
         endingImg.sichtbarSetzen(true);
+        backgroundImg.sichtbarSetzen(true);
     }
 
     public void tick(){

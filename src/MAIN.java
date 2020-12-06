@@ -59,6 +59,7 @@ public class MAIN {
 
     //Ending Screen
     public static  final String endScreenImgPath = "./Assets/EndScreen/endImg.png";
+    public static  final String endScreenBackgroundImgPath = "./Assets/EndScreen/background.png";
 
     public static void main(String[] args){
         DialogChecker dc = new DialogChecker();

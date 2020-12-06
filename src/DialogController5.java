@@ -32,6 +32,8 @@ public class DialogController5 extends Knoten {
     //sub-Objects
     private final NpcController2 NPC_Controller2;
     private final GameSaver gameSaver;
+    private final EndScreen endScreen;
+    private final ComputerScreen computerScreen;
 
     //JSON GSON
     private Map<String, DialogController5.DialogLine> dialogLines; //für die Json mit den DialogZeilen
@@ -46,9 +48,9 @@ public class DialogController5 extends Knoten {
     private Bild displayArrowRight;
 
     //Text Stuff
-    private final int textPosY = 680;
+    private final int textPosY = 650;
     private final int defaultTextSize = 28;
-    private final int maxTextWidth = 900;
+    private final int maxTextWidth = 800;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -60,7 +62,6 @@ public class DialogController5 extends Knoten {
 
     //playingLastLine
     private boolean playingLastLine = false;
-
 
 
     //lastLine
@@ -76,9 +77,12 @@ public class DialogController5 extends Knoten {
     private final int selfFaceLocationX = MAIN.x - faceLocationX;
 
 
-    public DialogController5(NpcController2 NPC_C2, GameSaver gs) {
+    public DialogController5(NpcController2 NPC_C2, GameSaver gs, EndScreen eS, ComputerScreen cS) {
         this.NPC_Controller2 = NPC_C2;
         this.gameSaver = gs;
+        this.endScreen = eS;
+        this.computerScreen = cS;
+
         //initialisert
         readJSON_DialogLines();
         readJSON_DialogPackets();
@@ -163,7 +167,7 @@ public class DialogController5 extends Knoten {
 
             lastDialogCode = currentDialogCode;
             lastLineHadChoice = !dialogLines.get(currentDialogCode).hasNoChoice();
-            if(lastLineHadChoice){
+            if (lastLineHadChoice) {
                 updateArrows();
             } else {
                 hideAllArrows();
@@ -176,6 +180,7 @@ public class DialogController5 extends Knoten {
             System.out.println("DialogController4: WÜRDE JZ LASTLINE SPIELEN MACHT ES ABER AUS TESTGRÜNDEN NOCH NICHT");
             playLastLine(npcID);
         }
+
     }
 
     public void highLightReadyNpcs() {
@@ -216,6 +221,7 @@ public class DialogController5 extends Knoten {
         }
         lastLines.clear();
     }
+
     private void endDialog() {
         active = false;
         waitingForInput = false;
@@ -226,8 +232,11 @@ public class DialogController5 extends Knoten {
         hideWindow();
         saveLastLines();
         highLightReadyNpcs();
+        NPC_Controller2.updateNpcPositions(globalTemporalPosition);
+        lineSpecialAction(globalTemporalPosition);
 
     }
+
     private void playLastLine(String npcID) {
         playingLastLine = true;
         System.out.println("DialogController5: playLastLine() aufgerufen");
@@ -238,13 +247,14 @@ public class DialogController5 extends Knoten {
             displayDialogLine(NPC_Controller2.getNpcLastLine(npcID));
         }
     }
+
     public void nextLine() {
         if (!playingLastLine) {
             System.out.println("DialogController5: Es wird die Zeile mit den Code: " + currentDialogCode + " abgespeichert!");
             gameSaver.addLine(currentDialogCode); //speicher alle Abgespielen Lines in der JSON
             lastDialogCode = currentDialogCode;
             lastLineHadChoice = !dialogLines.get(lastDialogCode).hasNoChoice();
-            if(lastLineHadChoice){
+            if (lastLineHadChoice) {
                 updateArrows();
             } else {
                 hideAllArrows();
@@ -316,13 +326,29 @@ public class DialogController5 extends Knoten {
         hideAllArrows();
     }
 
-    public void lineSpecialAction(String l){
-        switch(l){
-            case(""):
+    public void lineSpecialAction(String timeCode) {
+        System.out.println("DialogController5: lineSpecialAction() aufegerufen mit der Zeit: " + timeCode);
+        switch (timeCode) {
+
+            case ("Ende(felix)"):
+            case ("Ende (Posts gelöscht)"):
+
                 //e.g. show PC screen
+                endScreen.playEnding(false);
                 break;
 
-            case("we"):
+            case ("Ende(Tim)"):
+            case ("Tag 5 Ende(Acc gelöscht)"):
+
+                endScreen.playEnding(true);
+                break;
+
+            case ("Tag 1 Abschnitt 3"):
+                computerScreen.viewPost1();
+                break;
+
+            case ("Tag 3 Abschnitt 2"):
+                computerScreen.viewPost2();
                 break;
 
             default:
@@ -333,7 +359,6 @@ public class DialogController5 extends Knoten {
 
 
     public void displayDialogLine(String lineCode) {
-        lineSpecialAction(lineCode);
         DialogLine dL = dialogLines.get(lineCode);
         setNpcFace(dL.name);
         setDialogWindowDir(dL.isSelf());
@@ -368,20 +393,20 @@ public class DialogController5 extends Knoten {
         }
     }
 
-    public void updateArrows(){
-        if(isLastLineHadChoice()){
+    public void updateArrows() {
+        if (isLastLineHadChoice()) {
             hideAllArrows();
-            if(selection == 0){ //selection steht links, also nach rechts ein switch möglich
+            if (selection == 0) { //selection steht links, also nach rechts ein switch möglich
                 displayArrowRight.sichtbarSetzen(true);
-            } else{
+            } else {
                 displayArrowLeft.sichtbarSetzen(true);
             }
-        }
-        else{
+        } else {
             System.out.println("DialogController5: Komischer Fehler in updateArrows()");
         }
     }
-    public void hideAllArrows(){
+
+    public void hideAllArrows() {
         displayArrowLeft.sichtbarSetzen(false);
         displayArrowRight.sichtbarSetzen(false);
     }
@@ -398,7 +423,7 @@ public class DialogController5 extends Knoten {
                         currentDialogCode = dialogLines.get(lastDialogCode).wahl1;
                         displayDialogLine(currentDialogCode);
                         updateArrows();
-                    } else{
+                    } else {
                         selection = 0;
                     }
 
@@ -415,11 +440,9 @@ public class DialogController5 extends Knoten {
                         currentDialogCode = dialogLines.get(lastDialogCode).wahl2;
                         displayDialogLine(currentDialogCode);
                         updateArrows();
-                    } else{
+                    } else {
                         selection = 0;
                     }
-
-
 
 
                     //displayNextDialogLine();

@@ -1,5 +1,7 @@
 import ea.*;
 
+import java.util.Collections;
+
 public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, KlickReagierbar {
 
     private int zaehler;
@@ -62,6 +64,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     public SPIEL() {
         super(MAIN.x, MAIN.y, "P-SEM GAME");//windowsize kann nicht mit variable gemacht werden.
 
+        Tracker.sendEventAsync(Collections.singletonMap("type", "starteSpiel"));
         soundController = new SoundController();
         soundController.startTitleMusic();
         StartSc = new StartingScreen();
@@ -110,7 +113,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         fadeScreen = new FadeScreen();
 
-        if (true) {
+        if (false) {
             //Beginn oben links, im Uhrzeigersinn
             Bild testauto1 = new Bild(220, 1550, "./Assets/Tests/Testauto.png");
             wurzel.add(testauto1);
@@ -248,7 +251,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 String npcID = NpcController2.getCollidingNPC(ActivePlayer);
                 System.out.println("Der Spieler schneidet den NPC mit der ID: " + npcID);
                 DialogController.startDialog(npcID);
-
             }
 
             gamesaver.SavePlayer(ActivePlayer);
@@ -291,7 +293,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 //HouseLoader1.HideView();
                 map.leaveHouse();
             }
-            if (tastenkuerzel == 17) { //Wenn R gedrückt
+            if (tastenkuerzel == 21) { //Wenn M gedrückt muten
                 soundController.toggleMute();
             }
 
@@ -303,10 +305,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
                 Minigame2.startGame();
             }
 
-
-            if (tastenkuerzel == 21) {//Wenn V gedrückt wird toggle visiting
-                map.toggleVisting();
-            }
             if (tastenkuerzel == 19) {//Wenn T gedrückt wird teleport 20 Blöcke nach vorne
                 ActivePlayer.positionSetzen(ActivePlayer.positionX() + 10, ActivePlayer.positionY());
 

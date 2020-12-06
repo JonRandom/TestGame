@@ -7,26 +7,49 @@
     }
 
   },
+
   "Tag 1 Abschnitt 2": {
+    "felix":
+    {
+      "posX": 382,
+      "posY": 750,
+      "houseN": schule
+    },
+    "tim": {
+      "posX": 520,
+      "posY": 750,
+      "houseN": schule
+    },
     "kay": {
       "posX": 426,
       "posY": 834,
-      "houseN": 0 //schule
+      "houseN": schule
     }
   },
 
   "Tag 1 Abschnitt 3": {
+    "tim": {
+      "posX": 560,
+      "posY": 670,
+      "houseN": schule
+    },
+    "kay": {
+      "posX": 620,
+      "posY": 670,
+      "houseN": schule
+    },
     "felix": {
       "posX": 468,
       "posY": 42,
-      "houseN": 4 //verein
+      "houseN": verein
     },
     "mutter": {
       "posX": 108,
       "posY": 144,
-      "houseN": 3 //zuhause
+      "houseN": zuhause
     }
   },
+
    "Tag 1 Abschnitt 4": {
     "zzz":
     {

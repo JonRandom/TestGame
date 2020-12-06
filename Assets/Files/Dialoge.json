@@ -2005,22 +2005,22 @@
   },
   "D4.1.6_00_03": {
     "inhalt": "Ne man, wenn es um die Sache mit deinen Fotos geht,",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_00_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.6_00_04": {
     "inhalt": "dann will ich damit nichts zu tun haben",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_01_01",
     "wahl2": "D4.1.6_02_01",
     "nextTime": ""
   },
-  // Kata lieb bitten D4.1.6_01_01
+  // kata lieb bitten D4.1.6_01_01
 
   "D4.1.6_01_01": {
-    "inhalt": "Bitte Kata...ich brauche dich da wirklich.",
+    "inhalt": "Bitte kata...ich brauche dich da wirklich.",
     "name": "self",
     "wahl1": "D4.1.6_01_02",
     "wahl2": "",
@@ -2035,21 +2035,21 @@
   },
   "D4.1.6_01_03": {
     "inhalt": "Ok Kleiner, Ich glaub du checkst noch net ganz, was abgeht.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_01_04",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.6_01_04": {
     "inhalt": " Es tut mir echt leid … ich kann dir da leider nicht weiterhelfen.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_01_05",
     "wahl2": "",
     "nextTime": ""
   },
   "D4.1.6_01_05": {
     "inhalt": " Ich würde dann auch jetzt wieder gehen. Uns schauen nämlich schon alle komisch an.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_01_06",
     "wahl2": "",
     "nextTime": ""
@@ -2063,7 +2063,7 @@
   },
   "D4.1.6_01_07": {
     "inhalt": "Tschau",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_01_08",
     "wahl2": "",
     "nextTime": ""
@@ -2075,7 +2075,7 @@
     "wahl2": "",
     "nextTime": "Tag 4 Abschnitt 1"
   },
-  // Kata unter Druck setzten D4.1.6_02_01
+  // kata unter Druck setzten D4.1.6_02_01
 
 
 
@@ -2091,7 +2091,7 @@
   },
   "D4.1.6_02_02": {
     "inhalt": "Sag mal spinnst du ?",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_02_03",
     "wahl2": "",
     "nextTime": ""
@@ -2105,7 +2105,7 @@
   },
   "D4.1.6_02_04": {
     "inhalt": "Okay das reicht mir jetzt, verschwinde sofort !",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D4.1.6_02_05",
     "wahl2": "",
     "nextTime": ""
@@ -2329,7 +2329,7 @@
     "wahl2": "",
     "nextTime": "Ende(felix)"
   },
-  //Tag 5 Kata
+  //Tag 5 kata
 
 
 
@@ -2342,14 +2342,14 @@
   },
   "D5.3_00_02": {
     "inhalt": "Hast du mir eigentlich zugehört Gestern? Ich kann dir nicht helfen! ",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_03": {
     "inhalt": "Lass mich bitte in Ruhe!",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_04",
     "wahl2": "",
     "nextTime": ""
@@ -2363,7 +2363,7 @@
   },
   "D5.3_00_05": {
     "inhalt": " Wie bitte ?! Denkst du etwa ich habe deine Bilder hochgeladen?",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_06",
     "wahl2": "",
     "nextTime": ""
@@ -2384,35 +2384,35 @@
   },
   "D5.3_00_08": {
     "inhalt": " Des hast du bestimmt vom Felix oder?",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_09",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_09": {
     "inhalt": "Der verbreitet öfters solche Gerüchte, seitdem ich ihn einmal gekorbt habe.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_10": {
     "inhalt": " Nur, weil der noch sauer ist….",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_11",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_11": {
     "inhalt": "Also eines kann ich dir sagen:",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.3_00_12": {
     "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht, wer es gewesen sein könnte. ",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5.3_00_13",
     "wahl2": "",
     "nextTime": ""
@@ -2433,7 +2433,7 @@
   },
   "D5.3_00_15": {
     "inhalt": "Das hoffe ich doch mal.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "",
     "wahl2": "",
     "nextTime": "Tag 5 Abschnitt 2"
@@ -2862,7 +2862,7 @@
   },
   "D5.8_00_02": {
     "inhalt": "Jo, was los ? Geht es um deine komischen Fotos auf Fynsta ?",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_03",
     "wahl2": "",
     "nextTime": ""
@@ -2876,7 +2876,7 @@
   },
   "D5.8_00_04": {
     "inhalt": "Oh man, des ist echt peinlich (lacht).",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_05",
     "wahl2": "",
     "nextTime": ""
@@ -2890,21 +2890,21 @@
   },
   "D5.8_00_06": {
     "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde, aber sowas ? ",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_07",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.8_00_07": {
     "inhalt": "Ich denke nicht, dass wir so schlecht befreundet sind, um so etwas zu tun.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_08",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.8_00_08": {
     "inhalt": "Wie kommst du denn darauf ?",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_09",
     "wahl2": "",
     "nextTime": ""
@@ -2925,21 +2925,21 @@
   },
   "D5.8_00_11": {
     "inhalt": "Also mal ernsthaft. Ich habe jetzt nichtmal nen eigenen Fynstagramm-Account.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.8_00_12": {
     "inhalt": "Und irgendwelche Ahnung vom Internet,",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.8_00_13": {
     "inhalt": " vor allem vom Hacken oder irgendwas in der Richtung, habe ich auch nicht. ",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_14",
     "wahl2": "",
     "nextTime": ""
@@ -2967,14 +2967,14 @@
   },
   "D5.8_00_17": {
     "inhalt": "Ich gehe mal nicht davon aus, dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_18",
     "wahl2": "",
     "nextTime": ""
   },
   "D5.8_00_18": {
     "inhalt": "Aber an sich habe ich leider keine Ahnung, wer es sein könnte. Sorry.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5.8_00_19",
     "wahl2": "",
     "nextTime": ""
@@ -3289,7 +3289,7 @@
     "wahl2": "",
     "nextTime": "Ende(felix)"
   },
-  //Tag 5 Kata
+  //Tag 5 kata
 
 
 
@@ -3302,14 +3302,14 @@
   },
   "D5-1.3_00_02": {
     "inhalt": "Hast du mir eigentlich zugehört Gestern? Ich kann dir nicht helfen! ",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_03",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_03": {
     "inhalt": "Lass mich bitte in Ruhe!",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_04",
     "wahl2": "",
     "nextTime": ""
@@ -3323,7 +3323,7 @@
   },
   "D5-1.3_00_05": {
     "inhalt": " Wie bitte ?! Denkst du etwa ich habe deine Bilder hochgeladen?",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_06",
     "wahl2": "",
     "nextTime": ""
@@ -3344,35 +3344,35 @@
   },
   "D5-1.3_00_08": {
     "inhalt": " Des hast du bestimmt vom Felix oder?",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_09",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_09": {
     "inhalt": "Der verbreitet öfters solche Gerüchte seitdem ich ihn einmal gekorbt habe.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_10": {
     "inhalt": " Nur weil der noch sauer ist….",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_11",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_11": {
     "inhalt": "Also eines kann ich dir sagen:",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_12": {
     "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht wer es gewesen sein könnte. ",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "D5-1.3_00_13",
     "wahl2": "",
     "nextTime": ""
@@ -3393,7 +3393,7 @@
   },
   "D5-1.3_00_15": {
     "inhalt": "Das hoffe ich doch mal.",
-    "name": "Kata",
+    "name": "kata",
     "wahl1": "",
     "wahl2": "",
     "nextTime": "frauenland Enddialog"
@@ -3823,7 +3823,7 @@
   },
   "D5-1.8_00_02": {
     "inhalt": "Jo, was los ? Geht es um deine komischen Fotos auf Fynsta ?",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_03",
     "wahl2": "",
     "nextTime": ""
@@ -3837,7 +3837,7 @@
   },
   "D5-1.8_00_04": {
     "inhalt": "Oh man, des ist echt peinlich (lacht).",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_05",
     "wahl2": "",
     "nextTime": ""
@@ -3851,21 +3851,21 @@
   },
   "D5-1.8_00_06": {
     "inhalt": "Hä ? Ich weiß wir sind jetzt net die besten Freunde, aber sowas ? ",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_07",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_07": {
     "inhalt": "Ich denke nicht, dass wir so schlecht befreundet sind, um so etwas zu tun.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_08",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_08": {
     "inhalt": "Wie kommst du denn darauf ?",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_09",
     "wahl2": "",
     "nextTime": ""
@@ -3886,21 +3886,21 @@
   },
   "D5-1.8_00_11": {
     "inhalt": "Also mal ernsthaft. Ich habe jetzt nichtmal nen eigenen Fynstagramm-Account.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_12",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_12": {
     "inhalt": "Und irgendwelche Ahnung vom Internet,",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_13": {
     "inhalt": " vor allem vom Hacken oder irgendwas in der Richtung, habe ich auch nicht. ",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_14",
     "wahl2": "",
     "nextTime": ""
@@ -3928,14 +3928,14 @@
   },
   "D5-1.8_00_17": {
     "inhalt": "Ich gehe mal nicht davon aus, dass ich die einzige Person mit diesen Anfangsbuchstaben bin.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_18",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_18": {
     "inhalt": "Aber an sich habe ich leider keine Ahnung, wer es sein könnte. Sorry.",
-    "name": "Florian Eckl",
+    "name": "florian",
     "wahl1": "D5-1.8_00_19",
     "wahl2": "",
     "nextTime": ""

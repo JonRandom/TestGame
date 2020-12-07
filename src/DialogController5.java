@@ -36,6 +36,7 @@ public class DialogController5 extends Knoten {
     private final GameSaver gameSaver;
     private final EndScreen endScreen;
     private final ComputerScreen computerScreen;
+    private final FadeScreen fadeScreen;
 
     //JSON GSON
     private Map<String, DialogController5.DialogLine> dialogLines; //für die Json mit den DialogZeilen
@@ -81,11 +82,12 @@ public class DialogController5 extends Knoten {
     private final int selfFaceLocationX = MAIN.x - faceLocationX;
 
 
-    public DialogController5(NpcController2 NPC_C2, GameSaver gs, EndScreen eS, ComputerScreen cS) {
+    public DialogController5(NpcController2 NPC_C2, GameSaver gs, EndScreen eS, ComputerScreen cS,FadeScreen fS) {
         this.NPC_Controller2 = NPC_C2;
         this.gameSaver = gs;
         this.endScreen = eS;
         this.computerScreen = cS;
+        this.fadeScreen = fS;
 
         //initialisert
         readJSON_DialogLines();
@@ -391,6 +393,14 @@ public class DialogController5 extends Knoten {
 
             case ("Tag 3 Abschnitt 2"):
                 computerScreen.viewPost2();
+                break;
+
+            case ("Tag 2 Abschnitt 1"):
+            case ("Tag 3 Abschnitt 1"):
+            case ("Tag 4 Abschnitt 1"):
+            case ("Tag 5 Abschnitt 1"):
+
+                fadeScreen.startBlackFade();
                 break;
 
             default:

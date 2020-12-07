@@ -86,6 +86,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         endScreen = new EndScreen(soundController);
         computer = new ComputerScreen();
+        fadeScreen = new FadeScreen();
 
         zaehler = 0;
         gamesaver = new GameSaver(); //GameSaver, der im Moment nur Spieler-Sachen speichert
@@ -97,7 +98,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         //pet1 = new Pet(1100,1100);
         NpcController2 = new NpcController2(ActivePlayer, gamesaver);
 
-        DialogController = new DialogController5(NpcController2, gamesaver, endScreen, computer);
+        DialogController = new DialogController5(NpcController2, gamesaver, endScreen, computer, fadeScreen);
         debugAnzeige1 = new DebugAnzeige(0, 0);
         debugAnzeige2 = new DebugAnzeige(200, 0);
         debugAnzeige3 = new DebugAnzeige(350, 0);
@@ -115,8 +116,6 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         helpingArrow = new HelpingArrow(DialogController, ActivePlayer, map);
 
 
-
-        fadeScreen = new FadeScreen();
 
         if (false) {
             //Beginn oben links, im Uhrzeigersinn

@@ -466,14 +466,30 @@
     "nextTime": ""
   },
   "D2.2.1_00_12": {
-    "inhalt": "Zuerst sollte dir klar sein, dass das Internet nichts vergisst, überleg‘ dir also zweimal, was du auf Social-Media Plattformen postest und wie viel Persönliches du preisgibst.",
+    "inhalt": "Zuerst sollte dir klar sein, dass das Internet nichts vergisst, ",
+    "name": "frauenland",
+    "wahl1": "D2.2.1_00_12-1",
+    "wahl2": "",
+    "nextTime": ""
+  },
+
+  "D2.2.1_00_12-1": {
+    "inhalt": " überleg‘ dir also zweimal, was du auf Social-Media Plattformen postest und wie viel Persönliches du preisgibst.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_13",
     "wahl2": "",
     "nextTime": ""
   },
+
   "D2.2.1_00_13": {
-    "inhalt": "Es gibt einige Dinge die du beachten solltest, wenn du im Internet surfst. Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertraust oder die dir seltsam vorkommen.",
+    "inhalt": "Es gibt einige Dinge die du beachten solltest, wenn du im Internet surfst.",
+    "name": "frauenland",
+    "wahl1": "D2.2.1_00_13-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_13-2": {
+    "inhalt": "Erstens solltest du keine Links oder Ähnliches öffnen, denen du nicht vertraust oder die dir seltsam vorkommen.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_14",
     "wahl2": "",
@@ -536,7 +552,14 @@
     "nextTime": ""
   },
   "D2.2.1_00_22": {
-    "inhalt": "Nur für die Zukunft: Deine Passwörter sollten am besten Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten, dann sind sie am sichersten.",
+    "inhalt": "Nur für die Zukunft: Deine Passwörter sollten am besten Groß- und Kleinbuchstaben,",
+    "name": "frauenland",
+    "wahl1": "D2.2.1_00_22-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_22-2": {
+    "inhalt": "Zahlen und Sonderzeichen enthalten, dann sind sie am sichersten.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_23",
     "wahl2": "",
@@ -571,7 +594,14 @@
     "nextTime": ""
   },
   "D2.2.1_00_27": {
-    "inhalt": "Wenn alles schief läuft kannst du auch immer nochmal auf mich zugehen oder dich an die Polizei wenden, es ist immerhin eine Straftat.",
+    "inhalt": "Wenn alles schief läuft kannst du auch immer nochmal auf mich zugehen",
+    "name": "frauenland",
+    "wahl1": "D2.2.1_00_27-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_27-2": {
+    "inhalt": "oder dich an die Polizei wenden, es ist immerhin eine Straftat.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_28",
     "wahl2": "",
@@ -900,7 +930,14 @@
 
 
   "D3.3.1_00_01": {
-    "inhalt": "Hey Felix, die Frau Enland hat mir erzählt, dass man bei Problemen oder Fragen zu seinem Account immer den Support anschreiben kann.",
+    "inhalt": "Hey Felix, die Frau Enland hat mir erzählt, ",
+    "name": "self",
+    "wahl1": "D3.3.1_00_01-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D3.3.1_00_01-2": {
+    "inhalt": "dass man bei Problemen oder Fragen zu seinem Account immer den Support anschreiben kann.",
     "name": "self",
     "wahl1": "D3.3.1_00_02",
     "wahl2": "",
@@ -1158,7 +1195,14 @@
     "nextTime": ""
   },
   "D4.1.1_00_10": {
-    "inhalt": "Ich muss ihnen leider sagen, dass diese Polizeistation noch nicht mit den nötigen technischen Mittel ausgestattet ist und wir daher auch noch keine Cyberkriminalfälle behandeln können.",
+    "inhalt": "Ich muss ihnen leider sagen, dass diese Polizeistation noch nicht mit den nötigen technischen Mittel",
+    "name": "officer",
+    "wahl1": "D4.1.1_00_10-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.1_00_10-2": {
+    "inhalt": "ausgestattet ist und wir daher auch noch keine Cyberkriminalfälle behandeln können.",
     "name": "officer",
     "wahl1": "D4.1.1_00_11",
     "wahl2": "",
@@ -1282,7 +1326,14 @@
     "nextTime": ""
   },
   "D4.1.2.1_00_11": {
-    "inhalt": "Naja, wenn du etwas für mich erledigst, kann ich dir vielleicht bei den Bildern weiterhelfen, die sich auf dein Fynstagram-Profil verirrt haben.",
+    "inhalt": "Naja, wenn du etwas für mich erledigst, kann ich dir vielleicht bei den Bildern weiterhelfen,",
+    "name": "hacker",
+    "wahl1": "D4.1.2.1_00_11-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D4.1.2.1_00_11-2": {
+    "inhalt": "die sich auf dein Fynstagram-Profil verirrt haben.",
     "name": "hacker",
     "wahl1": "D4.1.2.1_00_12",
     "wahl2": "",
@@ -3049,7 +3100,14 @@
     "nextTime": "Tag 5 Abschnitt 2"
   },
   "D5.10_00_03": {
-    "inhalt": "Könnten sie mir eventuell bei meinem Fynstergramm Problem helfen, ich muss die Bilder irgendwie gelöscht bekommen?",
+    "inhalt": "Könnten sie mir eventuell bei meinem Fynstergramm Problem helfen,",
+    "name": "self",
+    "wahl1": "D5.10_00_03-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D5.10_00_03-2": {
+    "inhalt": "ich muss die Bilder irgendwie gelöscht bekommen?",
     "name": "self",
     "wahl1": "D5.10_00_04",
     "wahl2": "",
@@ -3063,7 +3121,14 @@
     "nextTime": ""
   },
   "D5.10_00_05": {
-    "inhalt": "Aber bitte denke daran, wenn du dir wieder einen Fynstergramm Account erstellst, die Zwei-Faktor-Authentifizierung einzurichten, damit so etwas nicht noch einmal passiert.",
+    "inhalt": "Aber bitte denke daran, wenn du dir wieder einen Fynstergramm Account erstellst,",
+    "name": "frauenland",
+    "wahl1": "D5.10_00_05-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D5.10_00_05-2": {
+    "inhalt": "die Zwei-Faktor-Authentifizierung einzurichten, damit so etwas nicht noch einmal passiert.",
     "name": "frauenland",
     "wahl1": "D5.10_00_06",
     "wahl2": "",
@@ -4010,7 +4075,14 @@
     "nextTime": "frauenland Enddialog"
   },
   "D5-1.10_00_03": {
-    "inhalt": "Könnten sie mir eventuell bei meinem Fynstergramm Problem helfen, ich muss die Bilder irgendwie gelöscht bekommen?",
+    "inhalt": "Könnten sie mir eventuell bei meinem Fynstergramm Problem helfen,",
+    "name": "self",
+    "wahl1": "D5-1.10_00_03-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D5-1.10_00_03-2": {
+    "inhalt": "ich muss die Bilder irgendwie gelöscht bekommen?",
     "name": "self",
     "wahl1": "D5-1.10_00_04",
     "wahl2": "",
@@ -4024,7 +4096,14 @@
     "nextTime": ""
   },
   "D5-1.10_00_05": {
-    "inhalt": "Aber bitte denke daran, wenn du dir wieder einen Fynstergramm Account erstellst, die Zwei-Faktor-Authentifizierung einzurichten, damit so etwas nicht noch einmal passiert.",
+    "inhalt": "Aber bitte denke daran, wenn du dir wieder einen Fynstergramm Account erstellst,",
+    "name": "frauenland",
+    "wahl1": "D5-1.10_00_05-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D5-1.10_00_05-2": {
+    "inhalt": "die Zwei-Faktor-Authentifizierung einzurichten, damit so etwas nicht noch einmal passiert.",
     "name": "frauenland",
     "wahl1": "D5-1.10_00_06",
     "wahl2": "",

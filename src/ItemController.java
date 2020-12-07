@@ -50,7 +50,7 @@ public class ItemController extends Knoten {
                 if (i.requiredLineCode.equals("")) {
                     i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
                 } else if (lines.contains(i.requiredLineCode)) {
-                    //System.out.println("ItemController: Das Item namnes:" + i.name + " wird jz aufgedeckt und angezeigt");
+                    System.out.println("ItemController: Das Item namnes:" + i.name + " wird jz aufgedeckt und angezeigt");
                     //Es wurden die nötige Zeile vorgelesen und jz wird das item angezeigt
                     i.visible = true; //zeigt das item nicht an, sondern erst beim nächsten hauzs betritt
                 } else {

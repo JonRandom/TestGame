@@ -1,10 +1,10 @@
 [
   {
     "name": "stick",
-    "posX": 4533,
-    "posY": 1153,
-    "relativePosX": 4533,
-    "relativePosY": 1153,
+    "posX": 4680,
+    "posY": 950,
+    "relativePosX": 4680,
+    "relativePosY": 950,
     "houseN": -1,
     "visible": true,
     "found": false,

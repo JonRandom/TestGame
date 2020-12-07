@@ -2471,7 +2471,7 @@
     "nextTime": ""
   },
   "D5.4.1_01_02": {
-    "inhalt": "Nein war ich nicht und das sollte dir auch klar sein.",
+    "inhalt": "Nein, war ich nicht und das sollte dir auch klar sein.",
     "name": "hacker",
     "wahl1": "D5.4.1_01_03",
     "wahl2": "",
@@ -3276,7 +3276,7 @@
     "nextTime": ""
   },
   "D5-1.2.1_00_15": {
-    "inhalt": "Ja mach ich natürlich! Es tut mir echt leid.",
+    "inhalt": "Ja, mach ich natürlich! Es tut mir echt leid.",
     "name": "felix",
     "wahl1": "D5-1.2.1_00_16",
     "wahl2": "",
@@ -3357,7 +3357,7 @@
     "nextTime": ""
   },
   "D5-1.3_00_10": {
-    "inhalt": " Nur weil der noch sauer ist….",
+    "inhalt": "Nur weil der noch sauer ist….",
     "name": "kata",
     "wahl1": "D5-1.3_00_11",
     "wahl2": "",
@@ -3371,14 +3371,14 @@
     "nextTime": ""
   },
   "D5-1.3_00_12": {
-    "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht wer es gewesen sein könnte. ",
+    "inhalt": "Ich habe deine Bilder nicht hochgeladen und ich weiß auch nicht, wer es gewesen sein könnte. ",
     "name": "kata",
     "wahl1": "D5-1.3_00_13",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.3_00_13": {
-    "inhalt": "Okay, das tut mir dann natürlich leid ,dass ich dich jetzt beschuldigt habe. ",
+    "inhalt": "Okay, das tut mir dann natürlich leid, dass ich dich jetzt beschuldigt habe. ",
     "name": "self",
     "wahl1": "D5-1.3_00_14",
     "wahl2": "",
@@ -3688,7 +3688,7 @@
     "nextTime": ""
   },
   "D5-1.5.1_00_09": {
-    "inhalt": " Ja…Ok…",
+    "inhalt": "Ja…Ok…",
     "name": "kay",
     "wahl1": "D5-1.5.1_00_10",
     "wahl2": "",
@@ -3871,14 +3871,14 @@
     "nextTime": ""
   },
   "D5-1.8_00_09": {
-    "inhalt": "  Naja… Ich hab nen Zettel gefunden, wo über den nächsten Post gesprochen wird,",
+    "inhalt": " Naja… Ich hab nen Zettel gefunden, wo über den nächsten Post gesprochen wird,",
     "name": "self",
     "wahl1": "D5-1.8_00_10",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_10": {
-    "inhalt": " auf dem deine Initialen stehen: F. E.",
+    "inhalt": "...auf dem deine Initialen stehen: F. E.",
     "name": "self",
     "wahl1": "D5-1.8_00_11",
     "wahl2": "",
@@ -3899,14 +3899,14 @@
     "nextTime": ""
   },
   "D5-1.8_00_13": {
-    "inhalt": " vor allem vom Hacken oder irgendwas in der Richtung, habe ich auch nicht. ",
+    "inhalt": "vor allem vom Hacken oder irgendwas in der Richtung, habe ich auch nicht. ",
     "name": "florian",
     "wahl1": "D5-1.8_00_14",
     "wahl2": "",
     "nextTime": ""
   },
   "D5-1.8_00_14": {
-    "inhalt": "Ja….Das habe ich mir auch schon fast Gedacht. ",
+    "inhalt": "Ja… Das habe ich mir auch schon fast Gedacht. ",
     "name": "self",
     "wahl1": "D5-1.8_00_15",
     "wahl2": "",
@@ -4053,7 +4053,7 @@
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Macke)1_01": {
-    "inhalt": "´Elefant´!",
+    "inhalt": "'Elefant'!",
     "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Macke)1_02",
     "wahl2": "",
@@ -4067,7 +4067,7 @@
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Macke)1_03": {
-    "inhalt": "Ja und was ist jetzt mit diesem ´Elefant´?",
+    "inhalt": "Ja und was ist jetzt mit diesem 'Elefant'?",
     "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Macke)1_04",
     "wahl2": "",
@@ -4186,7 +4186,7 @@
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Becker)05": {
-    "inhalt": "Was ist denn jetzt mit diesem ´Elefant´?!?",
+    "inhalt": "Was ist denn jetzt mit diesem 'Elefant'?!?",
     "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Becker)06",
     "wahl2": "",
@@ -4234,7 +4234,7 @@
     "nextTime": ""
   },
   "Tag 5 Hacker Quest (Elbert)01": {
-    "inhalt": "´Elefant´",
+    "inhalt": "'Elefant'",
     "name": "self",
     "wahl1": "Tag 5 Hacker Quest (Elbert)02",
     "wahl2": "",
@@ -4265,7 +4265,7 @@
 
 
   "Tag 5 Hacker Quest (hacker)00": {
-    "inhalt": "Hast du den ´Elefant´?",
+    "inhalt": "Hast du den 'Elefant'?",
     "name": "hacker",
     "wahl1": "Tag 5 Hacker Quest (hacker)01",
     "wahl2": "",
@@ -4484,7 +4484,7 @@
     "nextTime": ""
   },
   "D7_00_03": {
-    "inhalt": "Aber wie haben sie vor, mir zu helfen ?",
+    "inhalt": "Aber wie haben sie vor mir zu helfen ?",
     "name": "self",
     "wahl1": "D7_00_04",
     "wahl2": "",
@@ -4554,7 +4554,7 @@
     "nextTime": ""
   },
   "D7_00_13": {
-    "inhalt": "Falls du dir wirklich einen neuen Account danach erstellen willst.",
+    "inhalt": "Falls du dir danach wirklich einen neuen Account erstellen willst:",
     "name": "frauenland",
     "wahl1": "D7_00_14",
     "wahl2": "",

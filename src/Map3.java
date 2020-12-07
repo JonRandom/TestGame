@@ -198,7 +198,7 @@ public class Map3 extends Knoten {
     }
 
     public String getOffsetPosString() {
-        System.out.println("getOffsetPosString()");
+        //System.out.println("getOffsetPosString()");
         String returnText;
         if (houseNumber == -1) {
             returnText = "ist in keinem Haus!";

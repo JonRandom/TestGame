@@ -330,6 +330,10 @@ public class Map3 extends Knoten {
         }
     }
 
+    public int getHouseNumber() {
+        //System.out.println("GET HOUSE NUMBER AUFGERUFEN");
+        return houseNumber;
+    }
 
     public boolean isVisiting() {
         return visiting;

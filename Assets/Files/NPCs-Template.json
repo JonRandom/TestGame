@@ -6,6 +6,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
 {
   "kay": {
     "name": "kay",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -15,6 +16,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "mutter": {
     "name": "mutter",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -24,6 +26,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "felix": {
     "name": "felix",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -33,6 +36,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "tim": {
     "name": "tim",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -42,6 +46,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "frauenland": {
     "name": "frauenland",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -51,6 +56,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "hacker": {
     "name": "hacker",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -60,6 +66,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "officer": {
     "name": "officer",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -69,6 +76,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "bob": {
     "name": "bob",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -78,6 +86,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "cousine": {
     "name": "cousine",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -87,6 +96,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "kata": {
     "name": "kata",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -96,6 +106,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "max": {
     "name": "max",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -105,6 +116,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "macke": {
     "name": "macke",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -114,6 +126,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "becker": {
     "name": "becker",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -123,6 +136,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "elbert": {
     "name": "elbert",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -134,6 +148,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
 
   "florian": {
     "name": "florian",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,
@@ -143,6 +158,7 @@ Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
   },
   "zzz": {
     "name": "zzz",
+    "displayName": "",
     "posX": -200,
     "posY": -200,
     "relativePosX": -200,

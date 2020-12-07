@@ -12,6 +12,7 @@ public class HelpingArrow extends Knoten {
 
     private DialogController5 dialogController;
     private Player player;
+    private Map3 map;
 
     private Map<Integer, Punkt> housePos = new HashMap<Integer, Punkt>() {};
 
@@ -23,12 +24,13 @@ public class HelpingArrow extends Knoten {
     private final String mainImgPath = "./Assets/HelpingArrow/";
 
 
-    private int directionalOffsetToDiagonal = 50;
+    private int directionalOffsetToDiagonal = 200;
 
 
-    public HelpingArrow(DialogController5 dC, Player p) {
+    public HelpingArrow(DialogController5 dC, Player p, Map3 m) {
         this.dialogController = dC;
         this.player = p;
+        this.map = m;
 
         /* POSITONEN DER HÄUSER
         Kiosk(1): 4970 | 1320
@@ -43,117 +45,130 @@ public class HelpingArrow extends Knoten {
         housePos.put(0, new Punkt(6430, 4200)); //Schule
         housePos.put(4, new Punkt(7940, 240)); //Verein
 
-        //updateArrows();
+        fillImgArray();
 
     }
-    public void fillImgArray(){
+    private void fillImgArray(){
         // von 0 oben mitte im Uhrzeiger rum
+        arrowImgs[0] = new Bild(0,0,mainImgPath + "top.png");
+        arrowImgs[1] = new Bild(0,0,mainImgPath + "topRight.png");
+        arrowImgs[2] = new Bild(0,0,mainImgPath + "right.png");
+        arrowImgs[3] = new Bild(0,0,mainImgPath + "bottomRight.png");
+        arrowImgs[4] = new Bild(0,0,mainImgPath + "bottom.png");
+        arrowImgs[5] = new Bild(0,0,mainImgPath + "bottomLeft.png");
+        arrowImgs[6] = new Bild(0,0,mainImgPath + "left.png");
+        arrowImgs[7] = new Bild(0,0,mainImgPath + "topLeft.png");
+
+        for(Bild b: arrowImgs){
+            this.add(b);
+        }
     }
     public void updateArrows(){
-        List<NPC2> npcPos = dialogController.getHighlightedNpcObjects();
-        float playerPosX = player.getPosX();
-        float playerPosY = player.getPosY();
+        if(map.getHouseNumber() == -1) {
+            //nur wenn er in keinem Haus ist
+            List<NPC2> npcPos = dialogController.getHighlightedNpcObjects();
+            float playerPosX = player.getPosX();
+            float playerPosY = player.getPosY();
 
-        //macht jedes Pfeil element aus;
-        Arrays.fill(arrowVisibility, false);
+            //macht jedes Pfeil element aus;
+            Arrays.fill(arrowVisibility, false);
 
-        for(NPC2 npc : npcPos){
-            float comparePosX;
-            float comparePosY;
-            if(npc.isInHouse()){
-                //falls in Haus NPC Pos durch Haus pos ersetzen
-                Punkt houseLocation = housePos.get(npc.getHouseNumber());
-                comparePosX = houseLocation.x;
-                comparePosY = houseLocation.y;
+            for (NPC2 npc : npcPos) {
+                float comparePosX;
+                float comparePosY;
+                if (npc.isInHouse()) {
+                    //falls in Haus NPC Pos durch Haus pos ersetzen
+                    Punkt houseLocation = housePos.get(npc.getHouseNumber());
+                    comparePosX = houseLocation.x;
+                    comparePosY = houseLocation.y;
 
-            } else{
-                comparePosX = npc.getPosX();
-                comparePosY = npc.getPosY();
-            }
-
-            if(comparePosX > playerPosX){
-                //Haus ist rechts vom Spieler
-                if(comparePosY > playerPosY){
-                    //Haus ist unter Spieler
-                    if((comparePosY - playerPosY) < directionalOffsetToDiagonal){
-                        //der y-Abstand ist aber innerhalb von dem Offset
-                        //soll Pfeil 2 anzeigen
-                        arrowVisibility[2] = true;
-                    }
-                    else if((comparePosX - playerPosX) < directionalOffsetToDiagonal){
-                        //der x-Abstand ist innerhalb vom Offset
-                        //soll Pfeil 4 anzeigen
-                        arrowVisibility[4] = true;
-                    } else{
-                        //passt gar nicht in die Offsets rein
-                        //zeugt den Dialgonalen Pfeil 3 an.
-                        arrowVisibility[3] = true;
-                    }
-                }
-                else if(comparePosY < playerPosY){
-                    //Haus ist rehcts über  Spieler
-                    if((playerPosY - comparePosY) < directionalOffsetToDiagonal){
-                        //der y-Abstand ist aber innerhalb von dem Offset
-                        //soll Pfeil 2 anzeigen
-                        arrowVisibility[2] = true;
-                    }
-                    else if((comparePosX - playerPosX) < directionalOffsetToDiagonal){
-                        //der x-Abstand ist innerhalb vom Offset
-                        //soll Pfeil 0 anzeigen
-                        arrowVisibility[0] = true;
-                    } else{
-                        //passt gar nicht in die Offsets rein
-                        //zeugt den Dialgonalen Pfeil 3 an.
-                        arrowVisibility[1] = true;
-                    }
+                } else {
+                    comparePosX = npc.getPosX();
+                    comparePosY = npc.getPosY();
                 }
 
-            } else{
-                //comparePosX < playerPosX
-                //Haus ist  links vom Spieler
-                if(comparePosY < playerPosY){
-                    //Haus ist links über  Spieler
-                    if((playerPosY - comparePosY) < directionalOffsetToDiagonal){
-                        //der y-Abstand ist aber innerhalb von dem Offset
-                        //soll Pfeil 6 anzeigen
-                        arrowVisibility[6] = true;
+                if (comparePosX > playerPosX) {
+                    //Haus ist rechts vom Spieler
+                    if (comparePosY > playerPosY) {
+                        //Haus ist unter Spieler
+                        if ((comparePosY - playerPosY) < directionalOffsetToDiagonal) {
+                            //der y-Abstand ist aber innerhalb von dem Offset
+                            //soll Pfeil 2 anzeigen
+                            arrowVisibility[2] = true;
+                        } else if ((comparePosX - playerPosX) < directionalOffsetToDiagonal) {
+                            //der x-Abstand ist innerhalb vom Offset
+                            //soll Pfeil 4 anzeigen
+                            arrowVisibility[4] = true;
+                        } else {
+                            //passt gar nicht in die Offsets rein
+                            //zeugt den Dialgonalen Pfeil 3 an.
+                            arrowVisibility[3] = true;
+                        }
+                    } else if (comparePosY < playerPosY) {
+                        //Haus ist rehcts über  Spieler
+                        if ((playerPosY - comparePosY) < directionalOffsetToDiagonal) {
+                            //der y-Abstand ist aber innerhalb von dem Offset
+                            //soll Pfeil 2 anzeigen
+                            arrowVisibility[2] = true;
+                        } else if ((comparePosX - playerPosX) < directionalOffsetToDiagonal) {
+                            //der x-Abstand ist innerhalb vom Offset
+                            //soll Pfeil 0 anzeigen
+                            arrowVisibility[0] = true;
+                        } else {
+                            //passt gar nicht in die Offsets rein
+                            //zeugt den Dialgonalen Pfeil 3 an.
+                            arrowVisibility[1] = true;
+                        }
                     }
-                    else if((playerPosX -  comparePosX) < directionalOffsetToDiagonal){
-                        //der x-Abstand ist innerhalb vom Offset
-                        //soll Pfeil 0 anzeigen
-                        arrowVisibility[0] = true;
-                    } else{
-                        //passt gar nicht in die Offsets rein
-                        //zeugt den Dialgonalen Pfeil 7 an.
-                        arrowVisibility[7] = true;
-                    }
-                }
-                else if(comparePosY > playerPosY){
-                    //Haus ist links unter  Spieler
-                    if((comparePosY - playerPosY) < directionalOffsetToDiagonal){
-                        //der y-Abstand ist aber innerhalb von dem Offset
-                        //soll Pfeil 6 anzeigen
-                        arrowVisibility[6] = true;
-                    }
-                    else if((playerPosX -  comparePosX) < directionalOffsetToDiagonal){
-                        //der x-Abstand ist innerhalb vom Offset
-                        //soll Pfeil 4 anzeigen
-                        arrowVisibility[4] = true;
-                    } else{
-                        //passt gar nicht in die Offsets rein
-                        //zeugt den Dialgonalen Pfeil 5 an.
-                        arrowVisibility[5] = true;
+
+                } else {
+                    //comparePosX < playerPosX
+                    //Haus ist  links vom Spieler
+                    if (comparePosY < playerPosY) {
+                        //Haus ist links über  Spieler
+                        if ((playerPosY - comparePosY) < directionalOffsetToDiagonal) {
+                            //der y-Abstand ist aber innerhalb von dem Offset
+                            //soll Pfeil 6 anzeigen
+                            arrowVisibility[6] = true;
+                        } else if ((playerPosX - comparePosX) < directionalOffsetToDiagonal) {
+                            //der x-Abstand ist innerhalb vom Offset
+                            //soll Pfeil 0 anzeigen
+                            arrowVisibility[0] = true;
+                        } else {
+                            //passt gar nicht in die Offsets rein
+                            //zeugt den Dialgonalen Pfeil 7 an.
+                            arrowVisibility[7] = true;
+                        }
+                    } else if (comparePosY > playerPosY) {
+                        //Haus ist links unter  Spieler
+                        if ((comparePosY - playerPosY) < directionalOffsetToDiagonal) {
+                            //der y-Abstand ist aber innerhalb von dem Offset
+                            //soll Pfeil 6 anzeigen
+                            arrowVisibility[6] = true;
+                        } else if ((playerPosX - comparePosX) < directionalOffsetToDiagonal) {
+                            //der x-Abstand ist innerhalb vom Offset
+                            //soll Pfeil 4 anzeigen
+                            arrowVisibility[4] = true;
+                        } else {
+                            //passt gar nicht in die Offsets rein
+                            //zeugt den Dialgonalen Pfeil 5 an.
+                            arrowVisibility[5] = true;
+                        }
                     }
                 }
             }
+            snycArrowVisibility();
+        } else{
+            //alle pfeile ausblenden
+            Arrays.fill(arrowVisibility, false);
+            snycArrowVisibility();
         }
-        snycArrowVisibility();
     }
-    public void snycArrowVisibility(){
+    private void snycArrowVisibility(){
         for (int i = 0; i < arrowVisibility.length; i++) {
 
             arrowImgs[i].sichtbarSetzen(arrowVisibility[i]);
-            System.out.print( "Pfeil: " + i +  " wird mit dem Zustand: " + arrowVisibility[i] + " versehen");
+            //System.out.print( "Pfeil: " + i +  " wird mit dem Zustand: " + arrowVisibility[i] + " versehen");
         }
 
     }

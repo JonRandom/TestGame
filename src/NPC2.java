@@ -12,6 +12,8 @@ public class NPC2 extends Knoten {
 
     @Expose
     public String name;
+    @Expose
+    public String displayName;
     //@Expose
     private Bild img;
 
@@ -36,7 +38,7 @@ public class NPC2 extends Knoten {
     @Expose
     public String lastLine; //letzte DialogZeile
 
-    public NPC2(int pX, int pY, int rX, int rY, int hN, String n, String mlastLine){
+    public NPC2(int pX, int pY, int rX, int rY, int hN, String n, String mlastLine, String dN){
         this.posX=pX;
         this.posY=pY;
         this.relativePosX = rX;
@@ -44,6 +46,7 @@ public class NPC2 extends Knoten {
         this.name = n;
         this.houseNumber = hN;
         this.lastLine = mlastLine;
+        this.displayName = dN;
 
 
 
@@ -168,7 +171,7 @@ public class NPC2 extends Knoten {
         public NPC2 deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
 
             JsonObject jsonObject = (JsonObject) jsonElement;
-            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(),jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString());
+            return new NPC2(jsonObject.get("posX").getAsInt(), jsonObject.get("posY").getAsInt(), jsonObject.get("relativePosX").getAsInt(), jsonObject.get("relativePosY").getAsInt(),jsonObject.get("houseNumber").getAsInt(), jsonObject.get("name").getAsString(), jsonObject.get("lastLine").getAsString(), jsonObject.get("displayName").getAsString());
         }
     }
 }

@@ -43,6 +43,9 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
     //MAIN LOADING
     private boolean initDone = false;
 
+    //Helping Arrow
+    private HelpingArrow helpingArrow;
+
     private DummyPlayer DP;
     private NpcController2 NpcController2;
     private StartingScreen StartSc;
@@ -108,6 +111,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         Minigame2 = new Minigame2(ActivePlayer);
         itemAnimator = new ItemAnimation();
         itemController = new ItemController(ActivePlayer, gamesaver, DialogController, itemAnimator, soundController);
+        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver, itemController);
+        helpingArrow = new HelpingArrow(DialogController, ActivePlayer, map);
 
 
 
@@ -133,7 +138,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
 
         //wurzel.add(Autos);
         wurzel.add(DP);
-        map = new Map3(NpcController2, soundController, ActivePlayer, gamesaver, itemController);
+
         wurzel.add(map);
         wurzel.add(ActivePlayer);
         wurzel.add(NpcController2);
@@ -158,9 +163,10 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige10);
 
         statischeWurzel.add(computer);
+        statischeWurzel.add(helpingArrow);
+
         statischeWurzel.add(itemAnimator);
         statischeWurzel.add(endScreen);
-
         statischeWurzel.add(fadeScreen);
 
 
@@ -262,6 +268,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             soundController.tickMusic();
             itemController.updateItemVisibility();
             endScreen.tick();
+            helpingArrow.updateArrows(); //zeigt die Pfeile für die Orrientierung an
 
             tickCounter++;
             if (tickCounter > 400) { //alle vier sekunden

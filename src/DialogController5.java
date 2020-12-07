@@ -186,11 +186,30 @@ public class DialogController5 extends Knoten {
 
     public void highLightReadyNpcs() {
         NPC_Controller2.disguiseAllNPCs();
+        for (String name : getHighlightedNpcNames()) {
+            NPC_Controller2.highLightNpcsByName(name);
+        }
+    }
+    public List<String> getHighlightedNpcNames(){
+        List<String> nameList = new ArrayList<String>() {};
+        //nameList = null;
         for (String name : NPC_Controller2.getNPCs().keySet()) {
             if (isDialogPacketPlayable(name)) {
-                NPC_Controller2.highLightNpcsByName(name);
+                nameList.add(name);
+
             }
         }
+        return nameList;
+    }
+    public List<NPC2> getHighlightedNpcObjects(){
+        List<NPC2> npcList = new ArrayList<NPC2>() {};
+        //nameList = null;
+        for (String name : NPC_Controller2.getNPCs().keySet()) {
+            if (isDialogPacketPlayable(name)) {
+                npcList.add(NPC_Controller2.getNPCs().get(name));
+            }
+        }
+        return npcList;
     }
 
 

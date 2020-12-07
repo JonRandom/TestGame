@@ -1,0 +1,1 @@
+[Mon Dec 07 12:57:15 CET 2020][ERROR] Der Eingabe-Parameter g leitet sich von der Klasse Game ab. Das würde für einen internen Fehler sorgen und ist daher nicht möglich. Stattdessen kann man die tasteReagieren-Methode verwenden oder über eine andere mit diesem Interface den selben Effekt erzeugen. (Game.java:562)

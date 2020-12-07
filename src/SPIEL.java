@@ -105,8 +105,8 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         debugAnzeige5 = new DebugAnzeige(700, 0);
         debugAnzeige6 = new DebugAnzeige(1300, 0);
         debugAnzeige7 = new DebugAnzeige(0, 30); //dialogPos
-        debugAnzeige8 = new DebugAnzeige(400, 30); //ButtonCursor
-        debugAnzeige9 = new DebugAnzeige(650, 30);
+        debugAnzeige8 = new DebugAnzeige(300, 30);
+        //debugAnzeige9 = new DebugAnzeige(650, 30);
         debugAnzeige10 = new DebugAnzeige(1000, 30); //LastSelfBoolean
         Minigame2 = new Minigame2(ActivePlayer);
         itemAnimator = new ItemAnimation();
@@ -159,7 +159,7 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
         statischeWurzel.add(debugAnzeige6);
         statischeWurzel.add(debugAnzeige7);
         statischeWurzel.add(debugAnzeige8);
-        statischeWurzel.add(debugAnzeige9);
+        //statischeWurzel.add(debugAnzeige9);
         statischeWurzel.add(debugAnzeige10);
 
         statischeWurzel.add(computer);
@@ -208,11 +208,11 @@ public class SPIEL extends Game implements TastenLosgelassenReagierbar, Ticker, 
             debugAnzeige1.SetContent("Pos:" + playerX + "  -  " + playerY);
             debugAnzeige2.SetContent("Visiting:" + map.isVisiting());
             debugAnzeige3.SetContent("Geld:" + ActivePlayer.getMoney());
-            debugAnzeige4.SetContent("LastLineHadChoice?:" + DialogController.isLastLineHadChoice());
+            //debugAnzeige4.SetContent("LastLineHadChoice?:" + DialogController.isLastLineHadChoice());
             debugAnzeige5.SetContent("ZeitPosition: " + DialogController.getGlobalTemporalPosition());
             //debugAnzeige6.SetContent("PlayingLastLine: " + DialogController.isPlayingLastLine());
             debugAnzeige7.SetContent("CurrentDialogCode: " + DialogController.getCurrentDialogCode());
-            debugAnzeige8.SetContent("SELECTION: " + DialogController.getSelection());
+            debugAnzeige8.SetContent("relativePos: " + map.getOffsetPosString());
             //debugAnzeige9.SetContent("OneButtonMode?: " + DialogController.isOneButtonMode());
             //debugAnzeige10.SetContent("LastSelf: " + DialogController.isPlayingLastLine());
 

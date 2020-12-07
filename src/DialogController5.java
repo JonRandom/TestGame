@@ -5,10 +5,12 @@ import ea.Farbe;
 import ea.Knoten;
 import ea.Text;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class DialogController5 extends Knoten {
@@ -42,15 +44,17 @@ public class DialogController5 extends Knoten {
     //VISIBLE STUFF;
     private String defaultPath = "./Assets/Dialoge/";
     private Text displayTextObject;
+    private Text displayTextNpcName;
     private Bild displayDialogBackgroundLeft;
     private Bild displayDialogBackgroundRight;
     private Bild displayArrowLeft;
     private Bild displayArrowRight;
 
     //Text Stuff
-    private final int textPosY = 650;
+    private final int textPosY = 675;
     private final int defaultTextSize = 28;
     private final int maxTextWidth = 800;
+    private final int nameTextPosY = 625;
 
     //DIALOG LINE STUFF;
     private String currentDialogCode;
@@ -142,11 +146,22 @@ public class DialogController5 extends Knoten {
             }
         }
 
+        //content text field
         displayTextObject = new Text(MAIN.x / 2, textPosY, "DEFAULT TEXT");
         displayTextObject.mittelpunktSetzen(MAIN.x / 2, textPosY);
         displayTextObject.farbeSetzen(new Farbe(0, 0, 0));
         displayTextObject.groesseSetzen(defaultTextSize);
+        displayTextObject.setzeFont("Monospaced");
         this.add(displayTextObject);
+
+        //NPC name text field
+        displayTextNpcName = new Text(MAIN.x / 2, textPosY, "DEFAULT NPC NAME");
+        displayTextNpcName.mittelpunktSetzen(MAIN.x / 2, nameTextPosY);
+        displayTextNpcName.farbeSetzen(new Farbe(0, 0, 0));
+        displayTextNpcName.groesseSetzen(defaultTextSize);
+        displayTextNpcName.setzeSchriftart(1);
+        displayTextNpcName.setzeFont("Monospaced");
+        this.add(displayTextNpcName);
         hideWindow();
     }
 
@@ -190,8 +205,10 @@ public class DialogController5 extends Knoten {
             NPC_Controller2.highLightNpcsByName(name);
         }
     }
-    public List<String> getHighlightedNpcNames(){
-        List<String> nameList = new ArrayList<String>() {};
+
+    public List<String> getHighlightedNpcNames() {
+        List<String> nameList = new ArrayList<String>() {
+        };
         //nameList = null;
         for (String name : NPC_Controller2.getNPCs().keySet()) {
             if (isDialogPacketPlayable(name)) {
@@ -201,8 +218,10 @@ public class DialogController5 extends Knoten {
         }
         return nameList;
     }
-    public List<NPC2> getHighlightedNpcObjects(){
-        List<NPC2> npcList = new ArrayList<NPC2>() {};
+
+    public List<NPC2> getHighlightedNpcObjects() {
+        List<NPC2> npcList = new ArrayList<NPC2>() {
+        };
         //nameList = null;
         for (String name : NPC_Controller2.getNPCs().keySet()) {
             if (isDialogPacketPlayable(name)) {
@@ -335,6 +354,7 @@ public class DialogController5 extends Knoten {
 
     public void showWindow() {
         displayTextObject.sichtbarSetzen(true);
+        displayTextNpcName.sichtbarSetzen(true);
         displayDialogBackgroundLeft.sichtbarSetzen(true);
         displayDialogBackgroundRight.sichtbarSetzen(true);
     }
@@ -342,6 +362,7 @@ public class DialogController5 extends Knoten {
     public void hideWindow() {
         hideAllFaces();
         displayTextObject.sichtbarSetzen(false);
+        displayTextNpcName.sichtbarSetzen(false);
         displayDialogBackgroundLeft.sichtbarSetzen(false);
         displayDialogBackgroundRight.sichtbarSetzen(false);
         hideAllArrows();
@@ -383,11 +404,30 @@ public class DialogController5 extends Knoten {
         DialogLine dL = dialogLines.get(lineCode);
         setNpcFace(dL.name);
         setDialogWindowDir(dL.isSelf());
+        updatePartnerName(dL.name, dL.isSelf());
         updateTextContent(dL.inhalt);
         System.out.println("DialogController5: Zeigt jetzt die Zeile: " + lineCode + " an!");
         lastLines.put(dL.name, lineCode); //self wird auch mitgespeicher und später rausgenommen
     }
 
+    public void updatePartnerName(String name, boolean isSelf) {
+        if (isSelf) {
+            String inhalt = "Antwort:";
+            displayTextNpcName.inhaltSetzen(inhalt);
+            displayTextNpcName.mittelpunktSetzen(MAIN.x /2, nameTextPosY);
+            displayTextNpcName.sichtbarSetzen(true);
+        } else {
+            String displayName = NPC_Controller2.getNPCs().get(name).displayName;
+            if (displayName.equals("")) {
+                displayTextNpcName.sichtbarSetzen(false);
+            } else {
+                String inhalt = displayName + ":";
+                displayTextNpcName.inhaltSetzen(inhalt);
+                displayTextNpcName.mittelpunktSetzen(MAIN.x /2, nameTextPosY);
+                displayTextNpcName.sichtbarSetzen(true);
+            }
+        }
+    }
 
     public void updateTextContent(String inhalt) {
         displayTextObject.sichtbarSetzen(true);

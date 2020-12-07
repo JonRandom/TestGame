@@ -1,24 +1,11 @@
 {
-  "posX": 1324,
-  "posY": 2532,
+  "posX": 5516,
+  "posY": 1748,
   "walkspeed": 8,
   "houseNumber": -1,
-  "lastOutsidePosX": 820,
-  "lastOutsidePosY": 2252,
+  "lastOutsidePosX": 5028,
+  "lastOutsidePosY": 1332,
   "temporalPosition": "Tag 1 Abschnitt 1 (Start Zeit)",
   "items": [],
-  "lines": [
-    "D1.0_00_01",
-    "D1.0_00_02",
-    "D1.1_00_01",
-    "D1.1_00_02",
-    "D1.1_11_01",
-    "D1.1_11_02",
-    "D1.1_11_03",
-    "D1.2_00_01",
-    "D1.2_00_02",
-    "D1.2_00_03",
-    "D1.2_00_04",
-    "Tag 1 ja"
-  ]
+  "lines": []
 }

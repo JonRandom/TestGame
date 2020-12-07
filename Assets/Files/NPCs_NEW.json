@@ -1,1 +1,169 @@
-{"becker":{"name":"becker","displayName":"Becker","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"kay":{"name":"kay","displayName":"Kay","posX":450.0,"posY":600.0,"relativePosX":450.0,"relativePosY":600.0,"houseNumber":0,"lastLine":"D1.1_11_03"},"macke":{"name":"macke","displayName":"Macke","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"max":{"name":"max","displayName":"Max","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"officer":{"name":"officer","displayName":"Officer Norris","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"cousine":{"name":"cousine","displayName":"Fiona","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"felix":{"name":"felix","displayName":"Felix","posX":468.0,"posY":42.0,"relativePosX":468.0,"relativePosY":42.0,"houseNumber":4,"lastLine":""},"kata":{"name":"kata","displayName":"Katarina","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"mutter":{"name":"mutter","displayName":"Mutter","posX":745.0,"posY":1976.0,"relativePosX":240.0,"relativePosY":20.0,"houseNumber":3,"lastLine":"D1.2_00_04"},"hacker":{"name":"hacker","displayName":"???","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"bob":{"name":"bob","displayName":"Bob","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"frauenland":{"name":"frauenland","displayName":"Fr. Enland","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"elbert":{"name":"elbert","displayName":"Elbert","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"florian":{"name":"florian","displayName":"Florian","posX":-200.0,"posY":-200.0,"relativePosX":-200.0,"relativePosY":-200.0,"houseNumber":-1,"lastLine":""},"tim":{"name":"tim","displayName":"Tim","posX":560.0,"posY":670.0,"relativePosX":560.0,"relativePosY":670.0,"houseNumber":0,"lastLine":""},"zzz":{"name":"zzz","displayName":"Bett","posX":1027.0,"posY":2340.0,"relativePosX":522.0,"relativePosY":384.0,"houseNumber":3,"lastLine":"Tag 1 schlafen"}}
+/*
+Das hier ist die Orginale JSON Datei mit den Daten zu den NPCs.
+
+ */
+
+{
+  "kay": {
+    "name": "kay",
+    "displayName": "Kay",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "mutter": {
+    "name": "mutter",
+    "displayName": "Mutter",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": "0"
+  },
+  "felix": {
+    "name": "felix",
+    "displayName": "Felix",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "tim": {
+    "name": "tim",
+    "displayName": "Tim",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "frauenland": {
+    "name": "frauenland",
+    "displayName": "Fr. Enland",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "hacker": {
+    "name": "hacker",
+    "displayName": "???",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "officer": {
+    "name": "officer",
+    "displayName": "Officer Norris",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "bob": {
+    "name": "bob",
+    "displayName": "Bob",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "cousine": {
+    "name": "cousine",
+    "displayName": "Fiona",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "kata": {
+    "name": "kata",
+    "displayName": "Katarina",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "max": {
+    "name": "max",
+    "displayName": "Max",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "macke": {
+    "name": "macke",
+    "displayName": "Macke",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "becker": {
+    "name": "becker",
+    "displayName": "Becker",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "elbert": {
+    "name": "elbert",
+    "displayName": "Elbert",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+
+
+  "florian": {
+    "name": "florian",
+    "displayName": "Florian",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  },
+  "zzz": {
+    "name": "zzz",
+    "displayName": "Bett",
+    "posX": -200,
+    "posY": -200,
+    "relativePosX": -200,
+    "relativePosY": -200,
+    "houseNumber": -1,
+    "lastLine": ""
+  }
+}

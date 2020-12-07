@@ -3,6 +3,7 @@ import com.google.gson.reflect.TypeToken;
 import ea.Bild;
 import ea.Game;
 import ea.Knoten;
+import ea.Punkt;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -34,16 +35,20 @@ public class Map3 extends Knoten {
     private int houseNumber = -1;
 
     private ImageCollider mapHitbox; // map Kollider
-    private Bild mapImg; //Main anzeigeBild
+    //private Bild mapImg; //Main anzeigeBild
     private Bild backgroundImg;
 
 
     private String defaultPath = "./Assets/Houses/"; //Basis-Pfad für alle interiorPics
-    private String pathHitboxImg = "./Assets/Tests/Map3_coll.png";
-    private String pathMainImg = "./Assets/Map3.png";
+    private String pathHitboxImg = "./Assets/Map/Map3_coll.png";
+    private String pathMainImg = "./Assets/Map/";
     private String pathBackgroundImg = "./Assets/Tests/blur.png";
 
     private HashMap<String, Map3.Haus> MAP; //für die Json
+
+    private Bild[] mapImgs = new Bild[4];
+    private Punkt mapCenter = new Punkt(4896,2541);
+
 
     private ImageCollider[] houseHitbox;
     private Bild[] houseImgs; //Anzeigebilder der Innenraüme
@@ -110,9 +115,13 @@ public class Map3 extends Knoten {
     private void FillArrays() {
 
         try {
-            mapImg = new Bild(0, 0, pathMainImg);
-            mapImg.setOpacity(0.5f);
-            this.add(mapImg);
+            mapImgs[0] = new Bild(0,0, pathMainImg + "topLeft.png");
+            mapImgs[1] = new Bild(mapCenter.x,0, pathMainImg + "topRight.png");
+            mapImgs[2] = new Bild(mapCenter.x,mapCenter.y, pathMainImg + "bottomRight.png");
+            mapImgs[3] = new Bild(0, mapCenter.y, pathMainImg + "bottomLeft.png");
+            //mapImg = new Bild(0, 0, pathMainImg);
+            //mapImg.setOpacity(0.5f);
+            this.add(mapImgs[0], mapImgs[1], mapImgs[2], mapImgs[3]);
         } catch (Exception e) {
             System.out.println("Fehler in der Map Klasse: Bild bei " + pathMainImg + " kann nicht gefunden werden!");
             System.out.println(e);

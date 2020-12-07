@@ -566,7 +566,14 @@
     "nextTime": ""
   },
   "D2.2.1_00_23": {
-    "inhalt": "Außerdem ist es sinnvoll, dass den Inhalt deines Passwortes nur du kennst, ansonsten kann man es möglicherweise erraten.",
+    "inhalt": "Außerdem ist es sinnvoll, dass den Inhalt deines Passwortes nur du kennst,",
+    "name": "frauenland",
+    "wahl1": "D2.2.1_00_23-2",
+    "wahl2": "",
+    "nextTime": ""
+  },
+  "D2.2.1_00_23-2": {
+    "inhalt": "ansonsten kann man es möglicherweise erraten.",
     "name": "frauenland",
     "wahl1": "D2.2.1_00_24",
     "wahl2": "",
